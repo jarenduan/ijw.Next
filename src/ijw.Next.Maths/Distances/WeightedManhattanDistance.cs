@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using ijw.Next.Collection;
 
-namespace ijw.Next.Maths
-{
+namespace ijw.Next.Maths {
     /// <summary>
     /// 计算向量间的加权曼哈顿距离
     /// </summary>
