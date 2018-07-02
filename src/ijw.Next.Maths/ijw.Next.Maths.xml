@@ -4,6 +4,312 @@
         <name>ijw.Next.Maths</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.Maths.Distance">
+            <summary>
+            向量距离计算
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.Distance.EuclideanBetween(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的欧氏距离
+            </summary>
+            <param name="v1">向量1</param>
+            <param name="v2">向量2</param>
+            <returns>向量1与向量2之间的欧氏距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Distance.EuclideanBetween(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的欧氏距离
+            </summary>
+            <param name="v1">向量1</param>
+            <param name="v2">向量2</param>
+            <param name="weights">权值</param>
+            <returns>向量1与向量2之间的欧氏距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Distance.ManhattanBetween(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的曼哈顿距离
+            </summary>
+            <param name="v1">向量1</param>
+            <param name="v2">向量2</param>
+            <returns>向量1与向量2之间的曼哈顿距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Distance.ManhattanBetween(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的曼哈顿距离
+            </summary>
+            <param name="v1">向量1</param>
+            <param name="v2">向量2</param>
+            <returns>向量1与向量2之间的曼哈顿距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Distance.MinkowskiBetween(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector,System.Int32)">
+            <summary>
+            计算向量间的闵氏距离
+            </summary>
+            <param name="v1">向量1</param>
+            <param name="v2">向量2</param>
+            <returns>向量1与向量2之间的闵氏距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Distance.MinkowskiBetween(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector,System.Int32,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的闵氏距离
+            </summary>
+            <param name="v1">向量1</param>
+            <param name="v2">向量2</param>
+            <returns>向量1与向量2之间的闵氏距离</returns>
+        </member>
+        <member name="T:ijw.Next.Maths.DistanceBase">
+            <summary>
+            距离计算器基类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.DistanceBase.GetDistance(System.Collections.Generic.ICollection{System.Double},System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            获取两个向量间的距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.DistanceBase.GetDistance(ijw.Next.Collection.IIndexable{System.Double},ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            获取两个向量间的距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.DistanceBase.GetDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            获取两个向量间的距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.DistanceBase.getDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            获取两个向量间的距离，不用检查向量维度是否匹配
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="T:ijw.Next.Maths.EuclideanDistance">
+            <summary>
+            计算向量间的欧氏距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.EuclideanDistance.#ctor">
+            <summary>
+            构造一个欧式距离计算器
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Maths.IDistanceBase">
+            <summary>
+            计算向量间的距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.IDistanceBase.GetDistance(System.Collections.Generic.ICollection{System.Double},System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            计算向量间的距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.IDistanceBase.GetDistance(ijw.Next.Collection.IIndexable{System.Double},ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            计算向量间的距离
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Maths.ManhattanDistance">
+            <summary>
+            计算向量间的曼哈顿距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.ManhattanDistance.getDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            计算两个向量的的曼哈顿距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>曼哈顿距离</returns>
+        </member>
+        <member name="T:ijw.Next.Maths.MinkowskiDistance">
+            <summary>
+            计算向量间的闵氏距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.MinkowskiDistance.#ctor(System.Int32)">
+            <summary>
+            构造一个闵氏距离计算器
+            </summary>
+            <param name="lambda"></param>
+        </member>
+        <member name="P:ijw.Next.Maths.MinkowskiDistance.Lambda">
+            <summary>
+            距离幂值
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.MinkowskiDistance.getDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            计算向量间的闵氏距离
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Maths.WeightedDistanceBase">
+            <summary>
+            计算向量间的加权距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedDistanceBase.#ctor(System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            构造一个加权向量距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedDistanceBase.#ctor(ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            构造一个加权向量距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedDistanceBase.#ctor(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            构造一个加权向量距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedDistanceBase.GetDistance(System.Collections.Generic.ICollection{System.Double},System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            获取两个向量间的距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedDistanceBase.GetDistance(ijw.Next.Collection.IIndexable{System.Double},ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            获取两个向量间的距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedDistanceBase.GetDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            获取两个向量间的距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>距离</returns>
+        </member>
+        <member name="P:ijw.Next.Maths.WeightedDistanceBase.Weights">
+            <summary>`
+            各维度权值
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Maths.WeightedDistanceBase.Dimention">
+            <summary>
+            此距离计算器的计算维度
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Maths.WeightedEuclideanDistance">
+            <summary>
+            计算向量间的加权欧氏距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedEuclideanDistance.#ctor(System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            构造一个加权欧氏距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedEuclideanDistance.#ctor(ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            构造一个加权欧氏距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="T:ijw.Next.Maths.WeightedManhattanDistance">
+            <summary>
+            计算向量间的加权曼哈顿距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedManhattanDistance.#ctor(System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            构造一个加权曼哈顿距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedManhattanDistance.#ctor(ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            构造一个加权曼哈顿距离计算器
+            </summary>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedManhattanDistance.getDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            计算两个向量的的加权曼哈顿距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>加权曼哈顿距离</returns>
+        </member>
+        <member name="T:ijw.Next.Maths.WeightedMinkowskiDistance">
+            <summary>
+            计算向量间的加权闵氏距离
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedMinkowskiDistance.#ctor(System.Int32,System.Collections.Generic.ICollection{System.Double})">
+            <summary>
+            构造一个加权闵氏距离计算器
+            </summary>
+            <param name="lambda">距离幂值</param>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedMinkowskiDistance.#ctor(System.Int32,ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            构造一个加权闵氏距离计算器
+            </summary>
+            <param name="lambda">距离幂值</param>
+            <param name="weights">权重集合</param>
+        </member>
+        <member name="P:ijw.Next.Maths.WeightedMinkowskiDistance.Lambda">
+            <summary>
+            距离幂值
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.WeightedMinkowskiDistance.getDistance(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            计算两个向量的的加权曼哈顿距离
+            </summary>
+            <param name="v1">第一个向量</param>
+            <param name="v2">第二个向量</param>
+            <returns>加权曼哈顿距离</returns>
+        </member>
+        <member name="T:ijw.Next.Maths.ErrorTolerantVectorEqualityComparer">
+            <summary>
+            误差容忍向量比较器
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Maths.ErrorTolerantVectorEqualityComparer.EquataionPrecision">
+            <summary>
+            误差容忍度
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.ErrorTolerantVectorEqualityComparer.Equals(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            考虑误差容忍度的相等比较
+            </summary>
+            <param name="x">第1个向量</param>
+            <param name="y">第2个向量</param>
+            <returns>相差在误差容忍度内，返回true，反之，返回false.</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.ErrorTolerantVectorEqualityComparer.GetHashCode(ijw.Next.Maths.Vector)">
+            <summary>
+            获取hash值
+            </summary>
+            <param name="obj"></param>
+            <returns>hash值</returns>
+        </member>
         <member name="T:ijw.Next.Maths.IFunction`2">
             <summary>
             表示输入与输出之间的函数
@@ -355,6 +661,237 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:ijw.Next.Maths.Vector">
+            <summary>
+            向量
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.#ctor(System.Int32)">
+            <summary>
+            构造一个空向量，各维度为0.
+            </summary>
+            <param name="dimension"></param>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.#ctor(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            用双精度浮点数的数组构造一个向量
+            </summary>
+            <param name="data">双精度浮点数的数组</param>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.#ctor(System.Double[])">
+            <summary>
+            用一系列双精度浮点数构造一个向量
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Maths.Vector.Dimension">
+            <summary>
+            向量维度
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.One(System.Int32)">
+            <summary>
+            生成一个单位向量
+            </summary>
+            <param name="dimension">向量维度</param>
+            <returns>生成的单位向量</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Zero(System.Int32)">
+            <summary>
+            生成一个零向量
+            </summary>
+            <param name="dimension">向量维度</param>
+            <returns>生成的零向量</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.RandomNew(System.Int32)">
+            <summary>
+            生成一个随机的向量
+            </summary>
+            <param name="dimension">向量维度</param>
+            <returns>新生成的向量</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.AddToSelf(ijw.Next.Maths.Vector)">
+            <summary>
+            向量加法. 此方法不返回新的向量, 将会改变自身的值
+            </summary>
+            <param name="addend"></param>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Plus(ijw.Next.Maths.Vector)">
+            <summary>
+            向量加法，返回新的向量
+            </summary>
+            <param name="addend">加数</param>
+            <returns>新的向量，表示和</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Minus(ijw.Next.Maths.Vector)">
+            <summary>
+            向量减法，返回新的向量
+            </summary>
+            <param name="anotherVector">减去</param>
+            <returns>新的向量，表示差</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Multipy(System.Double)">
+            <summary>
+            向量乘法，返回新的向量
+            </summary>
+            <param name="number">乘以</param>
+            <returns>新的向量，表示向量和数字的乘积</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.GetDotProduct(ijw.Next.Maths.Vector)">
+            <summary>
+            向量点积，返回新的向量
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <returns>新的向量，表示向量的点积</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.GetCrossProduct(ijw.Next.Maths.Vector)">
+            <summary>
+            向量叉乘，返回新的向量
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <returns>新的向量，表示向量的叉乘</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.op_Addition(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+             + 操作符重载, 执行向量加法
+             注意, 该方法行为像值类型一样, 每次都返回新的浮点向量
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.op_Subtraction(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+             - 操作符重载, 执行向量减法
+             注意, 该方法行为像值类型一样, 每次都返回新的浮点向量
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.op_Multiply(ijw.Next.Maths.Vector,System.Double)">
+            <summary>
+            操作符 * 重载, 实现向量和浮点数的乘法
+             注意, 该方法行为像值类型一样, 每次都返回新的浮点向量
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.op_Multiply(System.Double,ijw.Next.Maths.Vector)">
+            <summary>
+            操作符 * 重载, 实现向量和浮点数的乘法.
+             注意, 该方法行为像值类型一样, 每次都返回新的浮点向量
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.op_Division(ijw.Next.Maths.Vector,System.Double)">
+            <summary>
+            操作符 / 重载, 实现向量除以浮点数的除法
+             注意, 该方法行为像值类型一样, 每次都返回新的浮点向量
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.EuclideanDistanceFrom(ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的加权欧式距离
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <returns>向量间的加权欧式距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.EuclideanDistanceFrom(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的加权曼哈顿距离
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <param name="weights">各维度的权值</param>
+            <returns>向量间的加权曼哈顿距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.ManhattanDistanceFrom(ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的曼哈顿距离
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <returns>向量间的曼哈顿距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.ManhattanDistanceFrom(ijw.Next.Maths.Vector,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的加权曼哈顿距离
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <param name="weights">各维度的权值</param>
+            <returns>向量间的加权曼哈顿距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.MinkowskiDistanceFrom(ijw.Next.Maths.Vector,System.Int32)">
+            <summary>
+            计算向量间的闵氏距离
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <param name="lambda">分量的幂值</param>
+            <returns>向量间的闵氏距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.MinkowskiDistanceFrom(ijw.Next.Maths.Vector,System.Int32,ijw.Next.Maths.Vector)">
+            <summary>
+            计算向量间的加权闵氏距离
+            </summary>
+            <param name="anotherVector">另一个向量</param>
+            <param name="lambda">分量的幂值</param>
+            <param name="weights">各维度的权值</param>
+            <returns>向量间的加权闵氏距离</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Equals(System.Object)">
+            <summary>
+            相等比较
+            </summary>
+            <param name="obj">比较的对象</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Equals(ijw.Next.Maths.Vector)">
+            <summary>
+            相等比较
+            </summary>
+            <param name="other">比较的对象</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Equals(ijw.Next.Maths.Vector,System.Double)">
+            <summary>
+            容忍精度的相等比较
+            </summary>
+            <param name="other">比较的向量</param>
+            <param name="errorTolerance">容忍的精度</param>
+            <returns>差别是否小于指定的精度</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Equals(ijw.Next.Maths.Vector,ijw.Next.Collection.IIndexable{System.Double})">
+            <summary>
+            容忍精度的相等比较
+            </summary>
+            <param name="other">比较的向量</param>
+            <param name="errorTolerance">容忍的精度</param>
+            <returns>差别是否小于指定的精度</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.Equlas(ijw.Next.Maths.Vector,System.Collections.Generic.IEqualityComparer{ijw.Next.Maths.Vector})">
+            <summary>
+            相等比较
+            </summary>
+            <param name="other">比较的向量</param>
+            <param name="equalityComparer">比较器</param>
+            <returns>是否相等</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.GetHashCode">
+            <summary>
+            获取hash值
+            </summary>
+            <returns>hash值</returns>
+        </member>
+        <member name="M:ijw.Next.Maths.Vector.ToString">
+            <summary>
+            生成字符串
+            </summary>
+            <returns>表示自身部分内容的字符串</returns>
         </member>
         <member name="T:ijw.Next.Maths.VectorDoubleStruct">
             <summary>
