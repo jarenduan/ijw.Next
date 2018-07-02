@@ -13,7 +13,7 @@ namespace ijw.Next {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="aBool"></param>
-        public static void ThrowWhenBroke<T>(this bool aBool) where T : Exception, new() {
+        public static void ThrowsWhenBroke<T>(this bool aBool) where T : Exception, new() {
             if (!aBool) {
                 var ex = new T();
                 throw ex;
@@ -26,7 +26,7 @@ namespace ijw.Next {
         /// <typeparam name="T"></typeparam>
         /// <param name="aBool"></param>
         /// <param name="exceptionMessage">异常消息字符串</param>
-        public static void ThrowWhenBroke<T>(this bool aBool, string exceptionMessage) where T : Exception, new() {
+        public static void ThrowsWhenBroke<T>(this bool aBool, string exceptionMessage) where T : Exception, new() {
             if (!aBool) {
                 var ex = (T)Activator.CreateInstance(typeof(T), exceptionMessage);
                 throw ex;
