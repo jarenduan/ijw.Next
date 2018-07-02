@@ -19,7 +19,7 @@ namespace ijw.Next.Maths {
         public virtual double GetDistance(ICollection<double> v1, ICollection<double> v2) {
             v1.ShouldBeNotNullArgument(nameof(v1));
             v2.ShouldBeNotNullArgument(nameof(v2));
-            v2.Count.ShouldEquals(v1.Count).ThrowWhenBroke<DimensionNotMatchException>(); ;
+            v2.Count.ShouldEquals(v1.Count).ThrowsWhenBroke<DimensionNotMatchException>(); ;
             return getDistance(v1, v2);
         }
 
@@ -32,7 +32,7 @@ namespace ijw.Next.Maths {
         public virtual double GetDistance(IIndexable<double> v1, IIndexable<double> v2) {
             v1.ShouldBeNotNullArgument(nameof(v1));
             v2.ShouldBeNotNullArgument(nameof(v2));
-            v2.Count.ShouldEquals(v1.Count()).ThrowWhenBroke<DimensionNotMatchException>();
+            v2.Count.ShouldEquals(v1.Count()).ThrowsWhenBroke<DimensionNotMatchException>();
             return getDistance(v1, v2);
         }
 
@@ -45,7 +45,7 @@ namespace ijw.Next.Maths {
         public virtual double GetDistance(IEnumerable<double> v1, IEnumerable<double> v2) {
             v1.ShouldBeNotNullArgument(nameof(v1));
             v2.ShouldBeNotNullArgument(nameof(v2));
-            v2.Count().ShouldEquals(v1.Count()).ThrowWhenBroke<DimensionNotMatchException>();
+            v2.Count().ShouldEquals(v1.Count()).ThrowsWhenBroke<DimensionNotMatchException>();
             return getDistance(v1, v2);
         }
 
