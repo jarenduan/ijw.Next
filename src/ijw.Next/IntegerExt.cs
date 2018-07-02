@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ijw.Next {
     /// <summary>
     /// 提供对Integer类型的若干扩展方法
     /// </summary>
     public static class IntegerExt {
+
+        #region Number sequence
+
         /// <summary>
         /// 返回由当前数字开始直到指定数字所组成的递增整数数组
         /// </summary>
@@ -44,6 +48,10 @@ namespace ijw.Next {
             return number.To(number + totalLength - 1);
         }
 
+        #endregion 新建 #region
+
+        #region Pow
+
         /// <summary>
         /// 幂计算
         /// </summary>
@@ -53,20 +61,24 @@ namespace ijw.Next {
         public static int Pow(this int number, int power) => (int)Math.Pow(number, power);
 
         /// <summary>
-        /// 将整数变成序数字符串, 比如 1.ToOrdinalString() 生成字符串: "1st".
+        /// 幂计算
         /// </summary>
         /// <param name="number"></param>
-        /// <param name="lastNumber">指定最后一个数字, 对于此数字将返回"last"</param>
-        /// <returns>序数字符串</returns>
-        public static string ToOrdinalString(this int number, int lastNumber = -1) {
-            if (number == lastNumber) {
-                return "last";
-            }
-            else {
-                return number.ToString().AppendOrdinalPostfix();
-            }
-        }
+        /// <param name="power">幂</param>
+        /// <returns></returns>
+        public static int Pow(this int number, float power) => (int)Math.Pow(number, power);
 
+        /// <summary>
+        /// 幂计算
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="power">幂</param>
+        /// <returns></returns>
+        public static int Pow(this int number, double power) => (int)Math.Pow(number, power);
+
+        #endregion 新建 #region
+
+        #region Times
         /// <summary>
         /// 反复运行委托一定次数
         /// </summary>
@@ -101,7 +113,9 @@ namespace ijw.Next {
             }
             return aString.Repeat(times);
         }
+        #endregion
 
+        #region Odd or Even
         /// <summary>
         /// 判断是否是奇数
         /// </summary>
@@ -119,5 +133,23 @@ namespace ijw.Next {
         public static bool IsEven(this int number) {
             return number % 2 == 0;
         }
+        #endregion
+
+        #region ToString
+        /// <summary>
+        /// 将整数变成序数字符串, 比如 1.ToOrdinalString() 生成字符串: "1st".
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="lastNumber">指定最后一个数字, 对于此数字将返回"last"</param>
+        /// <returns>序数字符串</returns>
+        public static string ToOrdinalString(this int number, int lastNumber = -1) {
+            if (number == lastNumber) {
+                return "last";
+            }
+            else {
+                return number.ToString().AppendOrdinalPostfix();
+            }
+        } 
+        #endregion
     }
 }
