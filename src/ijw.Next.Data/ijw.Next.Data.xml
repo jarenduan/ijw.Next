@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Data</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Data.Sample.AlreadyNormalizedExcpetion">
+            <summary>
+            已经归一化
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Data.Sample.CannotDenormalizeException">
+            <summary>
+            无法
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Data.Sample.NonNormalizedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Data.Sample.Sample">
+            <summary>
+            一个样本
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Data.Sample.SampleCollection">
+            <summary>
+            表示样本的集合, 非线程安全. 此集合始终非空，至少包含一条样本数据。
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.#ctor(System.Collections.Generic.IEnumerable{System.Double[]},System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            从double数组的集合创建一个样本集，样本集将直接引用这些数组，这意味着对样本集的一切编辑将导致这些数组的直接变更。
+            </summary>
+            <param name="samples">原始数据数组</param>
+            <param name="outputDimension">输出维度，可选，默认是0，无输出</param>
+            <param name="fieldNames">列名，可选</param>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.#ctor(System.Collections.Generic.IEnumerable{ijw.Next.Data.Sample.Sample})">
+            <summary>
+            从一个Sample集合samples创建一个新的样本集。会导致值的复制。创建的样本集不引用samples，二者可以相互更改。
+            </summary>
+            <param name="samples">样本的集合</param>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.InputDimensionCount">
+            <summary>
+            样本输入维度
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.OutputDimensionCount">
+            <summary>
+            样本输出维度
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.TotalDimensionCount">
+            <summary>
+            样本数据总维度
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.Count">
+            <summary>
+            样本总数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.Samples">
+            <summary>
+            样本集合
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.Columns">
+            <summary>
+            列集合
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.Item(System.Int32)">
+            <summary>
+            按索引访问样本
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.Item(System.String)">
+            <summary>
+            按列名访问样本列
+            </summary>
+            <param name="fieldname"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollection.FieldNames">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Data.Sample.SampleCollection._samples">
+            <summary>
+            行视图集合内部存储
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Data.Sample.SampleCollection._columns">
+            <summary>
+            列视图集合内部存储
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Data.Sample.SampleCollection._data">
+            <summary>
+            内部数据实际存储
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.Add(ijw.Next.Data.Sample.Sample)">
+            <summary>
+            向集合添加一个样本. 
+            添加时会保证样本与集合内样本的输入输出维度一致.
+            </summary>
+            <param name="sample">待添加的样本</param>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.DivideIntoTwo(System.Int32,System.Int32,ijw.Next.Collection.CollectionDividingMethod,ijw.Next.Data.Sample.SampleCollection@,ijw.Next.Data.Sample.SampleCollection@)">
+            <summary>
+            将样本集划分为两个子集
+            </summary>
+            <param name="ratioOfFirstGroup">第一个子集的占比</param>
+            <param name="ratioOfSecondGroup">第二个子集的占比</param>
+            <param name="method">切分方法</param>
+            <param name="firstGroup">第一个子集</param>
+            <param name="secondGroup">第二个子集</param>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.IsField(System.String)">
+            <summary>
+            检查字符串是否是样本集中的输入字段名
+            </summary>
+            <param name="fieldName">字段名</param>
+            <returns>是字段名返回真，反之假</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.IsInputField(System.String)">
+            <summary>
+            检查字符串是否是样本集中的输入字段名
+            </summary>
+            <param name="fieldName">字段名</param>
+            <returns>是返回真，反之假</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.IsOutputField(System.String)">
+            <summary>
+            检查字符串是否是样本集中的输出字段名
+            </summary>
+            <param name="fieldName">字段名</param>
+            <returns>是返回真，反之假</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.GetColumnIndex(System.String)">
+            <summary>
+            获取字符串代表的样本集中的字段序号
+            </summary>
+            <param name="fieldName">字段名</param>
+            <returns>存在则返回字段所在列的索引号，反之-1</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.GetColumn(System.String)">
+            <summary>
+            获取字符串代表的样本集中的字段序号
+            </summary>
+            <param name="fieldName">字段名</param>
+            <returns>存在则返回字段所在列的索引号，反之-1</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.GetColumnAt(System.Int32)">
+            <summary>
+            获取指定索引处的维度列
+            </summary>
+            <param name="index">指定的索引</param>
+            <returns>维度列</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            复制样本集，并限制波动进行样本集过滤。用前一个样本+波动幅度代替。
+            </summary>
+            <param name="diffLimitations">波动最大值绝对值的向量.</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.LimitingDiffFilter(ijw.Next.Collection.IIndexable{System.Double},ijw.Next.Collection.IIndexable{System.Double},System.Double)">
+            <summary>
+            限制波动对集合进行过滤。用前一个样本+波动幅度代替。
+            </summary>
+            <param name="values"></param>
+            <param name="diff"></param>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            限幅过滤。放弃掉波动过大的样本，用前一个样本代替。
+            </summary>
+            <param name="diffLimitations">波动最大值绝对值的向量. 都必须大于0</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.LimitingAmplifyFilter(ijw.Next.Collection.IIndexable{System.Double},ijw.Next.Collection.IIndexable{System.Double},System.Double)">
+            <summary>
+            限幅过滤。放弃掉波动过大的数值，用前一个数值代替。
+            </summary>
+            <param name="diff">波动最大值绝对值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.MedianFilter(System.Int32)">
+            <summary>
+            中位值过滤。针对每个维度, 在窗口长度内取中位值.
+            </summary>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.MedianFilter(System.Int32[])">
+            <summary>
+            中位值过滤。窗口长度内取中位值
+            </summary>
+            <param name="windowLengths">各维度的窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.MeanFilter(System.Int32)">
+            <summary>
+            算术平均值过滤。窗口长度内取平均值
+            </summary>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.MeanFilter(System.Int32[])">
+            <summary>
+            算术平均值过滤。窗口长度内取平均值
+            </summary>
+            <param name="windowLengths">各维度的窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Sample.SampleCollection.LoadFromCSVFile(System.IO.StreamReader,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            检查字符串是否是样本集中的字段名
+            </summary>
+            <param name="fieldName"></param>
+            <returns>是字段名返回真，反之假</returns>
+        </member>
+        <member name="F:ijw.Next.Data.Sample.SampleCollectionColumn._data">
+            <summary>
+            内部引用的所有数据，不要进行任何更改。直接引用样本集合的数据数组。
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollectionColumn.ColumnIndex">
+            <summary>
+            维度列的索引号，代表在样本中是第几列
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollectionColumn.Count">
+            <summary>
+            列总数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Sample.SampleCollectionColumn.Item(System.Int32)">
+            <summary>
+            索引器
+            </summary>
+            <param name="rowIndex">行索引</param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.Data.Filter.MaxMinNormalizer">
+            <summary>
+            表示一个实现Max-Min变换的归一化器.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Filter.MaxMinNormalizer.MaxOut">
+            <summary>
+            目标区间的上限
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Filter.MaxMinNormalizer.MinOut">
+            <summary>
+            目标区间的下限
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Filter.MaxMinNormalizer.MaxIn">
+            <summary>
+            源区间的上限
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Data.Filter.MaxMinNormalizer.MinIn">
+            <summary>
+            源区间的下限
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Data.Filter.MaxMinNormalizer.#ctor(System.Collections.Generic.IEnumerable{System.Double},System.Double,System.Double)">
+            <summary>
+            构造函数, 针对某数组的值情况, 初始化Max-Min归一化器
+            </summary>
+            <param name="values">欲归一化的数组</param>
+            <param name="minOut">目标区间的下限, 默认取0.1</param>
+            <param name="maxOut">目标区间的上限, 默认取0.9</param>
+        </member>
+        <member name="M:ijw.Next.Data.Filter.MaxMinNormalizer.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            构造函数, 针对给定的输入输出区间上下限, 初始化Max-Min归一化器
+            </summary>
+            <param name="minIn">输入区间的下限</param>
+            <param name="maxIn">输入区间的上限</param>
+            <param name="minOut">目标区间的下限, 默认取0.1</param>
+            <param name="maxOut">目标区间的上限, 默认取0.9</param>
+        </member>
+        <member name="M:ijw.Next.Data.Filter.MaxMinNormalizer.Normalize(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            进行归一化
+            </summary>
+            <returns>归一化后的向量</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Filter.MaxMinNormalizer.Denormalize(System.Double[])">
+            <summary>
+            把指定值进行反归一化
+            </summary>
+            <returns>反归一化后的向量</returns>
+        </member>
+        <member name="M:ijw.Next.Data.Filter.MaxMinNormalizer.Denormalize(System.Double)">
+            <summary>
+            把指定值进行反归一化
+            </summary>
+            <returns>反归一化后的向量</returns>
+        </member>
+    </members>
+</doc>

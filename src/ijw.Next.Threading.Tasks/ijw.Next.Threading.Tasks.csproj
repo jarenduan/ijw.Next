@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net35;net40;net45;netstandard1.4</TargetFrameworks>
+    <Authors>Jaren Duan</Authors>
+    <AssemblyName>ijw.Next.Threading.Tasks</AssemblyName>
+    <PackageId>ijw.Next.Threading.Tasks</PackageId>
+    <AssemblyVersion>0.1.0</AssemblyVersion>
+    <FileVersion>0.1.0.108</FileVersion>
+    <Version>0.1.0</Version>
+    <DocumentationFile>ijw.Next.Threading.Tasks.xml</DocumentationFile>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ijw.Next\ijw.Next.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <PackageReference Include="AsyncBridge">
+      <Version>0.3.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <PackageReference Include="AsyncBridge">
+      <Version>0.3.1</Version>
+    </PackageReference>
+    <!--<PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />-->
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="DispatchToInnerBuilds">
+    <Exec Command="PowerShell -ExecutionPolicy Unrestricted -File $(SolutionDir)scripts\UpdateVersion.ps1 -ProjectPath $(MSBuildProjectFullPath) -ConfigurationName $(Configuration)" />
+  </Target>
+</Project>

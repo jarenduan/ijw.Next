@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Html</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Html.HtmlHelper">
+            <summary>
+            Html文本的相关帮助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Html.HtmlHelper.SelectTextsByXPath(System.String,System.String)">
+            <summary>
+            使用xpath语法检索一个html字符串, 返回符合条件的字符串集合.
+            </summary>
+            <param name="html"></param>
+            <param name="xpath">xpath表达式</param>
+            <returns>对节点返回InnerText, 对属性返回属性值</returns>
+        </member>
+        <member name="T:ijw.Next.Html.StringExt">
+            <summary>
+            Html字符串的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Html.StringExt.SelectNodesByXPath(System.String,System.String)">
+            <summary>
+            使用xpath语法检索符合条件的节点集合. 注意, 属性值需再针对节点操作.
+            </summary>
+            <param name="html"></param>
+            <param name="xpath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Html.StringExt.SelectTextsByXPath(System.String,System.String)">
+            <summary>
+            使用xpath语法检索条件的节点或者属性字符串集合.
+            </summary>
+            <param name="html"></param>
+            <param name="xpath">xpath表达式</param>
+            <returns>对节点返回InnerText, 对属性返回属性值</returns>
+        </member>
+    </members>
+</doc>

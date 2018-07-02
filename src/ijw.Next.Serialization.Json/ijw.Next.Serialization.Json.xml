@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Serialization.Json</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Serialization.Json.JsonSerializationHelper">
+            <summary>
+            提供若干对象序列化Helper方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.LoadJsonObject``1(System.String)">
+            <summary>
+            把 json 字符串反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="str">json字符串</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.SaveObjectToJsonString(System.Object)">
+            <summary>
+            把对象序列化为JSON字符串
+            </summary>
+            <param name="objToSave">欲序列化的对象</param>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.LoadJsonObjectFromFile``1(System.String)">
+            <summary>
+            把 json 文本文件反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="filepath">全路径文件名</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.SaveObjectToJsonFile(System.Object,System.String)">
+            <summary>
+            把对象序列化到Json文件中
+            </summary>
+            <param name="objToSave">欲序列化的对象</param>
+            <param name="filepath">文件全路径名</param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.Serialization.Json.ObjectExt">
+            <summary>
+            提供Object序列化的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.ObjectExt.ToJsonString(System.Object)">
+            <summary>
+            把对象序列化成Json字符串
+            </summary>
+            <param name="obj"></param>
+            <returns>输出的字符串</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.ObjectExt.ToJsonFormatString(System.Object)">
+            <summary>
+            把对象序列化成带有Tab和换行的Json字符串
+            </summary>
+            <param name="obj"></param>
+            <returns>输出的字符串</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.ObjectExt.FromJsonString``1(``0,System.String)">
+            <summary>
+            从Json字符串反序列化出指定类型的对象
+            </summary>
+            <typeparam name="T">指定类型</typeparam>
+            <param name="obj"></param>
+            <param name="jsonString">Json字符串</param>
+            <returns>反序列化出的对象</returns>
+        </member>
+    </members>
+</doc>

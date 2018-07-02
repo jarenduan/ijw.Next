@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Linq.Expressions</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Linq.Expressions.ExpressionExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Linq.Expressions.ExpressionExt.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            把自身作为左端, 把指定表达式作为右端, 然后用逻辑与连接.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="exp_left"></param>
+            <param name="exp_right">逻辑与表达式的右端</param>
+            <returns>生成的逻辑与表达式</returns>
+        </member>
+        <member name="M:ijw.Next.Linq.Expressions.ExpressionExt.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            把自身作为左端, 把指定表达式作为右端, 然后用逻辑或连接起来.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="exp_left"></param>
+            <param name="exp_right">逻辑或表达式的右端</param>
+            <returns>生成的逻辑或表达式</returns>
+        </member>
+        <member name="T:ijw.Next.Linq.Expressions.ExpressionExt.ParameterReplacer">
+            <summary> 
+            统一ParameterExpression 
+            </summary> 
+        </member>
+        <member name="T:ijw.Next.Linq.Expressions.ExpressionHelper">
+            <summary>
+            Lambda表达式辅助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Linq.Expressions.ExpressionHelper.True``1">
+            <summary>
+            返回总为真的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>总为假的表达式</returns>
+        </member>
+        <member name="M:ijw.Next.Linq.Expressions.ExpressionHelper.False``1">
+            <summary>
+            返回总为假的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>总为假的表达式</returns>
+        </member>
+    </members>
+</doc>

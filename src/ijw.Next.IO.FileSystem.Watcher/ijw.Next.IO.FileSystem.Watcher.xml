@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.IO.FileSystem.Watcher</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.IO.FileSystem.Watcher.FileMonitorMultipleInvokingOption">
+            <summary>
+            文件监视器发现多次Invoke的处理方式
+            </summary>
+        </member>
+        <member name="F:ijw.Next.IO.FileSystem.Watcher.FileMonitorMultipleInvokingOption.DoNothing">
+            <summary>
+            什么也不做
+            </summary>
+        </member>
+        <member name="F:ijw.Next.IO.FileSystem.Watcher.FileMonitorMultipleInvokingOption.MergeDoubleEvent">
+            <summary>
+            合并两个Invoke
+            </summary>
+        </member>
+        <member name="F:ijw.Next.IO.FileSystem.Watcher.FileMonitorMultipleInvokingOption.OffAndOn">
+            <summary>
+            忽略一个
+            </summary>
+        </member>
+        <member name="T:ijw.Next.IO.FileSystem.Watcher.SingleFileChangeMonitor">
+            <summary>
+            单文件的监视器
+            </summary>
+        </member>
+        <member name="E:ijw.Next.IO.FileSystem.Watcher.SingleFileChangeMonitor.Changed">
+            <summary>
+            文件发生变化时触发的事件
+            </summary>
+        </member>
+        <member name="P:ijw.Next.IO.FileSystem.Watcher.SingleFileChangeMonitor.MultipleInvokingOption">
+            <summary>
+            发现多重Invoke的处理方式
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IO.FileSystem.Watcher.SingleFileChangeMonitor.StartMonitoring(System.String)">
+            <summary>
+            开始监视指定的文件
+            </summary>
+            <param name="fullFileName">欲监视的文件全路径名</param>
+        </member>
+        <member name="M:ijw.Next.IO.FileSystem.Watcher.SingleFileChangeMonitor.StartMonitoring(System.IO.FileInfo)">
+            <summary>
+            开始监视指定的文件
+            </summary>
+            <param name="fileInfo">欲监视的文件的FileInfo</param>
+        </member>
+        <member name="M:ijw.Next.IO.FileSystem.Watcher.SingleFileChangeMonitor.StopMonitoring">
+            <summary>
+            停止监视
+            </summary>
+        </member>
+    </members>
+</doc>

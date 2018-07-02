@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Threading.Tasks</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Threading.Tasks.BackgroundLooper">
+            <summary>
+            封装异步执行循环任务的通用类, 提供启动, 暂停和退出的功能. 
+            可以执行指定的循环体, 循环中每次迭代会检查指定的停止条件和暂停条件.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooper.LoopAction">
+            <summary>
+            循环中每次迭代的循环体, 当Looper的<see cref="P:ijw.Next.Threading.Tasks.BackgroundLooperBase.State"/>不等于<see cref="F:ijw.Next.Threading.Tasks.LooperState.Suspending"/> 并且 <see cref="P:ijw.Next.Threading.Tasks.BackgroundLooperBase.SleepCondition"/>为假时 会被调用.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooper.LoopBody">
+            <summary>
+            循环体
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Threading.Tasks.LooperState">
+            <summary>
+            循环的状态
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.LooperState.NotRunning">
+            <summary>
+            未运行
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.LooperState.Awaken">
+            <summary>
+            运行
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.LooperState.Sleeping">
+            <summary>
+            睡眠
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.LooperState.Suspending">
+            <summary>
+            挂起
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Threading.Tasks.BackgroundLooperBase">
+            <summary>
+            封装异步执行循环任务的通用基类, 提供启动, 暂停和退出的TryRunUntilNotNull功能. 
+            可以执行指定的循环体, 循环中每次迭代会检查指定的停止条件和暂停条件.
+            循环体由子类实现, 一般情况不需要直接使用此类. 可以实例化BackgroundLooper子类方便地封装指定循环任务.
+            如果需要进度报告,可以使用BackgroundLooperWithReport&lt;TReport&gt;子类
+            如果需要自定义一些行为, 可以从此类继承, 以获得基本的任务启停等功能.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperBase.State">
+            <summary>
+            循环任务的当前状态
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperBase.ExitCondition">
+            <summary>
+            停止循环的条件, 为真则停止循环. 默认值是一直为假, 即一直循环.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperBase.SleepCondition">
+            <summary>
+            每次迭代时候检查, 为真则进入睡眠状态, 睡眠后调用<see cref="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.WakeUpIfSleeping"/>方法唤醒.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.StartAsync">
+            <summary>
+            异步开始执行循环.
+            </summary>
+            <returns>封装了循环的Task.</returns>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.Exit">
+            <summary>
+            从睡眠/暂停中恢复或者执行完当前迭代后停止循环.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.Suspend">
+            <summary>
+            暂停迭代循环.将会执行完当前迭代, 待下次迭代开始时暂停.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.Resume">
+            <summary>
+            通知循环继续
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.WakeUpIfSleeping">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.Loop">
+            <summary>
+            开始循环
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperBase.LoopBody">
+            <summary>
+            循环体, 必须实现.
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.BackgroundLooperBase._cts">
+            <summary>
+            任务停止令牌
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.BackgroundLooperBase._are">
+            <summary>
+            同步信号量
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Threading.Tasks.BackgroundLooperBase._shouldSuspend">
+            <summary>
+            是否应该暂停
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1">
+            <summary>
+            封装带有进度通知的异步执行循环任务通用类, 提供启动, 暂停, 进度报告和退出的功能. 
+            可以执行指定的循环体, 循环体的每次迭代会检查指定的停止条件和暂停条件.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1.Progress">
+            <summary>
+            设置进度报告的回调函数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1.LoopFunction">
+            <summary>
+            循环体, 返回一个值, 用作每次迭代的进度报告参数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1.LoopBody">
+            <summary>
+            循环体
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Threading.Tasks.TaskHelper">
+            <summary>
+            Task帮助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.TaskHelper.Run(System.Action)">
+            <summary>
+            用Task运行新的Action
+            </summary>
+            <param name="action">欲执行的Action</param>
+            <returns>运行的Task</returns>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.TaskHelper.Run(System.Action,System.Threading.CancellationToken)">
+            <summary>
+            用Task运行新的Action
+            </summary>
+            <param name="action">欲执行的Action</param>
+            <param name="cancellationToken">用以取消任务的token</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.TaskHelper.Run``1(System.Func{``0})">
+            <summary>
+            用Task运行新的Action
+            </summary>
+            <param name="func">欲执行的Func</param>
+            <returns>运行的Task</returns>
+        </member>
+        <member name="M:ijw.Next.Threading.Tasks.TaskHelper.Run``1(System.Func{``0},System.Threading.CancellationToken)">
+            <summary>
+            用Task运行新的Action
+            </summary>
+            <param name="func">欲执行的Action</param>
+            <param name="cancellationToken">用以取消任务的token</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

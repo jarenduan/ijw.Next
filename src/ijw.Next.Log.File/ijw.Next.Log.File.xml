@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Log.File</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Log.File.LogHelper">
+            <summary>
+            日志帮助类
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Log.File.LogHelper.LogFilePath">
+            <summary>
+            日志文件路径, 默认文件当前目录的~.log.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Log.File.LogHelper.WriteError(System.Exception)">
+            <summary>
+            输出错误日志到SimpleLog, 前面会标明Error字样
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:ijw.Next.Log.File.LogHelper.WriteError(System.String)">
+            <summary>
+            输出错误日志到SimpleLog, 前面会标明Error字样
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:ijw.Next.Log.File.LogHelper.WriteInfo(System.Exception)">
+            <summary>
+            输出信息日志到SimpleLog, 前面会标明Info字样
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:ijw.Next.Log.File.LogHelper.WriteInfo(System.String)">
+            <summary>
+            输出信息日志到SimpleLog, 前面会标明Info字样
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:ijw.Next.Log.File.SimpleFileLog">
+            <summary>
+            最简单的文件日志器, 所有方法线程安全.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Log.File.SimpleFileLog.LogFilePath">
+            <summary>
+            日志文件路径, 默认是当前工作目录的 ~.log 文件.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.WriteLine(System.String)">
+            <summary>
+            向日志中追加写入字符串并换行
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.Write(System.String)">
+            <summary>
+            向日志中追加写入字符串
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.Log(System.String)">
+            <summary>
+            向日志文件中写入一条日志（自动添加时间）
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.WriteError(System.String)">
+            <summary>
+            写入一条错误日志（自动添加时间）
+            </summary>
+            <param name="msg">写入的内容</param>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.WriteError(System.Exception)">
+            <summary>
+            写入一条错误日志（自动添加时间）
+            </summary>
+            <param name="ex">写入的内容</param>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.WriteInfo(System.String)">
+            <summary>
+            写入一条日志（自动添加时间）
+            </summary>
+            <param name="msg">写入的内容</param>
+        </member>
+        <member name="M:ijw.Next.Log.File.SimpleFileLog.WriteInfo(System.Exception)">
+            <summary>
+            写入一条日志（自动添加时间）
+            </summary>
+            <param name="ex">写入的内容</param>
+        </member>
+    </members>
+</doc>

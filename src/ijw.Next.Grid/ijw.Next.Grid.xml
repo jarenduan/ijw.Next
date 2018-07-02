@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Grid</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Grid.Column`1">
+            <summary>
+            表中的一列
+            </summary>
+            <typeparam name="T">列中每个单元格容纳的元素的类型</typeparam>
+        </member>
+        <member name="M:ijw.Next.Grid.Column`1.#ctor(ijw.Next.Grid.Grid{`0},System.Int32)">
+            <summary>
+            无参数构造函数, 仅供Grid类初始化时内部使用
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Grid.ColumnCollection`1">
+            <summary>
+            列集合. 无法继承.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:ijw.Next.Grid.Grid`1">
+            <summary>
+            具有固定维度的二维表. 可以使用Rows和Columns属性访问其中的行和列.
+            </summary>
+            <typeparam name="T">单元格容纳元素的类型</typeparam>
+        </member>
+        <member name="P:ijw.Next.Grid.Grid`1.RowCount">
+            <summary>
+            行数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.Grid`1.ColumnCount">
+            <summary>
+            列数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.Grid`1.Item(System.Int32)">
+            <summary>
+            返回指定序号的行
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ijw.Next.Grid.Grid`1.Rows">
+            <summary>
+            行集合
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.Grid`1.Columns">
+            <summary>
+            列集合
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Grid.Grid`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            构造函数, 必须提供行数和列数, 以确定表的维度.
+            </summary>
+            <param name="rowCount">行数, 需为正整数</param>
+            <param name="columnCount">列数, 需为正整数</param>
+        </member>
+        <member name="M:ijw.Next.Grid.Grid`1.#ctor(`0[0:,0:])">
+            <summary>
+            构造函数. 用指定的二维数组初始化Grid.
+            </summary>
+            <param name="array">二维数组, grid将直接引用它作为内部存储</param>
+        </member>
+        <member name="F:ijw.Next.Grid.Grid`1._cells">
+            <summary>
+            内部使用了二维数组进行存储
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Grid.IndexedViewBase`1">
+            <summary>
+            提供表的行/列对象的公共数据和行为, 此类不能实例化.
+            行/列对象更像是表中对应行/列的视图, 所有操作将直接针对表中单元格. 其内部存储将被清空, 也不再使用.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ijw.Next.Grid.IndexedViewBase`1.Index">
+            <summary>
+            行/列的序号, 从0开始 
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.IndexedViewBase`1.Dimension">
+            <summary>
+            维度. 返回表中的列数/行数.
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.IndexedViewBase`1.Item(System.Int32)">
+            <summary>
+            索引器. 返回(或设置)所绑定表中的对应行/列中指定索引处的单元格的值.
+            </summary>
+            <param name="index">指定位置</param>
+            <returns>返回表中的对应行/列中指定索引处的单元格的值.</returns>
+        </member>
+        <member name="M:ijw.Next.Grid.IndexedViewBase`1.#ctor(ijw.Next.Grid.Grid{`0},System.Int32)">
+            <summary>
+            仅供内部类初始化时调用
+            </summary>
+        </member>
+        <member name="F:ijw.Next.Grid.IndexedViewBase`1._grid">
+            <summary>
+            属于那个表
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Grid.IndexedViewBase`1.enumerateInGrid">
+            <summary>
+            枚举行/列对象在所绑定表中的对应元素
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.Grid.IndexedViewCollectionBase`2">
+            <summary>
+            行列集合的基类, 提供共有的索引器/枚举器实现, 无法实例化.
+            </summary>
+            <typeparam name="TElement">元素类型</typeparam>
+            <typeparam name="TRowOrColumn">行/列类型</typeparam>
+        </member>
+        <member name="T:ijw.Next.Grid.Row`1">
+            <summary>
+            表示表中的一行
+            </summary>
+            <typeparam name="T">行中每个单元格内容纳的元素类型</typeparam>
+        </member>
+        <member name="M:ijw.Next.Grid.Row`1.#ctor(ijw.Next.Grid.Grid{`0},System.Int32)">
+            <summary>
+            构造函数, 仅供Grid类初始化时内部使用
+            </summary>
+        </member>
+        <member name="T:ijw.Next.Grid.RowCollection`1">
+            <summary>
+            行集合. 无法继承.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+    </members>
+</doc>

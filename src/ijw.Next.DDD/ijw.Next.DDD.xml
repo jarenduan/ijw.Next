@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.DDD</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.DDD.IAggregateRoot`1">
+            <summary>
+            聚合根接口, 用作泛型约束, 约束领域实体为聚合根, 表示实现了该接口的为聚合根实例, 由于聚合根也是领域实体的一种, 所以也要实现IEntity接口
+            </summary>
+        </member>
+        <member name="T:ijw.Next.DDD.EntityBase">
+            <summary>
+            实体的基类
+            </summary>
+        </member>
+        <member name="P:ijw.Next.DDD.EntityBase.Id">
+            <summary>
+            实体的ID
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.EntityBase.#ctor">
+            <summary>
+            默认的构造函数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.EntityBase.#ctor(System.Guid)">
+            <summary>
+            根据指定的ID构造实体
+            </summary>
+            <param name="id">指定的ID</param>
+        </member>
+        <member name="T:ijw.Next.DDD.IEntity`1">
+            <summary>
+            实体的接口
+            </summary>
+            <typeparam name="TKey">ID的类型</typeparam>
+        </member>
+        <member name="P:ijw.Next.DDD.IEntity`1.Id">
+            <summary>
+            实体的ID
+            </summary>
+        </member>
+        <member name="T:ijw.Next.DDD.IRepository`1">
+            <summary>
+            仓储接口, 定义公共的泛型GRUD
+            </summary>
+            <typeparam name="TEntity">泛型聚合根, 因为在DDD里面仓储只能对聚合根做操作</typeparam>
+        </member>
+        <member name="T:ijw.Next.DDD.QueryIgnoreHelper">
+            <summary>
+            查询时忽略值的帮助类.
+            </summary>
+        </member>
+        <member name="F:ijw.Next.DDD.QueryIgnoreHelper.QueryIgnoreValue">
+            <summary>
+            字符串型字段设为此值代表查询时忽略该字段
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.QueryIgnoreHelper.IfShouldIgnore(System.String)">
+            <summary>s
+            查询字符串是否是忽略值
+            </summary>
+            <param name="queryParameter"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.DDD.IUnitOfWorkRepositoryContext">
+            <summary>
+            仓储上下文工作单元接口, 使用这个的一般情况是多个仓储之间存在事务性的操作, 用于标记聚合根的增删改状态
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.IUnitOfWorkRepositoryContext.RegisterNew``1(``0)">
+            <summary>
+            将聚合根的状态标记为新建, 但上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:ijw.Next.DDD.IUnitOfWorkRepositoryContext.RegisterNew``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            将聚合根的状态标记为新建, 但上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+        </member>
+        <member name="M:ijw.Next.DDD.IUnitOfWorkRepositoryContext.RegisterModified``1(``0)">
+            <summary>
+            将聚合根的状态标记为修改, 但上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:ijw.Next.DDD.IUnitOfWorkRepositoryContext.RegisterDeleted``1(``0)">
+            <summary>
+            将聚合根的状态标记为删除, 但上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:ijw.Next.DDD.IUnitOfWorkRepositoryContext.RegisterDeleted``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            将聚合根的状态标记为删除, 但EF上下文此时并未提交
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+        </member>
+    </members>
+</doc>

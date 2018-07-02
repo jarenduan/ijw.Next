@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Collection.Async</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Collection.Async.LongTimeConsumingCollection`1">
+            <summary>
+            提供基于异步操作的支持长时间消费操作的线程安全集合.
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <remarks>
+             消费者可以随时追加元素, 也可以随时取出元素, 进行消费操作.
+             如果消费者完成消费操作，将自动移除对象；反之，对象将还回集合.
+            </remarks>
+        </member>
+        <member name="E:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.ItemCountChanged">
+            <summary>
+            内部元素数量发生变化
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.ItemGettngStrategy">
+            <summary>
+            元素取出策略
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.Count">
+            <summary>
+            元素数量
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.HasItem">
+            <summary>
+            获取是否存在元素
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.HasAvailableItems">
+            <summary>
+            获取当前是否存在未被提取消费的元素
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.Append(`0)">
+            <summary>
+            向集合尾部追加一个元素
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.ConsumeOneAsync(System.Func{`0,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            异步方式取出一个元素，然后以异步方式进行消费操作. 消费成功后从集合中移除此元素, 反之将元素还回集合.
+            </summary>
+            <param name="consumeFunc">异步消费操作</param>
+            <returns>取出元素并进行消费操作的任务</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.ConsumeOneAsync(System.Func{`0,System.Boolean})">
+            <summary>
+            异步方式取出一个元素，然后以同步方式进行消费操作.消费成功后从集合中移除此元素, 反之将元素还回集合.
+            </summary>
+            <param name="consumeFunc">同步消费操作</param>
+            <returns>取出元素并进行消费操作的任务</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.remove(`0)">
+            <summary>
+            移除某个元素
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.LongTimeConsumingCollection`1.returnback(`0)">
+            <summary>
+            将指定元素交还给集合
+            </summary>
+            <param name="item">欲交还的元素</param>
+        </member>
+    </members>
+</doc>

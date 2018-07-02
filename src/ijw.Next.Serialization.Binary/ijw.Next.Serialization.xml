@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Serialization</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Serialization.Binary.BinaryReaderExt">
+            <summary>
+            BinaryReader的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinaryReaderExt.RetrieveBinaryObject``1(System.IO.BinaryReader,System.Nullable{System.Int32})">
+            <summary>
+            使用指定长度从流中取回二进制形式序列化的对象, 
+            </summary>
+            <typeparam name="T">取回对象的类型</typeparam>
+            <param name="reader"></param>
+            <param name="length">可以手动指定取回的对象大小. 如果设置为空, 本方法将先读取流中前4个字节, 转换成int32型整数, 作为对象的大小</param>
+            <returns>返回解析到的对象, 如果没有读取到对象, 会返回默认值default(T). 没有解析成功, 会抛出异常.</returns>
+        </member>
+        <member name="T:ijw.Next.Serialization.Binary.BinarySerializationHelper">
+            <summary>
+            二进制序列化帮助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Serialize(System.Object)">
+            <summary>
+            把对象序列化成字节数组
+            </summary>
+            <param name="objToSave"></param>
+            <returns>序列化后的数组</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.Byte[])">
+            <summary>
+            把二进制数组反序列化对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="bytes">存储对象的字节数组</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Serialize(System.Object,System.String)">
+            <summary>
+            把对象序列化到二进制文件中
+            </summary>
+            <param name="objToSave">欲保存的对象</param>
+            <param name="filename">包含路径的文件名</param>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Serialize(System.Object,System.IO.Stream)">
+            <summary>
+            把对象序列化到二进制流当中
+            </summary>
+            <param name="objToSave">欲保存的对象(大小&lt;=4GB)</param>
+            <param name="stream">写入的流</param>
+            <returns>流的长度</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.String)">
+            <summary>
+            把二进制文件反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="filename">全路径文件名</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.IO.Stream)">
+            <summary>
+            从二进制流中反序列化对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="stream">二进制流</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="T:ijw.Next.Serialization.Binary.BinaryWriterExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinaryWriterExt.WriteBinaryObject``1(System.IO.BinaryWriter,``0,System.Boolean)">
+            <summary>
+            对象会先进行二进制序列化, 然后以二进制方式向底层的流中写入(不大于4GB). 
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="writer">流</param>
+            <param name="obj">目标对象</param>
+            <param name="writeLengthHeader">是否写入头. 如果为true, 将首先自动写入4个字节的头, 内容是对象序列化后的长度</param>
+            <remarks>编码采用UTF8</remarks>
+        </member>
+        <member name="T:ijw.Next.Serialization.Binary.ObjectExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.ObjectExt.ToBytes(System.Object)">
+            <summary>
+            序列化为字节数组
+            </summary>
+            <param name="objToSave"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.ObjectExt.ToBinaryStream(System.Object,System.IO.Stream)">
+            <summary>
+            把对象序列化到二进制流当中
+            </summary>
+            <param name="objToSave">欲保存的对象(大小&lt;=4GB)</param>
+            <param name="stream">写入的流</param>
+            <returns>流的长度</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.ObjectExt.ToBinaryFile(System.Object,System.String)">
+            <summary>
+            把对象序列化到二进制文件中
+            </summary>
+            <param name="objToSave">欲保存的对象</param>
+            <param name="filename">包含路径的文件名</param>
+        </member>
+        <member name="T:ijw.Next.Serialization.Binary.StreamExt">
+            <summary>
+            扩展Stream类, 以支持一些简便的读写功能.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.StreamExt.RetrieveBinaryObjectAndDispose``1(System.IO.Stream,System.Nullable{System.Int32})">
+            <summary>
+            使用指定长度从网络流中取回二进制形式序列化的对象, 
+            </summary>
+            <typeparam name="T">取回对象的类型</typeparam>
+            <param name="stream">含有对象二进制数据的流</param>
+            <param name="length">可以手动指定取回的对象大小. 如果设置为空, 本方法将先读取流中前4个字节, 转换成Int32型整数, 作为对象的大小</param>
+            <returns>返回解析到的对象, 如果没有读取到对象, 会返回默认值default(T). 没有解析成功, 会抛出异常.</returns>
+            <remarks>编码采用UTF8</remarks>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.StreamExt.WriteBinaryObjectAndDispose``1(System.IO.Stream,``0,System.Boolean)">
+            <summary>
+            以二进制方式向流中写入对象(不大于4GB). 对象会先进行二进制序列化,然后写入流中. 
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="stream">流</param>
+            <param name="obj">目标对象</param>
+            <param name="writeLengthHeader">是否写入头. 如果为true, 将首先自动写入4个字节的头, 内容是对象序列化后的长度</param>
+            <remarks>编码采用UTF8</remarks>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.StreamExt.WriteObjectInJsonAndDispose``1(System.IO.Stream,``0,System.Boolean)">
+            <summary>
+            以JSON方式向网络流中写入对象. 对象会先进行JSON序列化,然后写入流中. 
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="stream">流</param>
+            <param name="obj">目标对象</param>
+            <param name="writeLengthHeader">是否写入头. 如果为true, 将首先自动写入4个字节的头, 内容是对象序列化后的长度</param>
+        </member>
+    </members>
+</doc>
