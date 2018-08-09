@@ -88,6 +88,37 @@ namespace ijw.Next.Collection {
 
         #endregion
 
+        /// <summary>
+        /// 根据指定长度迭代返回每一个窗口。例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="windowLength">指定长度</param>
+        /// <returns>窗口序列</returns>
+        public static IEnumerable<T[]> ForEachWindow<T>(this IEnumerable<T> collection, int windowLength) {
+            var enumerator = collection.GetEnumerator();
+            if (!enumerator.MoveNext()) yield break;
+
+            //make the 1st window.
+            T[] lastWindow = new T[windowLength];
+            for (int i = 0; i < windowLength; i++) {
+                lastWindow[i] = enumerator.Current;
+                if (!enumerator.MoveNext()) yield break;
+            }
+            yield return lastWindow;
+
+            while (true) {
+                T[] currWindow = new T[windowLength];
+                for (int i = 0; i < windowLength - 1; i++) {
+                    currWindow[i] = lastWindow[i + 1];
+                }
+                currWindow[windowLength - 1] = enumerator.Current;
+                yield return currWindow;
+                if (!enumerator.MoveNext()) yield break;
+                lastWindow = currWindow;
+            }
+        }
+
         #region For Each and the Next
 
         /// <summary>
@@ -257,6 +288,7 @@ namespace ijw.Next.Collection {
         /// <param name="source"></param>
         /// <param name="other"></param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other) {
             return source.ItemEquals(other, (d1, d2) => d1.Equals(d2));
         }
@@ -268,6 +300,7 @@ namespace ijw.Next.Collection {
         /// <param name="other"></param>
         /// <param name="comparer">用于比较相等</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, IEqualityComparer<T> comparer) {
             return source.ItemEquals(other, (x, y) => comparer.Equals(x, y));
         }
@@ -279,6 +312,7 @@ namespace ijw.Next.Collection {
         /// <param name="other"></param>
         /// <param name="comparer">指定的用于比较相等的方法</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, bool> comparer) {
             if (other == null) return false;
 
@@ -297,7 +331,44 @@ namespace ijw.Next.Collection {
         /// <param name="other"></param>
         /// <param name="comparer">指定的用于比较相等的方法</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, int, bool> comparer) {
+            if (other == null) return false;
+
+            try {
+                return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
+            }
+            catch (CountNotMatchException) {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 调用指定函数元素值比较.即依次调用指定方法比较数组中每个元素是否相等.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="other"></param>
+        /// <param name="comparer">指定的用于比较相等的方法</param>
+        /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        public static bool SequenceEqual<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, bool> comparer) {
+            if (other == null) return false;
+
+            try {
+                return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
+            }
+            catch (CountNotMatchException) {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 调用指定函数元素值比较.即依次调用指定方法比较数组中每个元素是否相等.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="other"></param>
+        /// <param name="comparer">指定的用于比较相等的方法</param>
+        /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        public static bool SequenceEqual<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, int, bool> comparer) {
             if (other == null) return false;
 
             try {
@@ -901,20 +972,7 @@ namespace ijw.Next.Collection {
         /// <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
         /// <returns></returns>
         public static string ToAllEnumStrings<T>(this IEnumerable<T> collection, string separator = ", ", string prefix = "[", string postfix = "]", Func<T, string> transform = null) {
-            StringBuilder sb = new StringBuilder(prefix);
-            foreach (var item in collection) {
-                if (item is IEnumerable<T> ienum) {
-                    sb.Append(ienum.ToAllEnumStrings(separator, prefix, postfix));
-                }
-                else {
-                    string s = transform == null ? item.ToString() : transform(item);
-                    sb.Append(s);
-                }
-                sb.Append(separator);
-            }
-            sb.RemoveLast(separator.Length);
-            sb.Append(postfix);
-            return sb.ToString();
+            return Helper.ToAllEnumStrings(collection, separator, prefix, postfix, transform);
         }
 
 #endregion
