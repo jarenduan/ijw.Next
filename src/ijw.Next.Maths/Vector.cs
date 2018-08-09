@@ -174,6 +174,30 @@ namespace ijw.Next.Maths {
             return result;
         }
 
+        /// <summary>
+        /// 用2-范数计算当前向量的模
+        /// </summary>
+        /// <returns>向量的模</returns>
+        public double GetNorm() {
+            return Math.Sqrt(_data.Sum((i) => i.Pow(2d)));
+        }
+
+        /// <summary>
+        /// 计算与另一个向量的余弦相似度
+        /// </summary>
+        /// <param name="v">另一个向量</param>
+        /// <returns>两个向量的余弦相似度</returns>
+        public double GetCosineSimilarity(Vector v) {
+            v.ShouldBeNotNullArgument();
+            v.Dimension.ShouldEquals(this.Dimension);
+
+            var normV = v.GetNorm();
+            var normThis = this.GetNorm();
+            var product = this.GetDotProduct(v);
+
+            return product / (normThis * normV);
+        }
+
         #endregion Calculation Methods
 
         #region Operators Overload
