@@ -434,6 +434,14 @@
             
             </summary>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableDoubleExt.Average(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+            <param name="ignoreMaxMinValue"></param>
+            <returns></returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableDoubleExt.GetVariance(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
             <summary>
             获得方差
@@ -459,7 +467,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableDoubleExt.GetMiddleValue(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
-            获取集合的中位值。
+            获取集合的中值。
             </summary>
             <param name="values"></param>
             <returns>返回最大最小的平均值。</returns>
@@ -481,6 +489,38 @@
             <param name="maxValues">归一化上限值的集合</param>
             <param name="minValues">归一化下限值的集合</param>
             <returns>反归一化后的集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableDoubleFilterExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新集合</return>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableDoubleFilterExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动最大值绝对值</param>
+            <returns>过滤后的新集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableDoubleFilterExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
+            <summary>
+            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.<see cref="M:ijw.Next.Collection.IEnumerableDoubleFilterExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32)"/>(3), 返回:{1,2,5,5}.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableDoubleFilterExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32,System.Boolean)">
+            <summary>
+            算术平均值过滤. 窗口长度内取平均值.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
         </member>
         <member name="T:ijw.Next.Collection.IEnumerableExt">
             <summary>
@@ -524,6 +564,15 @@
             <remarks>
             <para>与TakeWhile有一定差别：本函数直接运行，不返回迭代器。</para>
             </remarks>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.ForEachWindow``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            根据指定长度迭代返回每一个窗口。例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="windowLength">指定长度</param>
+            <returns>窗口序列</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.ForEachAndNext``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -616,6 +665,24 @@
             <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.ItemEquals``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Int32,System.Boolean})">
+            <summary>
+            调用指定函数元素值比较.即依次调用指定方法比较数组中每个元素是否相等.
+            </summary>
+            <param name="source"></param>
+            <param name="other"></param>
+            <param name="comparer">指定的用于比较相等的方法</param>
+            <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Boolean})">
+            <summary>
+            调用指定函数元素值比较.即依次调用指定方法比较数组中每个元素是否相等.
+            </summary>
+            <param name="source"></param>
+            <param name="other"></param>
+            <param name="comparer">指定的用于比较相等的方法</param>
+            <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Int32,System.Boolean})">
             <summary>
             调用指定函数元素值比较.即依次调用指定方法比较数组中每个元素是否相等.
             </summary>
@@ -1246,6 +1313,15 @@
             如果预期元素在较前的位置, 应该使用<see cref="F:ijw.Next.Collection.FetchingStrategies.FirstFirst"/>, 反之是<see cref="F:ijw.Next.Collection.FetchingStrategies.LastFirst"/>.
             </remarks>
         </member>
+        <member name="M:ijw.Next.Collection.IListExt.RemoveRange``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary>
+            从指定位置开始移除当前及其之后的所有元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="index">指定的索引处</param>
+            <returns>移除的数目</returns>
+        </member>
         <member name="T:ijw.Next.Collection.IListHelper">
             <summary>
             
@@ -1316,6 +1392,15 @@
             <summary>
             集合元素数量
             </summary>
+        </member>
+        <member name="M:ijw.Next.Collection.ListExt.RemoveRange``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            从指定位置开始移除当前及其之后的所有元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="index">指定的索引处</param>
+            <returns>移除的数目</returns>
         </member>
         <member name="T:ijw.Next.Collection.LongTimeConsumerCollection`1">
             <summary>

@@ -73,5 +73,23 @@ namespace ijw.Next.Collection {
             }
             return index;
         }
+
+        /// <summary>
+        /// 从指定位置开始移除当前及其之后的所有元素
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="index">指定的索引处</param>
+        /// <returns>移除的数目</returns>
+        public static int RemoveRange<T>(this IList<T> collection, int index) {
+            index.ShouldNotLargerThan(collection.Count - 1);
+            int removeCount = collection.Count - index;
+
+            for (int i = 0; i < removeCount; i++) {
+                collection.RemoveAt(index);
+            }
+
+            return removeCount;
+        }
     }
 }
