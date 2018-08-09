@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Math;
 
 namespace ijw.Next {
     /// <summary>
@@ -58,7 +59,50 @@ namespace ijw.Next {
         /// <returns></returns>
         public static double DenormalizeMaxMin(this double x, double min, double max, double minOut = 0.1, double maxOut = 0.9) {
             return (x - minOut) / (maxOut - minOut) * (max - min) + min;
-        } 
+        }
+        #endregion
+
+        #region Filters
+        /// <summary>
+        /// 限制波动过滤. 用前一个值+波动幅度代替. 
+        /// </summary>
+        /// <param name="curr">欲过滤的值</param>
+        /// <param name="prev">前一个值</param>
+        /// <param name="diff">波动幅度限制</param>
+        /// <return>过滤后的新值</return>
+        public static double LimitingDiff(this double curr, double prev, double diff) {
+            double r;
+            if ((curr - prev) > diff) {
+                r = prev + diff;
+            }
+            else if ((prev - curr) > diff) {
+                r = prev - diff;
+            }
+            else {
+                r = curr;
+            }
+            return r;
+        }
+
+        /// <summary>
+        /// 限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+        /// </summary>
+        /// <param name="curr">欲过滤的值</param>
+        /// <param name="prev">前一个值</param>
+        /// <param name="diff">波动最大值绝对值</param>
+        /// <return>过滤后的新值</return>
+        public static double LimitingAmplify(this double curr, double prev, double diff) {
+            double r;
+            if (Abs(curr - prev) > diff) {
+                r = prev;
+            }
+            else {
+                r = curr;
+            }
+            return r;
+        }
+
+
         #endregion
     }
 }

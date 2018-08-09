@@ -8,7 +8,31 @@ namespace ijw.Next.Collection {
     /// 
     /// </summary>
     public static class IEnumerableDoubleExt {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="ignoreMaxMinValue"></param>
+        /// <returns></returns>
         #region Statistic
+        public static double Average(this IEnumerable<double> values, bool ignoreMaxMinValue) {
+            if (!ignoreMaxMinValue) {
+                return values.Average();
+            }
+            else {
+                double max = double.NegativeInfinity, min = double.PositiveInfinity, sum = 0d;
+                int count = 0;
+                foreach (var v in values) {
+                    max = Math.Max(max, v);
+                    min = Math.Min(min, v);
+                    sum += v;
+                    count++;
+                }
+                sum = sum - max - min;
+                return sum / (count - 2);
+            }
+        }
+
         /// <summary>
         /// 获得方差
         /// </summary>
@@ -43,23 +67,23 @@ namespace ijw.Next.Collection {
             count.ShouldBeNotZero();
 
             double midValue;
+            var ordered = values.OrderBy(d => d).ToArray();
 
             if (count.IsOdd()) {
-                int midIndex = count / 2 + 1;
-                midValue = values.GetElementsAt(midIndex);
+                midValue = ordered[(count - 1) / 2];
             }
             else {
-                var itemBeforeMid = values.GetElementsAt(count / 2);
-                var itemAfterMid = values.GetElementsAt(count / 2 + 1);
+                int afterMidIndex = count / 2;
+                var itemBeforeMid = ordered[afterMidIndex - 1];
+                var itemAfterMid = ordered[afterMidIndex];
                 midValue = (itemBeforeMid + itemAfterMid) / 2;
             }
 
             return midValue;
         }
 
-
         /// <summary>
-        /// 获取集合的中位值。
+        /// 获取集合的中值。
         /// </summary>
         /// <param name="values"></param>
         /// <returns>返回最大最小的平均值。</returns>

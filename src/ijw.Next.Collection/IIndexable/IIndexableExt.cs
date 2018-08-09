@@ -26,15 +26,7 @@ namespace ijw.Next.Collection {
             for (int i = 1; i < values.Count; i++) {
                 var curr = values[i];
                 var prev = values[i - 1];
-                if ((curr - prev) > diff) {
-                    result[i] = prev + diff;
-                }
-                else if ((prev - curr) > diff) {
-                    result[i] = prev - diff;
-                }
-                else {
-                    result[i] = curr;
-                }
+                result[i] = curr.LimitingDiff(prev, diff);
             }
 
             return result;
@@ -53,12 +45,7 @@ namespace ijw.Next.Collection {
             for (int i = 1; i < values.Count; i++) {
                 var curr = values[i];
                 var prev = values[i - 1];
-                if (Abs(curr - prev) > diff) {
-                    result[i] = prev;
-                }
-                else {
-                    result[i] = curr;
-                }
+                result[i] = curr.LimitingAmplify(prev, diff);
             }
             return result;
         }
