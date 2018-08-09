@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ijw.Next.Collection
-{
-    public static class ListExt
-    {
+namespace ijw.Next.Collection {
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ListExt {
         /// <summary>
         /// 从指定位置开始移除当前及其之后的所有元素
         /// </summary>
