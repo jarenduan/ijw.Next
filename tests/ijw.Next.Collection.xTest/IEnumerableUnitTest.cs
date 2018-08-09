@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace ijw.Next.Collection.xTest
-{
+namespace ijw.Next.Collection.xTest {
     public class IEnumerableUnitTest {
         [Fact]
         public void GetSubLazyPythonStyleTest() {
@@ -86,5 +85,7 @@ namespace ijw.Next.Collection.xTest
             re = s.TakePythonStyle(0, -6).ToArray();
             Assert.Equal("".ToCharArray(), re);
         }
+
+
     }
 }
