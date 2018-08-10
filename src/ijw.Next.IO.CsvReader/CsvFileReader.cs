@@ -33,7 +33,7 @@ namespace ijw.Next.IO.CsvReader {
         /// </summary>
         public char[] Separators { get; set; } = { ',' };
 
-        #endregion 新建 #region
+        #endregion
 
         #region Methods
         /// <summary>
@@ -115,6 +115,6 @@ namespace ijw.Next.IO.CsvReader {
             }
         }
 
-#endregion 新建 #region
+#endregion
     }
 }
