@@ -13,7 +13,7 @@ namespace ijw.Next.Collection.xTest
         public void MedianFilterForOddCountCollectionTest() {
             double[] s = { 0d, 1d, 2d, 3d, 6.5d, 5d, 6d, 3d, 8d};
 
-            var filtered = s.MedianFilter(3).ToArray();
+            var filtered = s.FilteringWithWindowMedian(3).ToArray();
 
             Assert.Equal(9, filtered.Length);
 
@@ -32,7 +32,7 @@ namespace ijw.Next.Collection.xTest
         public void MedianFilterForEvenCountCollectionTest() {
             double[] s = { 0d, 1d, 2d, 3d, 6.5d, 5d, 6d, 3d, 8d, 9d};
 
-            var filtered = s.MedianFilter(4).ToArray();
+            var filtered = s.FilteringWithWindowMedian(4).ToArray();
 
             Assert.Equal(10, filtered.Length);
 

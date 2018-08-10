@@ -5,7 +5,7 @@
     <AssemblyName>ijw.Next.Serialization.Binary</AssemblyName>
     <PackageId>ijw.Next.Serialization.Binary</PackageId>
     <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0.72</FileVersion>
+    <FileVersion>0.1.0.73</FileVersion>
     <Version>0.1.0</Version>
     <DocumentationFile>ijw.Next.Serialization.Binary.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>

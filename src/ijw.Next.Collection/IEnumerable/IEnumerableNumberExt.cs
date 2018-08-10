@@ -142,7 +142,7 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetVariance(this IEnumerable<double> values, bool isAllData = false) {
+        public static double Variance(this IEnumerable<double> values, bool isAllData = false) {
             var mean = values.Average();
             var (count, sum) = values.SumAndCount(v => Math.Sqrt(v - mean)); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
@@ -155,7 +155,7 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetVariance(this IEnumerable<decimal> values, bool isAllData = false) {
+        public static double Variance(this IEnumerable<decimal> values, bool isAllData = false) {
             var mean = values.Average();
             var (count, sum) = values.SumAndCount(v => Math.Sqrt(Convert.ToDouble(v - mean))); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
@@ -168,7 +168,7 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetVariance(this IEnumerable<float> values, bool isAllData = false) {
+        public static double Variance(this IEnumerable<float> values, bool isAllData = false) {
             var mean = values.Average();
             var (count, sum) = values.SumAndCount(v => Math.Sqrt(v - mean)); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
@@ -181,7 +181,7 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetVariance(this IEnumerable<long> values, bool isAllData = false) {
+        public static double Variance(this IEnumerable<long> values, bool isAllData = false) {
             var mean = values.Average();
             var (count, sum) = values.SumAndCount(v => Math.Sqrt(v - mean)); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
@@ -194,7 +194,7 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetVariance(this IEnumerable<int> values, bool isAllData = false) {
+        public static double Variance(this IEnumerable<int> values, bool isAllData = false) {
             var mean = values.Average();
             var (count, sum) = values.SumAndCount(v => Math.Sqrt(v - mean)); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
@@ -209,8 +209,8 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetStandardVariance(this IEnumerable<double> values, bool isAllData = false)
-           => Math.Sqrt(values.GetVariance(isAllData));
+        public static double StandardVariance(this IEnumerable<double> values, bool isAllData = false)
+           => Math.Sqrt(values.Variance(isAllData));
 
         /// <summary>
         /// 获得标准差
@@ -218,8 +218,8 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetStandardVariance(this IEnumerable<decimal> values, bool isAllData = false)
-           => Math.Sqrt(values.GetVariance(isAllData));
+        public static double StandardVariance(this IEnumerable<decimal> values, bool isAllData = false)
+           => Math.Sqrt(values.Variance(isAllData));
 
         /// <summary>
         /// 获得标准差
@@ -227,8 +227,8 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetStandardVariance(this IEnumerable<float> values, bool isAllData = false)
-           => Math.Sqrt(values.GetVariance(isAllData));
+        public static double StandardVariance(this IEnumerable<float> values, bool isAllData = false)
+           => Math.Sqrt(values.Variance(isAllData));
 
         /// <summary>
         /// 获得标准差
@@ -236,8 +236,8 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetStandardVariance(this IEnumerable<long> values, bool isAllData = false)
-           => Math.Sqrt(values.GetVariance(isAllData));
+        public static double StandardVariance(this IEnumerable<long> values, bool isAllData = false)
+           => Math.Sqrt(values.Variance(isAllData));
 
         /// <summary>
         /// 获得标准差
@@ -245,8 +245,8 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
         /// <returns>方差</returns>
-        public static double GetStandardVariance(this IEnumerable<int> values, bool isAllData = false)
-           => Math.Sqrt(values.GetVariance(isAllData));
+        public static double StandardVariance(this IEnumerable<int> values, bool isAllData = false)
+           => Math.Sqrt(values.Variance(isAllData));
         #endregion
 
         #region MedianValue
@@ -255,7 +255,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
-        public static double GetMedianValue(this IEnumerable<double> values) {
+        public static double Median(this IEnumerable<double> values) {
             int count = values.GetCount();
 
             count.ShouldBeNotZero();
@@ -281,7 +281,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
-        public static decimal GetMedianValue(this IEnumerable<decimal> values) {
+        public static decimal Median(this IEnumerable<decimal> values) {
             int count = values.GetCount();
 
             count.ShouldBeNotZero();
@@ -307,7 +307,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
-        public static float GetMedianValue(this IEnumerable<float> values) {
+        public static float Median(this IEnumerable<float> values) {
             int count = values.GetCount();
 
             count.ShouldBeNotZero();
@@ -333,7 +333,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
-        public static double GetMedianValue(this IEnumerable<long> values) {
+        public static double Median(this IEnumerable<long> values) {
             int count = values.GetCount();
 
             count.ShouldBeNotZero();
@@ -359,7 +359,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
-        public static double GetMedianValue(this IEnumerable<int> values) {
+        public static double Median(this IEnumerable<int> values) {
             int count = values.GetCount();
 
             count.ShouldBeNotZero();
@@ -387,40 +387,40 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>返回最大最小的平均值。</returns>
-        public static double GetMiddleValue(this IEnumerable<double> values) => (values.Max() + values.Min()) / 2;
+        public static double Middle(this IEnumerable<double> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
         /// 获取集合的中值。
         /// </summary>
         /// <param name="values"></param>
         /// <returns>返回最大最小的平均值。</returns>
-        public static decimal GetMiddleValue(this IEnumerable<decimal> values) => (values.Max() + values.Min()) / 2;
+        public static decimal Middle(this IEnumerable<decimal> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
         /// 获取集合的中值。
         /// </summary>
         /// <param name="values"></param>
         /// <returns>返回最大最小的平均值。</returns>
-        public static float GetMiddleValue(this IEnumerable<float> values) => (values.Max() + values.Min()) / 2;
+        public static float Middle(this IEnumerable<float> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
         /// 获取集合的中值。
         /// </summary>
         /// <param name="values"></param>
         /// <returns>返回最大最小的平均值。</returns>
-        public static double GetMiddleValue(this IEnumerable<long> values) => (values.Max() + values.Min()) / 2;
+        public static double Middle(this IEnumerable<long> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
         /// 获取集合的中值。
         /// </summary>
         /// <param name="values"></param>
         /// <returns>返回最大最小的平均值。</returns>
-        public static double GetMiddleValue(this IEnumerable<int> values) => (values.Max() + values.Min()) / 2;
+        public static double Middle(this IEnumerable<int> values) => (values.Max() + values.Min()) / 2;
         #endregion
 
         #endregion
 
-        #region Normalizer
+        #region Normalize
 
         #region Normalize
         /// <summary>
@@ -430,7 +430,7 @@ namespace ijw.Next.Collection {
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>归一化后的集合</returns>
-        public static List<double> Normalize(this IEnumerable<double> collection, IEnumerable<double> maxValues, IEnumerable<double> minValues) 
+        public static List<double> Normalize(this IEnumerable<double> collection, IEnumerable<double> maxValues, IEnumerable<double> minValues)
             => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
@@ -494,7 +494,7 @@ namespace ijw.Next.Collection {
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>反归一化后的集合</returns>
-        public static List<decimal> Denormalize(this IEnumerable<decimal> collection, IEnumerable<decimal> maxValues, IEnumerable<decimal> minValues) 
+        public static List<decimal> Denormalize(this IEnumerable<decimal> collection, IEnumerable<decimal> maxValues, IEnumerable<decimal> minValues)
             => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
@@ -513,71 +513,26 @@ namespace ijw.Next.Collection {
 
         #region Filters
 
-        #region Null Or NaN Filters
+        #region NaN Filters
 
         /// <summary>
         /// 去除序列中的NaN
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
-        public static IEnumerable<double> NaNFilter(this IEnumerable<double> values) {
-            var query = from v in values
-                        where !double.IsNaN(v)
-                        select v;
-            return query;
-        }
+        public static IEnumerable<double> FilteringNaN(this IEnumerable<double> values)
+            => values.Where(v => !double.IsNaN(v));
 
         /// <summary>
         /// 去除序列中的NaN
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
-        public static IEnumerable<float> NaNFilter(this IEnumerable<float> values) {
-            var query = from v in values
-                        where !float.IsNaN(v)
-                        select v;
-            return query;
-        }
-
-        /// <summary>
-        /// 去除序列中的Null
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns>去除后的序列</returns>
-        public static IEnumerable<decimal> NullFilter(this IEnumerable<decimal?> values) {
-            var query = from v in values
-                        where v != null
-                        select v.Value;
-            return query;
-        }
-
-        /// <summary>
-        /// 去除序列中的Null与NaN
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns>去除后的序列</returns>
-        public static IEnumerable<double> NullAndNaNFilter(this IEnumerable<double?> values) {
-            var query = from v in values
-                        where v != null && !double.IsNaN(v.Value)
-                        select v.Value;
-            return query;
-        }
-
-        /// <summary>
-        /// 去除序列中的Null与NaN
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns>去除后的序列</returns>
-        public static IEnumerable<float> NullAndNaNFilter(this IEnumerable<float?> values) {
-            var query = from v in values
-                        where v != null && !float.IsNaN(v.Value)
-                        select v.Value;
-            return query;
-        }
-
+        public static IEnumerable<float> FilteringNaN(this IEnumerable<float> values)
+            => values.Where(v => !float.IsNaN(v));
         #endregion
 
-        #region Limiting Filters
+        #region Limiting Diff Filters
 
         /// <summary>
         /// 限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
@@ -585,7 +540,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
-        public static IEnumerable<double> LimitingDiffFilter(this IEnumerable<double> values, double diff) {
+        public static IEnumerable<double> FilteringWithLimitingDiff(this IEnumerable<double> values, double diff) {
             diff.ShouldLargerThan(0d);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingDiff(prev, d));
         }
@@ -596,7 +551,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
-        public static IEnumerable<decimal> LimitingDiffFilter(this IEnumerable<decimal> values, decimal diff) {
+        public static IEnumerable<decimal> FilteringWithLimitingDiff(this IEnumerable<decimal> values, decimal diff) {
             diff.ShouldLargerThan(0);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingDiff(prev, d));
         }
@@ -607,7 +562,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
-        public static IEnumerable<float> LimitingDiffFilter(this IEnumerable<float> values, float diff) {
+        public static IEnumerable<float> FilteringWithLimitingDiff(this IEnumerable<float> values, float diff) {
             diff.ShouldLargerThan(0f);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingDiff(prev, d));
         }
@@ -618,7 +573,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
-        public static IEnumerable<long> LimitingDiffFilter(this IEnumerable<long> values, long diff) {
+        public static IEnumerable<long> FilteringWithLimitingDiff(this IEnumerable<long> values, long diff) {
             diff.ShouldLargerThan(0L);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingDiff(prev, d));
         }
@@ -629,19 +584,21 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
-        public static IEnumerable<int> LimitingDiffFilter(this IEnumerable<int> values, int diff) {
+        public static IEnumerable<int> FilteringWithLimitingDiff(this IEnumerable<int> values, int diff) {
             diff.ShouldLargerThan(0);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingDiff(prev, d));
         }
 
+        #endregion 新建 #region
 
+        #region Limiting Amplify Filters
         /// <summary>
         /// 限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
         /// <returns>过滤后的新集合</returns>
-        public static IEnumerable<double> LimitingAmplifyFilter(this IEnumerable<double> values, double diff) {
+        public static IEnumerable<double> FilteringWithLimitingAmplify(this IEnumerable<double> values, double diff) {
             diff.ShouldLargerThan(0d);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingAmplify(prev, diff));
         }
@@ -652,7 +609,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
         /// <returns>过滤后的新集合</returns>
-        public static IEnumerable<decimal> LimitingAmplifyFilter(this IEnumerable<decimal> values, decimal diff) {
+        public static IEnumerable<decimal> FilteringWithLimitingAmplify(this IEnumerable<decimal> values, decimal diff) {
             diff.ShouldLargerThan(0m);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingAmplify(prev, diff));
         }
@@ -663,7 +620,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
         /// <returns>过滤后的新集合</returns>
-        public static IEnumerable<float> LimitingAmplifyFilter(this IEnumerable<float> values, float diff) {
+        public static IEnumerable<float> FilteringWithLimitingAmplify(this IEnumerable<float> values, float diff) {
             diff.ShouldLargerThan(0f);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingAmplify(prev, diff));
         }
@@ -674,7 +631,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
         /// <returns>过滤后的新集合</returns>
-        public static IEnumerable<long> LimitingAmplifyFilter(this IEnumerable<long> values, long diff) {
+        public static IEnumerable<long> FilteringWithLimitingAmplify(this IEnumerable<long> values, long diff) {
             diff.ShouldLargerThan(0L);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingAmplify(prev, diff));
         }
@@ -685,24 +642,22 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
         /// <returns>过滤后的新集合</returns>
-        public static IEnumerable<int> LimitingAmplifyFilter(this IEnumerable<int> values, int diff) {
+        public static IEnumerable<int> FilteringWithLimitingAmplify(this IEnumerable<int> values, int diff) {
             diff.ShouldLargerThan(0);
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingAmplify(prev, diff));
         }
 
         #endregion
 
-        #region Window Filters
-
-        #region Median Filters
+        #region Window Median Filters
         /// <summary>
         /// 在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<double> MedianFilter(this IEnumerable<double> values, int windowLength) {
-            return values.WindowBasedFilter(windowLength, w => w.GetMedianValue());
+        public static IEnumerable<double> FilteringWithWindowMedian(this IEnumerable<double> values, int windowLength) {
+            return values.WindowBasedFilter(windowLength, w => w.Median());
         }
 
         /// <summary>
@@ -711,8 +666,8 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<decimal> MedianFilter(this IEnumerable<decimal> values, int windowLength) {
-            return values.WindowBasedFilter(windowLength, w => w.GetMedianValue());
+        public static IEnumerable<decimal> FilteringWithWindowMedian(this IEnumerable<decimal> values, int windowLength) {
+            return values.WindowBasedFilter(windowLength, w => w.Median());
         }
 
         /// <summary>
@@ -721,8 +676,8 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<float> MedianFilter(this IEnumerable<float> values, int windowLength) {
-            return values.WindowBasedFilter(windowLength, w => w.GetMedianValue());
+        public static IEnumerable<float> FilteringWithWindowMedian(this IEnumerable<float> values, int windowLength) {
+            return values.WindowBasedFilter(windowLength, w => w.Median());
         }
 
         /// <summary>
@@ -731,8 +686,8 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<double> MedianFilter(this IEnumerable<long> values, int windowLength) {
-            return values.WindowBasedFilter(windowLength, v => Convert.ToDouble(v), w => w.GetMedianValue());
+        public static IEnumerable<double> FilteringWithWindowMedian(this IEnumerable<long> values, int windowLength) {
+            return values.WindowBasedFilter(windowLength, v => Convert.ToDouble(v), w => w.Median());
         }
 
         /// <summary>
@@ -741,12 +696,13 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<double> MedianFilter(this IEnumerable<int> values, int windowLength) {
-            return values.WindowBasedFilter(windowLength, v => Convert.ToDouble(v), w => w.GetMedianValue());
+        public static IEnumerable<double> FilteringWithWindowMedian(this IEnumerable<int> values, int windowLength) {
+            return values.WindowBasedFilter(windowLength, v => Convert.ToDouble(v), w => w.Median());
         }
+
         #endregion
 
-        #region Mean Filters
+        #region Window Mean Filters
         /// <summary>
         /// 算术平均值过滤. 窗口长度内取平均值.
         /// </summary>
@@ -754,7 +710,7 @@ namespace ijw.Next.Collection {
         /// <param name="windowLength">窗口长度</param>
         /// <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<double> MeanFilter(this IEnumerable<double> values, int windowLength, bool ignoreMaxMinValue = false) {
+        public static IEnumerable<double> FilteringWithWindowMean(this IEnumerable<double> values, int windowLength, bool ignoreMaxMinValue = false) {
             return values.WindowBasedFilter(windowLength, w => w.Average(ignoreMaxMinValue));
         }
 
@@ -765,7 +721,7 @@ namespace ijw.Next.Collection {
         /// <param name="windowLength">窗口长度</param>
         /// <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<decimal> MeanFilter(this IEnumerable<decimal> values, int windowLength, bool ignoreMaxMinValue = false) {
+        public static IEnumerable<decimal> FilteringWithWindowMean(this IEnumerable<decimal> values, int windowLength, bool ignoreMaxMinValue = false) {
             return values.WindowBasedFilter(windowLength, w => w.Average(ignoreMaxMinValue));
         }
 
@@ -776,7 +732,7 @@ namespace ijw.Next.Collection {
         /// <param name="windowLength">窗口长度</param>
         /// <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<float> MeanFilter(this IEnumerable<float> values, int windowLength, bool ignoreMaxMinValue = false) {
+        public static IEnumerable<float> FilteringWithWindowMean(this IEnumerable<float> values, int windowLength, bool ignoreMaxMinValue = false) {
             return values.WindowBasedFilter(windowLength, (IEnumerable<float> w) => w.Average(ignoreMaxMinValue));
         }
 
@@ -787,7 +743,7 @@ namespace ijw.Next.Collection {
         /// <param name="windowLength">窗口长度</param>
         /// <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<double> MeanFilter(this IEnumerable<long> values, int windowLength, bool ignoreMaxMinValue = false) {
+        public static IEnumerable<double> FilteringWithWindowMean(this IEnumerable<long> values, int windowLength, bool ignoreMaxMinValue = false) {
             return values.WindowBasedFilter(windowLength, v => Convert.ToDouble(v), w => w.Average(ignoreMaxMinValue));
         }
 
@@ -798,11 +754,9 @@ namespace ijw.Next.Collection {
         /// <param name="windowLength">窗口长度</param>
         /// <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
         /// <returns>新的样本集</returns>
-        public static IEnumerable<double> MeanFilter(this IEnumerable<int> values, int windowLength, bool ignoreMaxMinValue = false) {
+        public static IEnumerable<double> FilteringWithWindowMean(this IEnumerable<int> values, int windowLength, bool ignoreMaxMinValue = false) {
             return values.WindowBasedFilter(windowLength, v => Convert.ToDouble(v), w => w.Average(ignoreMaxMinValue));
         }
-
-        #endregion#endregion
 
         #endregion
 

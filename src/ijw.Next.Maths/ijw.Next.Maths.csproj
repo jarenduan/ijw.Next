@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net35;net40;net45;netstandard1.4</TargetFrameworks>
     <Authors>Jaren Duan</Authors>
     <AssemblyName>ijw.Next.Maths</AssemblyName>
     <PackageId>ijw.Next.Maths</PackageId>
     <AssemblyVersion>0.2.8</AssemblyVersion>
-    <FileVersion>0.2.8.19</FileVersion>
+    <FileVersion>0.2.8.20</FileVersion>
     <Version>0.2.8</Version>
     <DocumentationFile>ijw.Next.Maths.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
