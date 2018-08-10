@@ -86,8 +86,6 @@ namespace ijw.Next.Collection {
             return index;
         }
 
-        #endregion
-
         /// <summary>
         /// 根据指定长度迭代返回每一个窗口。例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
         /// </summary>
@@ -119,6 +117,7 @@ namespace ijw.Next.Collection {
             }
         }
 
+        #endregion
         #region For Each and the Next
 
         /// <summary>
@@ -447,7 +446,7 @@ namespace ijw.Next.Collection {
 #if !NET35
             collection is IIndexable<T> indexable ? indexable.Count :
 #endif    
-            collection.Count(); 
+            collection.Count();
         #endregion
 
         #region IndexOf
@@ -545,7 +544,7 @@ namespace ijw.Next.Collection {
 #endif    
             collection.ElementAt(index);
 
-#endregion
+        #endregion
 
         #region Each (with index as a return)
         /// <summary>
@@ -561,56 +560,56 @@ namespace ijw.Next.Collection {
                 index = checked(index + 1);
             }
         }
-#endregion
+        #endregion
 
         #region Divide
 
-                /// <summary>
-                /// 按指定的比例把集合分拆成两部分
-                /// </summary>
-                /// <typeparam name="T">元素类型</typeparam>
-                /// <param name="source">源集合</param>
-                /// <param name="ratioOfFirstGroup">第一部分的占比</param>
-                /// <param name="ratioOfSecondGroup">第二部分的占比</param>
-                /// <param name="firstGroup">分拆出的第一部分</param>
-                /// <param name="secondGroup">分拆出的第二部分</param>
-                /// <remarks>net40+请使用返回元组的版本,  out return 版本不推荐使用</remarks>
-                public static void DivideByRatio<T>(this IEnumerable<T> source, int ratioOfFirstGroup, int ratioOfSecondGroup, out List<T> firstGroup, out List<T> secondGroup) {
-                    var first = new List<T>();
-                    var second = new List<T>();
+        /// <summary>
+        /// 按指定的比例把集合分拆成两部分
+        /// </summary>
+        /// <typeparam name="T">元素类型</typeparam>
+        /// <param name="source">源集合</param>
+        /// <param name="ratioOfFirstGroup">第一部分的占比</param>
+        /// <param name="ratioOfSecondGroup">第二部分的占比</param>
+        /// <param name="firstGroup">分拆出的第一部分</param>
+        /// <param name="secondGroup">分拆出的第二部分</param>
+        /// <remarks>net40+请使用返回元组的版本,  out return 版本不推荐使用</remarks>
+        public static void DivideByRatio<T>(this IEnumerable<T> source, int ratioOfFirstGroup, int ratioOfSecondGroup, out List<T> firstGroup, out List<T> secondGroup) {
+            var first = new List<T>();
+            var second = new List<T>();
 
-                    source.ForEach((element, index) => {
-                        if (index % (ratioOfFirstGroup + ratioOfSecondGroup) < ratioOfFirstGroup) {
-                            first.Add(element);
-                        }
-                        else {
-                            second.Add(element);
-                        }
-                    });
-
-                    firstGroup = first;
-                    secondGroup = second;
+            source.ForEach((element, index) => {
+                if (index % (ratioOfFirstGroup + ratioOfSecondGroup) < ratioOfFirstGroup) {
+                    first.Add(element);
                 }
-
-                /// <summary>
-                /// 把一个集合按指定的比率和方式分成两部分
-                /// </summary>
-                /// <typeparam name="T">元素类型</typeparam>
-                /// <param name="source">源集合</param>
-                /// <param name="method">切分方式</param>
-                /// <param name="ratioOfFirstGroup">第一部分的比例</param>
-                /// <param name="ratioOfSecondGroup">第二把部分的比例</param>
-                /// <param name="firstGroup">切分后的第一部分</param>
-                /// <param name="secondGroup">切分后的第二部分</param>
-                /// <remarks>net40+请使用返回元组的版本,  out return 版本不推荐使用</remarks>
-                public static void DivideByRatioAndMethod<T>(this IEnumerable<T> source, int ratioOfFirstGroup, int ratioOfSecondGroup, CollectionDividingMethod method, out List<T> firstGroup, out List<T> secondGroup) {
-                    if (method == CollectionDividingMethod.Random) {
-                        source = source.Shuffle();
-                    }
-                    source.DivideByRatio(ratioOfFirstGroup, ratioOfSecondGroup, out firstGroup, out secondGroup);
+                else {
+                    second.Add(element);
                 }
+            });
 
-        #if !NET35
+            firstGroup = first;
+            secondGroup = second;
+        }
+
+        /// <summary>
+        /// 把一个集合按指定的比率和方式分成两部分
+        /// </summary>
+        /// <typeparam name="T">元素类型</typeparam>
+        /// <param name="source">源集合</param>
+        /// <param name="method">切分方式</param>
+        /// <param name="ratioOfFirstGroup">第一部分的比例</param>
+        /// <param name="ratioOfSecondGroup">第二把部分的比例</param>
+        /// <param name="firstGroup">切分后的第一部分</param>
+        /// <param name="secondGroup">切分后的第二部分</param>
+        /// <remarks>net40+请使用返回元组的版本,  out return 版本不推荐使用</remarks>
+        public static void DivideByRatioAndMethod<T>(this IEnumerable<T> source, int ratioOfFirstGroup, int ratioOfSecondGroup, CollectionDividingMethod method, out List<T> firstGroup, out List<T> secondGroup) {
+            if (method == CollectionDividingMethod.Random) {
+                source = source.Shuffle();
+            }
+            source.DivideByRatio(ratioOfFirstGroup, ratioOfSecondGroup, out firstGroup, out secondGroup);
+        }
+
+#if !NET35
                 /// <summary>
                 /// 按指定的比例把集合分拆成两部分
                 /// </summary>
@@ -639,274 +638,295 @@ namespace ijw.Next.Collection {
                     source.DivideByRatioAndMethod(ratioOfFirstGroup, ratioOfSecondGroup, method, out var firstGrouop, out var secondGroup);
                     return (firstGrouop, secondGroup);
                 }
-        #endif
+#endif
 
         #endregion
 
         #region Random
 
-                /// <summary>
-                /// 返回随机打乱顺序的序列. 
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <returns>随机打乱顺序后的序列</returns>
-                public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> collection) {
-                    int[] order = 0.ToTotal(collection.Count()).ToArray().Shuffle();
-                    for (int i = 0; i < order.Length; i++) {
-                        yield return collection.ElementAt(order[i]);
-                    }
-                }
+        /// <summary>
+        /// 返回随机打乱顺序的序列. 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <returns>随机打乱顺序后的序列</returns>
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> collection) {
+            int[] order = 0.ToTotal(collection.Count()).ToArray().Shuffle();
+            for (int i = 0; i < order.Length; i++) {
+                yield return collection.ElementAt(order[i]);
+            }
+        }
         #endregion
 
         #region First (with index as parameter)
 
-                /// <summary>
-                /// 返回第一个满足条件的元素, 过滤条件使用元素和索引作为参数.无则抛出<see cref="System.InvalidOperationException"/>异常.
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="pred"></param>
-                /// <returns></returns>
-                public static T First<T>(this IEnumerable<T> collection, Func<T, int, bool> pred) 
-                    => collection.Where((item, index) => pred(item, index)).First();
+        /// <summary>
+        /// 返回第一个满足条件的元素, 过滤条件使用元素和索引作为参数.无则抛出<see cref="System.InvalidOperationException"/>异常.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="pred"></param>
+        /// <returns></returns>
+        public static T First<T>(this IEnumerable<T> collection, Func<T, int, bool> pred)
+            => collection.Where((item, index) => pred(item, index)).First();
 
-                /// <summary>
-                /// 返回第一个满足条件的元素, 过滤条件使用元素和索引作为参数.无则返回null.
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="pred">过滤条件, 为真则返回.</param>
-                /// <returns></returns>
-                public static T FirstOrDefault<T>(this IEnumerable<T> collection, Func<T, int, bool> pred) 
-                    => collection.Where((item, index) => pred(item, index)).FirstOrDefault();
+        /// <summary>
+        /// 返回第一个满足条件的元素, 过滤条件使用元素和索引作为参数.无则返回null.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="pred">过滤条件, 为真则返回.</param>
+        /// <returns></returns>
+        public static T FirstOrDefault<T>(this IEnumerable<T> collection, Func<T, int, bool> pred)
+            => collection.Where((item, index) => pred(item, index)).FirstOrDefault();
 
         #endregion
 
         #region Max/Min (with Index as a parameters)
-                /// <summary>
-                /// 用元素和索引作为参数, 使用指定的方法比较, 找到最大值
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <typeparam name="V"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">比较的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>最大值及其索引</returns>
-                public static (int index, V maxValue) Max<T, V>(this IEnumerable<T> collection, Func<T, int, V> func) where V:IComparable {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素和索引作为参数, 使用指定的方法比较, 找到最大值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">比较的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>最大值及其索引</returns>
+        public static (int index, V maxValue) Max<T, V>(this IEnumerable<T> collection, Func<T, int, V> func) where V : IComparable {
+            collection.ShouldNotBeEmpty();
 
-                    V maxValue = func(collection.First(), 0);
-                    int maxIndex = 0;
-                    int index = 0;
+            V maxValue = func(collection.First(), 0);
+            int maxIndex = 0;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        var v = func(item, index); 
-                        if (v.CompareTo(maxValue) > 0) {
-                            maxValue = v;
-                            maxIndex = index;
-                        }
-                        index = checked(index + 1);
-                    }
-
-                    return (maxIndex, maxValue);
+            foreach (var item in collection) {
+                var v = func(item, index);
+                if (v.CompareTo(maxValue) > 0) {
+                    maxValue = v;
+                    maxIndex = index;
                 }
+                index = checked(index + 1);
+            }
 
-                /// <summary>
-                /// 用元素和索引作为参数, 使用指定的方法比较, 找到最大值
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <typeparam name="V"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">比较的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>最小值及其索引</returns>
-                public static (int index, V minValue) Min<T, V>(this IEnumerable<T> collection, Func<T, int, V> func) where V:IComparable {
-                    collection.ShouldNotBeEmpty();
+            return (maxIndex, maxValue);
+        }
 
-                    V minValue = func(collection.First(), 0);
-                    int minIndex = 0;
-                    int index = 0;
+        /// <summary>
+        /// 用元素和索引作为参数, 使用指定的方法比较, 找到最大值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">比较的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>最小值及其索引</returns>
+        public static (int index, V minValue) Min<T, V>(this IEnumerable<T> collection, Func<T, int, V> func) where V : IComparable {
+            collection.ShouldNotBeEmpty();
 
-                    foreach (var item in collection) {
-                        var v = func(item, index);
-                        if (v.CompareTo(minValue) < 0) {
-                            minValue = v;
-                            minIndex = index;
-                        }
-                        index = checked(index + 1);
-                    }
+            V minValue = func(collection.First(), 0);
+            int minIndex = 0;
+            int index = 0;
 
-                    return (minIndex, minValue);
+            foreach (var item in collection) {
+                var v = func(item, index);
+                if (v.CompareTo(minValue) < 0) {
+                    minValue = v;
+                    minIndex = index;
                 }
+                index = checked(index + 1);
+            }
+
+            return (minIndex, minValue);
+        }
         #endregion
 
         #region Sum and Count
-                /// <summary>
-                /// 用元素作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, double> func) {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, double> func) {
+            collection.ShouldNotBeEmpty();
 
-                    var result = 0d;
-                    int index = 0;
+            var result = 0d;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        result += func(item);
-                        index = checked(index + 1);
-                    }
+            foreach (var item in collection) {
+                result += func(item);
+                index = checked(index + 1);
+            }
 
-                    return (index, result);
-                }
+            return (index, result);
+        }
 
-                /// <summary>
-                /// 用元素作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, float> func) {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, decimal sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, decimal> func) {
+            collection.ShouldNotBeEmpty();
 
-                    var result = 0f;
-                    int index = 0;
+            var result = 0m;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        result += func(item);
-                        index = checked(index + 1);
-                    }
+            foreach (var item in collection) {
+                result += func(item);
+                index = checked(index + 1);
+            }
 
-                    return (index, result);
-                }
-                /// <summary>
-                /// 用元素作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int> func) {
-                    collection.ShouldNotBeEmpty();
+            return (index, result);
+        }
 
-                    var result = 0;
-                    int index = 0;
+        /// <summary>
+        /// 用元素作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, float> func) {
+            collection.ShouldNotBeEmpty();
 
-                    foreach (var item in collection) {
-                        result += func(item);
-                        index = checked(index + 1);
-                    }
+            var result = 0f;
+            int index = 0;
 
-                    return (index, result);
-                }
-                /// <summary>
-                /// 用元素作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, long> func) {
-                    collection.ShouldNotBeEmpty();
+            foreach (var item in collection) {
+                result += func(item);
+                index = checked(index + 1);
+            }
 
-                    var result = 0L;
-                    int index = 0;
+            return (index, result);
+        }
+        /// <summary>
+        /// 用元素作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int> func) {
+            collection.ShouldNotBeEmpty();
 
-                    foreach (var item in collection) {
-                        result += func(item);
-                        index = checked(index + 1);
-                    }
+            var result = 0;
+            int index = 0;
 
-                    return (index, result);
-                }
+            foreach (var item in collection) {
+                result += func(item);
+                index = checked(index + 1);
+            }
+
+            return (index, result);
+        }
+        /// <summary>
+        /// 用元素作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, long> func) {
+            collection.ShouldNotBeEmpty();
+
+            var result = 0L;
+            int index = 0;
+
+            foreach (var item in collection) {
+                result += func(item);
+                index = checked(index + 1);
+            }
+
+            return (index, result);
+        }
         #endregion
 
         #region Sum and Count (with index as parameters)
-                /// <summary>
-                /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, double> func) {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, double> func) {
+            collection.ShouldNotBeEmpty();
 
-                    var result = 0d;
-                    int index = 0;
+            var result = 0d;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        result += func(item, index);
-                        index = checked(index + 1);
-                    }
+            foreach (var item in collection) {
+                result += func(item, index);
+                index = checked(index + 1);
+            }
 
-                    return (index, result);
-                }
+            return (index, result);
+        }
 
-                /// <summary>
-                /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, float> func) {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, float> func) {
+            collection.ShouldNotBeEmpty();
 
-                    var result = 0f;
-                    int index = 0;
+            var result = 0f;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        result += func(item, index);
-                        index = checked(index + 1);
-                    }
+            foreach (var item in collection) {
+                result += func(item, index);
+                index = checked(index + 1);
+            }
 
-                    return (index, result);
-                }
+            return (index, result);
+        }
 
-                /// <summary>
-                /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, int> func) {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, int> func) {
+            collection.ShouldNotBeEmpty();
 
-                    var result = 0;
-                    int index = 0;
+            var result = 0;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        result += func(item, index);
-                        index = checked(index + 1);
-                    }
+            foreach (var item in collection) {
+                result += func(item, index);
+                index = checked(index + 1);
+            }
 
-                    return (index, result);
-                }
+            return (index, result);
+        }
 
-                /// <summary>
-                /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
-                /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="collection"></param>
-                /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
-                /// <returns>所求到和与进行求和的元素总数</returns>
-                public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, long> func) {
-                    collection.ShouldNotBeEmpty();
+        /// <summary>
+        /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+        /// <returns>所求到和与进行求和的元素总数</returns>
+        public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, long> func) {
+            collection.ShouldNotBeEmpty();
 
-                    var result = 0L;
-                    int index = 0;
+            var result = 0L;
+            int index = 0;
 
-                    foreach (var item in collection) {
-                        result += func(item, index);
-                        index = checked(index + 1);
-                    }
+            foreach (var item in collection) {
+                result += func(item, index);
+                index = checked(index + 1);
+            }
 
-                    return (index, result);
-                }
+            return (index, result);
+        }
         #endregion
 
         #region ToStrings
@@ -975,6 +995,100 @@ namespace ijw.Next.Collection {
             return Helper.ToAllEnumStrings(collection, separator, prefix, postfix, transform);
         }
 
-#endregion
+        #endregion
+
+        #region Filters
+
+        /// <summary>
+        /// 这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="diff"></param>
+        /// <param name="diffLimitingFunc"></param>
+        /// <returns></returns>
+        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values, T diff, Func<T, T, T, T> diffLimitingFunc) {
+            values.ShouldNotBeNullOrEmpty();
+
+            yield return values.First();
+
+            var result = values.ForEachAndNext((prev, curr) => diffLimitingFunc(curr, prev, diff));
+
+            foreach (var item in result) {
+                yield return item;
+            }
+        }
+
+        /// <summary>
+        /// 基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+        /// 序列首尾（不在窗口中的）值将不进行任何计算，直接输出.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="windowLength">窗口长度</param>
+        /// <param name="func">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<T> WindowBasedFilter<T>(this IEnumerable<T> values, int windowLength, Func<IEnumerable<T>, T> func) {
+            return WindowBasedFilter(values, windowLength, (v) => v, func);
+        }
+
+        /// <summary>
+        /// 基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="windowLength">窗口长度</param>
+        /// <param name="funcWithoutWindow">一个计算函数，输入参数是无法在窗口中计算的值，输出是计算后的值</param>
+        /// <param name="funcWithWindow">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<TResult> WindowBasedFilter<T, TResult>(this IEnumerable<T> values, int windowLength, Func<T,TResult> funcWithoutWindow, Func<IEnumerable<T>, TResult> funcWithWindow) {
+            windowLength.ShouldBeNotLessThanZero();
+            windowLength.ShouldNotLargerThan(values.Count());
+
+            var enumerator = values.GetEnumerator();
+
+            //The values in the first half of the 1st window could not be filtered, so yield return directly.
+            for (int i = 0; i < windowLength / 2; i++) {
+                if (!enumerator.MoveNext()) {
+                    yield break;
+                }
+                else {
+                    yield return funcWithoutWindow(enumerator.Current);
+                }
+            }
+
+            //use window to filter.
+            var windows = values.ForEachWindow(windowLength);
+            foreach (var w in windows) {
+                yield return funcWithWindow(w);
+                if (!enumerator.MoveNext()) {
+                    yield break;
+                }
+            }
+
+            //no more window to filter with, yield return rest directly.
+            for (int i = 0; i < windowLength / 2; i++) {
+                if (!enumerator.MoveNext()) {
+                    yield break;
+                }
+                else {
+                    yield return funcWithoutWindow(enumerator.Current);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 去除序列中的Null
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns>去除后的序列</returns>
+        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : struct {
+            var query = from v in values
+                        where v != null
+                        select v.Value;
+            return query;
+        }
+        #endregion
     }
 }

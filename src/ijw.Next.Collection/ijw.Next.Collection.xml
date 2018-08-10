@@ -793,6 +793,15 @@
             <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
             <returns>所求到和与进行求和的元素总数</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.SumAndCount``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})">
+            <summary>
+            用元素作为参数, 使用指定的方法计算后, 求和
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
+            <returns>所求到和与进行求和的元素总数</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.SumAndCount``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Single})">
             <summary>
             用元素作为参数, 使用指定的方法计算后, 求和
@@ -879,6 +888,46 @@
             <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
             <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
             <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.PreviousBasedFilter``1(System.Collections.Generic.IEnumerable{``0},``0,System.Func{``0,``0,``0,``0})">
+            <summary>
+            这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <param name="diff"></param>
+            <param name="diffLimitingFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.WindowBasedFilter``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{System.Collections.Generic.IEnumerable{``0},``0})">
+            <summary>
+            基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+            序列首尾（不在窗口中的）值将不进行任何计算，直接输出.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <param name="windowLength">窗口长度</param>
+            <param name="func">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.WindowBasedFilter``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{``0,``1},System.Func{System.Collections.Generic.IEnumerable{``0},``1})">
+            <summary>
+            基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="values"></param>
+            <param name="windowLength">窗口长度</param>
+            <param name="funcWithoutWindow">一个计算函数，输入参数是无法在窗口中计算的值，输出是计算后的值</param>
+            <param name="funcWithWindow">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.NullFilter``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}})">
+            <summary>
+            去除序列中的Null
+            </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
         </member>
         <member name="T:ijw.Next.Collection.IEnumerableHelper">
             <summary>
@@ -1049,6 +1098,15 @@
             <param name="values"></param>
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
             <returns>均值</returns>
+            
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Decimal},System.Boolean)">
+            <summary>
+            计算均值，可指定是否忽略最大值最小值
+            </summary>
+            <param name="values"></param>
+            <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
+            <returns>均值</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Single},System.Boolean)">
             <summary>
@@ -1058,7 +1116,33 @@
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
             <returns>均值</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            计算均值，可指定是否忽略最大值最小值
+            </summary>
+            <param name="values"></param>
+            <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
+            <returns>均值</returns>
+            
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            计算均值，可指定是否忽略最大值最小值
+            </summary>
+            <param name="values"></param>
+            <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
+            <returns>均值</returns>
+            
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetVariance(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
+            <summary>
+            获得方差
+            </summary>
+            <param name="values"></param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <returns>方差</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetVariance(System.Collections.Generic.IEnumerable{System.Decimal},System.Boolean)">
             <summary>
             获得方差
             </summary>
@@ -1074,7 +1158,31 @@
             <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
             <returns>方差</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetVariance(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            获得方差
+            </summary>
+            <param name="values"></param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <returns>方差</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetVariance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            获得方差
+            </summary>
+            <param name="values"></param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <returns>方差</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetStandardVariance(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
+            <summary>
+            获得标准差
+            </summary>
+            <param name="values"></param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <returns>方差</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetStandardVariance(System.Collections.Generic.IEnumerable{System.Decimal},System.Boolean)">
             <summary>
             获得标准差
             </summary>
@@ -1090,7 +1198,30 @@
             <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
             <returns>方差</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetStandardVariance(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            获得标准差
+            </summary>
+            <param name="values"></param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <returns>方差</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetStandardVariance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
+            <summary>
+            获得标准差
+            </summary>
+            <param name="values"></param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <returns>方差</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMedianValue(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            获取集合的中位值。
+            </summary>
+            <param name="values"></param>
+            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMedianValue(System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
             获取集合的中位值。
             </summary>
@@ -1104,7 +1235,28 @@
             <param name="values"></param>
             <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMedianValue(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            获取集合的中位值。
+            </summary>
+            <param name="values"></param>
+            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMedianValue(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            获取集合的中位值。
+            </summary>
+            <param name="values"></param>
+            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMiddleValue(System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            获取集合的中值。
+            </summary>
+            <param name="values"></param>
+            <returns>返回最大最小的平均值。</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMiddleValue(System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
             获取集合的中值。
             </summary>
@@ -1118,7 +1270,30 @@
             <param name="values"></param>
             <returns>返回最大最小的平均值。</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMiddleValue(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            获取集合的中值。
+            </summary>
+            <param name="values"></param>
+            <returns>返回最大最小的平均值。</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.GetMiddleValue(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            获取集合的中值。
+            </summary>
+            <param name="values"></param>
+            <returns>返回最大最小的平均值。</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Normalize(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            对浮点集合中的值逐一进行归一化
+            </summary>
+            <param name="collection">浮点数集合</param>
+            <param name="maxValues">归一化上限值的集合</param>
+            <param name="minValues">归一化下限值的集合</param>
+            <returns>归一化后的集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Normalize(System.Collections.Generic.IEnumerable{System.Decimal},System.Collections.Generic.IEnumerable{System.Decimal},System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
             对浮点集合中的值逐一进行归一化
             </summary>
@@ -1136,7 +1311,34 @@
             <param name="minValues">归一化下限值的集合</param>
             <returns>归一化后的集合</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Normalize(System.Collections.Generic.IEnumerable{System.Int64},System.Collections.Generic.IEnumerable{System.Int64},System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            对浮点集合中的值逐一进行归一化
+            </summary>
+            <param name="collection">浮点数集合</param>
+            <param name="maxValues">归一化上限值的集合</param>
+            <param name="minValues">归一化下限值的集合</param>
+            <returns>归一化后的集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Normalize(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            对浮点集合中的值逐一进行归一化
+            </summary>
+            <param name="collection">浮点数集合</param>
+            <param name="maxValues">归一化上限值的集合</param>
+            <param name="minValues">归一化下限值的集合</param>
+            <returns>归一化后的集合</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Denormalize(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            对浮点集合中的值逐一进行反归一化
+            </summary>
+            <param name="collection">浮点数集合</param>
+            <param name="maxValues">归一化上限值的集合</param>
+            <param name="minValues">归一化下限值的集合</param>
+            <returns>反归一化后的集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Denormalize(System.Collections.Generic.IEnumerable{System.Decimal},System.Collections.Generic.IEnumerable{System.Decimal},System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
             对浮点集合中的值逐一进行反归一化
             </summary>
@@ -1154,12 +1356,42 @@
             <param name="minValues">归一化下限值的集合</param>
             <returns>反归一化后的集合</returns>
         </member>
-        <member name="T:ijw.Next.Collection.IEnumerableNumberFilterExt">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.NaNFilter(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
-            
+            去除序列中的NaN
             </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.NaNFilter(System.Collections.Generic.IEnumerable{System.Single})">
+            <summary>
+            去除序列中的NaN
+            </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.NullFilter(System.Collections.Generic.IEnumerable{System.Nullable{System.Decimal}})">
+            <summary>
+            去除序列中的Null
+            </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.NullAndNaNFilter(System.Collections.Generic.IEnumerable{System.Nullable{System.Double}})">
+            <summary>
+            去除序列中的Null与NaN
+            </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.NullAndNaNFilter(System.Collections.Generic.IEnumerable{System.Nullable{System.Single}})">
+            <summary>
+            去除序列中的Null与NaN
+            </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
             <summary>
             限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
             </summary>
@@ -1167,7 +1399,7 @@
             <param name="diff">波动幅度限制</param>
             <return>过滤后的新集合</return>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Single},System.Single)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Decimal},System.Decimal)">
             <summary>
             限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
             </summary>
@@ -1175,7 +1407,31 @@
             <param name="diff">波动幅度限制</param>
             <return>过滤后的新集合</return>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Single},System.Single)">
+            <summary>
+            限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新集合</return>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Int64},System.Int64)">
+            <summary>
+            限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新集合</return>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingDiffFilter(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新集合</return>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
             <summary>
             限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
             </summary>
@@ -1183,7 +1439,7 @@
             <param name="diff">波动最大值绝对值</param>
             <returns>过滤后的新集合</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Single},System.Single)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Decimal},System.Decimal)">
             <summary>
             限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
             </summary>
@@ -1191,7 +1447,31 @@
             <param name="diff">波动最大值绝对值</param>
             <returns>过滤后的新集合</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Single},System.Single)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动最大值绝对值</param>
+            <returns>过滤后的新集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Int64},System.Int64)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动最大值绝对值</param>
+            <returns>过滤后的新集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.LimitingAmplifyFilter(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
+            </summary>
+            <param name="values">原集合</param>
+            <param name="diff">波动最大值绝对值</param>
+            <returns>过滤后的新集合</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
             <summary>
             在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
@@ -1199,7 +1479,7 @@
             <param name="windowLength">窗口长度</param>
             <returns>新的样本集</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Decimal},System.Int32)">
             <summary>
             在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
@@ -1207,7 +1487,31 @@
             <param name="windowLength">窗口长度</param>
             <returns>新的样本集</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32,System.Boolean)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
+            <summary>
+            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Int64},System.Int32)">
+            <summary>
+            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MedianFilter(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Double},System.Int32,System.Boolean)">
             <summary>
             算术平均值过滤. 窗口长度内取平均值.
             </summary>
@@ -1216,7 +1520,34 @@
             <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
             <returns>新的样本集</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableNumberFilterExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Single},System.Int32,System.Boolean)">
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Decimal},System.Int32,System.Boolean)">
+            <summary>
+            算术平均值过滤. 窗口长度内取平均值.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Single},System.Int32,System.Boolean)">
+            <summary>
+            算术平均值过滤. 窗口长度内取平均值.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Int64},System.Int32,System.Boolean)">
+            <summary>
+            算术平均值过滤. 窗口长度内取平均值.
+            </summary>
+            <param name="values">原集合</param>
+            <param name="windowLength">窗口长度</param>
+            <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
+            <returns>新的样本集</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.MeanFilter(System.Collections.Generic.IEnumerable{System.Int32},System.Int32,System.Boolean)">
             <summary>
             算术平均值过滤. 窗口长度内取平均值.
             </summary>
