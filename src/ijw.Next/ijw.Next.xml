@@ -668,139 +668,6 @@
             <param name="interval">运行之间的间隔</param>
             <returns>返回该指定方法成功运行的结果</returns>
         </member>
-        <member name="T:ijw.Next.DoubleExt">
-            <summary>
-            提供对Double类型的若干扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.Pow(System.Double,System.Int32)">
-            <summary>
-            幂计算
-            </summary>
-            <param name="number"></param>
-            <param name="power">幂</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.Pow(System.Single,System.Int32)">
-            <summary>
-            幂计算
-            </summary>
-            <param name="number"></param>
-            <param name="power">幂</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.Pow(System.Double,System.Single)">
-            <summary>
-            幂计算
-            </summary>
-            <param name="number"></param>
-            <param name="power">幂</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.Pow(System.Single,System.Single)">
-            <summary>
-            幂计算
-            </summary>
-            <param name="number"></param>
-            <param name="power">幂</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.Pow(System.Double,System.Double)">
-            <summary>
-            幂计算
-            </summary>
-            <param name="number"></param>
-            <param name="power">幂</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.Pow(System.Single,System.Double)">
-            <summary>
-            幂计算
-            </summary>
-            <param name="number"></param>
-            <param name="power">幂</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.NormalizeMaxMin(System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            使用指定的最大值/最小值进行归一化
-            </summary>
-            <param name="x"></param>
-            <param name="min">最小值</param>
-            <param name="max">最大值</param>
-            <param name="minOut">目标区间最小值</param>
-            <param name="maxOut">目标区间最大值</param>
-            <returns>归一化后的值</returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.NormalizeMaxMin(System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            使用指定的最大值/最小值进行归一化
-            </summary>
-            <param name="x"></param>
-            <param name="min">最小值</param>
-            <param name="max">最大值</param>
-            <param name="minOut">目标区间最小值</param>
-            <param name="maxOut">目标区间最大值</param>
-            <returns>归一化后的值</returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.DenormalizeMaxMin(System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            使用指定的最大值/最小值进行反归一化
-            </summary>
-            <param name="x"></param>
-            <param name="max">最大值</param>
-            <param name="min">最小值</param>
-            <param name="minOut">目标区间最小值</param>
-            <param name="maxOut">目标区间最大值</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.DenormalizeMaxMin(System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            使用指定的最大值/最小值进行反归一化
-            </summary>
-            <param name="x"></param>
-            <param name="max">最大值</param>
-            <param name="min">最小值</param>
-            <param name="minOut">目标区间最小值</param>
-            <param name="maxOut">目标区间最大值</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.LimitingDiff(System.Double,System.Double,System.Double)">
-            <summary>
-            限制波动过滤. 用前一个值+波动幅度代替. 
-            </summary>
-            <param name="curr">欲过滤的值</param>
-            <param name="prev">前一个值</param>
-            <param name="diff">波动幅度限制</param>
-            <return>过滤后的新值</return>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.LimitingDiff(System.Single,System.Single,System.Single)">
-            <summary>
-            限制波动过滤. 用前一个值+波动幅度代替. 
-            </summary>
-            <param name="curr">欲过滤的值</param>
-            <param name="prev">前一个值</param>
-            <param name="diff">波动幅度限制</param>
-            <return>过滤后的新值</return>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.LimitingAmplify(System.Double,System.Double,System.Double)">
-            <summary>
-            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
-            </summary>
-            <param name="curr">欲过滤的值</param>
-            <param name="prev">前一个值</param>
-            <param name="diff">波动最大值绝对值</param>
-            <return>过滤后的新值</return>
-        </member>
-        <member name="M:ijw.Next.DoubleExt.LimitingAmplify(System.Single,System.Single,System.Single)">
-            <summary>
-            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
-            </summary>
-            <param name="curr">欲过滤的值</param>
-            <param name="prev">前一个值</param>
-            <param name="diff">波动最大值绝对值</param>
-            <return>过滤后的新值</return>
-        </member>
         <member name="T:ijw.Next.EventHandlerExt">
             <summary>
             EventHandler的扩展方法
@@ -864,6 +731,201 @@
             <param name="message">用以显示的信息</param>
             <param name="innerException">内部包含的异常</param>
         </member>
+        <member name="T:ijw.Next.FloatingNumberExt">
+            <summary>
+            提供对Float、Double等浮点类型的若干扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Double,System.Int32)">
+            <summary>
+            幂计算
+            </summary>
+            <param name="number"></param>
+            <param name="power">幂</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Single,System.Int32)">
+            <summary>
+            幂计算
+            </summary>
+            <param name="number"></param>
+            <param name="power">幂</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Double,System.Single)">
+            <summary>
+            幂计算
+            </summary>
+            <param name="number"></param>
+            <param name="power">幂</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Single,System.Single)">
+            <summary>
+            幂计算
+            </summary>
+            <param name="number"></param>
+            <param name="power">幂</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Double,System.Double)">
+            <summary>
+            幂计算
+            </summary>
+            <param name="number"></param>
+            <param name="power">幂</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Single,System.Double)">
+            <summary>
+            幂计算
+            </summary>
+            <param name="number"></param>
+            <param name="power">幂</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.NormalizeMaxMin(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            使用指定的最大值/最小值进行归一化
+            </summary>
+            <param name="x"></param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns>归一化后的值</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.NormalizeMaxMin(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            使用指定的最大值/最小值进行归一化
+            </summary>
+            <param name="x"></param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns>归一化后的值</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.NormalizeMaxMin(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            使用指定的最大值/最小值进行归一化
+            </summary>
+            <param name="x"></param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns>归一化后的值</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.NormalizeMaxMin(System.Int64,System.Int64,System.Int64,System.Double,System.Double)">
+            <summary>
+            使用指定的最大值/最小值进行归一化
+            </summary>
+            <param name="x"></param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns>归一化后的值</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.NormalizeMaxMin(System.Int32,System.Int32,System.Int32,System.Double,System.Double)">
+            <summary>
+            使用指定的最大值/最小值进行归一化
+            </summary>
+            <param name="x"></param>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns>归一化后的值</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.DenormalizeMaxMin(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            使用指定的最大值/最小值进行反归一化
+            </summary>
+            <param name="x"></param>
+            <param name="max">最大值</param>
+            <param name="min">最小值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.DenormalizeMaxMin(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            使用指定的最大值/最小值进行反归一化
+            </summary>
+            <param name="x"></param>
+            <param name="max">最大值</param>
+            <param name="min">最小值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.DenormalizeMaxMin(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            使用指定的最大值/最小值进行反归一化
+            </summary>
+            <param name="x"></param>
+            <param name="max">最大值</param>
+            <param name="min">最小值</param>
+            <param name="minOut">目标区间最小值</param>
+            <param name="maxOut">目标区间最大值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.LimitingDiff(System.Double,System.Double,System.Double)">
+            <summary>
+            限制波动过滤. 用前一个值+波动幅度代替. 
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.LimitingDiff(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            限制波动过滤. 用前一个值+波动幅度代替. 
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.LimitingDiff(System.Single,System.Single,System.Single)">
+            <summary>
+            限制波动过滤. 用前一个值+波动幅度代替. 
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.LimitingAmplify(System.Double,System.Double,System.Double)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动最大值绝对值</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.LimitingAmplify(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动最大值绝对值</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.LimitingAmplify(System.Single,System.Single,System.Single)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动最大值绝对值</param>
+            <return>过滤后的新值</return>
+        </member>
         <member name="T:ijw.Next.Helper">
             <summary>
             一些不好分类的帮助方法
@@ -891,12 +953,12 @@
             <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
             <returns></returns>
         </member>
-        <member name="T:ijw.Next.IntegerExt">
+        <member name="T:ijw.Next.IntegerNumberExt">
             <summary>
             提供对Integer类型的若干扩展方法
             </summary>
         </member>
-        <member name="M:ijw.Next.IntegerExt.To(System.Int32,System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.To(System.Int32,System.Int32)">
             <summary>
             返回由当前数字开始直到指定数字所组成的递增整数数组
             </summary>
@@ -904,7 +966,7 @@
             <param name="toNumber">结束的数字</param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.ToNext(System.Int32,System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.ToNext(System.Int32,System.Int32)">
             <summary>
             返回由当前数字及指定数目的后续整数一起所组成的递增整数数组. 例如: 11.ToNext(5) 将返回 [11, 12, 13, 14, 15, 16].
             </summary>
@@ -912,7 +974,7 @@
             <param name="howManyNext"></param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.ToTotal(System.Int32,System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.ToTotal(System.Int32,System.Int32)">
             <summary>
             返回从当前数字开始的指定长度的递增整数数组. 例如: 11.ToNext(5) 将返回 [11, 12, 13, 14, 15].
             </summary>
@@ -920,7 +982,7 @@
             <param name="totalLength"></param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.Pow(System.Int32,System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.Pow(System.Int32,System.Int32)">
             <summary>
             幂计算
             </summary>
@@ -928,7 +990,7 @@
             <param name="power">幂</param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.Pow(System.Int32,System.Single)">
+        <member name="M:ijw.Next.IntegerNumberExt.Pow(System.Int32,System.Single)">
             <summary>
             幂计算
             </summary>
@@ -936,7 +998,7 @@
             <param name="power">幂</param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.Pow(System.Int32,System.Double)">
+        <member name="M:ijw.Next.IntegerNumberExt.Pow(System.Int32,System.Double)">
             <summary>
             幂计算
             </summary>
@@ -944,21 +1006,21 @@
             <param name="power">幂</param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.Times(System.Int32,System.Action)">
+        <member name="M:ijw.Next.IntegerNumberExt.Times(System.Int32,System.Action)">
             <summary>
             反复运行委托一定次数
             </summary>
             <param name="times"></param>
             <param name="loopBody"></param>
         </member>
-        <member name="M:ijw.Next.IntegerExt.Times(System.Int32,System.Action{System.Int32})">
+        <member name="M:ijw.Next.IntegerNumberExt.Times(System.Int32,System.Action{System.Int32})">
             <summary>
             反复运行委托一定次数
             </summary>
             <param name="times"></param>
             <param name="loopBody"></param>
         </member>
-        <member name="M:ijw.Next.IntegerExt.Times(System.Int32,System.String)">
+        <member name="M:ijw.Next.IntegerNumberExt.Times(System.Int32,System.String)">
             <summary>
             字符串重复指定次数
             </summary>
@@ -966,21 +1028,21 @@
             <param name="aString">欲重复的字符串</param>
             <returns>重复之后的新字符串</returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.IsOdd(System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.IsOdd(System.Int32)">
             <summary>
             判断是否是奇数
             </summary>
             <param name="number"></param>
             <returns>奇数返回true，反之返回false</returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.IsEven(System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.IsEven(System.Int32)">
             <summary>
             判断是否是偶数
             </summary>
             <param name="number"></param>
             <returns>偶数返回true，反之返回false</returns>
         </member>
-        <member name="M:ijw.Next.IntegerExt.ToOrdinalString(System.Int32,System.Int32)">
+        <member name="M:ijw.Next.IntegerNumberExt.ToOrdinalString(System.Int32,System.Int32)">
             <summary>
             将整数变成序数字符串, 比如 1.ToOrdinalString() 生成字符串: "1st".
             </summary>
@@ -988,17 +1050,49 @@
             <param name="lastNumber">指定最后一个数字, 对于此数字将返回"last"</param>
             <returns>序数字符串</returns>
         </member>
-        <member name="T:ijw.Next.LongExt">
+        <member name="M:ijw.Next.IntegerNumberExt.ToOrdinalString(System.Int64,System.Int64)">
             <summary>
-            Long型的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.LongExt.ToOrdinalString(System.Int64)">
-            <summary>
-            转换成序数词字符串
+            将整数变成序数字符串, 比如 1.ToOrdinalString() 生成字符串: "1st".
             </summary>
             <param name="number"></param>
-            <returns></returns>
+            <param name="lastNumber">指定最后一个数字, 对于此数字将返回"last"</param>
+            <returns>序数字符串</returns>
+        </member>
+        <member name="M:ijw.Next.IntegerNumberExt.LimitingDiff(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            限制波动过滤. 用前一个值+波动幅度代替. 
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.IntegerNumberExt.LimitingDiff(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            限制波动过滤. 用前一个值+波动幅度代替. 
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动幅度限制</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.IntegerNumberExt.LimitingAmplify(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动最大值绝对值</param>
+            <return>过滤后的新值</return>
+        </member>
+        <member name="M:ijw.Next.IntegerNumberExt.LimitingAmplify(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+            </summary>
+            <param name="curr">欲过滤的值</param>
+            <param name="prev">前一个值</param>
+            <param name="diff">波动最大值绝对值</param>
+            <return>过滤后的新值</return>
         </member>
         <member name="T:ijw.Next.ObjectExt">
             <summary>

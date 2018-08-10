@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using static System.Math;
 using System.Linq;
 
 namespace ijw.Next {
     /// <summary>
     /// 提供对Integer类型的若干扩展方法
     /// </summary>
-    public static class IntegerExt {
-
+    public static class IntegerNumberExt {
         #region Number sequence
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace ijw.Next {
             return number.To(number + totalLength - 1);
         }
 
-        #endregion 新建 #region
+        #endregion
 
         #region Pow
 
@@ -76,7 +76,7 @@ namespace ijw.Next {
         /// <returns></returns>
         public static int Pow(this int number, double power) => (int)Math.Pow(number, power);
 
-        #endregion 新建 #region
+        #endregion
 
         #region Times
         /// <summary>
@@ -149,7 +149,109 @@ namespace ijw.Next {
             else {
                 return number.ToString().AppendOrdinalPostfix();
             }
-        } 
+        }
+
+        /// <summary>
+        /// 将整数变成序数字符串, 比如 1.ToOrdinalString() 生成字符串: "1st".
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="lastNumber">指定最后一个数字, 对于此数字将返回"last"</param>
+        /// <returns>序数字符串</returns>
+        public static string ToOrdinalString(this long number, long lastNumber = -1L) {
+            if (number == lastNumber) {
+                return "last";
+            }
+            else {
+                return number.ToString().AppendOrdinalPostfix();
+            }
+        }
+
+        #endregion
+
+        #region Limiting Diff
+
+        /// <summary>
+        /// 限制波动过滤. 用前一个值+波动幅度代替. 
+        /// </summary>
+        /// <param name="curr">欲过滤的值</param>
+        /// <param name="prev">前一个值</param>
+        /// <param name="diff">波动幅度限制</param>
+        /// <return>过滤后的新值</return>
+        public static long LimitingDiff(this long curr, long prev, long diff) {
+            long r;
+            if ((curr - prev) > diff) {
+                r = prev + diff;
+            }
+            else if ((prev - curr) > diff) {
+                r = prev - diff;
+            }
+            else {
+                r = curr;
+            }
+            return r;
+        }
+
+        /// <summary>
+        /// 限制波动过滤. 用前一个值+波动幅度代替. 
+        /// </summary>
+        /// <param name="curr">欲过滤的值</param>
+        /// <param name="prev">前一个值</param>
+        /// <param name="diff">波动幅度限制</param>
+        /// <return>过滤后的新值</return>
+        public static int LimitingDiff(this int curr, int prev, int diff) {
+            int r;
+            if ((curr - prev) > diff) {
+                r = prev + diff;
+            }
+            else if ((prev - curr) > diff) {
+                r = prev - diff;
+            }
+            else {
+                r = curr;
+            }
+            return r;
+        }
+
+        #endregion
+
+        #region LimitingAmplify
+
+        /// <summary>
+        /// 限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+        /// </summary>
+        /// <param name="curr">欲过滤的值</param>
+        /// <param name="prev">前一个值</param>
+        /// <param name="diff">波动最大值绝对值</param>
+        /// <return>过滤后的新值</return>
+        public static long LimitingAmplify(this long curr, long prev, long diff) {
+            long r;
+            if (Abs(curr - prev) > diff) {
+                r = prev;
+            }
+            else {
+                r = curr;
+            }
+            return r;
+        }
+
+        /// <summary>
+        /// 限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替.  
+        /// </summary>
+        /// <param name="curr">欲过滤的值</param>
+        /// <param name="prev">前一个值</param>
+        /// <param name="diff">波动最大值绝对值</param>
+        /// <return>过滤后的新值</return>
+        public static int LimitingAmplify(this int curr, int prev, int diff) {
+            int r;
+            if (Abs(curr - prev) > diff) {
+                r = prev;
+            }
+            else {
+                r = curr;
+            }
+            return r;
+        }
+
         #endregion
     }
 }
