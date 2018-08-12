@@ -589,7 +589,7 @@ namespace ijw.Next.Collection {
             return values.PreviousBasedFilter(diff, (curr, prev, d) => curr.LimitingDiff(prev, d));
         }
 
-        #endregion 新建 #region
+        #endregion
 
         #region Limiting Amplify Filters
         /// <summary>

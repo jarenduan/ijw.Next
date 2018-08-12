@@ -5,7 +5,7 @@
     <AssemblyName>ijw.Next.Serialization.Json</AssemblyName>
     <PackageId>ijw.Next.Serialization.Json</PackageId>
     <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0.66</FileVersion>
+    <FileVersion>0.1.0.67</FileVersion>
     <Version>0.1.0</Version>
     <DocumentationFile>ijw.Next.Serialization.Json.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
