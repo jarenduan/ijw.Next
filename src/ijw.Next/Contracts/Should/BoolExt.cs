@@ -20,6 +20,8 @@ namespace ijw.Next {
             }
         }
 
+        
+
         /// <summary>
         /// 破坏契约时抛出异常
         /// </summary>

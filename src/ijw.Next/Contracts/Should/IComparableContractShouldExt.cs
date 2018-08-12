@@ -4,7 +4,7 @@ namespace ijw.Next {
     /// <summary>
     /// IComparable泛型类的契约相关的扩展方法
     /// </summary>
-    public static class IComparableContractExt {
+    public static class IComparableContractShouldExt {
         /// <summary>
         /// 应该大于指定对象
         /// </summary>

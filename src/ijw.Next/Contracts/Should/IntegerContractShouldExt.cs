@@ -2,16 +2,16 @@
     /// <summary>
     /// 整形类与契约相关的扩展方法
     /// </summary>
-    public static class IntegerContractExt {
+    public static class IntegerContractShouldExt {
         /// <summary>
         /// 应该不等于0
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>不等于0返回true, 否则抛出ContractBrokenException异常</returns>
         /// <exception cref="ContractBrokenException"></exception>
-        public static bool ShouldBeNotZero(this int obj) {
-            return obj.ShouldNotEquals(0);
-        }
+        public static bool ShouldBeNotZero(this int obj) 
+            => obj.ShouldNotEquals(0);
+
         /// <summary>
         /// 应该不小于0
         /// </summary>

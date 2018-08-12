@@ -4,7 +4,7 @@ namespace ijw.Next {
     /// <summary>
     /// string类与契约相关的扩展方法
     /// </summary>
-    public static class StringContractExt {
+    public static class StringContractShouldExt {
         /// <summary>
         /// 应该存在这样的文件
         /// </summary>

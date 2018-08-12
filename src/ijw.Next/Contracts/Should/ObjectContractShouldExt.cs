@@ -4,7 +4,7 @@ namespace ijw.Next {
     /// <summary>
     /// 提供一系列Object的扩展方法
     /// </summary>
-    public static class ObjectContractExt {
+    public static class ObjectContractShouldExt {
         /// <summary>
         /// 应该不是Null参数
         /// </summary>
