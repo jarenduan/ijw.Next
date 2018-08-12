@@ -5,9 +5,7 @@ namespace ijw.Next.Collection {
     /// <summary>
     /// 集合操作的帮助类
     /// </summary>
-#if DEBUG
     [Obsolete]
-#endif
     public static class IEnumerableHelper {
         #region For Each Pair
         /// <summary>
