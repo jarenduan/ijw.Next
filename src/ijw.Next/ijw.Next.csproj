@@ -5,31 +5,13 @@
     <AssemblyName>ijw.Next</AssemblyName>
     <PackageId>ijw.Next</PackageId>
     <AssemblyVersion>0.2.4</AssemblyVersion>
-    <FileVersion>0.2.4.270</FileVersion>
+    <FileVersion>0.2.4.271</FileVersion>
     <Version>0.2.4</Version>
     <DocumentationFile>ijw.Next.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <PackageReference Include="ValueTupleBridge" Version="0.1.2" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-    <PackageReference Include="system.valuetuple">
-      <Version>4.4.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-    <PackageReference Include="system.valuetuple">
-      <Version>4.4.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.4'">
-    <PackageReference Include="system.valuetuple">
-      <Version>4.4.0</Version>
-    </PackageReference>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="DispatchToInnerBuilds">
     <Exec Command="PowerShell -ExecutionPolicy Unrestricted -File $(SolutionDir)scripts\UpdateVersion.ps1 -ProjectPath $(MSBuildProjectFullPath) -ConfigurationName $(Configuration)" />
