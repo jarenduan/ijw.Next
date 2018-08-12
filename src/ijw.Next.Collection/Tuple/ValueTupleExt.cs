@@ -7,7 +7,7 @@ namespace ijw.Next.Collection {
     /// 值元组的扩展方法
     /// </summary>
     public static class ValueTupleExt {
-        #region IEnumerable Tuple
+        #region Tuple of IEnumerables
         #region For each pair
         /// <summary>
         /// 对元组中两个集合的每一对元素执行指定的计算, 返回迭代器.
@@ -209,7 +209,7 @@ namespace ijw.Next.Collection {
         #endregion
         #endregion
 
-        #region IList Tuple
+        #region Tuple of ILists
         /// <summary>
         /// 对元组中两个集合的每一对元素执行指定的操作
         /// </summary>

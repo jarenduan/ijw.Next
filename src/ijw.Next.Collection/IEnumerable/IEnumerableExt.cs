@@ -118,6 +118,7 @@ namespace ijw.Next.Collection {
         }
 
         #endregion
+
         #region For Each and the Next
 
         /// <summary>
@@ -998,27 +999,6 @@ namespace ijw.Next.Collection {
         #endregion
 
         #region Filters
-
-        /// <summary>
-        /// 这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="values"></param>
-        /// <param name="diff"></param>
-        /// <param name="diffLimitingFunc"></param>
-        /// <returns></returns>
-        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values, T diff, Func<T, T, T, T> diffLimitingFunc) {
-            values.ShouldNotBeNullOrEmpty();
-
-            yield return values.First();
-
-            var result = values.ForEachAndNext((prev, curr) => diffLimitingFunc(curr, prev, diff));
-
-            foreach (var item in result) {
-                yield return item;
-            }
-        }
-
         /// <summary>
         /// 基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
         /// 序列首尾（不在窗口中的）值将不进行任何计算，直接输出.
@@ -1088,6 +1068,26 @@ namespace ijw.Next.Collection {
                         where v != null
                         select v.Value;
             return query;
+        }
+
+        /// <summary>
+        /// 这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="diff"></param>
+        /// <param name="diffLimitingFunc"></param>
+        /// <returns></returns>
+        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values, T diff, Func<T, T, T, T> diffLimitingFunc) {
+            values.ShouldNotBeNullOrEmpty();
+
+            yield return values.First();
+
+            var result = values.ForEachAndNext((prev, curr) => diffLimitingFunc(curr, prev, diff));
+
+            foreach (var item in result) {
+                yield return item;
+            }
         }
         #endregion
     }

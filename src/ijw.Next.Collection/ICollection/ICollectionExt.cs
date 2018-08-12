@@ -27,6 +27,20 @@ namespace ijw.Next.Collection {
             firstGroup = first;
             secondGroup = second;
         }
+        /// <summary>
+        /// 将一个集合分割为两个集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="method">分割方法</param>
+        /// <param name="ratioOfFirstGroup">一个整数, 第一个集合占的比例</param>
+        /// <param name="ratioOfSecondGroup">一个整数, 第二个集合占的比例</param>
+        /// <returns></returns>
+        public static (List<T> firstGroup, List<T> secondGroup) DivideByRatioAndMethod<T>(this ICollection<T> collection, CollectionDividingMethod method, int ratioOfFirstGroup, int ratioOfSecondGroup) {
+            List<T> first = new List<T>(), second = new List<T>();
+            divide(collection, method, ratioOfFirstGroup, ratioOfSecondGroup, first, second);
+            return (first, second);
+        }
 
         private static void divide<T>(IEnumerable<T> source, CollectionDividingMethod method, int ratioOfFirstGroup, int ratioOfSecondGroup, List<T> first, List<T> second) {
             if (method == CollectionDividingMethod.Random) {
@@ -41,21 +55,6 @@ namespace ijw.Next.Collection {
                     second.Add(element);
                 }
             });
-        }
-
-        /// <summary>
-        /// 将一个集合分割为两个集合
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
-        /// <param name="method">分割方法</param>
-        /// <param name="ratioOfFirstGroup">一个整数, 第一个集合占的比例</param>
-        /// <param name="ratioOfSecondGroup">一个整数, 第二个集合占的比例</param>
-        /// <returns></returns>
-        public static (List<T> firstGroup, List<T> secondGroup) DivideByRatioAndMethod<T>(this ICollection<T> collection, CollectionDividingMethod method, int ratioOfFirstGroup, int ratioOfSecondGroup) {
-            List<T> first = new List<T>(), second = new List<T>();
-            divide(collection, method, ratioOfFirstGroup, ratioOfSecondGroup, first, second);
-            return (first, second);
         }
     }
 }
