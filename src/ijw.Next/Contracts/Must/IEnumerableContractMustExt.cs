@@ -78,7 +78,7 @@ namespace ijw.Next {
         /// <returns>每个元素都等于指定值, Contract的IsKept为true.</returns>
 
         public static Contract<IEnumerable<T>> MustEachEquals<T>(this IEnumerable<T> collection, T other)
-            => collection.MustEachSatisfy((i) => i.MustEquals(other).IsKept, $"must equals to {other.ToString()}");
+            => collection.MustEachSatisfy((i) => i.Equals(other), $"must equals to {other.ToString()}");
 
         /// <summary>
         /// 每个元素都应该等于指定值
@@ -98,7 +98,7 @@ namespace ijw.Next {
         /// <returns>每个元素都不等于指定值, Contract的IsKept为true.</returns>
 
         public static Contract<IEnumerable<T>> MustEachNotEquals<T>(this IEnumerable<T> collection, T other)
-            => collection.MustEachSatisfy((i) => i.MustNotEquals(other).IsKept, $"must equals to {other.ToString()}");
+            => collection.MustEachSatisfy((i) => !i.Equals(other), $"must equals to {other.ToString()}");
 
         /// <summary>
         /// 每个元素都应该不等于指定值
