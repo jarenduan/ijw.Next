@@ -167,38 +167,6 @@
         <member name="P:ijw.Next.Contract`1.IsKept">
             <summary>
             是否遵守
-         , 默认为空</param>
-            <param name="expectedKey">期待的指定按键</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>读取到的按键信息</returns>
-        </member>
-        <member name="T:ijw.Next.ContractBrokenException">
-            <summary>
-            表示违反契约的异常
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ContractBrokenException.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-        </member>
-        <member name="M:ijw.Next.ContractBrokenException.#ctor(System.String,System.Exception)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-            <param name="innerException">内部的异常</param>
-        </member>
-        <member name="T:ijw.Next.Contract`1">
-            <summary>
-            表示一个契约
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:ijw.Next.Contract`1.IsKept">
-            <summary>
-            是否遵守
             </summary>
         </member>
         <member name="P:ijw.Next.Contract`1.BrokenMessage">
@@ -892,6 +860,35 @@
             <summary>
             应该是奇数
             </summary>
+            <param name="obj"></param>
+            <returns>是奇数返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.NotSatisfiedConditionException`1">
+            <summary>
+            表示不满足某条件的异常
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">错误信息</param>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String,System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(`0,System.Preary>
             <param name="obj"></param>
             <returns>是奇数返回true, 否则抛出ContractBrokenException异常</returns>
             <exception cref="T:ijw.Next.ContractBrokenException"></exception>

@@ -84,7 +84,6 @@ namespace ijw.Next {
 
         #endregion
 
-
         #region Must Satisfy Condition
 
         /// <summary>
@@ -143,7 +142,6 @@ namespace ijw.Next {
 
         #endregion
 
-
         #region Must Not Equal
 
         /// <summary>
@@ -171,5 +169,6 @@ namespace ijw.Next {
             => contract.ThrowsWhenBroken().MustNotEquals(other);
 
 #endregion
+
     }
 }

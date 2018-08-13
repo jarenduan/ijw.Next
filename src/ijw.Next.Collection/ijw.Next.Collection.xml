@@ -866,16 +866,6 @@
             <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableExt.PreviousBasedFilter``1(System.Collections.Generic.IEnumerable{``0},``0,System.Func{``0,``0,``0,``0})">
-            <summary>
-            这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="values"></param>
-            <param name="diff"></param>
-            <param name="diffLimitingFunc"></param>
-            <returns></returns>
-        </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.WindowBasedFilter``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{System.Collections.Generic.IEnumerable{``0},``0})">
             <summary>
             基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
@@ -905,6 +895,16 @@
             </summary>
             <param name="values"></param>
             <returns>去除后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.PreviousBasedFilter``1(System.Collections.Generic.IEnumerable{``0},``0,System.Func{``0,``0,``0,``0})">
+            <summary>
+            这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <param name="diff"></param>
+            <param name="diffLimitingFunc"></param>
+            <returns></returns>
         </member>
         <member name="T:ijw.Next.Collection.IEnumerableHelper">
             <summary>
