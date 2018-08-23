@@ -25,7 +25,7 @@ namespace ijw.Next {
         /// <param name="contract"></param>
         /// <param name="other">指定的对象</param>
         /// <returns>大于指定对象, Contract的IsKept为true.</returns>
-        public static Contract<T> AddMustLargerThan<T>(this Contract<T> contract, T other) where T : IComparable<T>
+        public static Contract<T> AndMustLargerThan<T>(this Contract<T> contract, T other) where T : IComparable<T>
             => contract.Value.MustLargerThan(other);
 
         /// <summary>
