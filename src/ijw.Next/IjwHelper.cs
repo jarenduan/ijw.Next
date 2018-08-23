@@ -6,7 +6,7 @@ namespace ijw.Next {
     /// <summary>
     /// 一些不好分类的帮助方法
     /// </summary>
-    public static class Helper {
+    public static class IjwHelper {
         /// <summary>
         /// 获取python风格的起止索引值
         /// </summary>
