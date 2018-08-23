@@ -15,13 +15,13 @@ namespace ijw.Next.Collection {
         /// 在集合上遍历执行指定操作. 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="action">调用的函数</param>
         /// <returns>集合元素总数</returns>
-        public static int ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
+        public static int ForEach<T>(this IEnumerable<T> enumerable, Action<T> action) {
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 index = checked(index + 1);
                 action(item);
             }
@@ -33,13 +33,13 @@ namespace ijw.Next.Collection {
         /// 在集合上遍历执行指定操作, 提供元素和索引同时作为参数, 索引从0开始.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="action"></param>
         /// <returns>集合的元素个数</returns>
-        public static int ForEach<T>(this IEnumerable<T> collection, Action<T, int> action) {
+        public static int ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action) {
             int index = 0;
 
-            foreach (var element in collection) {
+            foreach (var element in enumerable) {
                 action(element, index);
                 index = checked(index + 1);
             }
@@ -51,12 +51,12 @@ namespace ijw.Next.Collection {
         /// 在集合上遍历调用某个函数.函数返回值可以控制是否继续迭代.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="doWhile">调用的函数, 返回false则不继续迭代</param>
-        public static int ForEachWhile<T>(this IEnumerable<T> collection, Func<T, bool> doWhile) {
+        public static int ForEachWhile<T>(this IEnumerable<T> enumerable, Func<T, bool> doWhile) {
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 if (!doWhile(item)) {
                     break;
                 }
@@ -70,15 +70,15 @@ namespace ijw.Next.Collection {
         /// 在集合上遍历调用某个函数, 提供元素和索引同时作为参数, 索引从0开始. 函数返回值可以控制是否break循环.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="doWhile">返回TRUE继续循环, 返回false则break退出</param>
         /// <returns>执行到元素的索引</returns>
         /// <remarks>
         /// <para>与TakeWhile有一定差别：本函数直接运行，不返回迭代器。</para>
         /// </remarks>
-        public static int ForEachWhile<T>(this IEnumerable<T> collection, Func<T, int, bool> doWhile) {
+        public static int ForEachWhile<T>(this IEnumerable<T> enumerable, Func<T, int, bool> doWhile) {
             int index = 0;
-            foreach (var element in collection) {
+            foreach (var element in enumerable) {
                 if (!doWhile(element, index))
                     break;
                 index = checked(index + 1);
@@ -90,11 +90,11 @@ namespace ijw.Next.Collection {
         /// 根据指定长度迭代返回每一个窗口。例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="windowLength">指定长度</param>
         /// <returns>窗口序列</returns>
-        public static IEnumerable<T[]> ForEachWindow<T>(this IEnumerable<T> collection, int windowLength) {
-            var enumerator = collection.GetEnumerator();
+        public static IEnumerable<T[]> ForEachWindow<T>(this IEnumerable<T> enumerable, int windowLength) {
+            var enumerator = enumerable.GetEnumerator();
             if (!enumerator.MoveNext()) yield break;
 
             //make the 1st window.
@@ -125,10 +125,10 @@ namespace ijw.Next.Collection {
         /// 遍历返回每一个元素和下一个元素组成的元组.例如对于集合[a,b,c,d], 则遍历返回(a,b)、(b,c)、(c,d).
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <returns>返回每一个和下一个组成的元组</returns>
-        public static IEnumerable<(T curr, T next)> ForEachAndNext<T>(this IEnumerable<T> collection) {
-            var enumerator = collection.GetEnumerator();
+        public static IEnumerable<(T curr, T next)> ForEachAndNext<T>(this IEnumerable<T> enumerable) {
+            var enumerator = enumerable.GetEnumerator();
             if (!enumerator.MoveNext()) {
                 yield break;
             }
@@ -144,11 +144,11 @@ namespace ijw.Next.Collection {
         /// 对集合中的每一个元素和下一个元素执行指定操作.例如对于集合[a,b,c,d]指定action, 则遍历执行action(a,b)、action(b,c)、action(c,d).
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="action">指定的操作, 接受两个参数</param>
         /// <returns>最后执行处的元素索引.-1表示没有执行.</returns>
-        public static int ForEachAndNext<T>(this IEnumerable<T> collection, Action<T, T> action) {
-            var enumerator = collection.GetEnumerator();
+        public static int ForEachAndNext<T>(this IEnumerable<T> enumerable, Action<T, T> action) {
+            var enumerator = enumerable.GetEnumerator();
             int index = -1;
             if (enumerator.MoveNext()) {
                 var prev = enumerator.Current;
@@ -166,11 +166,11 @@ namespace ijw.Next.Collection {
         /// 对每一个元素和下一个元素以及前者的索引执行指定操作.例如对于集合[a,b,c,d]指定action, 则遍历执行action(a,b,0)、action(b,c,1)、action(c,d,2).
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="action">指定的操作, 接受两个参数</param>
         /// <returns>最后执行处的元素索引.-1表示没有执行.</returns>
-        public static int ForEachAndNext<T>(this IEnumerable<T> collection, Action<T, T, int> action) {
-            var enumerator = collection.GetEnumerator();
+        public static int ForEachAndNext<T>(this IEnumerable<T> enumerable, Action<T, T, int> action) {
+            var enumerator = enumerable.GetEnumerator();
             int index = -1;
             if (enumerator.MoveNext()) {
                 var prev = enumerator.Current;
@@ -189,11 +189,11 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">指定的函数, 接受两个参数</param>
         /// <returns>计算结果组成的序列</returns>
-        public static IEnumerable<TResult> ForEachAndNext<T, TResult>(this IEnumerable<T> collection, Func<T, T, TResult> func) {
-            var enumerator = collection.GetEnumerator();
+        public static IEnumerable<TResult> ForEachAndNext<T, TResult>(this IEnumerable<T> enumerable, Func<T, T, TResult> func) {
+            var enumerator = enumerable.GetEnumerator();
             if (!enumerator.MoveNext()) {
                 yield break;
             }
@@ -210,11 +210,11 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">指定的函数, 接受三个参数</param>
         /// <returns>计算结果组成的序列</returns>
-        public static IEnumerable<TResult> ForEachAndNext<T, TResult>(this IEnumerable<T> collection, Func<T, T, int, TResult> func) {
-            var enumerator = collection.GetEnumerator();
+        public static IEnumerable<TResult> ForEachAndNext<T, TResult>(this IEnumerable<T> enumerable, Func<T, T, int, TResult> func) {
+            var enumerator = enumerable.GetEnumerator();
             int index = 0;
             if (!enumerator.MoveNext()) {
                 yield break;
@@ -232,11 +232,11 @@ namespace ijw.Next.Collection {
         /// 对每一个元素和下一个元素执行指定操作.操作返回值控制是否继续遍历.例如对于集合[a,b,c,d]指定func, 则遍历调用func(a,b,0)、func(b,c,1)、func(c,d,2).
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="doWhile">指定的函数, 接受2个元素类型参数, 返回false则停止迭代</param>
         /// <returns>最后执行处的元素索引(连续两元素的第一个元素的索引), -1表示没有执行.</returns>
-        public static int ForEachAndNextWhile<T>(this IEnumerable<T> collection, Func<T, T, bool> doWhile) {
-            var enumerator = collection.GetEnumerator();
+        public static int ForEachAndNextWhile<T>(this IEnumerable<T> enumerable, Func<T, T, bool> doWhile) {
+            var enumerator = enumerable.GetEnumerator();
             int index = -1;
             if (!enumerator.MoveNext()) {
                 return index;
@@ -258,11 +258,11 @@ namespace ijw.Next.Collection {
         /// 对每一个元素和下一个元素以及前者的索引调用指定函数.例如对于集合[a,b,c,d]指定func, 则遍历调用func(a,b,0)、func(b,c,1)、func(c,d,2).
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="doWhile">指定的函数, 接受三个参数, 返回false则停止迭代</param>
         /// <returns>最后执行处的元素索引(连续两元素的第一个元素的索引), -1表示没有执行.</returns>
-        public static int ForEachAndNextWhile<T>(this IEnumerable<T> collection, Func<T, T, int, bool> doWhile) {
-            var enumerator = collection.GetEnumerator();
+        public static int ForEachAndNextWhile<T>(this IEnumerable<T> enumerable, Func<T, T, int, bool> doWhile) {
+            var enumerator = enumerable.GetEnumerator();
             int index = -1;
             if (!enumerator.MoveNext()) {
                 return index;
@@ -319,7 +319,7 @@ namespace ijw.Next.Collection {
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
             }
-            catch (CountNotMatchException) {
+            catch (TwoIEnumerableCountNotMatchException) {
                 return false;
             }
         }
@@ -338,7 +338,7 @@ namespace ijw.Next.Collection {
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
             }
-            catch (CountNotMatchException) {
+            catch (TwoIEnumerableCountNotMatchException) {
                 return false;
             }
         }
@@ -356,7 +356,7 @@ namespace ijw.Next.Collection {
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
             }
-            catch (CountNotMatchException) {
+            catch (TwoIEnumerableCountNotMatchException) {
                 return false;
             }
         }
@@ -374,7 +374,7 @@ namespace ijw.Next.Collection {
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
             }
-            catch (CountNotMatchException) {
+            catch (TwoIEnumerableCountNotMatchException) {
                 return false;
             }
         }
@@ -385,16 +385,16 @@ namespace ijw.Next.Collection {
         /// 给定起止索引, 提取范围内的元素, 包括起止处的元素.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="source"></param>
         /// <param name="fromIndex">起始索引</param>
         /// <param name="toIndex">终止索引</param>
         /// <returns></returns>
-        public static IEnumerable<T> Take<T>(this IEnumerable<T> collection, int fromIndex, int toIndex) {
+        public static IEnumerable<T> Take<T>(this IEnumerable<T> source, int fromIndex, int toIndex) {
             fromIndex.ShouldNotLessThan(0);
             toIndex.ShouldNotLessThan(0);
             fromIndex.ShouldNotLargerThan(toIndex);
-            collection.Take(1);
-            return collection.Where((ele, index) =>
+            source.Take(1);
+            return source.Where((ele, index) =>
                 index >= fromIndex && index <= toIndex
             );
         }
@@ -404,16 +404,16 @@ namespace ijw.Next.Collection {
         /// 如果步长和提取量相等, 则元素全部被提取.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="source"></param>
         /// <param name="step">步长, 每隔多少个元素进行提取, 1代表相邻的下一个. 例如step设为2, 则每次提取的起始索引是：0, 2, 4...</param>
         /// <param name="takeEachTime">每次提取量, 应小于等于步长</param>
         /// <returns></returns>
-        public static IEnumerable<T> TakeEveryOther<T>(this IEnumerable<T> collection, int step, int takeEachTime) {
+        public static IEnumerable<T> TakeEveryOther<T>(this IEnumerable<T> source, int step, int takeEachTime) {
             step.ShouldLargerThan(0);
             takeEachTime.ShouldLargerThan(0);
             takeEachTime.ShouldNotLargerThan(step);
 
-            return collection.Where((item, index) =>
+            return source.Where((item, index) =>
                 index % step < takeEachTime
             );
         }
@@ -422,17 +422,17 @@ namespace ijw.Next.Collection {
         /// 类python风格的取子集. 如: 对[1,2,3,4,5], <see cref="TakePythonStyle"/>(0, -1)返回[1,2,3,4]; <see cref="TakePythonStyle"/>(-3, -1)返回[3, 4]; <see cref="TakePythonStyle"/>(1,2)返回[2]
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="startAt">启始索引. 该处元素将包括在返回结果中. 0 = 第一个元素, -n = 倒数第n个元素, null = 0. 默认值是0</param>
         /// <param name="endAt">结束索引. 该处元素将不包括在返回结果中. 0 = 第一个元素, -n = 倒数第n个元素, null = 结尾. 默认值为null. </param>
         /// <returns>子集</returns>
-        public static IEnumerable<T> TakePythonStyle<T>(this IEnumerable<T> collection, int? startAt = 0, int? endAt = null) {
-            int count = collection.Count();
-            Helper.PythonStartEndCalculator(count, out int startAtPython, out int endAtPython, startAt, endAt);
+        public static IEnumerable<T> TakePythonStyle<T>(this IEnumerable<T> enumerable, int? startAt = 0, int? endAt = null) {
+            int count = enumerable.Count();
+            IjwHelper.PythonStartEndCalculator(count, out int startAtPython, out int endAtPython, startAt, endAt);
             if (startAtPython > endAtPython) {
                 return new List<T>();
             }
-            return collection.Take(startAtPython, endAtPython);
+            return enumerable.Take(startAtPython, endAtPython);
         }
         #endregion
 
@@ -441,13 +441,13 @@ namespace ijw.Next.Collection {
         /// 获取集合中的元素数量（主要考虑IIndexable）
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <returns>集合中的元素数量</returns>
-        internal static int GetCount<T>(this IEnumerable<T> collection) =>
+        internal static int GetCount<T>(this IEnumerable<T> enumerable) =>
 #if !NET35
-            collection is IIndexable<T> indexable ? indexable.Count :
+            enumerable is IIndexable<T> indexable ? indexable.Count :
 #endif    
-            collection.Count();
+            enumerable.Count();
         #endregion
 
         #region IndexOf
@@ -455,20 +455,20 @@ namespace ijw.Next.Collection {
         /// 查找指定元素在集合第一次出现位置的索引
         /// </summary>
         /// <typeparam name="T">元素类型</typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="value">指定元素</param>
         /// <returns>如果集合中不存在, 返回-1;</returns>
-        public static int IndexOf<T>(this IEnumerable<T> collection, T value) {
-            if (collection is IList<T> list) {
+        public static int IndexOf<T>(this IEnumerable<T> enumerable, T value) {
+            if (enumerable is IList<T> list) {
                 return list.IndexOf(value);
             }
 
-            if (collection is ICollection<T> ilist) {
+            if (enumerable is ICollection<T> ilist) {
                 return ilist.IndexOf(value);
             }
 
             int index = -1;
-            collection.ForEachWhile((v, i) => {
+            enumerable.ForEachWhile((v, i) => {
                 if (v.Equals(value)) {
                     index = i;
                     return false;
@@ -484,16 +484,16 @@ namespace ijw.Next.Collection {
         /// 在IEnumerable&lt;T&gt;查找第一个符合谓词的元素对象的索引
         /// </summary>
         /// <typeparam name="T">元素类型</typeparam>
-        /// <param name="collection">集合</param>
+        /// <param name="enumerable">集合</param>
         /// <param name="predicate">谓词, 为真则立即返回索引</param>
         /// <returns>返回第一个符合谓词的元素的索引, 如果没有符合的将会返回-1</returns>
         /// <remarks>
         /// 方法从后向前遍历集合, 因此时间复杂度是O(index), 即如果目标元素是第一个, 则只需要一次迭代.
         /// 此方法适用于预期元素处于列表中排位靠后的情况. 如果预期元素在较前的位置, 应该使用LastIndexOf&lt;T&gt;扩展方法.
         /// </remarks>
-        public static int IndexOf<T>(this IEnumerable<T> collection, Predicate<T> predicate) {
+        public static int IndexOf<T>(this IEnumerable<T> enumerable, Predicate<T> predicate) {
             int index = 0;
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 if (predicate(item)) {
                     return index;
                 }
@@ -505,11 +505,13 @@ namespace ijw.Next.Collection {
         /// <summary>
         /// 在IEnumerable&lt;T&gt;查找最后一个出现的元素对象索引
         /// </summary>
-        public static int LastIndexOf<T>(this IEnumerable<T> collection, T item) {
-            if (collection is List<T> list) {
+        public static int LastIndexOf<T>(this IEnumerable<T> enumerable, T item) {
+            if (enumerable is List<T> list) {
                 return list.LastIndexOf(item);
             }
-            return collection.Reverse().IndexOf(item);
+            else {
+                return enumerable.Reverse().IndexOf(item);
+            }
         }
         #endregion
 
@@ -519,12 +521,12 @@ namespace ijw.Next.Collection {
         /// 从集合中按指定索引处, 提取相应的元素们形成新的集合. （输出按照元素在集合中的顺序, 而非指定索引的顺序）
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="source"></param>
         /// <param name="indexes">指定的索引, 一组整数</param>
         /// <returns></returns>
-        public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> collection, IEnumerable<int> indexes) {
+        public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes) {
             int i = 0;
-            foreach (var e in collection) {
+            foreach (var e in source) {
                 if (indexes.Contains(i)) {
                     yield return e;
                 }
@@ -536,14 +538,14 @@ namespace ijw.Next.Collection {
         /// 提取集合中指定索引处的元素
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="index">指定的索引</param>
         /// <returns></returns>
-        internal static T GetElementsAt<T>(this IEnumerable<T> collection, int index) =>
+        internal static T GetElementsAt<T>(this IEnumerable<T> enumerable, int index) =>
 #if !NET35
-            collection is IIndexable<T> indexable ? indexable[index] :
+            enumerable is IIndexable<T> indexable ? indexable[index] :
 #endif    
-            collection.ElementAt(index);
+            enumerable.ElementAt(index);
 
         #endregion
 
@@ -552,11 +554,11 @@ namespace ijw.Next.Collection {
         /// 返回一个由元素及其相应索引组成的元组集合
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static IEnumerable<(T item, int index)> EachWithIndex<T>(this IEnumerable<T> collection) {
+        public static IEnumerable<(T item, int index)> EachWithIndex<T>(this IEnumerable<T> enumerable) {
             int index = 0;
-            foreach (var element in collection) {
+            foreach (var element in enumerable) {
                 yield return (element, index);
                 index = checked(index + 1);
             }
@@ -649,12 +651,12 @@ namespace ijw.Next.Collection {
         /// 返回随机打乱顺序的序列. 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <returns>随机打乱顺序后的序列</returns>
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> collection) {
-            int[] order = 0.ToTotal(collection.Count()).ToArray().Shuffle();
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> enumerable) {
+            int[] order = 0.ToTotal(enumerable.Count()).ToArray().Shuffle();
             for (int i = 0; i < order.Length; i++) {
-                yield return collection.ElementAt(order[i]);
+                yield return enumerable.ElementAt(order[i]);
             }
         }
         #endregion
@@ -665,21 +667,21 @@ namespace ijw.Next.Collection {
         /// 返回第一个满足条件的元素, 过滤条件使用元素和索引作为参数.无则抛出<see cref="System.InvalidOperationException"/>异常.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="pred"></param>
         /// <returns></returns>
-        public static T First<T>(this IEnumerable<T> collection, Func<T, int, bool> pred)
-            => collection.Where((item, index) => pred(item, index)).First();
+        public static T First<T>(this IEnumerable<T> enumerable, Func<T, int, bool> pred)
+            => enumerable.Where((item, index) => pred(item, index)).First();
 
         /// <summary>
         /// 返回第一个满足条件的元素, 过滤条件使用元素和索引作为参数.无则返回null.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="pred">过滤条件, 为真则返回.</param>
         /// <returns></returns>
-        public static T FirstOrDefault<T>(this IEnumerable<T> collection, Func<T, int, bool> pred)
-            => collection.Where((item, index) => pred(item, index)).FirstOrDefault();
+        public static T FirstOrDefault<T>(this IEnumerable<T> enumerable, Func<T, int, bool> pred)
+            => enumerable.Where((item, index) => pred(item, index)).FirstOrDefault();
 
         #endregion
 
@@ -689,17 +691,17 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="V"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">比较的方法, 接受元素及其索引作为参数.</param>
         /// <returns>最大值及其索引</returns>
-        public static (int index, V maxValue) Max<T, V>(this IEnumerable<T> collection, Func<T, int, V> func) where V : IComparable {
-            collection.ShouldNotBeEmpty();
+        public static (int index, V maxValue) Max<T, V>(this IEnumerable<T> enumerable, Func<T, int, V> func) where V : IComparable {
+            enumerable.ShouldNotBeEmpty();
 
-            V maxValue = func(collection.First(), 0);
+            V maxValue = func(enumerable.First(), 0);
             int maxIndex = 0;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 var v = func(item, index);
                 if (v.CompareTo(maxValue) > 0) {
                     maxValue = v;
@@ -716,17 +718,17 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="V"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">比较的方法, 接受元素及其索引作为参数.</param>
         /// <returns>最小值及其索引</returns>
-        public static (int index, V minValue) Min<T, V>(this IEnumerable<T> collection, Func<T, int, V> func) where V : IComparable {
-            collection.ShouldNotBeEmpty();
+        public static (int index, V minValue) Min<T, V>(this IEnumerable<T> enumerable, Func<T, int, V> func) where V : IComparable {
+            enumerable.ShouldNotBeEmpty();
 
-            V minValue = func(collection.First(), 0);
+            V minValue = func(enumerable.First(), 0);
             int minIndex = 0;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 var v = func(item, index);
                 if (v.CompareTo(minValue) < 0) {
                     minValue = v;
@@ -744,16 +746,16 @@ namespace ijw.Next.Collection {
         /// 用元素作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, double> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, double> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0d;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item);
                 index = checked(index + 1);
             }
@@ -765,16 +767,16 @@ namespace ijw.Next.Collection {
         /// 用元素作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, decimal sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, decimal> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, decimal sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, decimal> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0m;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item);
                 index = checked(index + 1);
             }
@@ -786,16 +788,16 @@ namespace ijw.Next.Collection {
         /// 用元素作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, float> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, float> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0f;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item);
                 index = checked(index + 1);
             }
@@ -806,16 +808,16 @@ namespace ijw.Next.Collection {
         /// 用元素作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, int> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item);
                 index = checked(index + 1);
             }
@@ -826,16 +828,16 @@ namespace ijw.Next.Collection {
         /// 用元素作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, long> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, long> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0L;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item);
                 index = checked(index + 1);
             }
@@ -844,21 +846,21 @@ namespace ijw.Next.Collection {
         }
         #endregion
 
-        #region Sum and Count (with index as parameters)
+        #region Sum and Count (with index as a parameter)
         /// <summary>
         /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, double> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, double sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, int, double> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0d;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item, index);
                 index = checked(index + 1);
             }
@@ -870,16 +872,16 @@ namespace ijw.Next.Collection {
         /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, float> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, float sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, int, float> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0f;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item, index);
                 index = checked(index + 1);
             }
@@ -891,16 +893,16 @@ namespace ijw.Next.Collection {
         /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, int> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, int sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, int, int> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item, index);
                 index = checked(index + 1);
             }
@@ -912,16 +914,16 @@ namespace ijw.Next.Collection {
         /// 用元素和索引作为参数, 使用指定的方法计算后, 求和
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
         /// <returns>所求到和与进行求和的元素总数</returns>
-        public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> collection, Func<T, int, long> func) {
-            collection.ShouldNotBeEmpty();
+        public static (int count, long sum) SumAndCount<T>(this IEnumerable<T> enumerable, Func<T, int, long> func) {
+            enumerable.ShouldNotBeEmpty();
 
             var result = 0L;
             int index = 0;
 
-            foreach (var item in collection) {
+            foreach (var item in enumerable) {
                 result += func(item, index);
                 index = checked(index + 1);
             }
@@ -935,18 +937,18 @@ namespace ijw.Next.Collection {
         /// 输出形如[a1, a2 ... an]的带省略号的字符串
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="maxDisplayNumber">字符串中最多显示几个元素</param>
         /// <param name="postfix">前缀字符串, 显示在第一个元素前面的字符串</param>
         /// <param name="prefix">后缀字符串, 显示在最后一个元素后面的字符串</param>
         /// <param name="seperator">每个元素之间的分割字符串</param>
         /// <returns></returns>
-        public static string ToSimpleEnumStrings<T>(this IEnumerable<T> collection, int maxDisplayNumber = 3, string prefix = "[", string postfix = "]", string seperator = ", ") {
+        public static string ToSimpleEnumStrings<T>(this IEnumerable<T> enumerable, int maxDisplayNumber = 3, string prefix = "[", string postfix = "]", string seperator = ", ") {
             if (maxDisplayNumber <= 0)
                 maxDisplayNumber = 3;
-            int count = collection.Count();
+            int count = enumerable.Count();
             if (count <= maxDisplayNumber) {
-                return collection.ToAllEnumStrings();
+                return enumerable.ToAllEnumStrings();
             }
             else {
                 StringBuilder sb = new StringBuilder(prefix);
@@ -961,11 +963,11 @@ namespace ijw.Next.Collection {
                     sb.Append(seperator);
                 }
 
-                foreach (var item in collection.Where((item, index) => index <= maxDisplayNumber - 2)) {
+                foreach (var item in enumerable.Where((item, index) => index <= maxDisplayNumber - 2)) {
                     appendSimpleStringIfPossible(item);
                 }
 
-                //collection.ForEachWithIndexAndBreak((item, index) => {
+                //enumerable.ForEachWithIndexAndBreak((item, index) => {
                 //    if(index <= maxDisplayNumber - 2) {
                 //        appendSimpleStringIfPossible<T>(sb, item);
                 //        return true;
@@ -976,7 +978,7 @@ namespace ijw.Next.Collection {
                 //});
 
                 sb.Append("...").Append(seperator);
-                appendSimpleStringIfPossible(collection.Last());
+                appendSimpleStringIfPossible(enumerable.Last());
                 sb.Append(postfix);
                 return sb.ToString();
             }
@@ -986,14 +988,14 @@ namespace ijw.Next.Collection {
         /// 输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="enumerable"></param>
         /// <param name="separator">元素之间的分隔符, 默认是", "</param>
         /// <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
         /// <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
         /// <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
         /// <returns></returns>
-        public static string ToAllEnumStrings<T>(this IEnumerable<T> collection, string separator = ", ", string prefix = "[", string postfix = "]", Func<T, string> transform = null) {
-            return Helper.ToAllEnumStrings(collection, separator, prefix, postfix, transform);
+        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, string separator = ", ", string prefix = "[", string postfix = "]", Func<T, string> transform = null) {
+            return IjwHelper.ToAllEnumStrings(enumerable, separator, prefix, postfix, transform);
         }
 
         #endregion

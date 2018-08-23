@@ -93,7 +93,7 @@ namespace ijw.Next.Collection {
         public static void SetEach<T>(this T[,] array, Func<int, int, T> function = null) {
             array.ForEachRefWithIndex(delegate(ref T item, int i, int j) {
                 if (function == null) {
-                    item = default(T);
+                    item = default;
                 }
                 else {
                     item = function(i, j);
@@ -139,7 +139,7 @@ namespace ijw.Next.Collection {
         /// <param name="array"></param>
         public static void Clear<T>(this T[,] array) {
             array.ForEachRef(delegate(ref T item) {
-                item = default(T);
+                item = default;
             });
         }
 

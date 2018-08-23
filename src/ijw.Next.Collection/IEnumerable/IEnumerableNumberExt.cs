@@ -426,52 +426,52 @@ namespace ijw.Next.Collection {
         /// <summary>
         /// 对浮点集合中的值逐一进行归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>归一化后的集合</returns>
-        public static List<double> Normalize(this IEnumerable<double> collection, IEnumerable<double> maxValues, IEnumerable<double> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
+        public static List<double> Normalize(this IEnumerable<double> enumerable, IEnumerable<double> maxValues, IEnumerable<double> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
         /// 对浮点集合中的值逐一进行归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>归一化后的集合</returns>
-        public static List<decimal> Normalize(this IEnumerable<decimal> collection, IEnumerable<decimal> maxValues, IEnumerable<decimal> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
+        public static List<decimal> Normalize(this IEnumerable<decimal> enumerable, IEnumerable<decimal> maxValues, IEnumerable<decimal> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
         /// 对浮点集合中的值逐一进行归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>归一化后的集合</returns>
-        public static List<float> Normalize(this IEnumerable<float> collection, IEnumerable<float> maxValues, IEnumerable<float> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
+        public static List<float> Normalize(this IEnumerable<float> enumerable, IEnumerable<float> maxValues, IEnumerable<float> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
         /// 对浮点集合中的值逐一进行归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>归一化后的集合</returns>
-        public static List<double> Normalize(this IEnumerable<long> collection, IEnumerable<long> maxValues, IEnumerable<long> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
+        public static List<double> Normalize(this IEnumerable<long> enumerable, IEnumerable<long> maxValues, IEnumerable<long> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
         /// 对浮点集合中的值逐一进行归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>归一化后的集合</returns>
-        public static List<double> Normalize(this IEnumerable<int> collection, IEnumerable<int> maxValues, IEnumerable<int> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
+        public static List<double> Normalize(this IEnumerable<int> enumerable, IEnumerable<int> maxValues, IEnumerable<int> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.NormalizeMaxMin(min, max)).ToList();
 
         #endregion
 
@@ -480,32 +480,32 @@ namespace ijw.Next.Collection {
         /// <summary>
         /// 对浮点集合中的值逐一进行反归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>反归一化后的集合</returns>
-        public static List<double> Denormalize(this IEnumerable<double> collection, IEnumerable<double> maxValues, IEnumerable<double> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
+        public static List<double> Denormalize(this IEnumerable<double> enumerable, IEnumerable<double> maxValues, IEnumerable<double> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
         /// 对浮点集合中的值逐一进行反归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>反归一化后的集合</returns>
-        public static List<decimal> Denormalize(this IEnumerable<decimal> collection, IEnumerable<decimal> maxValues, IEnumerable<decimal> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
+        public static List<decimal> Denormalize(this IEnumerable<decimal> enumerable, IEnumerable<decimal> maxValues, IEnumerable<decimal> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
 
         /// <summary>
         /// 对浮点集合中的值逐一进行反归一化
         /// </summary>
-        /// <param name="collection">浮点数集合</param>
+        /// <param name="enumerable">浮点数集合</param>
         /// <param name="maxValues">归一化上限值的集合</param>
         /// <param name="minValues">归一化下限值的集合</param>
         /// <returns>反归一化后的集合</returns>
-        public static List<float> Denormalize(this IEnumerable<float> collection, IEnumerable<float> maxValues, IEnumerable<float> minValues)
-            => (collection, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
+        public static List<float> Denormalize(this IEnumerable<float> enumerable, IEnumerable<float> maxValues, IEnumerable<float> minValues)
+            => (enumerable, maxValues, minValues).ForEachThreeSelect((x, max, min) => x.DenormalizeMaxMin(min, max)).ToList();
 
         #endregion
 

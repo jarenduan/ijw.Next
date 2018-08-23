@@ -11,11 +11,11 @@ namespace ijw.Next.Collection {
         /// 使用一个初始化函数进行数组的初始化
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="array"></param>
         /// <param name="initializer"></param>
-        public static void Initialize<T>(this T[] collection, Func<int, T> initializer) {
-            for (int i = 0; i < collection.Length; i++) {
-                collection[i] = initializer(i);
+        public static void Initialize<T>(this T[] array, Func<int, T> initializer) {
+            for (int i = 0; i < array.Length; i++) {
+                array[i] = initializer(i);
             }
         }
 
@@ -23,10 +23,10 @@ namespace ijw.Next.Collection {
         /// 获得强类型的枚举器
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="array"></param>
         /// <returns></returns>
-        public static IEnumerator<T> GetEnumeratorGenerics<T>(this T[] collection) {
-            return collection.AsEnumerable().GetEnumerator();
+        public static IEnumerator<T> GetEnumeratorGenerics<T>(this T[] array) {
+            return array.AsEnumerable().GetEnumerator();
         }
 
         /// <summary>
@@ -92,30 +92,30 @@ namespace ijw.Next.Collection {
         /// 根据指定的一系列索引, 设置数组中的值
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="array"></param>
         /// <param name="index">指定的索引, 一组整数</param>
         /// <param name="values">指定的值</param>
-        public static void SetValuesForTheIndexes<T>(this T[] collection, IEnumerable<int> index, IEnumerable<T> values) {
+        public static void SetValuesForTheIndexes<T>(this T[] array, IEnumerable<int> index, IEnumerable<T> values) {
             if (index.Count() != values.Count())
-                throw new CountNotMatchException();
+                throw new TwoIEnumerableCountNotMatchException(index, values);
             Dictionary<int, T> dict = new Dictionary<int, T>();
             (index, values)
                 .ForEachPair((i, v) => 
                     dict.Add(i, v)
                 );
-            SetValuesForTheIndexes(collection, dict);
+            SetValuesForTheIndexes(array, dict);
         }
 
         /// <summary>
         /// 为数组设置指定索引处的值
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="array"></param>
         /// <param name="values"></param>
-        public static void SetValuesForTheIndexes<T>(this T[] collection, Dictionary<int, T> values) {
-            for (int i = 0; i < collection.Length; i++) {
+        public static void SetValuesForTheIndexes<T>(this T[] array, Dictionary<int, T> values) {
+            for (int i = 0; i < array.Length; i++) {
                 if (values.TryGetValue(i, out var value)) {
-                    collection[i] = value;
+                    array[i] = value;
                 }
             }
         }
