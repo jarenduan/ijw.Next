@@ -63,7 +63,7 @@ namespace ijw.Next.Collection {
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
         /// <param name="actionWithRef">对每对元素的引用所执行的操作</param>
-        /// <exception cref="CountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachPair<T1, T2>(T1[] collection1, T2[] collection2, ActionWithRef<T1, T2> actionWithRef) {
             for (int i = 0; i < collection1.Length; i++) {
                 if (i > collection2.Length - 1) throw new DimensionNotMatchException();

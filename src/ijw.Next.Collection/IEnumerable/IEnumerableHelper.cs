@@ -17,20 +17,20 @@ namespace ijw.Next.Collection {
         /// <param name="collection2">第2个集合</param>
         /// <param name="action">需要对每对元素执行的操作，接受两个集合的元素对作为参数。</param>
         /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <exception cref="CountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachPair<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Action<T1, T2> action, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
 
             IEnumerator<T2> iter = collection2.GetEnumerator();
             foreach (var e1 in collection1) {
-                if (!iter.MoveNext()) throw new CountNotMatchException();
+                if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
                 action(e1, iter.Current);
             }
 
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
-                if (iter.MoveNext()) throw new CountNotMatchException();
+                if (iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
             }
         }
         /// <summary>
@@ -42,7 +42,7 @@ namespace ijw.Next.Collection {
         /// <param name="collection2">第2个集合</param>
         /// <param name="action">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
         /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <exception cref="CountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachPair<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Action<T1, T2, int> action, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -50,14 +50,14 @@ namespace ijw.Next.Collection {
             IEnumerator<T2> iter = collection2.GetEnumerator();
             int index = 0;
             foreach (var e1 in collection1) {
-                if (!iter.MoveNext()) throw new CountNotMatchException();
+                if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1,collection2);
                 action(e1, iter.Current, index);
                 index++;
             }
 
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
-                if (iter.MoveNext()) throw new CountNotMatchException();
+                if (iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
             }
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace ijw.Next.Collection {
         /// <param name="func">执行计算的函数，接受两个集合的元素对作为参数。</param>
         /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
         /// <returns>返回的结果迭代器</returns>
-        /// <exception cref="CountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         /// <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
         public static IEnumerable<TResult> ForEachPairSelect<T1, T2, TResult>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, TResult> func, bool forceDimensionMatching = false) {
             //don't try to test the count(), cos' it might cause iterations.
@@ -84,12 +84,12 @@ namespace ijw.Next.Collection {
 
             IEnumerator<T2> iter = collection2.GetEnumerator();
             foreach (var e1 in collection1) {
-                if (!iter.MoveNext()) throw new CountNotMatchException(); //test during iterations.
+                if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2); //test during iterations.
                 yield return func(e1, iter.Current);
             }
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
-                if (iter.MoveNext()) throw new CountNotMatchException();
+                if (iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
             }
         }
 
@@ -104,7 +104,7 @@ namespace ijw.Next.Collection {
         /// <param name="func">执行计算的函数，接受两个集合的元素对以及当前索引作为参数。</param>
         /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
         /// <returns>返回的结果迭代器</returns>
-        /// <exception cref="CountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         /// <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
         public static IEnumerable<TResult> ForEachPairSelect<T1, T2, TResult>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, int, TResult> func, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
@@ -113,13 +113,13 @@ namespace ijw.Next.Collection {
             IEnumerator<T2> iter = collection2.GetEnumerator();
             int index = 0;
             foreach (var e1 in collection1) {
-                if (!iter.MoveNext()) throw new CountNotMatchException();
+                if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1,  collection2);
                 yield return func(e1, iter.Current, index);
                 index++;
             }
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
-                if (iter.MoveNext()) throw new CountNotMatchException();
+                if (iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
             }
         }
 
@@ -132,7 +132,7 @@ namespace ijw.Next.Collection {
         /// <param name="collection2">第2个集合</param>
         /// <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对作为参数。</param>
         /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <exception cref="CountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         /// <returns>迭代的次数.注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
         public static int ForEachPairWhile<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, bool> dowhile, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
@@ -141,7 +141,7 @@ namespace ijw.Next.Collection {
             int index = 0;
             IEnumerator<T2> iter = collection2.GetEnumerator();
             foreach (var e1 in collection1) {
-                if (!iter.MoveNext()) throw new CountNotMatchException();
+                if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
                 if (!dowhile(e1, iter.Current)) {
                     index = -index;
                     break;
@@ -151,7 +151,7 @@ namespace ijw.Next.Collection {
 
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
-                if (iter.MoveNext()) throw new CountNotMatchException();
+                if (iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
             }
 
             return index;
@@ -167,7 +167,7 @@ namespace ijw.Next.Collection {
         /// <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
         /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
         /// <returns>迭代的次数. 注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
-        /// <exception cref="CountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         public static int ForEachPairWhile<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, int, bool> dowhile, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -175,7 +175,7 @@ namespace ijw.Next.Collection {
             int index = 0;
             IEnumerator<T2> iter = collection2.GetEnumerator();
             foreach (var e1 in collection1) {
-                if (!iter.MoveNext()) throw new CountNotMatchException();
+                if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
                 if (!dowhile(e1, iter.Current, index)) {
                     index = -index;
                     break;
@@ -185,7 +185,7 @@ namespace ijw.Next.Collection {
 
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
-                if (iter.MoveNext()) throw new CountNotMatchException();
+                if (iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1, collection2);
             }
 
             return index;
@@ -252,7 +252,7 @@ namespace ijw.Next.Collection {
         /// <param name="collection2">另二个集合</param>
         /// <param name="collection3">第三个集合</param>
         /// <param name="doWork">执行的操作</param>
-        /// <exception cref="CountNotMatchException">集合1元素数大于集合2或集合3的元素数时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">集合1元素数大于集合2或集合3的元素数时, 会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachThree<T1, T2, T3>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, IEnumerable<T3> collection3, Action<T1, T2, T3> doWork) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -262,8 +262,18 @@ namespace ijw.Next.Collection {
             IEnumerator<T3> iter3 = collection3.GetEnumerator();
 
             foreach (var e1 in collection1) {
-                if (!iter2.MoveNext()) throw new CountNotMatchException();
-                if (!iter3.MoveNext()) throw new CountNotMatchException();
+                if (!iter2.MoveNext())
+                    throw new ThreeIEnumerableCountNotMatchException(
+                       collection1,
+                       collection2,
+                       collection3
+                   );
+                if (!iter3.MoveNext())
+                    throw new ThreeIEnumerableCountNotMatchException(
+                       collection1,
+                       collection2,
+                       collection3
+                   );
                 doWork(e1, iter2.Current, iter3.Current);
             }
         }
@@ -278,7 +288,7 @@ namespace ijw.Next.Collection {
         /// <param name="collection2">另二个集合</param>
         /// <param name="collection3">第三个集合</param>
         /// <param name="doWork">执行的操作</param>
-        /// <exception cref="CountNotMatchException">集合1元素数大于集合2或集合3的元素数时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">集合1元素数大于集合2或集合3的元素数时, 会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachThree<T1, T2, T3>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, IEnumerable<T3> collection3, Action<T1, T2, T3, int> doWork) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -288,8 +298,18 @@ namespace ijw.Next.Collection {
             IEnumerator<T3> iter3 = collection3.GetEnumerator();
             int index = 0;
             foreach (var e1 in collection1) {
-                if (!iter2.MoveNext()) throw new CountNotMatchException();
-                if (!iter3.MoveNext()) throw new CountNotMatchException();
+                if (!iter2.MoveNext())
+                    throw new ThreeIEnumerableCountNotMatchException(
+                       collection1,
+                       collection2,
+                       collection3
+                   );
+                if (!iter3.MoveNext())
+                    throw new ThreeIEnumerableCountNotMatchException(
+                       collection1,
+                       collection2,
+                       collection3
+                   );
                 doWork(e1, iter2.Current, iter3.Current, index);
                 index++;
             }
@@ -307,7 +327,7 @@ namespace ijw.Next.Collection {
         /// <param name="collection3">第三个集合</param>
         /// <param name="theFunction">需要计算的函数</param>
         /// <returns>返回的结果迭代器</returns>
-        /// <exception cref="CountNotMatchException">集合1元素数大于集合2或集合3的元素数时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">集合1元素数大于集合2或集合3的元素数时, 会抛出 CountNotMatchException 异常.</exception>
         /// <remarks>
         /// 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.
         /// </remarks>
@@ -320,8 +340,18 @@ namespace ijw.Next.Collection {
             IEnumerator<T3> iter3 = collection3.GetEnumerator();
 
             foreach (var e1 in collection1) {
-                if (!iter2.MoveNext()) throw new CountNotMatchException();
-                if (!iter3.MoveNext()) throw new CountNotMatchException();
+                if (!iter2.MoveNext())
+                    throw new ThreeIEnumerableCountNotMatchException(
+                       collection1,
+                       collection2,
+                       collection3
+                   );
+                if (!iter3.MoveNext())
+                    throw new ThreeIEnumerableCountNotMatchException(
+                       collection1,
+                       collection2,
+                       collection3
+                   );
                 yield return theFunction(e1, iter2.Current, iter3.Current);
             }
         }
