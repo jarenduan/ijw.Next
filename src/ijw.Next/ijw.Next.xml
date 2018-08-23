@@ -4,1196 +4,6 @@
         <name>ijw.Next</name>
     </assembly>
     <members>
-        <member name="T:ijw.Next.ActionWithRef`1">
-            <summary>
-            接受ref参数的委托
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj">ref 参数</param>
-        </member>
-        <member name="T:ijw.Next.ActionWithRef`2">
-            <summary>
-            接受两个ref参数的委托
-            </summary>
-            <typeparam name="T1"></typeparam>
-            <typeparam name="T2"></typeparam>
-            <param name="obj1">第一个ref参数</param>
-            <param name="obj2">第二个ref参数</param>
-        </member>
-        <member name="T:ijw.Next.ActionWithRef`3">
-            <summary>
-            接受三个ref参数的委托
-            </summary>
-            <typeparam name="T1"></typeparam>
-            <typeparam name="T2"></typeparam>
-            <typeparam name="T3"></typeparam>
-            <param name="obj1">第一个ref参数</param>
-            <param name="obj2">第二个ref参数</param>
-            <param name="obj3">第三个ref参数</param>
-        </member>
-        <member name="T:ijw.Next.ActionWithRef`4">
-            <summary>
-            接受三个ref参数的委托
-            </summary>
-            <typeparam name="T1"></typeparam>
-            <typeparam name="T2"></typeparam>
-            <typeparam name="T3"></typeparam>
-            <typeparam name="T4"></typeparam>
-            <param name="obj1">第1个ref参数</param>
-            <param name="obj2">第2个ref参数</param>
-            <param name="obj3">第3个ref参数</param>
-            <param name="obj4">第4个ref参数</param>
-        </member>
-        <member name="T:ijw.Next.BooleanCondition">
-            <summary>
-            一个无参数, 返回值时bool型的委托
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:ijw.Next.ConsoleHelper">
-            <summary>
-            控制台帮助类
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadLine(System.String)">
-            <summary>
-            先提供一个提示信息, 再接受用户输入.
-            </summary>
-            <param name="message">提示信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.PauseInDebugMode">
-            <summary>
-            当Debug模式才会暂停, 读取一个字符. 通常放在程序结束最后, 用于调试时暂停.
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.NewLineCount(System.String,System.Int32)">
-            <summary>
-            计算字符串将会占据几行
-            </summary>
-            <param name="msg"></param>
-            <param name="startCursorX"></param>
-            <returns></returns>
-            <remarks>
-            非线程安全, 依赖windowswidth属性.
-            </remarks>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.WriteInColor(System.String,System.ConsoleColor)">
-            <summary>
-            使用指定颜色输出字符串
-            </summary>
-            <param name="message">输出的信息</param>
-            <param name="color">前景色, 默认使用红色</param>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.WriteLineInColor(System.String,System.ConsoleColor)">
-            <summary>
-            使用指定颜色输出字符串, 并换行.
-            </summary>
-            <param name="message">输出的信息</param>
-            <param name="color">前景色, 默认使用红色</param>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadKey(System.String,System.Boolean)">
-            <summary>
-            输出一行提示信息, 然后等待接收一个按键.
-            </summary>
-            <param name="message">提示信息</param>
-            <param name="ifIntercept"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadEnterInSeconds(System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>读取到的按键信息</returns>
-            <remarks>
-            此方法已经过时, 请使用<see cref="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)"/>.
-            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
-            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
-            </remarks>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>按键信息</returns>
-            <remarks>
-            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
-            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
-            </remarks>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadExpectedKeyInSeconds(System.ConsoleKey,System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            指定时间内读取指定按键, 超时没有读取到任何按键将引发异常.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="expectedKey">期待的指定按键</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>读取到的按键信息</returns>
-        </member>
-        <member name="T:ijw.Next.ContractBrokenException">
-            <summary>
-            表示违反契约的异常
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ContractBrokenException.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-        </member>
-        <member name="M:ijw.Next.ContractBrokenException.#ctor(System.String,System.Exception)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-            <param name="innerException">内部的异常</param>
-        </member>
-        <member name="T:ijw.Next.Contract`1">
-            <summary>
-            表示一个契约
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:ijw.Next.Contract`1.IsKept">
-            <summary>
-            是否遵守
-            </summary>
-        </member>
-        <member name="P:ijw.Next.Contract`1.BrokenMessage">
-            <summary>
-            破坏契约提示信息
-            </summary>
-        </member>
-        <member name="P:ijw.Next.Contract`1.Value">
-            <summary>
-            原始值
-            </summary>
-        </member>
-        <member name="M:ijw.Next.Contract`1.ThrowsWhenBroken">
-            <summary>
-            破坏契约时抛出ContractBrokenException异常
-            </summary>
-            <returns>契约对象本身</returns>
-        </member>
-        <member name="M:ijw.Next.Contract`1.ThrowsWhenBroken``1">
-            <summary>
-            破坏契约时抛出指定类型的异常
-            </summary>
-            <typeparam name="TException"></typeparam>
-        </member>
-        <member name="M:ijw.Next.Contract`1.ThrowsWhenBroken``1(``0)">
-            <summary>
-            破坏契约时抛出异常
-            </summary>
-            <typeparam name="TException"></typeparam>
-            <param name="exception">默认是ContractBrokenException异常</param>
-            <returns>契约对象本身</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.IComparableContractMustExt">
-            <summary>
-            IComparable泛型类的契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.MustLargerThan``1(``0,``0)">
-            <summary>
-            应该大于指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>大于指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.AddMustLargerThan``1(ijw.Next.Contract{``0},``0)">
-            <summary>
-            应该大于指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="other">指定的对象</param>
-            <returns>大于指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.MustLessThan``1(``0,``0)">
-            <summary>
-            应该小于指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>小于指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.AndMustLessThan``1(ijw.Next.Contract{``0},``0)">
-            <summary>
-            应该小于指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="other">指定的对象</param>
-            <returns>小于指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.MustNotLargerThan``1(``0,``0)">
-            <summary>
-            应该不大于(小于等于)指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>不大于(小于等于)指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.AndMustNotLargerThan``1(ijw.Next.Contract{``0},``0)">
-            <summary>
-            应该不大于(小于等于)指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="other">指定的对象</param>
-            <returns>不大于(小于等于)指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.MustNotLessThan``1(``0,``0)">
-            <summary>
-            应该不小于(大于等于)定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>不小于(大于等于)指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.AndMustNotLessThan``1(ijw.Next.Contract{``0},``0)">
-            <summary>
-            应该不小于(大于等于)定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="other">指定的对象</param>
-            <returns>不小于(大于等于)指定对象, Contract的IsKept为true.</returns>
-        </member>
-        <member name="T:ijw.Next.IEnumerableContractMustExt">
-            <summary>
-            IEnumerable泛型类与契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.MustNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            不应该是Null或者空集合
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection"></param>
-            <returns>集合不是空且有元素, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.MustNotNullOrEmpty``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}})">
-            <summary>
-            不应该是Null或者空集合
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <returns>集合不是空且有元素, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.MustEachSatisfy``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0},System.String)">
-            <summary>
-            每一项都必须满足某条件
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection"></param>
-            <param name="condition">应满足的条件</param>
-            <param name="conditionDescrption">条件描述</param>
-            <returns>集合满足条件, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustEachSatisfy``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},System.Predicate{``0},System.String)">
-            <summary>
-            每一项都必须满足某条件
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="condition">应满足的条件</param>
-            <param name="conditionDescrption">条件描述</param>
-            <returns>集合满足条件, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.MustEachEquals``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            每个元素都应该等于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">等于</param>
-            <returns>每个元素都等于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustEachEquals``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
-            <summary>
-            每个元素都应该等于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">等于</param>
-            <returns>每个元素都等于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.MustEachNotEquals``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            每个元素都应该不等于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">等于</param>
-            <returns>每个元素都不等于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustEachNotEquals``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
-            <summary>
-            每个元素都应该不等于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">等于</param>
-            <returns>每个元素都不等于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="T:ijw.Next.IEnumerableIComparableContractMustExt">
-            <summary>
-            IComparable序列的契约扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachLargerThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            每个元素都应该大于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">大于</param>
-            <returns>每个元素都大于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachNotLargerThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            每个元素都应该不大于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">不大于</param>
-            <returns>每个元素都不大于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachLessThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            每个元素都应该小于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">小于</param>
-            <returns>每个元素都小于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachNotLessThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>
-            每个元素都应该不小于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="other">不小于</param>
-            <returns>每个元素都不小于指定值, Contract的IsKept为true.</returns>
-        </member>
-        <member name="T:ijw.Next.Contracts.IEnumerableIntContractMustExt">
-            <summary>
-            整数序列的契约扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIntContractMustExt.MustEachNotZero(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该不等于0
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都不等于0, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIntContractMustExt.ShouldEachNotLessThanZero(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该不小于0
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都不小于0, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIntContractMustExt.ShouldEachBeEven(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该是偶数
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都是偶数Contract的IsKept为true., 否则抛出ContractBrokenException异常</returns>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIntContractMustExt.ShouldEachBeOdd(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该是奇数
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都是奇数Contract的IsKept为true., 否则抛出ContractBrokenException异常</returns>
-        </member>
-        <member name="T:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            每个元素都应该大于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="largerThan">大于</param>
-            <returns>每个元素都大于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachNotLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            每个元素都应该不大于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="notLargerThan">不大于</param>
-            <returns>每个元素都不大于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            每个元素都应该小于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="lessThan">小于</param>
-            <returns>每个元素都小于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachNotLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            每个元素都应该不小于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="notLessThan">不小于</param>
-            <returns>每个元素都不小于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.IntContractMustExt">
-            <summary>
-            整形类与契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.MustNotZero(System.Int32)">
-            <summary>
-            不必须等于0
-            </summary>
-            <param name="obj"></param>
-            <returns>不等于0时, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.AndMustNotZero(ijw.Next.Contract{System.Int32})">
-            <summary>
-            不必须等于0
-            </summary>
-            <param name="contract"></param>
-            <returns>不等于0时, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.MustNotLessThanZero(System.Int32)">
-            <summary>
-            必须不小于0
-            </summary>
-            <param name="obj"></param>
-            <returns>不小于0, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.AndMustNotLessThanZero(ijw.Next.Contract{System.Int32})">
-            <summary>
-            必须不小于0
-            </summary>
-            <param name="contract"></param>
-            <returns>不小于0, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.MustEven(System.Int32)">
-            <summary>
-            必须是偶数
-            </summary>
-            <param name="obj"></param>
-            <returns>是偶数, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.AndMustEven(ijw.Next.Contract{System.Int32})">
-            <summary>
-            必须是偶数
-            </summary>
-            <param name="contract"></param>
-            <returns>是偶数, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.MustOdd(System.Int32)">
-            <summary>
-            必须是奇数
-            </summary>
-            <param name="obj"></param>
-            <returns>是奇数, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.AndMustOdd(ijw.Next.Contract{System.Int32})">
-            <summary>
-            必须是奇数
-            </summary>
-            <param name="contract"></param>
-            <returns>是奇数, Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.MustValidIndexFor(System.Int32,System.Collections.ICollection)">
-            <summary>
-            必须是指定集合的有效索引值
-            </summary>
-            <param name="obj"></param>
-            <param name="collection">指定的集合</param>
-            <returns>有效索引，Contract的IsKept为true</returns>
-        </member>
-        <member name="M:ijw.Next.IntContractMustExt.AndMustValidIndexFor(ijw.Next.Contract{System.Int32},System.Collections.ICollection)">
-            <summary>
-            必须是指定集合的有效索引值
-            </summary>
-            <param name="contract"></param>
-            <param name="collection">指定的集合</param>
-            <returns>有效索引，Contract的IsKept为true</returns>
-        </member>
-        <member name="T:ijw.Next.ObjectContractMustExt">
-            <summary>
-            提供一系列Object的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.MustNotNullArgument``1(``0,System.String)">
-            <summary>
-            应该不是Null参数
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="paramName">参数的名字</param>
-            <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.AndMustNotNullArgument``1(ijw.Next.Contract{``0},System.String)">
-            <summary>
-            应该不是Null参数
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="paramName">参数的名字</param>
-            <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.MustNotNull``1(``0,System.String)">
-            <summary>
-            应该不是Null引用
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="message">错误信息</param>
-            <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
-            <exception cref="T:System.NullReferenceException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.AndMustNotNull``1(ijw.Next.Contract{``0},System.String)">
-            <summary>
-            应该不是Null引用
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="message">错误信息</param>
-            <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
-            <exception cref="T:System.NullReferenceException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.MustSatisfy``1(``0,System.Predicate{``0},System.String)">
-            <summary>
-            应该满足指定的条件
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="condition">应满足的条件</param>
-            <param name="conditionDescrption">条件的描述信息</param>
-            <returns>满足条件Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.AndMustSatisfy``1(ijw.Next.Contract{``0},System.Predicate{``0},System.String)">
-            <summary>
-            应该满足指定的条件
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="condition">应满足的条件</param>
-            <param name="conditionDescrption">条件的描述信息</param>
-            <returns>满足条件Contract的IsKept为true. </returns>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.MustEquals``1(``0,``0)">
-            <summary>
-            应该与指定的对象相等.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">用以比较的对象</param>
-            <returns>与指定的对象相等Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.AndMustEquals``1(ijw.Next.Contract{``0},``0)">
-            <summary>
-            应该与指定的对象相等.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="other">用以比较的对象</param>
-            <returns>与指定的对象相等Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.MustNotEquals``1(``0,``0)">
-            <summary>
-            应该与指定的对象不相等.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">用以比较的对象</param>
-            <returns>与指定的对象相等Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.ObjectContractMustExt.AndMustNotEquals``1(ijw.Next.Contract{``0},``0)">
-            <summary>
-            应该与指定的对象相等.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="contract"></param>
-            <param name="other">用以比较的对象</param>
-            <returns>与指定的对象相等Contract的IsKept为true.</returns>
-        </member>
-        <member name="T:ijw.Next.StringContractMustExt">
-            <summary>
-            string类与契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.StringContractMustExt.MustExistSuchFile(System.String)">
-            <summary>
-            应该存在这样的文件
-            </summary>
-            <param name="path"></param>
-            <returns>存在指定路径的文件, Contract的IsKept为true. 否则抛出FileNotFoundException异常.</returns>
-            <exception cref="T:System.IO.FileNotFoundException"></exception>
-        </member>
-        <member name="M:ijw.Next.StringContractMustExt.AndMustExistSuchFile(ijw.Next.Contract{System.String})">
-            <summary>
-            应该存在这样的文件
-            </summary>
-            <param name="contract"></param>
-            <returns>存在指定路径的文件, Contract的IsKept为true. 否则抛出FileNotFoundException异常.</returns>
-            <exception cref="T:System.IO.FileNotFoundException"></exception>
-        </member>
-        <member name="M:ijw.Next.StringContractMustExt.MustFullFileName(System.String)">
-            <summary>
-            应该是有效的绝对路径名
-            </summary>
-            <param name="path"></param>
-            <returns>是有效的绝对路径名, Contract的IsKept为true.</returns>
-        </member>
-        <member name="M:ijw.Next.StringContractMustExt.AndMustFullFileName(ijw.Next.Contract{System.String})">
-            <summary>
-            应该是有效的绝对路径名
-            </summary>
-            <param name="contract"></param>
-            <returns>是有效的绝对路径名, Contract的IsKept为true.</returns>
-        </member>
-        <member name="T:ijw.Next.BoolExt">
-            <summary>
-            契约相关的bool的扩展类
-            </summary>
-        </member>
-        <member name="M:ijw.Next.BoolExt.ThrowsWhenBroke``1(System.Boolean)">
-            <summary>
-            破坏契约时抛出异常
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="aBool"></param>
-        </member>
-        <member name="M:ijw.Next.BoolExt.ThrowsWhenBroke``1(System.Boolean,System.String)">
-            <summary>
-            破坏契约时抛出异常
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="aBool"></param>
-            <param name="exceptionMessage">异常消息字符串</param>
-        </member>
-        <member name="T:ijw.Next.IComparableContractShouldExt">
-            <summary>
-            IComparable泛型类的契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldLargerThan``1(``0,``0)">
-            <summary>
-            应该大于指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>大于指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldLessThan``1(``0,``0)">
-            <summary>
-            应该小于指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>小于指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldNotLargerThan``1(``0,``0)">
-            <summary>
-            应该不大于(小于等于)指定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>不大于(小于等于)指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldNotLessThan``1(``0,``0)">
-            <summary>
-            应该不小于(大于等于)定对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">指定的对象</param>
-            <returns>不小于(大于等于)指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.IEnumerableContractExt">
-            <summary>
-            IEnumerable泛型类与契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractExt.ShouldNotBeEmpty``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            不应该为空集合
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection"></param>
-            <returns>集合有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractExt.ShouldNotBeNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            不应该是Null或者空集合
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection"></param>
-            <returns>集合不是空且有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractExt.ShouldEachSatisfy``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
-            <summary>
-            应该满足某条件
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection"></param>
-            <param name="condition">应满足的条件</param>
-            <returns>集合满足条件, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractExt.ShouldEachEquals(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            每个元素都应该等于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="equalsTo">等于</param>
-            <returns>每个元素都等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableContractExt.ShouldEachNotEquals(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
-            <summary>
-            每个元素都应该不等于指定值
-            </summary>
-            <param name="collection"></param>
-            <param name="notEqualsTo">不等于</param>
-            <returns>每个元素都不等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.IEnumerableIntergerNumberContractShouldExt">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachNotBeZero(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该不等于0
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都不等于0, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachNotLessThanZero(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该不小于0
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都不小于0, 返回true. 否则抛出ContractBrokenException异常. </returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachBeEven(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该是偶数
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都是偶数返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachBeOdd(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            每个元素都应该是奇数
-            </summary>
-            <param name="collection"></param>
-            <returns>每个元素都是奇数返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.IntegerContractShouldExt">
-            <summary>
-            整形类与契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeNotZero(System.Int32)">
-            <summary>
-            应该不等于0
-            </summary>
-            <param name="obj"></param>
-            <returns>不等于0返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeNotLessThanZero(System.Int32)">
-            <summary>
-            应该不小于0
-            </summary>
-            <param name="obj"></param>
-            <returns>不小于0, 返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeEven(System.Int32)">
-            <summary>
-            应该是偶数
-            </summary>
-            <param name="obj"></param>
-            <returns>是偶数返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeOdd(System.Int32)">
-            <summary>
-            应该是奇数
-            </summary>
-            <param name="obj"></param>
-            <returns>是奇数返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.NotSatisfiedConditionException`1">
-            <summary>
-            表示不满足某条件的异常
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">错误信息</param>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String,System.Exception)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">错误信息</param>
-            <param name="innerException">内部异常</param>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(`0,System.Preary>
-            <param name="obj"></param>
-            <returns>是奇数返回true, 否则抛出ContractBrokenException异常</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.NotSatisfiedConditionException`1">
-            <summary>
-            表示不满足某条件的异常
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">错误信息</param>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String,System.Exception)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">错误信息</param>
-            <param name="innerException">内部异常</param>
-        </member>
-        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(`0,System.Predicate{`0})">
-            <summary>
-            构造函数
-            </summary>
-            <param name="obj">不满足条件的对象</param>
-            <param name="predicate">应该满足的条件</param>
-        </member>
-        <member name="T:ijw.Next.ObjectContractShouldExt">
-            <summary>
-            提供一系列Object的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldBeNotNullArgument``1(``0,System.String)">
-            <summary>
-            应该不是Null参数
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="paramName">参数的名字</param>
-            <returns>不是Null,返回true. 反之抛出ArgumentNullException异常</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldBeNotNullReference``1(``0,System.String)">
-            <summary>
-            应该不是Null引用
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="message">错误信息</param>
-            <returns>不是Null,返回true. 反之抛出NullReferenceException异常.</returns>
-            <exception cref="T:System.NullReferenceException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldSatisfy``1(``0,System.Predicate{``0})">
-            <summary>
-            应该满足指定的条件
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="condition">应满足的条件</param>
-            <returns>满足条件返回true. 反之抛出NotSatisfiedConditionException异常.</returns>
-            <exception cref="T:ijw.Next.NotSatisfiedConditionException`1"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldSatisfy``2(``0,System.Predicate{``0},``1)">
-            <summary>
-            应该满足指定的条件, 否则抛出指定的异常.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="TException"></typeparam>
-            <param name="obj"></param>
-            <param name="condition">应满足的条件</param>
-            <param name="excpetion">不满足时会抛出的异常</param>
-            <returns>满足条件返回true, 否则抛出指定的异常.</returns>
-            <exception cref="T:System.Exception"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldEquals``1(``0,``0)">
-            <summary>
-            应该与指定的对象相等.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">用以比较的对象</param>
-            <returns>与指定的对象相等返回true, 否则抛出ContractBrokenException异常.</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldNotEquals``1(``0,``0)">
-            <summary>
-            应该与指定的对象相等.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="other">用以比较的对象</param>
-            <returns>与指定的对象相等返回true, 否则抛出ContractBrokenException异常.</returns>
-            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
-        </member>
-        <member name="T:ijw.Next.StringContractShouldExt">
-            <summary>
-            string类与契约相关的扩展方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.StringContractShouldExt.ShouldExistSuchFile(System.String)">
-            <summary>
-            应该存在这样的文件
-            </summary>
-            <param name="path"></param>
-            <returns>存在指定路径的文件, 返回true. 否则抛出FileNotFoundException异常.</returns>
-            <exception cref="T:System.IO.FileNotFoundException"></exception>
-        </member>
-        <member name="M:ijw.Next.StringContractShouldExt.ShouldBeValidAbsoluteName(System.String)">
-            <summary>
-            应该是有效的绝对路径名
-            </summary>
-            <param name="path"></param>
-            <returns>是有效的绝对路径名, 返回true. 否则抛出FileNotFoundException异常.</returns>
-            <exception cref="T:System.IO.FileNotFoundException"></exception>
-        </member>
-        <member name="T:ijw.Next.DebugHelper">
-            <summary>
-            提供对Debug的一系列Helper方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.Write(System.String,System.String)">
-            <summary>
-            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
-            </summary>
-            <param name="message">输出信息</param>
-            <param name="callerName">调用者的方法名字</param>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.WriteLine(System.String,System.String)">
-            <summary>
-            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
-            </summary>
-            <param name="message">输出信息</param>
-            <param name="callerName">调用者的方法名字</param>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.GetCallerName">
-            <summary>
-            获取调用者的方法名称.注意:获取的是调用GetCallerName()所在方法的方法的名称.
-            </summary>
-            <returns>返回方法名称, 形式如：类型名.方法名称.</returns>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.GetCallerMethod">
-            <summary>
-            获取调用者的方法信息.注意:获取的是调用GetCallerName()所在方法的方法的信息.
-            </summary>
-            <returns>返回方法信息.</returns>
-        </member>
-        <member name="T:ijw.Next.DelegateHelper">
-            <summary>
-            多次运行一个方法或者委托的帮助类
-            </summary>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.Run(System.Action,System.Int32)">
-            <summary>
-            运行该委托指定次数
-            </summary>
-            <param name="loopbody"></param>
-            <param name="times">运行次数</param>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.Run(System.Int32,System.Action)">
-            <summary>
-            运行某方法指定次数
-            </summary>
-            <param name="times">运行次数</param>
-            <param name="loopBody">欲运行的委托</param>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrue(System.Func{System.Boolean},System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            </summary>
-            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <returns>是否成功运行该指定方法</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrue(System.Func{System.Int32,System.Boolean},System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            方法每次运行时将得知这是第几次运行.
-            </summary>
-            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <returns>是否成功运行该指定方法</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRun``1(System.Func{``0},System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRun``1(System.Func{System.Int32,``0},System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            方法每次运行时将得知这是第几次运行.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNull``1(System.Func{``0},System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNull``1(System.Func{System.Int32,``0},System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
-            方法每次运行时将得知这是第几次运行.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.RunWithInterval(System.Action,System.Int32,System.Int32)">
-            <summary>
-            运行该委托指定次数
-            </summary>
-            <param name="loopbody"></param>
-            <param name="times">运行次数</param>
-            <param name="interval">运行之间的间隔</param>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.RunWithInterval(System.Int32,System.Action,System.Int32)">
-            <summary>
-            运行某方法指定次数
-            </summary>
-            <param name="times">运行次数</param>
-            <param name="loopBody">欲运行的委托</param>
-            <param name="interval">运行之间的间隔</param>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrueWithInterval(System.Func{System.Boolean},System.Int32,System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            </summary>
-            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <param name="interval">运行之间的间隔</param>
-            <returns>是否成功运行该指定方法</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrueWithInterval(System.Func{System.Int32,System.Boolean},System.Int32,System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            方法每次运行时将得知这是第几次运行.
-            </summary>
-            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <param name="interval">运行之间的间隔</param>
-            <returns>是否成功运行该指定方法</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunWithInterval``1(System.Func{``0},System.Int32,System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <param name="interval">运行之间的间隔</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunWithInterval``1(System.Func{System.Int32,``0},System.Int32,System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
-            方法每次运行时将得知这是第几次运行.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <param name="interval">运行之间的间隔</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNullWithInterval``1(System.Func{``0},System.Int32,System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <param name="interval">运行之间的间隔</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
-        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNullWithInterval``1(System.Func{System.Int32,``0},System.Int32,System.Int32)">
-            <summary>
-            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
-            方法每次运行时将得知这是第几次运行.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="toRun">欲运行的方法</param>
-            <param name="maxRetryTimes">尝试的最多次数</param>
-            <param name="interval">运行之间的间隔</param>
-            <returns>返回该指定方法成功运行的结果</returns>
-        </member>
         <member name="T:ijw.Next.EventHandlerExt">
             <summary>
             EventHandler的扩展方法
@@ -1217,45 +27,6 @@
             <param name="sender">sender</param>
             <param name="e">事件参数</param>
             <returns>激活了事件, 返回真; 反之返回假</returns>
-        </member>
-        <member name="T:ijw.Next.DimensionNotMatchException">
-            <summary>
-            表示集合元素维度不匹配的异常
-            </summary>
-        </member>
-        <member name="M:ijw.Next.DimensionNotMatchException.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:ijw.Next.DimensionNotMatchException.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-        </member>
-        <member name="T:ijw.Next.ReachMaxRetryTimeException">
-            <summary>
-            表示达到最大尝试次数的异常
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ReachMaxRetryTimeException.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ReachMaxRetryTimeException.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-        </member>
-        <member name="M:ijw.Next.ReachMaxRetryTimeException.#ctor(System.String,System.Exception)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="message">用以显示的信息</param>
-            <param name="innerException">内部包含的异常</param>
         </member>
         <member name="T:ijw.Next.FloatingNumberExt">
             <summary>
@@ -1451,33 +222,6 @@
             <param name="prev">前一个值</param>
             <param name="diff">波动最大值绝对值</param>
             <return>过滤后的新值</return>
-        </member>
-        <member name="T:ijw.Next.Helper">
-            <summary>
-            一些不好分类的帮助方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.Helper.PythonStartEndCalculator(System.Int32,System.Int32@,System.Int32@,System.Nullable{System.Int32},System.Nullable{System.Int32})">
-            <summary>
-            获取python风格的起止索引值
-            </summary>
-            <param name="length">总长度</param>
-            <param name="start">计算得到的C#风格的起始索引</param>
-            <param name="end">计算得到的C#风格的结束索引</param>
-            <param name="startAtPython">启始索引. 该处字符将包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null等同于0. 默认值是0</param>
-            <param name="endAtPython">结束索引. 该处字符将不包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null代表结尾. 默认值为null.</param>
-        </member>
-        <member name="M:ijw.Next.Helper.ToAllEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.String,System.Func{``0,System.String})">
-            <summary>
-            输出一个包含集合中所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection">指定的集合</param>
-            <param name="separator">元素之间的分隔符, 默认是", "</param>
-            <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
-            <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
-            <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
-            <returns></returns>
         </member>
         <member name="T:ijw.Next.IntegerNumberExt">
             <summary>
@@ -1816,36 +560,6 @@
             表示缩进. 三个空格组成
             </summary>
         </member>
-        <member name="T:ijw.Next.EncodingHelper">
-            <summary>
-            编码API的辅助类
-            </summary>
-        </member>
-        <member name="P:ijw.Next.EncodingHelper.GB2312">
-            <summary>
-            GB2312 编码
-            </summary>
-        </member>
-        <member name="T:ijw.Next.StringTextExt">
-            <summary>
-            文本编码相关的string类扩展
-            </summary>
-        </member>
-        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String,System.Text.Encoding)">
-            <summary>
-            把字符串转换为指定编码的字节数组
-            </summary>
-            <param name="aString"></param>
-            <param name="encoding"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String)">
-            <summary>
-            使用UTF8编码转换成字节数组
-            </summary>
-            <param name="aString"></param>
-            <returns></returns>
-        </member>
         <member name="T:ijw.Next.TypeExt">
             <summary>
             
@@ -1886,6 +600,1346 @@
             
             </summary>
             <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.ConsoleHelper">
+            <summary>
+            控制台帮助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadLine(System.String)">
+            <summary>
+            先提供一个提示信息, 再接受用户输入.
+            </summary>
+            <param name="message">提示信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.PauseInDebugMode">
+            <summary>
+            当Debug模式才会暂停, 读取一个字符. 通常放在程序结束最后, 用于调试时暂停.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.NewLineCount(System.String,System.Int32)">
+            <summary>
+            计算字符串将会占据几行
+            </summary>
+            <param name="msg"></param>
+            <param name="startCursorX"></param>
+            <returns></returns>
+            <remarks>
+            非线程安全, 依赖windowswidth属性.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.WriteInColor(System.String,System.ConsoleColor)">
+            <summary>
+            使用指定颜色输出字符串
+            </summary>
+            <param name="message">输出的信息</param>
+            <param name="color">前景色, 默认使用红色</param>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.WriteLineInColor(System.String,System.ConsoleColor)">
+            <summary>
+            使用指定颜色输出字符串, 并换行.
+            </summary>
+            <param name="message">输出的信息</param>
+            <param name="color">前景色, 默认使用红色</param>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadKey(System.String,System.Boolean)">
+            <summary>
+            输出一行提示信息, 然后等待接收一个按键.
+            </summary>
+            <param name="message">提示信息</param>
+            <param name="ifIntercept"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadLineInSecondsWithThread(System.String,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>
+            指定秒数倒计时读取回车键, 如果到时间没有读取到, 自动返回指定值.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="defaultResult">倒计时结束之后返回的默认值, 默认是真</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>倒计时内读取到回车键, 返回真；读取到非回车键, 返回假；没有读取任何按键, 返回指定的默认值.</returns>
+            <remarks>
+            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
+            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadEnterInSeconds(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>读取到的按键信息</returns>
+            <remarks>
+            此方法已经过时, 请使用<see cref="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)"/>.
+            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
+            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>按键信息</returns>
+            <remarks>
+            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
+            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadExpectedKeyInSeconds(System.ConsoleKey,System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            指定时间内读取指定按键, 超时没有读取到任何按键将引发异常.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="expectedKey">期待的指定按键</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>读取到的按键信息</returns>
+        </member>
+        <member name="T:ijw.Next.ContractBrokenException">
+            <summary>
+            表示违反契约的异常
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ContractBrokenException.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">用以显示的信息</param>
+        </member>
+        <member name="M:ijw.Next.ContractBrokenException.#ctor(System.String,System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">用以显示的信息</param>
+            <param name="innerException">内部的异常</param>
+        </member>
+        <member name="T:ijw.Next.Contract`1">
+            <summary>
+            表示一个契约
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.Contract`1.#ctor(`0,System.String,System.Boolean)">
+            <summary>
+            构造一个契约对象
+            </summary>
+            <param name="value">原始值</param>
+            <param name="brokenMessage">破坏契约的提示信息</param>
+            <param name="isKept">是否遵守了契约</param>
+        </member>
+        <member name="P:ijw.Next.Contract`1.Value">
+            <summary>
+            原始值
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Contract`1.IsKept">
+            <summary>
+            是否遵守
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Contract`1.BrokenMessage">
+            <summary>
+            破坏契约提示信息
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Contract`1.ThrowsWhenBroken">
+            <summary>
+            破坏契约时抛出ContractBrokenException异常
+            </summary>
+            <returns>契约对象中的值</returns>
+        </member>
+        <member name="M:ijw.Next.Contract`1.ThrowsWhenBroken``1">
+            <summary>
+            破坏契约时抛出指定类型的异常
+            </summary>
+            <typeparam name="TException"></typeparam>
+        </member>
+        <member name="M:ijw.Next.Contract`1.ThrowsWhenBroken``1(``0)">
+            <summary>
+            破坏契约时抛出异常
+            </summary>
+            <typeparam name="TException"></typeparam>
+            <param name="exception">默认是ContractBrokenException异常</param>
+            <returns>契约对象本身</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.IComparableContractMustExt">
+            <summary>
+            IComparable泛型类的契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.MustLargerThan``1(``0,``0)">
+            <summary>
+            应该大于指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>大于指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.AddMustLargerThan``1(ijw.Next.Contract{``0},``0)">
+            <summary>
+            应该大于指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="other">指定的对象</param>
+            <returns>大于指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.MustLessThan``1(``0,``0)">
+            <summary>
+            应该小于指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>小于指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.AndMustLessThan``1(ijw.Next.Contract{``0},``0)">
+            <summary>
+            应该小于指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="other">指定的对象</param>
+            <returns>小于指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.MustNotLargerThan``1(``0,``0)">
+            <summary>
+            应该不大于(小于等于)指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>不大于(小于等于)指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.AndMustNotLargerThan``1(ijw.Next.Contract{``0},``0)">
+            <summary>
+            应该不大于(小于等于)指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="other">指定的对象</param>
+            <returns>不大于(小于等于)指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.MustNotLessThan``1(``0,``0)">
+            <summary>
+            应该不小于(大于等于)定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>不小于(大于等于)指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IComparableContractMustExt.AndMustNotLessThan``1(ijw.Next.Contract{``0},``0)">
+            <summary>
+            应该不小于(大于等于)定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="other">指定的对象</param>
+            <returns>不小于(大于等于)指定对象, Contract的IsKept为true.</returns>
+        </member>
+        <member name="T:ijw.Next.IEnumerableContractMustExt">
+            <summary>
+            IEnumerable泛型类与契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.MustNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            不应该是Null或者空集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <returns>集合不是空且有元素, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustNotNullOrEmpty``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            不应该是Null或者空集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <returns>集合不是空且有元素, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.MustEachSatisfy``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0},System.String)">
+            <summary>
+            每一项都必须满足某条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="condition">应满足的条件</param>
+            <param name="conditionDescrption">条件描述</param>
+            <returns>集合满足条件, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustEachSatisfy``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},System.Predicate{``0},System.String)">
+            <summary>
+            每一项都必须满足某条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="condition">应满足的条件</param>
+            <param name="conditionDescrption">条件描述</param>
+            <returns>集合满足条件, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.MustEachEquals``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            每个元素都应该等于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">等于</param>
+            <returns>每个元素都等于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustEachEquals``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
+            <summary>
+            每个元素都应该等于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">等于</param>
+            <returns>每个元素都等于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.MustEachNotEquals``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            每个元素都应该不等于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">等于</param>
+            <returns>每个元素都不等于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractMustExt.AndMustEachNotEquals``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
+            <summary>
+            每个元素都应该不等于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">等于</param>
+            <returns>每个元素都不等于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="T:ijw.Next.IEnumerableIComparableContractMustExt">
+            <summary>
+            IComparable序列的契约扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachLargerThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            每个元素都应该大于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">大于</param>
+            <returns>每个元素都大于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.AndMustEachLargerThan``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
+            <summary>
+            每个元素都应该大于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">大于</param>
+            <returns>每个元素都大于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachNotLargerThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            每个元素都应该不大于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">不大于</param>
+            <returns>每个元素都不大于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.AndMustEachNotLargerThan``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
+            <summary>
+            每个元素都应该不大于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">不大于</param>
+            <returns>每个元素都不大于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachLessThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            每个元素都应该小于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">小于</param>
+            <returns>每个元素都小于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.AndMustEachLessThan``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
+            <summary>
+            每个元素都应该小于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">小于</param>
+            <returns>每个元素都小于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.MustEachNotLessThan``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            每个元素都应该不小于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">不小于</param>
+            <returns>每个元素都不小于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIComparableContractMustExt.AndMustEachNotLessThan``1(ijw.Next.Contract{System.Collections.Generic.IEnumerable{``0}},``0)">
+            <summary>
+            每个元素都应该不小于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="other">不小于</param>
+            <returns>每个元素都不小于指定值, Contract的IsKept为true.</returns>
+        </member>
+        <member name="T:ijw.Next.IEnumerableIntContractMustExt">
+            <summary>
+            整数序列的契约扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.MustEachNotZero(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该不等于0
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都不等于0, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.AndMustEachNotZero(ijw.Next.Contract{System.Collections.Generic.IEnumerable{System.Int32}})">
+            <summary>
+            每个元素都应该不等于0
+            </summary>
+            <param name="contract"></param>
+            <returns>每个元素都不等于0, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.MustEachNotLessThanZero(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该不小于0
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都不小于0, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.AndMustEachNotLessThanZero(ijw.Next.Contract{System.Collections.Generic.IEnumerable{System.Int32}})">
+            <summary>
+            每个元素都应该不小于0
+            </summary>
+            <param name="contract"></param>
+            <returns>每个元素都不小于0, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.MustEachBeEven(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该是偶数
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都是偶数Contract的IsKept为true., 否则抛出ContractBrokenException异常</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.AndMustEachBeEven(ijw.Next.Contract{System.Collections.Generic.IEnumerable{System.Int32}})">
+            <summary>
+            每个元素都应该是偶数
+            </summary>
+            <param name="contract"></param>
+            <returns>每个元素都是偶数Contract的IsKept为true., 否则抛出ContractBrokenException异常</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.MustEachBeOdd(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该是奇数
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都是奇数Contract的IsKept为true., 否则抛出ContractBrokenException异常</returns>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntContractMustExt.AndMustEachBeOdd(ijw.Next.Contract{System.Collections.Generic.IEnumerable{System.Int32}})">
+            <summary>
+            每个元素都应该是奇数
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都是奇数Contract的IsKept为true., 否则抛出ContractBrokenException异常</returns>
+        </member>
+        <member name="T:ijw.Next.IntContractMustExt">
+            <summary>
+            整形类与契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.MustNotZero(System.Int32)">
+            <summary>
+            不必须等于0
+            </summary>
+            <param name="obj"></param>
+            <returns>不等于0时, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.AndMustNotZero(ijw.Next.Contract{System.Int32})">
+            <summary>
+            不必须等于0
+            </summary>
+            <param name="contract"></param>
+            <returns>不等于0时, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.MustNotLessThanZero(System.Int32)">
+            <summary>
+            必须不小于0
+            </summary>
+            <param name="obj"></param>
+            <returns>不小于0, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.AndMustNotLessThanZero(ijw.Next.Contract{System.Int32})">
+            <summary>
+            必须不小于0
+            </summary>
+            <param name="contract"></param>
+            <returns>不小于0, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.MustEven(System.Int32)">
+            <summary>
+            必须是偶数
+            </summary>
+            <param name="obj"></param>
+            <returns>是偶数, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.AndMustEven(ijw.Next.Contract{System.Int32})">
+            <summary>
+            必须是偶数
+            </summary>
+            <param name="contract"></param>
+            <returns>是偶数, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.MustOdd(System.Int32)">
+            <summary>
+            必须是奇数
+            </summary>
+            <param name="obj"></param>
+            <returns>是奇数, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.AndMustOdd(ijw.Next.Contract{System.Int32})">
+            <summary>
+            必须是奇数
+            </summary>
+            <param name="contract"></param>
+            <returns>是奇数, Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.MustValidIndexFor(System.Int32,System.Collections.ICollection)">
+            <summary>
+            必须是指定集合的有效索引值
+            </summary>
+            <param name="obj"></param>
+            <param name="collection">指定的集合</param>
+            <returns>有效索引，Contract的IsKept为true</returns>
+        </member>
+        <member name="M:ijw.Next.IntContractMustExt.AndMustValidIndexFor(ijw.Next.Contract{System.Int32},System.Collections.ICollection)">
+            <summary>
+            必须是指定集合的有效索引值
+            </summary>
+            <param name="contract"></param>
+            <param name="collection">指定的集合</param>
+            <returns>有效索引，Contract的IsKept为true</returns>
+        </member>
+        <member name="T:ijw.Next.ObjectContractMustExt">
+            <summary>
+            提供一系列Object的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.MustNotNullArgument``1(``0,System.String)">
+            <summary>
+            应该不是Null参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="argumentName">参数的名字</param>
+            <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.AndMustNotNullArgument``1(ijw.Next.Contract{``0},System.String)">
+            <summary>
+            应该不是Null参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="paramName">参数的名字</param>
+            <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.MustNotNull``1(``0,System.String)">
+            <summary>
+            应该不是Null引用
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="message">错误信息</param>
+            <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.AndMustNotNull``1(ijw.Next.Contract{``0},System.String)">
+            <summary>
+            应该不是Null引用
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="message">错误信息</param>
+            <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.MustSatisfy``1(``0,System.Predicate{``0},System.String)">
+            <summary>
+            应该满足指定的条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="condition">应满足的条件</param>
+            <param name="conditionDescrption">条件的描述信息</param>
+            <returns>满足条件Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.AndMustSatisfy``1(ijw.Next.Contract{``0},System.Predicate{``0},System.String)">
+            <summary>
+            应该满足指定的条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="condition">应满足的条件</param>
+            <param name="conditionDescrption">条件的描述信息</param>
+            <returns>满足条件Contract的IsKept为true. </returns>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.MustEquals``1(``0,``0)">
+            <summary>
+            应该与指定的对象相等.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">用以比较的对象</param>
+            <returns>与指定的对象相等Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.AndMustEquals``1(ijw.Next.Contract{``0},``0)">
+            <summary>
+            应该与指定的对象相等.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="other">用以比较的对象</param>
+            <returns>与指定的对象相等Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.MustNotEquals``1(``0,``0)">
+            <summary>
+            应该与指定的对象不相等.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">用以比较的对象</param>
+            <returns>与指定的对象相等Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.ObjectContractMustExt.AndMustNotEquals``1(ijw.Next.Contract{``0},``0)">
+            <summary>
+            应该与指定的对象相等.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="contract"></param>
+            <param name="other">用以比较的对象</param>
+            <returns>与指定的对象相等Contract的IsKept为true.</returns>
+        </member>
+        <member name="T:ijw.Next.StringContractMustExt">
+            <summary>
+            string类与契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.StringContractMustExt.MustExistSuchFile(System.String)">
+            <summary>
+            应该存在这样的文件
+            </summary>
+            <param name="path"></param>
+            <returns>存在指定路径的文件, Contract的IsKept为true. 否则抛出FileNotFoundException异常.</returns>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:ijw.Next.StringContractMustExt.AndMustExistSuchFile(ijw.Next.Contract{System.String})">
+            <summary>
+            应该存在这样的文件
+            </summary>
+            <param name="contract"></param>
+            <returns>存在指定路径的文件, Contract的IsKept为true. 否则抛出FileNotFoundException异常.</returns>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:ijw.Next.StringContractMustExt.MustFullFileName(System.String)">
+            <summary>
+            应该是有效的绝对路径名
+            </summary>
+            <param name="path"></param>
+            <returns>是有效的绝对路径名, Contract的IsKept为true.</returns>
+        </member>
+        <member name="M:ijw.Next.StringContractMustExt.AndMustFullFileName(ijw.Next.Contract{System.String})">
+            <summary>
+            应该是有效的绝对路径名
+            </summary>
+            <param name="contract"></param>
+            <returns>是有效的绝对路径名, Contract的IsKept为true.</returns>
+        </member>
+        <member name="T:ijw.Next.BoolExt">
+            <summary>
+            契约相关的bool的扩展类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.BoolExt.ThrowsWhenBroke``1(System.Boolean)">
+            <summary>
+            破坏契约时抛出异常
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="aBool"></param>
+        </member>
+        <member name="M:ijw.Next.BoolExt.ThrowsWhenBroke``1(System.Boolean,System.String)">
+            <summary>
+            破坏契约时抛出异常
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="aBool"></param>
+            <param name="exceptionMessage">异常消息字符串</param>
+        </member>
+        <member name="T:ijw.Next.IComparableContractShouldExt">
+            <summary>
+            IComparable泛型类的契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldLargerThan``1(``0,``0)">
+            <summary>
+            应该大于指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>大于指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldLessThan``1(``0,``0)">
+            <summary>
+            应该小于指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>小于指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldNotLargerThan``1(``0,``0)">
+            <summary>
+            应该不大于(小于等于)指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>不大于(小于等于)指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IComparableContractShouldExt.ShouldNotLessThan``1(``0,``0)">
+            <summary>
+            应该不小于(大于等于)定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">指定的对象</param>
+            <returns>不小于(大于等于)指定对象, 返回true. 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.IEnumerableContractExt">
+            <summary>
+            IEnumerable泛型类与契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractExt.ShouldNotBeEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            不应该为空集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <returns>集合有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractExt.ShouldNotBeNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            不应该是Null或者空集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <returns>集合不是空且有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractExt.ShouldEachSatisfy``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+            <summary>
+            应该满足某条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="condition">应满足的条件</param>
+            <returns>集合满足条件, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractExt.ShouldEachEquals(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            每个元素都应该等于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="equalsTo">等于</param>
+            <returns>每个元素都等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableContractExt.ShouldEachNotEquals(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            每个元素都应该不等于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="notEqualsTo">不等于</param>
+            <returns>每个元素都不等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            每个元素都应该大于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="largerThan">大于</param>
+            <returns>每个元素都大于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachNotLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            每个元素都应该不大于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="notLargerThan">不大于</param>
+            <returns>每个元素都不大于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            每个元素都应该小于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="lessThan">小于</param>
+            <returns>每个元素都小于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachNotLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+            <summary>
+            每个元素都应该不小于指定值
+            </summary>
+            <param name="collection"></param>
+            <param name="notLessThan">不小于</param>
+            <returns>每个元素都不小于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.IEnumerableIntergerNumberContractShouldExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachNotBeZero(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该不等于0
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都不等于0, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachNotLessThanZero(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该不小于0
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都不小于0, 返回true. 否则抛出ContractBrokenException异常. </returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachBeEven(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该是偶数
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都是偶数返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IEnumerableIntergerNumberContractShouldExt.ShouldEachBeOdd(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            每个元素都应该是奇数
+            </summary>
+            <param name="collection"></param>
+            <returns>每个元素都是奇数返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.IntegerContractShouldExt">
+            <summary>
+            整形类与契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeNotZero(System.Int32)">
+            <summary>
+            应该不等于0
+            </summary>
+            <param name="obj"></param>
+            <returns>不等于0返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeNotLessThanZero(System.Int32)">
+            <summary>
+            应该不小于0
+            </summary>
+            <param name="obj"></param>
+            <returns>不小于0, 返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeEven(System.Int32)">
+            <summary>
+            应该是偶数
+            </summary>
+            <param name="obj"></param>
+            <returns>是偶数返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.IntegerContractShouldExt.ShouldBeOdd(System.Int32)">
+            <summary>
+            应该是奇数
+            </summary>
+            <param name="obj"></param>
+            <returns>是奇数返回true, 否则抛出ContractBrokenException异常</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.NotSatisfiedConditionException`1">
+            <summary>
+            表示不满足某条件的异常
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">错误信息</param>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(System.String,System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="M:ijw.Next.NotSatisfiedConditionException`1.#ctor(`0,System.Predicate{`0})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="obj">不满足条件的对象</param>
+            <param name="predicate">应该满足的条件</param>
+        </member>
+        <member name="T:ijw.Next.ObjectContractShouldExt">
+            <summary>
+            提供一系列Object的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldBeNotNullArgument``1(``0,System.String)">
+            <summary>
+            应该不是Null参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="paramName">参数的名字</param>
+            <returns>不是Null,返回true. 反之抛出ArgumentNullException异常</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldBeNotNullReference``1(``0,System.String)">
+            <summary>
+            应该不是Null引用
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="message">错误信息</param>
+            <returns>不是Null,返回true. 反之抛出NullReferenceException异常.</returns>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldSatisfy``1(``0,System.Predicate{``0})">
+            <summary>
+            应该满足指定的条件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="condition">应满足的条件</param>
+            <returns>满足条件返回true. 反之抛出NotSatisfiedConditionException异常.</returns>
+            <exception cref="T:ijw.Next.NotSatisfiedConditionException`1"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldSatisfy``2(``0,System.Predicate{``0},``1)">
+            <summary>
+            应该满足指定的条件, 否则抛出指定的异常.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TException"></typeparam>
+            <param name="obj"></param>
+            <param name="condition">应满足的条件</param>
+            <param name="excpetion">不满足时会抛出的异常</param>
+            <returns>满足条件返回true, 否则抛出指定的异常.</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldEquals``1(``0,``0)">
+            <summary>
+            应该与指定的对象相等.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">用以比较的对象</param>
+            <returns>与指定的对象相等返回true, 否则抛出ContractBrokenException异常.</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="M:ijw.Next.ObjectContractShouldExt.ShouldNotEquals``1(``0,``0)">
+            <summary>
+            应该与指定的对象相等.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="other">用以比较的对象</param>
+            <returns>与指定的对象相等返回true, 否则抛出ContractBrokenException异常.</returns>
+            <exception cref="T:ijw.Next.ContractBrokenException"></exception>
+        </member>
+        <member name="T:ijw.Next.StringContractShouldExt">
+            <summary>
+            string类与契约相关的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.StringContractShouldExt.ShouldExistSuchFile(System.String)">
+            <summary>
+            应该存在这样的文件
+            </summary>
+            <param name="path"></param>
+            <returns>存在指定路径的文件, 返回true. 否则抛出FileNotFoundException异常.</returns>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:ijw.Next.StringContractShouldExt.ShouldBeValidAbsoluteName(System.String)">
+            <summary>
+            应该是有效的绝对路径名
+            </summary>
+            <param name="path"></param>
+            <returns>是有效的绝对路径名, 返回true. 否则抛出FileNotFoundException异常.</returns>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="T:ijw.Next.DebugHelper">
+            <summary>
+            提供对Debug的一系列Helper方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DebugHelper.Write(System.String,System.String)">
+            <summary>
+            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
+            </summary>
+            <param name="message">输出信息</param>
+            <param name="callerName">调用者的方法名字</param>
+        </member>
+        <member name="M:ijw.Next.DebugHelper.WriteLine(System.String,System.String)">
+            <summary>
+            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
+            </summary>
+            <param name="message">输出信息</param>
+            <param name="callerName">调用者的方法名字</param>
+        </member>
+        <member name="M:ijw.Next.DebugHelper.GetCallerName">
+            <summary>
+            获取调用者的方法名称.注意:获取的是调用GetCallerName()所在方法的方法的名称.
+            </summary>
+            <returns>返回方法名称, 形式如：类型名.方法名称.</returns>
+        </member>
+        <member name="M:ijw.Next.DebugHelper.GetCallerMethod">
+            <summary>
+            获取调用者的方法信息.注意:获取的是调用GetCallerName()所在方法的方法的信息.
+            </summary>
+            <returns>返回方法信息.</returns>
+        </member>
+        <member name="T:ijw.Next.ActionWithRef`1">
+            <summary>
+            接受ref参数的委托
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj">ref 参数</param>
+        </member>
+        <member name="T:ijw.Next.ActionWithRef`2">
+            <summary>
+            接受两个ref参数的委托
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="obj1">第一个ref参数</param>
+            <param name="obj2">第二个ref参数</param>
+        </member>
+        <member name="T:ijw.Next.ActionWithRef`3">
+            <summary>
+            接受三个ref参数的委托
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="T3"></typeparam>
+            <param name="obj1">第一个ref参数</param>
+            <param name="obj2">第二个ref参数</param>
+            <param name="obj3">第三个ref参数</param>
+        </member>
+        <member name="T:ijw.Next.ActionWithRef`4">
+            <summary>
+            接受三个ref参数的委托
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="T3"></typeparam>
+            <typeparam name="T4"></typeparam>
+            <param name="obj1">第1个ref参数</param>
+            <param name="obj2">第2个ref参数</param>
+            <param name="obj3">第3个ref参数</param>
+            <param name="obj4">第4个ref参数</param>
+        </member>
+        <member name="T:ijw.Next.BooleanCondition">
+            <summary>
+            一个无参数, 返回值时bool型的委托
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.DelegateHelper">
+            <summary>
+            多次运行一个方法或者委托的帮助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.Run(System.Action,System.Int32)">
+            <summary>
+            运行该委托指定次数
+            </summary>
+            <param name="loopbody"></param>
+            <param name="times">运行次数</param>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.Run(System.Int32,System.Action)">
+            <summary>
+            运行某方法指定次数
+            </summary>
+            <param name="times">运行次数</param>
+            <param name="loopBody">欲运行的委托</param>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrue(System.Func{System.Boolean},System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            </summary>
+            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <returns>是否成功运行该指定方法</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrue(System.Func{System.Int32,System.Boolean},System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            方法每次运行时将得知这是第几次运行.
+            </summary>
+            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <returns>是否成功运行该指定方法</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRun``1(System.Func{``0},System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRun``1(System.Func{System.Int32,``0},System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            方法每次运行时将得知这是第几次运行.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNull``1(System.Func{``0},System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNull``1(System.Func{System.Int32,``0},System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
+            方法每次运行时将得知这是第几次运行.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.RunWithInterval(System.Action,System.Int32,System.Int32)">
+            <summary>
+            运行该委托指定次数
+            </summary>
+            <param name="loopbody"></param>
+            <param name="times">运行次数</param>
+            <param name="interval">运行之间的间隔</param>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.RunWithInterval(System.Int32,System.Action,System.Int32)">
+            <summary>
+            运行某方法指定次数
+            </summary>
+            <param name="times">运行次数</param>
+            <param name="loopBody">欲运行的委托</param>
+            <param name="interval">运行之间的间隔</param>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrueWithInterval(System.Func{System.Boolean},System.Int32,System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            </summary>
+            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <param name="interval">运行之间的间隔</param>
+            <returns>是否成功运行该指定方法</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilTrueWithInterval(System.Func{System.Int32,System.Boolean},System.Int32,System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            方法每次运行时将得知这是第几次运行.
+            </summary>
+            <param name="toRun">指定的方法, 返回true则为成功运行, false为运行失败.</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <param name="interval">运行之间的间隔</param>
+            <returns>是否成功运行该指定方法</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunWithInterval``1(System.Func{``0},System.Int32,System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <param name="interval">运行之间的间隔</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunWithInterval``1(System.Func{System.Int32,``0},System.Int32,System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法成功运行不抛出异常. 达到最大次数后仍未成功, 则抛出异常.
+            方法每次运行时将得知这是第几次运行.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <param name="interval">运行之间的间隔</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNullWithInterval``1(System.Func{``0},System.Int32,System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <param name="interval">运行之间的间隔</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="M:ijw.Next.DelegateHelper.TryRunUntilNotNullWithInterval``1(System.Func{System.Int32,``0},System.Int32,System.Int32)">
+            <summary>
+            尝试运行某方法指定次数, 直至该方法不返回空. 达到最大次数后仍未得到有效值, 则抛出异常.
+            方法每次运行时将得知这是第几次运行.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toRun">欲运行的方法</param>
+            <param name="maxRetryTimes">尝试的最多次数</param>
+            <param name="interval">运行之间的间隔</param>
+            <returns>返回该指定方法成功运行的结果</returns>
+        </member>
+        <member name="T:ijw.Next.DimensionNotMatchException">
+            <summary>
+            表示集合元素维度不匹配的异常
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DimensionNotMatchException.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DimensionNotMatchException.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">用以显示的信息</param>
+        </member>
+        <member name="T:ijw.Next.ReachMaxRetryTimeException">
+            <summary>
+            表示达到最大尝试次数的异常
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ReachMaxRetryTimeException.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ReachMaxRetryTimeException.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">用以显示的信息</param>
+        </member>
+        <member name="M:ijw.Next.ReachMaxRetryTimeException.#ctor(System.String,System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">用以显示的信息</param>
+            <param name="innerException">内部包含的异常</param>
+        </member>
+        <member name="T:ijw.Next.IjwHelper">
+            <summary>
+            一些不好分类的帮助方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IjwHelper.PythonStartEndCalculator(System.Int32,System.Int32@,System.Int32@,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            获取python风格的起止索引值
+            </summary>
+            <param name="length">总长度</param>
+            <param name="start">计算得到的C#风格的起始索引</param>
+            <param name="end">计算得到的C#风格的结束索引</param>
+            <param name="startAtPython">启始索引. 该处字符将包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null等同于0. 默认值是0</param>
+            <param name="endAtPython">结束索引. 该处字符将不包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null代表结尾. 默认值为null.</param>
+        </member>
+        <member name="M:ijw.Next.IjwHelper.ToAllEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.String,System.Func{``0,System.String})">
+            <summary>
+            输出一个包含集合中所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection">指定的集合</param>
+            <param name="separator">元素之间的分隔符, 默认是", "</param>
+            <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
+            <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
+            <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.EncodingHelper">
+            <summary>
+            编码API的辅助类
+            </summary>
+        </member>
+        <member name="P:ijw.Next.EncodingHelper.GB2312">
+            <summary>
+            GB2312 编码
+            </summary>
+        </member>
+        <member name="T:ijw.Next.StringTextExt">
+            <summary>
+            文本编码相关的string类扩展
+            </summary>
+        </member>
+        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String,System.Text.Encoding)">
+            <summary>
+            把字符串转换为指定编码的字节数组
+            </summary>
+            <param name="aString"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String)">
+            <summary>
+            使用UTF8编码转换成字节数组
+            </summary>
+            <param name="aString"></param>
             <returns></returns>
         </member>
     </members>

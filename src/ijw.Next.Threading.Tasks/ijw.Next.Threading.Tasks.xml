@@ -120,27 +120,6 @@
             是否应该暂停
             </summary>
         </member>
-        <member name="T:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1">
-            <summary>
-            封装带有进度通知的异步执行循环任务通用类, 提供启动, 暂停, 进度报告和退出的功能. 
-            可以执行指定的循环体, 循环体的每次迭代会检查指定的停止条件和暂停条件.
-            </summary>
-        </member>
-        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1.Progress">
-            <summary>
-            设置进度报告的回调函数
-            </summary>
-        </member>
-        <member name="P:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1.LoopFunction">
-            <summary>
-            循环体, 返回一个值, 用作每次迭代的进度报告参数
-            </summary>
-        </member>
-        <member name="M:ijw.Next.Threading.Tasks.BackgroundLooperWithReport`1.LoopBody">
-            <summary>
-            循环体
-            </summary>
-        </member>
         <member name="T:ijw.Next.Threading.Tasks.TaskHelper">
             <summary>
             Task帮助类

@@ -122,7 +122,7 @@
             <param name="stream"></param>
             <param name="aString">欲写入的字符串</param>
         </member>
-        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int32)">
+        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int64)">
             <summary>
             使用Unicode编码方式, 调用BinaryReader从流中读取指定长度的二进制数据
             </summary>
@@ -130,7 +130,7 @@
             <param name="length">读取长度</param>
             <returns>读取的二进制数组</returns>
         </member>
-        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int32,System.Text.Encoding)">
+        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int64,System.Text.Encoding)">
             <summary>
             使用指定的编码方式, 调用BinaryReader从流中读取指定长度的二进制数据
             </summary>
@@ -180,7 +180,7 @@
             <param name="filename">写入的文件</param>
             <param name="append">是否追加. 默认是false</param>
         </member>
-        <member name="M:ijw.Next.IO.StreamExt.WriteToBinaryFile(System.IO.Stream,System.String,System.Int32,System.Text.Encoding,System.Text.Encoding,System.Boolean)">
+        <member name="M:ijw.Next.IO.StreamExt.WriteToBinaryFileAndDispose(System.IO.Stream,System.String,System.Int64,System.Text.Encoding,System.Text.Encoding,System.Boolean)">
             <summary>
             使用指定的编码方式调用ReadBytesByBinaryReader方法读取流中指定长度的二进制数据, 然后使用指定编码覆盖(或追加)到指定文件.
             </summary>

@@ -16,8 +16,8 @@ namespace ijw.Next.IO.CsvReader.xTest {
             else {
                 cfr.CsvFilePath = files[0];
                 cfr.IsFirstLineHeader = true;
-                var vec = cfr.ReadObjects<CsvTestClass>();
-                Assert.Equal(47, vec.Count());
+                var vec = cfr.ReadObjects<CsvTestClass>().ToArray();
+                Assert.Equal(47, vec.Length);
             }
 
             dir = Environment.CurrentDirectory + "\\..\\..\\..\\testfiles";
@@ -28,8 +28,8 @@ namespace ijw.Next.IO.CsvReader.xTest {
             else {
                 cfr.CsvFilePath = files[0];
                 cfr.IsFirstLineHeader = true;
-                var vec = cfr.ReadObjects<CsvTestClass>();
-                Assert.Equal(27, vec.Count());
+                var vec = cfr.ReadObjects<CsvTestClass>().ToArray();
+                Assert.Equal(27, vec.Length);
             }
         }
     }
