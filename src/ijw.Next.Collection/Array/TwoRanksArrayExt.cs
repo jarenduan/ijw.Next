@@ -193,16 +193,9 @@ namespace ijw.Next.Collection {
         /// <param name="index">行索引</param>
         /// <param name="value">给定的数组</param>
         public static void SetRowAt<T>(this T[,] array, int index, T[] value) {
-            //TODO: use ijw.contract
-            if (index >= array.GetLength(0)) {
-                throw new ArgumentOutOfRangeException();
-            }
-            if (value == null) {
-                throw new ArgumentNullException();
-            }
-            if (value.Length != array.GetLength(1)) {
-                throw new ArgumentException();
-            }
+            index.MustNotLessThan(array.GetLength(0));
+            value.MustNotNullArgument();
+            value.Length.MustEquals(array.GetLength(1));
             int columnCount = array.GetLength(1);
             for (int i = 0; i < columnCount; i++) {
                 array[index, i] = value[i];
