@@ -29,14 +29,26 @@ namespace ijw.Next.IO {
             }
         }
 
-        //TODO: add write bytes to file
-        //public static void WriteBytesToFile(string filepath, byte[] content, Encoding encoding, bool append = false) {
-        //    using (BinaryWriter writer = ) {
+        /// <summary>
+        /// 使用指定的编码向指定的文件写入二进制,可选追加或者创建/覆盖.
+        /// </summary>
+        /// <param name="filepath">写入文件</param>
+        /// <param name="content">写入的内容</param>
+        /// <param name="append">是否追加. true为追加, false为创建或覆盖</param>
+        public static void WriteBytesToFile(string filepath, byte[] content, bool append = false) {
+            WriteBytesToFile(filepath, content, Encoding.Unicode, append);
+        }
 
-        //    }
-
-        //}
-       
+        /// <summary>
+        /// 使用指定的编码向指定的文件写入二进制,可选追加或者创建/覆盖.
+        /// </summary>
+        /// <param name="filepath">写入文件</param>
+        /// <param name="content">写入的内容</param>
+        /// <param name="encoding">指定的编码方法</param>
+        /// <param name="append">是否追加. true为追加, false为创建或覆盖</param>
+        public static void WriteBytesToFile(string filepath, byte[] content, Encoding encoding, bool append = false) {
+            content.WriteToFile(filepath, encoding, append);
+        }
         /// <summary>
         /// 按通配符拷贝多个文件.
         /// </summary>
@@ -52,7 +64,6 @@ namespace ijw.Next.IO {
                 foreach (var f in files) {
                     FileInfo fi = new FileInfo(f);
                     File.Copy(f, Path.Combine(destDir, fi.Name), overwrite);
-                    //Console.WriteLine("  copy from " + fi.DirectoryName);
                 }
                 return files;
             }
