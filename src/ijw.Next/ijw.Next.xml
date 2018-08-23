@@ -789,7 +789,7 @@
             <param name="other">指定的对象</param>
             <returns>大于指定对象, Contract的IsKept为true.</returns>
         </member>
-        <member name="M:ijw.Next.IComparableContractMustExt.AddMustLargerThan``1(ijw.Next.Contract{``0},``0)">
+        <member name="M:ijw.Next.IComparableContractMustExt.AndMustLargerThan``1(ijw.Next.Contract{``0},``0)">
             <summary>
             应该大于指定对象
             </summary>
