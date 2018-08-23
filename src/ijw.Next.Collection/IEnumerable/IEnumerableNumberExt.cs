@@ -29,7 +29,7 @@ namespace ijw.Next.Collection {
                     max = Math.Max(max, v);
                     min = Math.Min(min, v);
                     sum += v;
-                    count++;
+                    count = checked(count + 1);
                 }
                 sum = sum - max - min;
                 return sum / (count - 2);
@@ -53,7 +53,7 @@ namespace ijw.Next.Collection {
                     max = Math.Max(max, v);
                     min = Math.Min(min, v);
                     sum += v;
-                    count++;
+                    count = checked(count + 1);
                 }
                 sum = sum - max - min;
                 return sum / (count - 2);
@@ -77,7 +77,7 @@ namespace ijw.Next.Collection {
                     max = Math.Max(max, v);
                     min = Math.Min(min, v);
                     sum += v;
-                    count++;
+                    count = checked(count + 1);
                 }
                 sum = sum - max - min;
                 return sum / (count - 2);
@@ -102,7 +102,7 @@ namespace ijw.Next.Collection {
                     max = Math.Max(max, v);
                     min = Math.Min(min, v);
                     sum += v;
-                    count++;
+                    count = checked(count + 1);
                 }
                 sum = sum - max - min;
                 return sum / (count - 2);
@@ -127,7 +127,7 @@ namespace ijw.Next.Collection {
                     max = Math.Max(max, v);
                     min = Math.Min(min, v);
                     sum += v;
-                    count++;
+                    count = checked(count + 1);
                 }
                 sum = sum - max - min;
                 return sum / (count - 2);

@@ -192,7 +192,7 @@ namespace ijw.Next.Collection {
                        tuple.collection3
                    );
                 doWork(e1, iter2.Current, iter3.Current, index);
-                index++;
+                index = checked(index + 1);
             }
         }
 

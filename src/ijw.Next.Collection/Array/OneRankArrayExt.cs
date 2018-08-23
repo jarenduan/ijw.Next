@@ -41,12 +41,12 @@ namespace ijw.Next.Collection {
         public static T[] RemoveAll<T>(this T[] source, T toRemove) {
             int len = source.Length;
             T[] result = new T[len];
-            int j = 0;
+            int index = 0;
             for (int i = 0; i < len; i++) {
                 if (source[i].Equals(toRemove))
                     continue;
-                result[j] = source[i];
-                j++;
+                result[index] = source[i];
+                index = checked(index + 1);
             }
             return result;
         }

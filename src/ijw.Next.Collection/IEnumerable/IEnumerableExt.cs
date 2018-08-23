@@ -525,12 +525,12 @@ namespace ijw.Next.Collection {
         /// <param name="indexes">指定的索引, 一组整数</param>
         /// <returns></returns>
         public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes) {
-            int i = 0;
+            int index = 0;
             foreach (var e in source) {
-                if (indexes.Contains(i)) {
+                if (indexes.Contains(index)) {
                     yield return e;
                 }
-                i++;
+                index = checked(index + 1);
             }
         }
 

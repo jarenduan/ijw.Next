@@ -52,7 +52,7 @@ namespace ijw.Next.Collection {
             foreach (var e1 in collection1) {
                 if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1,collection2);
                 action(e1, iter.Current, index);
-                index++;
+                index = checked(index + 1);
             }
 
             if (forceDimensionMatching) {
@@ -115,7 +115,7 @@ namespace ijw.Next.Collection {
             foreach (var e1 in collection1) {
                 if (!iter.MoveNext()) throw new TwoIEnumerableCountNotMatchException(collection1,  collection2);
                 yield return func(e1, iter.Current, index);
-                index++;
+                index = checked(index + 1);
             }
             if (forceDimensionMatching) {
                 //collection2 还有元素的话, 就是异常了
@@ -146,7 +146,7 @@ namespace ijw.Next.Collection {
                     index = -index;
                     break;
                 }
-                index++;
+                index = checked(index + 1);
             }
 
             if (forceDimensionMatching) {
@@ -180,7 +180,7 @@ namespace ijw.Next.Collection {
                     index = -index;
                     break;
                 }
-                index++;
+                index = checked(index + 1);
             }
 
             if (forceDimensionMatching) {
@@ -311,7 +311,7 @@ namespace ijw.Next.Collection {
                        collection3
                    );
                 doWork(e1, iter2.Current, iter3.Current, index);
-                index++;
+                index = checked(index + 1);
             }
         }
 
