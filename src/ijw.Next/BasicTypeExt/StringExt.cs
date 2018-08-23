@@ -23,7 +23,7 @@ namespace ijw.Next {
         /// <param name="endIndex">结束索引. 该处字符将不包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null代表结尾. 默认值为null.</param>
         /// <returns></returns>
         public static string SubstringPythonStyle(this string astring, int? startIndex = null, int? endIndex = null) {
-            Helper.PythonStartEndCalculator(astring.Length, out int startAt, out int endAt, startIndex, endIndex);
+            IjwHelper.PythonStartEndCalculator(astring.Length, out int startAt, out int endAt, startIndex, endIndex);
             if (endAt < 0) {
                 return string.Empty;
             }

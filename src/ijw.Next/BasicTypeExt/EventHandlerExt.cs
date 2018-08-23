@@ -47,14 +47,12 @@ namespace ijw.Next {
             where T : EventArgs
 #endif
         {
-            if (handler != null)
-            {
+            if (handler != null) {
                 debugWriteInvokingInfo(handler);
                 handler.Invoke(sender, e);
                 return true;
             }
-            else
-            {
+            else {
                 DebugHelper.WriteLine("Null handler, none invoked.");
                 return false;
             }
