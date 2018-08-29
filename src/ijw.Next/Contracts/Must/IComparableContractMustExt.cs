@@ -75,7 +75,7 @@ namespace ijw.Next {
             => contract.Value.MustNotLargerThan(other);
 
         /// <summary>
-        /// 应该不小于(大于等于)定对象
+        /// 应该不小于(大于等于)指定对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -88,7 +88,7 @@ namespace ijw.Next {
         }
 
         /// <summary>
-        /// 应该不小于(大于等于)定对象
+        /// 应该不小于(大于等于)指定对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="contract"></param>
