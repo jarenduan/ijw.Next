@@ -33,6 +33,22 @@
             提供对Float、Double等浮点类型的若干扩展方法
             </summary>
         </member>
+        <member name="M:ijw.Next.FloatingNumberExt.TruncateTop(System.Single,System.Single)">
+            <summary>
+            用上限截断
+            </summary>
+            <param name="f"></param>
+            <param name="upperBound">上限</param>
+            <returns>大于上限, 返回上限值; 反之返回自身</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.TruncateBottom(System.Single,System.Single)">
+            <summary>
+            用下限截断
+            </summary>
+            <param name="f"></param>
+            <param name="lowerBound">下限</param>
+            <returns>小于下限, 返回下限值; 反之返回自身</returns>
+        </member>
         <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Double,System.Int32)">
             <summary>
             幂计算
@@ -432,7 +448,7 @@
             添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
             </summary>
             <param name="astring"></param>
-            <returns></returns>
+            <returns>添加短格式时间前缀后的字符串</returns>
         </member>
         <member name="M:ijw.Next.StringExt.SubstringPythonStyle(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
@@ -441,7 +457,7 @@
             <param name="astring"></param>
             <param name="startIndex">启始索引. 该处字符将包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null等同于0. 默认值是0</param>
             <param name="endIndex">结束索引. 该处字符将不包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null代表结尾. 默认值为null.</param>
-            <returns></returns>
+            <returns>子字符串</returns>
         </member>
         <member name="M:ijw.Next.StringExt.SubStringFromTo(System.String,System.Int32,System.Int32)">
             <summary>
@@ -450,7 +466,7 @@
             <param name="astring"></param>
             <param name="fromIndex">起始索引（该位置字符也包括在字串中）</param>
             <param name="toIndex">结束索引（该位置字符也包括在字串中）</param>
-            <returns></returns>
+            <returns>子字符串</returns>
         </member>
         <member name="M:ijw.Next.StringExt.Repeat(System.String,System.Int32)">
             <summary>
@@ -458,7 +474,7 @@
             </summary>
             <param name="astring"></param>
             <param name="times">重复次数, 小于1则返回null</param>
-            <returns></returns>
+            <returns>重复后的字符串</returns>
         </member>
         <member name="M:ijw.Next.StringExt.FormatJson(System.String)">
             <summary>
@@ -505,7 +521,15 @@
             </summary>
             <param name="s"></param>
             <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
-            <returns></returns>
+            <returns>转换后的int</returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.ToFloatAnyway(System.String,System.Single)">
+            <summary>
+            尝试转换成float. 如果NaN或转换失败将返回defaultNumer
+            </summary>
+            <param name="s"></param>
+            <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+            <returns>转换后的float</returns>
         </member>
         <member name="M:ijw.Next.StringExt.ToEnumAnyway``1(System.String,System.Boolean,``0)">
             <summary>
@@ -651,21 +675,6 @@
             <param name="message">提示信息</param>
             <param name="ifIntercept"></param>
             <returns></returns>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadLineInSecondsWithThread(System.String,System.Int32,System.String,System.String,System.Boolean)">
-            <summary>
-            指定秒数倒计时读取回车键, 如果到时间没有读取到, 自动返回指定值.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="defaultResult">倒计时结束之后返回的默认值, 默认是真</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>倒计时内读取到回车键, 返回真；读取到非回车键, 返回假；没有读取任何按键, 返回指定的默认值.</returns>
-            <remarks>
-            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
-            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
-            </remarks>
         </member>
         <member name="M:ijw.Next.ConsoleHelper.ReadEnterInSeconds(System.String,System.Int32,System.String,System.Boolean)">
             <summary>
@@ -836,7 +845,7 @@
         </member>
         <member name="M:ijw.Next.IComparableContractMustExt.MustNotLessThan``1(``0,``0)">
             <summary>
-            应该不小于(大于等于)定对象
+            应该不小于(大于等于)指定对象
             </summary>
             <typeparam name="T"></typeparam>
             <param name="obj"></param>
@@ -845,7 +854,7 @@
         </member>
         <member name="M:ijw.Next.IComparableContractMustExt.AndMustNotLessThan``1(ijw.Next.Contract{``0},``0)">
             <summary>
-            应该不小于(大于等于)定对象
+            应该不小于(大于等于)指定对象
             </summary>
             <typeparam name="T"></typeparam>
             <param name="contract"></param>
@@ -1637,18 +1646,6 @@
             <param name="message">输出信息</param>
             <param name="callerName">调用者的方法名字</param>
         </member>
-        <member name="M:ijw.Next.DebugHelper.GetCallerName">
-            <summary>
-            获取调用者的方法名称.注意:获取的是调用GetCallerName()所在方法的方法的名称.
-            </summary>
-            <returns>返回方法名称, 形式如：类型名.方法名称.</returns>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.GetCallerMethod">
-            <summary>
-            获取调用者的方法信息.注意:获取的是调用GetCallerName()所在方法的方法的信息.
-            </summary>
-            <returns>返回方法信息.</returns>
-        </member>
         <member name="T:ijw.Next.ActionWithRef`1">
             <summary>
             接受ref参数的委托
@@ -1901,6 +1898,50 @@
             <param name="endAtPython">结束索引. 该处字符将不包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null代表结尾. 默认值为null.</param>
         </member>
         <member name="M:ijw.Next.IjwHelper.ToAllEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.String,System.Func{``0,System.String})">
+            <summary>
+            输出一个包含集合中所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection">指定的集合</param>
+            <param name="separator">元素之间的分隔符, 默认是", "</param>
+            <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
+            <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
+            <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.EncodingHelper">
+            <summary>
+            编码API的辅助类
+            </summary>
+        </member>
+        <member name="P:ijw.Next.EncodingHelper.GB2312">
+            <summary>
+            GB2312 编码
+            </summary>
+        </member>
+        <member name="T:ijw.Next.StringTextExt">
+            <summary>
+            文本编码相关的string类扩展
+            </summary>
+        </member>
+        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String,System.Text.Encoding)">
+            <summary>
+            把字符串转换为指定编码的字节数组
+            </summary>
+            <param name="aString"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String)">
+            <summary>
+            使用UTF8编码转换成字节数组
+            </summary>
+            <param name="aString"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
+tring,System.String,System.String,System.Func{``0,System.String})">
             <summary>
             输出一个包含集合中所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
             </summary>
