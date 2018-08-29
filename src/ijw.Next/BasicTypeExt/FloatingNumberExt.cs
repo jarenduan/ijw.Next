@@ -6,6 +6,62 @@ namespace ijw.Next {
     /// 提供对Float、Double等浮点类型的若干扩展方法
     /// </summary>
     public static class FloatingNumberExt {
+        #region Truncate
+        /// <summary>
+        /// 用上限截断
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="upperBound">上限</param>
+        /// <returns>大于上限, 返回上限值; 反之返回自身</returns>
+        public static float TruncateTop(this float f, float upperBound = 99999f)
+            => (f > upperBound) ? upperBound : f;
+
+        /// <summary>
+        /// 用下限截断
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="lowerBound">下限</param>
+        /// <returns>小于下限, 返回下限值; 反之返回自身</returns>
+        public static float TruncateBottom(this float f, float lowerBound = -99999f)
+            => (f < lowerBound) ? lowerBound : f;
+
+        /// <summary>
+        /// 用上限截断
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="upperBound">上限</param>
+        /// <returns>大于上限, 返回上限值; 反之返回自身</returns>
+        public static double TruncateTop(this double f, double upperBound = 99999d)
+            => (f > upperBound) ? upperBound : f;
+
+        /// <summary>
+        /// 用下限截断
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="lowerBound">下限</param>
+        /// <returns>小于下限, 返回下限值; 反之返回自身</returns>
+        public static double TruncateBottom(this double f, double lowerBound = -99999d)
+            => (f < lowerBound) ? lowerBound : f;
+
+        /// <summary>
+        /// 用上限截断
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="upperBound">上限</param>
+        /// <returns>大于上限, 返回上限值; 反之返回自身</returns>
+        public static decimal TruncateTop(this decimal f, decimal upperBound = 99999m)
+            => (f > upperBound) ? upperBound : f;
+
+        /// <summary>
+        /// 用下限截断
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="lowerBound">下限</param>
+        /// <returns>小于下限, 返回下限值; 反之返回自身</returns>
+        public static decimal TruncateBottom(this decimal f, decimal lowerBound = -99999m)
+            => (f < lowerBound) ? lowerBound : f;
+        #endregion
+
         #region Pow
 
         /// <summary>
