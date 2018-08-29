@@ -10,7 +10,7 @@ namespace ijw.Next {
         /// 添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
         /// </summary>
         /// <param name="astring"></param>
-        /// <returns></returns>
+        /// <returns>添加短格式时间前缀后的字符串</returns>
         public static string PrefixWithNowShortTimeLabel(this string astring) {
             return string.Format("[{0}] {1}", DateTime.Now.ToLocalTime(), astring);
         }
@@ -21,7 +21,7 @@ namespace ijw.Next {
         /// <param name="astring"></param>
         /// <param name="startIndex">启始索引. 该处字符将包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null等同于0. 默认值是0</param>
         /// <param name="endIndex">结束索引. 该处字符将不包括在返回结果中. 0代表第一个字符, 负数代表倒数第几个字符(-1表示倒数第一个字符), null代表结尾. 默认值为null.</param>
-        /// <returns></returns>
+        /// <returns>子字符串</returns>
         public static string SubstringPythonStyle(this string astring, int? startIndex = null, int? endIndex = null) {
             IjwHelper.PythonStartEndCalculator(astring.Length, out int startAt, out int endAt, startIndex, endIndex);
             if (endAt < 0) {
@@ -38,7 +38,7 @@ namespace ijw.Next {
         /// <param name="astring"></param>
         /// <param name="fromIndex">起始索引（该位置字符也包括在字串中）</param>
         /// <param name="toIndex">结束索引（该位置字符也包括在字串中）</param>
-        /// <returns></returns>
+        /// <returns>子字符串</returns>
         public static string SubStringFromTo(this string astring, int fromIndex, int toIndex) {
             fromIndex.ShouldBeNotLessThanZero();
             toIndex.ShouldBeNotLessThanZero();
@@ -60,7 +60,7 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="astring"></param>
         /// <param name="times">重复次数, 小于1则返回null</param>
-        /// <returns></returns>
+        /// <returns>重复后的字符串</returns>
         public static string Repeat(this string astring, int times) {
             if (times <= 0) {
                 return null;
@@ -74,6 +74,7 @@ namespace ijw.Next {
             }
             return result.ToString();
         }
+
         /// <summary>
         /// 返回格式化后的json序列化字符串
         /// </summary>
@@ -233,7 +234,7 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="s"></param>
         /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
-        /// <returns></returns>
+        /// <returns>转换后的int</returns>
         public static int ToIntAnyway(this string s, int defaultNumer = 0) {
             if (int.TryParse(s, out int i)) {
                 return i;
@@ -242,6 +243,23 @@ namespace ijw.Next {
                 return defaultNumer;
             }
         }
+
+        /// <summary>
+        /// 尝试转换成float. 如果NaN或转换失败将返回defaultNumer
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的float</returns>
+        public static float ToFloatAnyway(this string s, float defaultNumer = 0f) {
+            var result = defaultNumer;
+            if (float.TryParse(s, out float i)) {
+                if (!float.IsNaN(i)) {
+                    result = i;
+                }
+            }
+            return result;
+        }
+
         /// <summary>
         /// 把字符串转换成指定的枚举, 如果转换失败返回指定的缺省值.
         /// </summary>
@@ -311,6 +329,7 @@ namespace ijw.Next {
             return int.TryParse(aString, out int i);
         }
 #endregion
+
         /// <summary>
         /// 统计含有多少指定的子字符串
         /// </summary>
