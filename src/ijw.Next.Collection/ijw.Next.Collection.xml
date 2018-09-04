@@ -885,6 +885,29 @@
             <param name="secondGroup">切分后的第二部分</param>
             <remarks>net40+请使用返回元组的版本,  out return 版本不推荐使用</remarks>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.DivideByRatio``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            按指定的比例把集合分拆成两部分
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="source">源集合</param>
+            <param name="ratioOfFirstGroup">第一部分的占比</param>
+            <param name="ratioOfSecondGroup">第二部分的占比</param>
+            <returns>元组（分拆出的第一部分, 分拆出的第二部分）</returns>
+            <remarks>使用返回元组的版本,  out return 版本不推荐使用</remarks>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.DivideByRatioAndMethod``1(System.Collections.Generic.IEnumerable{``0},ijw.Next.Collection.CollectionDividingMethod,System.Int32,System.Int32)">
+            <summary>
+            把一个集合按指定的比率和方式分成两部分
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="source">源集合</param>
+            <param name="method">切分方式</param>
+            <param name="ratioOfFirstGroup">第一部分的比例</param>
+            <param name="ratioOfSecondGroup">第二把部分的比例</param>
+            <returns>元组（切分后的第一部分, 切分后的第二部分）</returns>
+            <remarks>使用返回元组的版本,  out return 版本不推荐使用</remarks>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.Shuffle``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回随机打乱顺序的序列. 
@@ -1681,6 +1704,24 @@
             <param name="windowLength">窗口长度</param>
             <param name="ignoreMaxMinValue">计算均值时是否忽略最大值最小值</param>
             <returns>新的样本集</returns>
+        </member>
+        <member name="T:ijw.Next.Collection.IIndexable`1">
+            <summary>
+            带有索引器的集合
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ijw.Next.Collection.IIndexable`1.Item(System.Int32)">
+            <summary>
+            索引器
+            </summary>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="P:ijw.Next.Collection.IIndexable`1.Count">
+            <summary>
+            集合元素数量
+            </summary>
         </member>
         <member name="T:ijw.Next.Collection.IListExt">
             <summary>
