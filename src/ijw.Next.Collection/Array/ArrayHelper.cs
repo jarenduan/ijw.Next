@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ijw.Next.Collection {
     /// <summary>
-    /// 
+    /// 数组Helper类
     /// </summary>
     public static class ArrayHelper {
         #region NewArray with values
