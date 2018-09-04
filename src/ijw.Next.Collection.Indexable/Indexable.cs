@@ -1,11 +1,12 @@
-﻿#if !NET35
+﻿using System;
 using System.Collections.Generic;
 
-namespace ijw.Next.Collection {
+namespace ijw.Next.Collection.Indexable {
     /// <summary>
     /// 带索引的列表.内部用定长数组实现.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
     public class Indexable<T> : EnumerableBase<T>, IIndexable<T> {
         /// <summary>
         /// 给定长度进行初始化
@@ -48,4 +49,3 @@ namespace ijw.Next.Collection {
         }
     }
 }
-#endif

@@ -1,11 +1,10 @@
-#if !NET35
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using static System.Math;
 
-namespace ijw.Next.Collection {
+namespace ijw.Next.Collection.Indexable {
     /// <summary>
     /// 
     /// </summary>
@@ -158,4 +157,3 @@ namespace ijw.Next.Collection {
         }
     }
 }
-#endif
