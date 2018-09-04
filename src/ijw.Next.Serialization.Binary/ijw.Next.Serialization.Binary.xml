@@ -30,21 +30,6 @@
             <param name="objToSave"></param>
             <returns>序列化后的数组</returns>
         </member>
-        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.Byte[])">
-            <summary>
-            把二进制数组反序列化对象
-            </summary>
-            <typeparam name="T">对象类型</typeparam>
-            <param name="bytes">存储对象的字节数组</param>
-            <returns>反序列化后的对象</returns>
-        </member>
-        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Serialize(System.Object,System.String)">
-            <summary>
-            把对象序列化到二进制文件中
-            </summary>
-            <param name="objToSave">欲保存的对象</param>
-            <param name="filename">包含路径的文件名</param>
-        </member>
         <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Serialize(System.Object,System.IO.Stream)">
             <summary>
             把对象序列化到二进制流当中
@@ -53,12 +38,19 @@
             <param name="stream">写入的流</param>
             <returns>流的长度</returns>
         </member>
-        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.String)">
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Serialize(System.Object,System.String)">
             <summary>
-            把二进制文件反序列化为对象
+            把对象序列化到二进制文件中
+            </summary>
+            <param name="objToSave">欲保存的对象</param>
+            <param name="filename">包含路径的文件名</param>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.Byte[])">
+            <summary>
+            把二进制数组反序列化对象
             </summary>
             <typeparam name="T">对象类型</typeparam>
-            <param name="filename">全路径文件名</param>
+            <param name="bytes">存储对象的字节数组</param>
             <returns>反序列化后的对象</returns>
         </member>
         <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.IO.Stream)">
@@ -67,6 +59,14 @@
             </summary>
             <typeparam name="T">对象类型</typeparam>
             <param name="stream">二进制流</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinarySerializationHelper.Deserialize``1(System.String)">
+            <summary>
+            把二进制文件反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="filename">全路径文件名</param>
             <returns>反序列化后的对象</returns>
         </member>
         <member name="T:ijw.Next.Serialization.Binary.BinaryWriterExt">
