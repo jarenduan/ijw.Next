@@ -23,31 +23,6 @@ namespace ijw.Next.Serialization.Binary {
                 return stream.ToArray();
             }
         }
-
-        /// <summary>
-        /// 把二进制数组反序列化对象
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="bytes">存储对象的字节数组</param>
-        /// <returns>反序列化后的对象</returns>
-        public static T Deserialize<T>(Byte[] bytes) {
-            using (MemoryStream mem = new MemoryStream(bytes)) {
-                return Deserialize<T>(mem);
-            }
-        }
-
-        /// <summary>
-        /// 把对象序列化到二进制文件中
-        /// </summary>
-        /// <param name="objToSave">欲保存的对象</param>
-        /// <param name="filename">包含路径的文件名</param>
-        public static void Serialize(object objToSave, string filename) {
-            using (FileStream fs = new FileStream(filename, FileMode.Create)) {
-                BinarySerializationHelper.Serialize(objToSave, fs);
-                DebugHelper.WriteLine("into binary file: " + filename);
-            }
-        }
-
         /// <summary>
         /// 把对象序列化到二进制流当中
         /// </summary>
@@ -62,16 +37,41 @@ namespace ijw.Next.Serialization.Binary {
         }
 
         /// <summary>
-        /// 把二进制文件反序列化为对象
+        /// 把对象序列化到二进制文件中
+        /// </summary>
+        /// <param name="objToSave">欲保存的对象</param>
+        /// <param name="filename">包含路径的文件名</param>
+        public static void Serialize(object objToSave, string filename) {
+            FileStream fs = null;
+            try {
+                fs = new FileStream(filename, FileMode.Create);
+                Serialize(objToSave, fs);
+                DebugHelper.WriteLine("into binary file: " + filename);
+            }
+            catch (Exception ex) {
+                fs?.Close();
+                fs?.Dispose();
+                try {
+                    File.Delete(filename);
+                }
+                finally {
+                    throw ex;
+                }
+            }
+            finally {
+                fs?.Close();
+                fs?.Dispose();
+            }
+        }
+        /// <summary>
+        /// 把二进制数组反序列化对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="filename">全路径文件名</param>
+        /// <param name="bytes">存储对象的字节数组</param>
         /// <returns>反序列化后的对象</returns>
-        public static T Deserialize<T>(string filename) {
-            using (FileStream fs = File.Open(filename, FileMode.Open)) {
-                var obj = BinarySerializationHelper.Deserialize<T>(fs);
-                DebugHelper.WriteLine("from binary file: " + filename);
-                return obj;
+        public static T Deserialize<T>(Byte[] bytes) {
+            using (MemoryStream mem = new MemoryStream(bytes)) {
+                return Deserialize<T>(mem);
             }
         }
 
@@ -95,6 +95,19 @@ namespace ijw.Next.Serialization.Binary {
             }
         }
 
+        /// <summary>
+        /// 把二进制文件反序列化为对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="filename">全路径文件名</param>
+        /// <returns>反序列化后的对象</returns>
+        public static T Deserialize<T>(string filename) {
+            using (FileStream fs = File.Open(filename, FileMode.Open)) {
+                var obj = Deserialize<T>(fs);
+                DebugHelper.WriteLine("from binary file: " + filename);
+                return obj;
+            }
+        }
         private static void createBinaryFormatter() {
             if (_formatter == null) {
                 _formatter = new BinaryFormatter();
@@ -102,4 +115,3 @@ namespace ijw.Next.Serialization.Binary {
         }
     }
 }
-//#endif
