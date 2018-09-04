@@ -49,6 +49,38 @@
             <param name="lowerBound">下限</param>
             <returns>小于下限, 返回下限值; 反之返回自身</returns>
         </member>
+        <member name="M:ijw.Next.FloatingNumberExt.TruncateTop(System.Double,System.Double)">
+            <summary>
+            用上限截断
+            </summary>
+            <param name="f"></param>
+            <param name="upperBound">上限</param>
+            <returns>大于上限, 返回上限值; 反之返回自身</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.TruncateBottom(System.Double,System.Double)">
+            <summary>
+            用下限截断
+            </summary>
+            <param name="f"></param>
+            <param name="lowerBound">下限</param>
+            <returns>小于下限, 返回下限值; 反之返回自身</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.TruncateTop(System.Decimal,System.Decimal)">
+            <summary>
+            用上限截断
+            </summary>
+            <param name="f"></param>
+            <param name="upperBound">上限</param>
+            <returns>大于上限, 返回上限值; 反之返回自身</returns>
+        </member>
+        <member name="M:ijw.Next.FloatingNumberExt.TruncateBottom(System.Decimal,System.Decimal)">
+            <summary>
+            用下限截断
+            </summary>
+            <param name="f"></param>
+            <param name="lowerBound">下限</param>
+            <returns>小于下限, 返回下限值; 反之返回自身</returns>
+        </member>
         <member name="M:ijw.Next.FloatingNumberExt.Pow(System.Double,System.Int32)">
             <summary>
             幂计算
@@ -443,11 +475,13 @@
             提供对string类型的若干扩展方法
             </summary>
         </member>
-        <member name="M:ijw.Next.StringExt.PrefixWithNowShortTimeLabel(System.String)">
+        <member name="M:ijw.Next.StringExt.PrefixWithNowShortTimeLabel(System.String,System.String,System.String)">
             <summary>
             添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
             </summary>
             <param name="astring"></param>
+            <param name="beforePrefix">前缀之前的字符串，默认是"["</param>
+            <param name="afterPrefix">前缀之前的字符串，默认是"] "</param>
             <returns>添加短格式时间前缀后的字符串</returns>
         </member>
         <member name="M:ijw.Next.StringExt.SubstringPythonStyle(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
@@ -526,6 +560,22 @@
         <member name="M:ijw.Next.StringExt.ToFloatAnyway(System.String,System.Single)">
             <summary>
             尝试转换成float. 如果NaN或转换失败将返回defaultNumer
+            </summary>
+            <param name="s"></param>
+            <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+            <returns>转换后的float</returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.ToDoubleAnyway(System.String,System.Double)">
+            <summary>
+            尝试转换成double. 如果NaN或转换失败将返回defaultNumer
+            </summary>
+            <param name="s"></param>
+            <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+            <returns>转换后的float</returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.ToDecimalAnyway(System.String,System.Decimal)">
+            <summary>
+            尝试转换成double. 如果NaN或转换失败将返回defaultNumer
             </summary>
             <param name="s"></param>
             <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
@@ -625,96 +675,6 @@
             </summary>
             <param name="type"></param>
             <returns></returns>
-        </member>
-        <member name="T:ijw.Next.ConsoleHelper">
-            <summary>
-            控制台帮助类
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadLine(System.String)">
-            <summary>
-            先提供一个提示信息, 再接受用户输入.
-            </summary>
-            <param name="message">提示信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.PauseInDebugMode">
-            <summary>
-            当Debug模式才会暂停, 读取一个字符. 通常放在程序结束最后, 用于调试时暂停.
-            </summary>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.NewLineCount(System.String,System.Int32)">
-            <summary>
-            计算字符串将会占据几行
-            </summary>
-            <param name="msg"></param>
-            <param name="startCursorX"></param>
-            <returns></returns>
-            <remarks>
-            非线程安全, 依赖windowswidth属性.
-            </remarks>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.WriteInColor(System.String,System.ConsoleColor)">
-            <summary>
-            使用指定颜色输出字符串
-            </summary>
-            <param name="message">输出的信息</param>
-            <param name="color">前景色, 默认使用红色</param>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.WriteLineInColor(System.String,System.ConsoleColor)">
-            <summary>
-            使用指定颜色输出字符串, 并换行.
-            </summary>
-            <param name="message">输出的信息</param>
-            <param name="color">前景色, 默认使用红色</param>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadKey(System.String,System.Boolean)">
-            <summary>
-            输出一行提示信息, 然后等待接收一个按键.
-            </summary>
-            <param name="message">提示信息</param>
-            <param name="ifIntercept"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadEnterInSeconds(System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>读取到的按键信息</returns>
-            <remarks>
-            此方法已经过时, 请使用<see cref="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)"/>.
-            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
-            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
-            </remarks>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>按键信息</returns>
-            <remarks>
-            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
-            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
-            </remarks>
-        </member>
-        <member name="M:ijw.Next.ConsoleHelper.ReadExpectedKeyInSeconds(System.ConsoleKey,System.String,System.Int32,System.String,System.Boolean)">
-            <summary>
-            指定时间内读取指定按键, 超时没有读取到任何按键将引发异常.
-            </summary>
-            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
-            <param name="timeout">指定的倒计时秒数</param>
-            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
-            <param name="expectedKey">期待的指定按键</param>
-            <param name="isShowTimeCountDown">是否显示倒计时</param>
-            <returns>读取到的按键信息</returns>
         </member>
         <member name="T:ijw.Next.ContractBrokenException">
             <summary>
@@ -1393,12 +1353,12 @@
             <returns>每个元素都不等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
             <exception cref="T:ijw.Next.ContractBrokenException"></exception>
         </member>
-        <member name="T:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt">
+        <member name="T:ijw.Next.IEnumerableIComparableContractShouldExt">
             <summary>
             
             </summary>
         </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:ijw.Next.IEnumerableIComparableContractShouldExt.ShouldEachLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             每个元素都应该大于指定值
             </summary>
@@ -1407,7 +1367,7 @@
             <returns>每个元素都大于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
             <exception cref="T:ijw.Next.ContractBrokenException"></exception>
         </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachNotLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:ijw.Next.IEnumerableIComparableContractShouldExt.ShouldEachNotLargerThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             每个元素都应该不大于指定值
             </summary>
@@ -1416,7 +1376,7 @@
             <returns>每个元素都不大于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
             <exception cref="T:ijw.Next.ContractBrokenException"></exception>
         </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:ijw.Next.IEnumerableIComparableContractShouldExt.ShouldEachLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             每个元素都应该小于指定值
             </summary>
@@ -1425,7 +1385,7 @@
             <returns>每个元素都小于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
             <exception cref="T:ijw.Next.ContractBrokenException"></exception>
         </member>
-        <member name="M:ijw.Next.Contracts.IEnumerableIComparableContractShouldExt.ShouldEachNotLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
+        <member name="M:ijw.Next.IEnumerableIComparableContractShouldExt.ShouldEachNotLessThan(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
             每个元素都应该不小于指定值
             </summary>
@@ -1626,25 +1586,6 @@
             <param name="path"></param>
             <returns>是有效的绝对路径名, 返回true. 否则抛出FileNotFoundException异常.</returns>
             <exception cref="T:System.IO.FileNotFoundException"></exception>
-        </member>
-        <member name="T:ijw.Next.DebugHelper">
-            <summary>
-            提供对Debug的一系列Helper方法
-            </summary>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.Write(System.String,System.String)">
-            <summary>
-            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
-            </summary>
-            <param name="message">输出信息</param>
-            <param name="callerName">调用者的方法名字</param>
-        </member>
-        <member name="M:ijw.Next.DebugHelper.WriteLine(System.String,System.String)">
-            <summary>
-            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
-            </summary>
-            <param name="message">输出信息</param>
-            <param name="callerName">调用者的方法名字</param>
         </member>
         <member name="T:ijw.Next.ActionWithRef`1">
             <summary>
@@ -1882,6 +1823,115 @@
             <param name="message">用以显示的信息</param>
             <param name="innerException">内部包含的异常</param>
         </member>
+        <member name="T:ijw.Next.ConsoleHelper">
+            <summary>
+            控制台帮助类
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadLine(System.String)">
+            <summary>
+            先提供一个提示信息, 再接受用户输入.
+            </summary>
+            <param name="message">提示信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.PauseInDebugMode">
+            <summary>
+            当Debug模式才会暂停, 读取一个字符. 通常放在程序结束最后, 用于调试时暂停.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.NewLineCount(System.String,System.Int32)">
+            <summary>
+            计算字符串将会占据几行
+            </summary>
+            <param name="msg"></param>
+            <param name="startCursorX"></param>
+            <returns></returns>
+            <remarks>
+            非线程安全, 依赖windowswidth属性.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.WriteInColor(System.String,System.ConsoleColor)">
+            <summary>
+            使用指定颜色输出字符串
+            </summary>
+            <param name="message">输出的信息</param>
+            <param name="color">前景色, 默认使用红色</param>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.WriteLineInColor(System.String,System.ConsoleColor)">
+            <summary>
+            使用指定颜色输出字符串, 并换行.
+            </summary>
+            <param name="message">输出的信息</param>
+            <param name="color">前景色, 默认使用红色</param>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadKey(System.String,System.Boolean)">
+            <summary>
+            输出一行提示信息, 然后等待接收一个按键.
+            </summary>
+            <param name="message">提示信息</param>
+            <param name="ifIntercept"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadEnterInSeconds(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>读取到的按键信息</returns>
+            <remarks>
+            此方法已经过时, 请使用<see cref="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)"/>.
+            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
+            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadKeyInSeconds(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            指定时间内读取按键, 超时没有读取到任何按键将引发异常.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>按键信息</returns>
+            <remarks>
+            当控制台有输入法行时, 倒计时信息可能会出现重行的信息, 这是因为输入法行占据了一行的console缓冲区, 将导致计算行数不同于无输入法的状态；
+            由于目前无法实时识别控制台是否存在输入法行, 此bug目前无解.
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.ConsoleHelper.ReadExpectedKeyInSeconds(System.ConsoleKey,System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            指定时间内读取指定按键, 超时没有读取到任何按键将引发异常.
+            </summary>
+            <param name="frontMessage">在倒计时秒数之前显示的信息</param>
+            <param name="timeout">指定的倒计时秒数</param>
+            <param name="behindMessage">在倒计时秒数之后显示的信息, 默认为空</param>
+            <param name="expectedKey">期待的指定按键</param>
+            <param name="isShowTimeCountDown">是否显示倒计时</param>
+            <returns>读取到的按键信息</returns>
+        </member>
+        <member name="T:ijw.Next.DebugHelper">
+            <summary>
+            提供对Debug的一系列Helper方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DebugHelper.Write(System.String,System.String)">
+            <summary>
+            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
+            </summary>
+            <param name="message">输出信息</param>
+            <param name="callerName">调用者的方法名字</param>
+        </member>
+        <member name="M:ijw.Next.DebugHelper.WriteLine(System.String,System.String)">
+            <summary>
+            向输出窗口写入包含时间/线程id/调用类(或方法名)/指定消息的debug信息, 并换行.
+            </summary>
+            <param name="message">输出信息</param>
+            <param name="callerName">调用者的方法名字</param>
+        </member>
         <member name="T:ijw.Next.IjwHelper">
             <summary>
             一些不好分类的帮助方法
@@ -1930,58 +1980,14 @@
             </summary>
             <param name="aString"></param>
             <param name="encoding"></param>
-            <returns></returns>
+            <returns>转换后的字节数组</returns>
         </member>
         <member name="M:ijw.Next.StringTextExt.ToBytes(System.String)">
             <summary>
             使用UTF8编码转换成字节数组
             </summary>
             <param name="aString"></param>
-            <returns></returns>
-        </member>
-    </members>
-</doc>
-tring,System.String,System.String,System.Func{``0,System.String})">
-            <summary>
-            输出一个包含集合中所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="collection">指定的集合</param>
-            <param name="separator">元素之间的分隔符, 默认是", "</param>
-            <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
-            <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
-            <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
-            <returns></returns>
-        </member>
-        <member name="T:ijw.Next.EncodingHelper">
-            <summary>
-            编码API的辅助类
-            </summary>
-        </member>
-        <member name="P:ijw.Next.EncodingHelper.GB2312">
-            <summary>
-            GB2312 编码
-            </summary>
-        </member>
-        <member name="T:ijw.Next.StringTextExt">
-            <summary>
-            文本编码相关的string类扩展
-            </summary>
-        </member>
-        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String,System.Text.Encoding)">
-            <summary>
-            把字符串转换为指定编码的字节数组
-            </summary>
-            <param name="aString"></param>
-            <param name="encoding"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ijw.Next.StringTextExt.ToBytes(System.String)">
-            <summary>
-            使用UTF8编码转换成字节数组
-            </summary>
-            <param name="aString"></param>
-            <returns></returns>
+            <returns>转换后的字节数组</returns>
         </member>
     </members>
 </doc>

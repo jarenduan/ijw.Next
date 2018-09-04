@@ -1,12 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net35;net40;net45;netstandard1.4</TargetFrameworks>
     <Authors>Jaren Duan</Authors>
     <AssemblyName>ijw.Next</AssemblyName>
     <PackageId>ijw.Next</PackageId>
-    <AssemblyVersion>0.2.6</AssemblyVersion>
-    <FileVersion>0.2.6.287</FileVersion>
-    <Version>0.2.6</Version>
+    <AssemblyVersion>0.2.9</AssemblyVersion>
+    <FileVersion>0.2.9.312</FileVersion>
+    <Version>0.2.9</Version>
     <DocumentationFile>ijw.Next.xml</DocumentationFile>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
