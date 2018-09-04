@@ -10,9 +10,12 @@ namespace ijw.Next {
         /// 添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
         /// </summary>
         /// <param name="astring"></param>
+        /// <param name="beforePrefix">前缀之前的字符串，默认是"["</param>
+        /// <param name="afterPrefix">前缀之前的字符串，默认是"] "</param>
         /// <returns>添加短格式时间前缀后的字符串</returns>
-        public static string PrefixWithNowShortTimeLabel(this string astring) {
-            return string.Format("[{0}] {1}", DateTime.Now.ToLocalTime(), astring);
+        public static string PrefixWithNowShortTimeLabel(this string astring, string beforePrefix = "[", string afterPrefix = "] ") {
+            var now = DateTime.Now;
+            return $"{beforePrefix}{now.Year.ToString("D4")}{now.Month.ToString("D2")}{now.Day.ToString("D2")} {now.Hour.ToString("D2")}{now.Minute.ToString("D2")}{now.Second.ToString("D2")}{afterPrefix}{astring}";
         }
 
         /// <summary>
@@ -202,6 +205,7 @@ namespace ijw.Next {
             }
             return result;
         }
+
         /// <summary>
         /// 如果尾部是指定字符串之一, 则移除掉, 否则不做更改.常用于更动字符串中的文件扩展名.
         /// </summary>
@@ -256,6 +260,36 @@ namespace ijw.Next {
                 if (!float.IsNaN(i)) {
                     result = i;
                 }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的float</returns>
+        public static double ToDoubleAnyway(this string s, double defaultNumer = 0d) {
+            var result = defaultNumer;
+            if (double.TryParse(s, out double i)) {
+                if (!double.IsNaN(i)) {
+                    result = i;
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的float</returns>
+        public static decimal ToDecimalAnyway(this string s, decimal defaultNumer = 0m) {
+            var result = defaultNumer;
+            if (decimal.TryParse(s, out decimal i)) {
+                result = i;
             }
             return result;
         }
