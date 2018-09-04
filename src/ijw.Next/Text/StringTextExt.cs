@@ -10,7 +10,7 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="aString"></param>
         /// <param name="encoding"></param>
-        /// <returns></returns>
+        /// <returns>转换后的字节数组</returns>
         public static byte[] ToBytes(this string aString, Encoding encoding) {
             return encoding.GetBytes(aString);
         }
@@ -19,10 +19,9 @@ namespace ijw.Next {
         /// 使用UTF8编码转换成字节数组
         /// </summary>
         /// <param name="aString"></param>
-        /// <returns></returns>
+        /// <returns>转换后的字节数组</returns>
         public static byte[] ToBytes(this string aString) {
             return aString.ToBytes(Encoding.Unicode);
         }
-
     }
 }
