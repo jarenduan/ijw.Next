@@ -8,11 +8,7 @@ namespace ijw.Next {
     /// 表示一个契约
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Contract<T> {
-        private readonly bool _isKept;
-        private readonly string _brokenMessage;
-        private readonly T _value;
-
+    public struct Contract<T> {
         /// <summary>
         /// 构造一个契约对象
         /// </summary>
@@ -20,25 +16,25 @@ namespace ijw.Next {
         /// <param name="brokenMessage">破坏契约的提示信息</param>
         /// <param name="isKept">是否遵守了契约</param>
         public Contract(T value, string brokenMessage = "", bool isKept = true) {
-            _value = value;
-            _brokenMessage = brokenMessage;
-            _isKept = IsKept;
+            Value = value;
+            BrokenMessage = brokenMessage;
+            IsKept = isKept;
         }
 
         /// <summary>
         /// 原始值
         /// </summary>
-        public T Value => _value;
-        
+        public T Value { get; private set; }
+
         /// <summary>
         /// 是否遵守
         /// </summary>
-        public bool IsKept => _isKept;
+        public bool IsKept { get; private set; }
 
         /// <summary>
         /// 破坏契约提示信息
         /// </summary>
-        public string BrokenMessage => _brokenMessage;
+        public string BrokenMessage { get; private set; }
 
         /// <summary>
         /// 破坏契约时抛出ContractBrokenException异常
