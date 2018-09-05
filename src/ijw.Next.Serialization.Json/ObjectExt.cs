@@ -20,16 +20,5 @@
         public static string ToJsonFormatString(this object obj) {
             return JsonSerializationHelper.SaveObjectToJsonString(obj).FormatJson();
         }
-
-        /// <summary>
-        /// 从Json字符串反序列化出指定类型的对象
-        /// </summary>
-        /// <typeparam name="T">指定类型</typeparam>
-        /// <param name="obj"></param>
-        /// <param name="jsonString">Json字符串</param>
-        /// <returns>反序列化出的对象</returns>
-        public static T FromJsonString<T>(this T obj, string jsonString) {
-            return JsonSerializationHelper.LoadJsonObject<T>(jsonString);
-        }
     }
 }

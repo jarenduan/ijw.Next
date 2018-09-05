@@ -58,13 +58,17 @@
             <param name="obj"></param>
             <returns>输出的字符串</returns>
         </member>
-        <member name="M:ijw.Next.Serialization.Json.ObjectExt.FromJsonString``1(``0,System.String)">
+        <member name="T:ijw.Next.Serialization.Json.StringExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.StringExt.DeserializeJsonObject``1(System.String)">
             <summary>
             从Json字符串反序列化出指定类型的对象
             </summary>
-            <typeparam name="T">指定类型</typeparam>
-            <param name="obj"></param>
-            <param name="jsonString">Json字符串</param>
+            <typeparam name="T"></typeparam>
+            <param name="jsonString"></param>
             <returns>反序列化出的对象</returns>
         </member>
     </members>
