@@ -84,6 +84,19 @@
             <param name="writeLengthHeader">是否写入头. 如果为true, 将首先自动写入4个字节的头, 内容是对象序列化后的长度</param>
             <remarks>编码采用UTF8</remarks>
         </member>
+        <member name="T:ijw.Next.Serialization.Binary.FileInfoExt">
+            <summary>
+            fileInfo Ext
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.FileInfoExt.DeserializeBinaryObject``1(System.IO.FileInfo)">
+            <summary>
+            从fileinfo代表的文件中进行二进制反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fileInfo"></param>
+            <returns>反序列化后的对象</returns>
+        </member>
         <member name="T:ijw.Next.Serialization.Binary.ObjectExt">
             <summary>
             
@@ -110,6 +123,15 @@
             </summary>
             <param name="objToSave">欲保存的对象</param>
             <param name="filename">包含路径的文件名</param>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.ObjectExt.FromBinaryFile``1(``0,System.String)">
+            <summary>
+            cs 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="filename"></param>
+            <returns></returns>
         </member>
         <member name="T:ijw.Next.Serialization.Binary.StreamExt">
             <summary>
