@@ -4,7 +4,6 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-
 namespace ijw.Next.Serialization.Binary {
     /// <summary>
     /// 二进制序列化帮助类
@@ -23,6 +22,7 @@ namespace ijw.Next.Serialization.Binary {
                 return stream.ToArray();
             }
         }
+
         /// <summary>
         /// 把对象序列化到二进制流当中
         /// </summary>
@@ -30,8 +30,8 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="stream">写入的流</param>
         /// <returns>流的长度</returns>
         public static int Serialize(object objToSave, Stream stream) {
-            createBinaryFormatter();
-            _formatter.Serialize(stream, objToSave);
+            var formatter = getBinaryFormatter();
+            formatter.Serialize(stream, objToSave);
             DebugHelper.WriteLine("Object serialized in binary successfully: " + stream.Length);
             return (int)stream.Length;
         }
@@ -63,6 +63,7 @@ namespace ijw.Next.Serialization.Binary {
                 fs?.Dispose();
             }
         }
+
         /// <summary>
         /// 把二进制数组反序列化对象
         /// </summary>
@@ -82,17 +83,21 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="stream">二进制流</param>
         /// <returns>反序列化后的对象</returns>
         public static T Deserialize<T>(Stream stream) {
-            createBinaryFormatter();
+            var formatter = getBinaryFormatter();
             DebugHelper.WriteLine("Object deserializing: " + stream.Length.ToString());
+#if DEBUG
             try {
-                T obj = (T)_formatter.Deserialize(stream);
+#endif
+                T obj = (T)formatter.Deserialize(stream);
                 DebugHelper.WriteLine("Object deserialized successfully: " + obj.ToString());
                 return obj;
+#if DEBUG
             }
             catch (Exception ex) {
                 DebugHelper.WriteLine(ex.Message);
-                return default(T);
+                throw ex;
             }
+#endif
         }
 
         /// <summary>
@@ -108,10 +113,12 @@ namespace ijw.Next.Serialization.Binary {
                 return obj;
             }
         }
-        private static void createBinaryFormatter() {
+
+        private static BinaryFormatter getBinaryFormatter() {
             if (_formatter == null) {
                 _formatter = new BinaryFormatter();
             }
+            return _formatter;
         }
     }
 }
