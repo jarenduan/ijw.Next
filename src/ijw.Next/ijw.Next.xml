@@ -351,14 +351,14 @@
             判断是否是奇数
             </summary>
             <param name="number"></param>
-            <returns>奇数返回true，反之返回false</returns>
+            <returns>奇数返回true, 反之返回false</returns>
         </member>
         <member name="M:ijw.Next.IntegerNumberExt.IsEven(System.Int32)">
             <summary>
             判断是否是偶数
             </summary>
             <param name="number"></param>
-            <returns>偶数返回true，反之返回false</returns>
+            <returns>偶数返回true, 反之返回false</returns>
         </member>
         <member name="M:ijw.Next.IntegerNumberExt.ToOrdinalString(System.Int32,System.Int32)">
             <summary>
@@ -480,8 +480,8 @@
             添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
             </summary>
             <param name="astring"></param>
-            <param name="beforePrefix">前缀之前的字符串，默认是"["</param>
-            <param name="afterPrefix">前缀之前的字符串，默认是"] "</param>
+            <param name="beforePrefix">前缀之前的字符串, 默认是"["</param>
+            <param name="afterPrefix">前缀之前的字符串, 默认是"] "</param>
             <returns>添加短格式时间前缀后的字符串</returns>
         </member>
         <member name="M:ijw.Next.StringExt.SubstringPythonStyle(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32})">
@@ -1091,7 +1091,7 @@
             </summary>
             <param name="obj"></param>
             <param name="collection">指定的集合</param>
-            <returns>有效索引，Contract的IsKept为true</returns>
+            <returns>有效索引, Contract的IsKept为true</returns>
         </member>
         <member name="M:ijw.Next.IntContractMustExt.AndMustValidIndexFor(ijw.Next.Contract{System.Int32},System.Collections.ICollection)">
             <summary>
@@ -1099,7 +1099,7 @@
             </summary>
             <param name="contract"></param>
             <param name="collection">指定的集合</param>
-            <returns>有效索引，Contract的IsKept为true</returns>
+            <returns>有效索引, Contract的IsKept为true</returns>
         </member>
         <member name="T:ijw.Next.ObjectContractMustExt">
             <summary>

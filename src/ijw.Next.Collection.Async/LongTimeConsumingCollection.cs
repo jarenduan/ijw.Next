@@ -11,7 +11,7 @@ namespace ijw.Next.Collection.Async {
     /// <typeparam name="T">元素类型</typeparam>
     /// <remarks>
     ///  消费者可以随时追加元素, 也可以随时取出元素, 进行消费操作.
-    ///  如果消费者完成消费操作，将自动移除对象；反之，对象将还回集合.
+    ///  如果消费者完成消费操作, 将自动移除对象；反之, 对象将还回集合.
     /// </remarks>
     public class LongTimeConsumingCollection<T> {
         #region Public Members
@@ -65,7 +65,7 @@ namespace ijw.Next.Collection.Async {
         }
 
         /// <summary>
-        /// 异步方式取出一个元素，然后以异步方式进行消费操作. 消费成功后从集合中移除此元素, 反之将元素还回集合.
+        /// 异步方式取出一个元素, 然后以异步方式进行消费操作. 消费成功后从集合中移除此元素, 反之将元素还回集合.
         /// </summary>
         /// <param name="consumeFunc">异步消费操作</param>
         /// <returns>取出元素并进行消费操作的任务</returns>
@@ -89,7 +89,7 @@ namespace ijw.Next.Collection.Async {
         }
 
         /// <summary>
-        /// 异步方式取出一个元素，然后以同步方式进行消费操作.消费成功后从集合中移除此元素, 反之将元素还回集合.
+        /// 异步方式取出一个元素, 然后以同步方式进行消费操作.消费成功后从集合中移除此元素, 反之将元素还回集合.
         /// </summary>
         /// <param name="consumeFunc">同步消费操作</param>
         /// <returns>取出元素并进行消费操作的任务</returns>

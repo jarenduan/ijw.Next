@@ -104,7 +104,7 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="collection">指定的集合</param>
-        /// <returns>有效索引，Contract的IsKept为true</returns>
+        /// <returns>有效索引, Contract的IsKept为true</returns>
         public static Contract<int> MustValidIndexFor(this int obj, ICollection collection) {
             var isKept = obj >= 0 && obj < collection.Count;
             var brokenMessage = $"{obj.ToString()} must an odd number";
@@ -116,7 +116,7 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="contract"></param>
         /// <param name="collection">指定的集合</param>
-        /// <returns>有效索引，Contract的IsKept为true</returns>
+        /// <returns>有效索引, Contract的IsKept为true</returns>
         public static Contract<int> AndMustValidIndexFor(this Contract<int> contract, ICollection collection)
             => contract.Value.MustOdd();
 #endregion

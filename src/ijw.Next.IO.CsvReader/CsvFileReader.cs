@@ -90,7 +90,7 @@ namespace ijw.Next.IO.CsvReader {
         /// <typeparam name="T">读取对象的类型</typeparam>
         /// <param name="csvFilepath">csv文件的路径</param>
         /// <param name="encoding">csv文件的编码</param>
-        /// <param name="separators">csv分隔符。默认为null，将使用逗号作为分隔。</param>
+        /// <param name="separators">csv分隔符. 默认为null, 将使用逗号作为分隔. </param>
         /// <returns></returns>
         public static IEnumerable<T> ReadObjects<T>(string csvFilepath, Encoding encoding, char[] separators = null) where T : class, new() {
             csvFilepath.ShouldExistSuchFile();

@@ -12,7 +12,7 @@ namespace ijw.Next.Collection {
 
         #region Average
         /// <summary>
-        /// 计算均值，可指定是否忽略最大值最小值
+        /// 计算均值, 可指定是否忽略最大值最小值.
         /// </summary>
         /// <param name="values"></param>
         /// <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -37,7 +37,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 计算均值，可指定是否忽略最大值最小值
+        /// 计算均值, 可指定是否忽略最大值最小值
         /// </summary>
         /// <param name="values"></param>
         /// <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -61,7 +61,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 计算均值，可指定是否忽略最大值最小值
+        /// 计算均值, 可指定是否忽略最大值最小值
         /// </summary>
         /// <param name="values"></param>
         /// <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -85,7 +85,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 计算均值，可指定是否忽略最大值最小值
+        /// 计算均值, 可指定是否忽略最大值最小值
         /// </summary>
         /// <param name="values"></param>
         /// <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -110,7 +110,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 计算均值，可指定是否忽略最大值最小值
+        /// 计算均值, 可指定是否忽略最大值最小值
         /// </summary>
         /// <param name="values"></param>
         /// <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -140,7 +140,7 @@ namespace ijw.Next.Collection {
         /// 获得方差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<double> values, bool isAllData = false) {
             var mean = values.Average();
@@ -153,7 +153,7 @@ namespace ijw.Next.Collection {
         /// 获得方差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<decimal> values, bool isAllData = false) {
             var mean = values.Average();
@@ -166,7 +166,7 @@ namespace ijw.Next.Collection {
         /// 获得方差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<float> values, bool isAllData = false) {
             var mean = values.Average();
@@ -179,7 +179,7 @@ namespace ijw.Next.Collection {
         /// 获得方差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<long> values, bool isAllData = false) {
             var mean = values.Average();
@@ -192,7 +192,7 @@ namespace ijw.Next.Collection {
         /// 获得方差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<int> values, bool isAllData = false) {
             var mean = values.Average();
@@ -207,7 +207,7 @@ namespace ijw.Next.Collection {
         /// 获得标准差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double StandardVariance(this IEnumerable<double> values, bool isAllData = false)
            => Math.Sqrt(values.Variance(isAllData));
@@ -216,7 +216,7 @@ namespace ijw.Next.Collection {
         /// 获得标准差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double StandardVariance(this IEnumerable<decimal> values, bool isAllData = false)
            => Math.Sqrt(values.Variance(isAllData));
@@ -225,7 +225,7 @@ namespace ijw.Next.Collection {
         /// 获得标准差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double StandardVariance(this IEnumerable<float> values, bool isAllData = false)
            => Math.Sqrt(values.Variance(isAllData));
@@ -234,7 +234,7 @@ namespace ijw.Next.Collection {
         /// 获得标准差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double StandardVariance(this IEnumerable<long> values, bool isAllData = false)
            => Math.Sqrt(values.Variance(isAllData));
@@ -243,7 +243,7 @@ namespace ijw.Next.Collection {
         /// 获得标准差
         /// </summary>
         /// <param name="values"></param>
-        /// <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+        /// <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
         /// <returns>方差</returns>
         public static double StandardVariance(this IEnumerable<int> values, bool isAllData = false)
            => Math.Sqrt(values.Variance(isAllData));
@@ -251,10 +251,10 @@ namespace ijw.Next.Collection {
 
         #region MedianValue
         /// <summary>
-        /// 获取集合的中位值。
+        /// 获取集合的中位值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        /// <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         public static double Median(this IEnumerable<double> values) {
             int count = values.GetCount();
 
@@ -277,10 +277,10 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 获取集合的中位值。
+        /// 获取集合的中位值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        /// <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         public static decimal Median(this IEnumerable<decimal> values) {
             int count = values.GetCount();
 
@@ -303,10 +303,10 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 获取集合的中位值。
+        /// 获取集合的中位值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        /// <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         public static float Median(this IEnumerable<float> values) {
             int count = values.GetCount();
 
@@ -329,10 +329,10 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 获取集合的中位值。
+        /// 获取集合的中位值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        /// <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         public static double Median(this IEnumerable<long> values) {
             int count = values.GetCount();
 
@@ -355,10 +355,10 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 获取集合的中位值。
+        /// 获取集合的中位值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+        /// <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         public static double Median(this IEnumerable<int> values) {
             int count = values.GetCount();
 
@@ -383,38 +383,38 @@ namespace ijw.Next.Collection {
 
         #region MiddleValue
         /// <summary>
-        /// 获取集合的中值。
+        /// 获取集合的中值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>返回最大最小的平均值。</returns>
+        /// <returns>返回最大最小的平均值. </returns>
         public static double Middle(this IEnumerable<double> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
-        /// 获取集合的中值。
+        /// 获取集合的中值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>返回最大最小的平均值。</returns>
+        /// <returns>返回最大最小的平均值. </returns>
         public static decimal Middle(this IEnumerable<decimal> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
-        /// 获取集合的中值。
+        /// 获取集合的中值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>返回最大最小的平均值。</returns>
+        /// <returns>返回最大最小的平均值. </returns>
         public static float Middle(this IEnumerable<float> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
-        /// 获取集合的中值。
+        /// 获取集合的中值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>返回最大最小的平均值。</returns>
+        /// <returns>返回最大最小的平均值. </returns>
         public static double Middle(this IEnumerable<long> values) => (values.Max() + values.Min()) / 2;
 
         /// <summary>
-        /// 获取集合的中值。
+        /// 获取集合的中值. 
         /// </summary>
         /// <param name="values"></param>
-        /// <returns>返回最大最小的平均值。</returns>
+        /// <returns>返回最大最小的平均值. </returns>
         public static double Middle(this IEnumerable<int> values) => (values.Max() + values.Min()) / 2;
         #endregion
 
@@ -651,7 +651,7 @@ namespace ijw.Next.Collection {
 
         #region Window Median Filters
         /// <summary>
-        /// 在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+        /// 在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
@@ -661,7 +661,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+        /// 在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
@@ -671,7 +671,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+        /// 在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
@@ -681,7 +681,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+        /// 在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
@@ -691,7 +691,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+        /// 在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>

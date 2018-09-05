@@ -74,7 +74,7 @@ namespace ijw.Next.Collection {
         /// <param name="doWhile">返回TRUE继续循环, 返回false则break退出</param>
         /// <returns>执行到元素的索引</returns>
         /// <remarks>
-        /// <para>与TakeWhile有一定差别：本函数直接运行，不返回迭代器。</para>
+        /// <para>与TakeWhile有一定差别：本函数直接运行, 不返回迭代器. </para>
         /// </remarks>
         public static int ForEachWhile<T>(this IEnumerable<T> enumerable, Func<T, int, bool> doWhile) {
             int index = 0;
@@ -87,7 +87,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 根据指定长度迭代返回每一个窗口。例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
+        /// 根据指定长度迭代返回每一个窗口. 例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
@@ -1002,27 +1002,27 @@ namespace ijw.Next.Collection {
 
         #region Filters
         /// <summary>
-        /// 基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
-        /// 序列首尾（不在窗口中的）值将不进行任何计算，直接输出.
+        /// 基于移动窗口进行计算处理. 每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+        /// 序列首尾（不在窗口中的）值将不进行任何计算, 直接输出.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>
         /// <param name="windowLength">窗口长度</param>
-        /// <param name="func">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+        /// <param name="func">一个计算函数, 输入参数是当前窗口, 输出是计算后的值</param>
         /// <returns>过滤后的序列</returns>
         public static IEnumerable<T> WindowBasedFilter<T>(this IEnumerable<T> values, int windowLength, Func<IEnumerable<T>, T> func) {
             return WindowBasedFilter(values, windowLength, (v) => v, func);
         }
 
         /// <summary>
-        /// 基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+        /// 基于移动窗口进行计算处理. 每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="values"></param>
         /// <param name="windowLength">窗口长度</param>
-        /// <param name="funcWithoutWindow">一个计算函数，输入参数是无法在窗口中计算的值，输出是计算后的值</param>
-        /// <param name="funcWithWindow">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+        /// <param name="funcWithoutWindow">一个计算函数, 输入参数是无法在窗口中计算的值, 输出是计算后的值</param>
+        /// <param name="funcWithWindow">一个计算函数, 输入参数是当前窗口, 输出是计算后的值</param>
         /// <returns>过滤后的序列</returns>
         public static IEnumerable<TResult> WindowBasedFilter<T, TResult>(this IEnumerable<T> values, int windowLength, Func<T,TResult> funcWithoutWindow, Func<IEnumerable<T>, TResult> funcWithWindow) {
             windowLength.ShouldBeNotLessThanZero();
@@ -1073,7 +1073,7 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
+        /// 这个函数签名有点复杂, 使用起来学习成本太高. 暂时不进行public, 仅供内部使用吧
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>

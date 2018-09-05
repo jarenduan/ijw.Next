@@ -639,12 +639,12 @@
             <param name="doWhile">返回TRUE继续循环, 返回false则break退出</param>
             <returns>执行到元素的索引</returns>
             <remarks>
-            <para>与TakeWhile有一定差别：本函数直接运行，不返回迭代器。</para>
+            <para>与TakeWhile有一定差别：本函数直接运行, 不返回迭代器. </para>
             </remarks>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.ForEachWindow``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
-            根据指定长度迭代返回每一个窗口。例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
+            根据指定长度迭代返回每一个窗口. 例如{a,b,c,d,e,f}.ForEachWindow(3)将依次返回数组：[a,b,c]、[b,c,d]、[c,d,e]、[d,e,f].
             </summary>
             <typeparam name="T"></typeparam>
             <param name="enumerable"></param>
@@ -1061,25 +1061,25 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.WindowBasedFilter``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{System.Collections.Generic.IEnumerable{``0},``0})">
             <summary>
-            基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
-            序列首尾（不在窗口中的）值将不进行任何计算，直接输出.
+            基于移动窗口进行计算处理. 每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+            序列首尾（不在窗口中的）值将不进行任何计算, 直接输出.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="values"></param>
             <param name="windowLength">窗口长度</param>
-            <param name="func">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+            <param name="func">一个计算函数, 输入参数是当前窗口, 输出是计算后的值</param>
             <returns>过滤后的序列</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.WindowBasedFilter``2(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{``0,``1},System.Func{System.Collections.Generic.IEnumerable{``0},``1})">
             <summary>
-            基于移动窗口进行计算处理。每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
+            基于移动窗口进行计算处理. 每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
             </summary>
             <typeparam name="T"></typeparam>
             <typeparam name="TResult"></typeparam>
             <param name="values"></param>
             <param name="windowLength">窗口长度</param>
-            <param name="funcWithoutWindow">一个计算函数，输入参数是无法在窗口中计算的值，输出是计算后的值</param>
-            <param name="funcWithWindow">一个计算函数，输入参数是当前窗口，输出是计算后的值</param>
+            <param name="funcWithoutWindow">一个计算函数, 输入参数是无法在窗口中计算的值, 输出是计算后的值</param>
+            <param name="funcWithWindow">一个计算函数, 输入参数是当前窗口, 输出是计算后的值</param>
             <returns>过滤后的序列</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.NullFilter``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}})">
@@ -1091,7 +1091,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.PreviousBasedFilter``1(System.Collections.Generic.IEnumerable{``0},``0,System.Func{``0,``0,``0,``0})">
             <summary>
-            这个函数签名有点复杂，使用起来学习成本太高。暂时不进行public，仅供内部使用吧
+            这个函数签名有点复杂, 使用起来学习成本太高. 暂时不进行public, 仅供内部使用吧
             </summary>
             <typeparam name="T"></typeparam>
             <param name="values"></param>
@@ -1112,21 +1112,21 @@
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="action">需要对每对元素执行的操作，接受两个集合的元素对作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="action">需要对每对元素执行的操作, 接受两个集合的元素对作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableHelper.ForEachPair``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Action{``0,``1,System.Int32},System.Boolean)">
             <summary>
-            对两个集合进行同步迭代, 对每一对元素进行操作. 当前索引将作为参数之一。
+            对两个集合进行同步迭代, 对每一对元素进行操作. 当前索引将作为参数之一. 
             </summary>
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="action">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="action">需要对每对元素执行的操作, 接受两个集合的元素对以及当前索引作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableHelper.ForEachPairSelect``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2},System.Boolean)">
             <summary>
@@ -1137,10 +1137,10 @@
             <typeparam name="TResult">函数计算返回值得类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="func">执行计算的函数，接受两个集合的元素对作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
+            <param name="func">执行计算的函数, 接受两个集合的元素对作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
             <returns>返回的结果迭代器</returns>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
             <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableHelper.ForEachPairSelect``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Int32,``2},System.Boolean)">
@@ -1152,8 +1152,8 @@
             <typeparam name="TResult">函数计算返回值得类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="func">执行计算的函数，接受两个集合的元素对以及当前索引作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
+            <param name="func">执行计算的函数, 接受两个集合的元素对以及当前索引作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
             <returns>返回的结果迭代器</returns>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
             <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
@@ -1166,10 +1166,10 @@
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
-            <returns>迭代的次数.注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
+            <param name="dowhile">需要对每对元素执行的操作, 接受两个集合的元素对作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <returns>迭代的次数.注意如果迭代是在到达第1个集合结尾之前就break出来的话, 此项为相应的负值. 因此可通过返回值的正负来判断是否进行完整的迭代. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableHelper.ForEachPairWhile``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Int32,System.Boolean},System.Boolean)">
             <summary>
@@ -1179,10 +1179,10 @@
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <returns>迭代的次数. 注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="dowhile">需要对每对元素执行的操作, 接受两个集合的元素对以及当前索引作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <returns>迭代的次数. 注意如果迭代是在到达第1个集合结尾之前就break出来的话, 此项为相应的负值. 因此可通过返回值的正负来判断是否进行完整的迭代. </returns>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableHelper.ForEachTwoInBetween``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Action{``0,``1})">
             <summary>
@@ -1263,7 +1263,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
             <summary>
-            计算均值，可指定是否忽略最大值最小值
+            计算均值, 可指定是否忽略最大值最小值
             </summary>
             <param name="values"></param>
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -1272,7 +1272,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Decimal},System.Boolean)">
             <summary>
-            计算均值，可指定是否忽略最大值最小值
+            计算均值, 可指定是否忽略最大值最小值
             </summary>
             <param name="values"></param>
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -1280,7 +1280,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Single},System.Boolean)">
             <summary>
-            计算均值，可指定是否忽略最大值最小值
+            计算均值, 可指定是否忽略最大值最小值
             </summary>
             <param name="values"></param>
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -1288,7 +1288,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
             <summary>
-            计算均值，可指定是否忽略最大值最小值
+            计算均值, 可指定是否忽略最大值最小值
             </summary>
             <param name="values"></param>
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -1297,7 +1297,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Average(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
             <summary>
-            计算均值，可指定是否忽略最大值最小值
+            计算均值, 可指定是否忽略最大值最小值
             </summary>
             <param name="values"></param>
             <param name="ignoreMaxMinValue">是否忽略最大值最小值</param>
@@ -1309,7 +1309,7 @@
             获得方差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Variance(System.Collections.Generic.IEnumerable{System.Decimal},System.Boolean)">
@@ -1317,7 +1317,7 @@
             获得方差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Variance(System.Collections.Generic.IEnumerable{System.Single},System.Boolean)">
@@ -1325,7 +1325,7 @@
             获得方差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Variance(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
@@ -1333,7 +1333,7 @@
             获得方差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Variance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
@@ -1341,7 +1341,7 @@
             获得方差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.StandardVariance(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
@@ -1349,7 +1349,7 @@
             获得标准差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.StandardVariance(System.Collections.Generic.IEnumerable{System.Decimal},System.Boolean)">
@@ -1357,7 +1357,7 @@
             获得标准差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.StandardVariance(System.Collections.Generic.IEnumerable{System.Single},System.Boolean)">
@@ -1365,7 +1365,7 @@
             获得标准差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.StandardVariance(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
@@ -1373,7 +1373,7 @@
             获得标准差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.StandardVariance(System.Collections.Generic.IEnumerable{System.Int32},System.Boolean)">
@@ -1381,78 +1381,78 @@
             获得标准差
             </summary>
             <param name="values"></param>
-            <param name="isAllData">是否是全部数据. true则分母是数据集count，反之是count-1.</param>
+            <param name="isAllData">是否是全部数据. true则分母是数据集count, 反之是count-1.</param>
             <returns>方差</returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Median(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
-            获取集合的中位值。
+            获取集合的中位值. 
             </summary>
             <param name="values"></param>
-            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+            <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Median(System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
-            获取集合的中位值。
+            获取集合的中位值. 
             </summary>
             <param name="values"></param>
-            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+            <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Median(System.Collections.Generic.IEnumerable{System.Single})">
             <summary>
-            获取集合的中位值。
+            获取集合的中位值. 
             </summary>
             <param name="values"></param>
-            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+            <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Median(System.Collections.Generic.IEnumerable{System.Int64})">
             <summary>
-            获取集合的中位值。
+            获取集合的中位值. 
             </summary>
             <param name="values"></param>
-            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+            <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Median(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
-            获取集合的中位值。
+            获取集合的中位值. 
             </summary>
             <param name="values"></param>
-            <returns>奇数个元素，返回中间元素的值，偶数个元素返回中间两元素的平均值。</returns>
+            <returns>奇数个元素, 返回中间元素的值, 偶数个元素返回中间两元素的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Middle(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
-            获取集合的中值。
+            获取集合的中值. 
             </summary>
             <param name="values"></param>
-            <returns>返回最大最小的平均值。</returns>
+            <returns>返回最大最小的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Middle(System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
-            获取集合的中值。
+            获取集合的中值. 
             </summary>
             <param name="values"></param>
-            <returns>返回最大最小的平均值。</returns>
+            <returns>返回最大最小的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Middle(System.Collections.Generic.IEnumerable{System.Single})">
             <summary>
-            获取集合的中值。
+            获取集合的中值. 
             </summary>
             <param name="values"></param>
-            <returns>返回最大最小的平均值。</returns>
+            <returns>返回最大最小的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Middle(System.Collections.Generic.IEnumerable{System.Int64})">
             <summary>
-            获取集合的中值。
+            获取集合的中值. 
             </summary>
             <param name="values"></param>
-            <returns>返回最大最小的平均值。</returns>
+            <returns>返回最大最小的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Middle(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
-            获取集合的中值。
+            获取集合的中值. 
             </summary>
             <param name="values"></param>
-            <returns>返回最大最小的平均值。</returns>
+            <returns>返回最大最小的平均值. </returns>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.Normalize(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
@@ -1622,7 +1622,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringWithWindowMedian(System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
             <summary>
-            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
             <param name="values">原集合</param>
             <param name="windowLength">窗口长度</param>
@@ -1630,7 +1630,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringWithWindowMedian(System.Collections.Generic.IEnumerable{System.Decimal},System.Int32)">
             <summary>
-            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
             <param name="values">原集合</param>
             <param name="windowLength">窗口长度</param>
@@ -1638,7 +1638,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringWithWindowMedian(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
             <summary>
-            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
             <param name="values">原集合</param>
             <param name="windowLength">窗口长度</param>
@@ -1646,7 +1646,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringWithWindowMedian(System.Collections.Generic.IEnumerable{System.Int64},System.Int32)">
             <summary>
-            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
             <param name="values">原集合</param>
             <param name="windowLength">窗口长度</param>
@@ -1654,7 +1654,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringWithWindowMedian(System.Collections.Generic.IEnumerable{System.Int32},System.Int32)">
             <summary>
-            在指定窗口长度内进行中位值滤波。例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
+            在指定窗口长度内进行中位值滤波. 例如{1,2,8,5}.MedianFilter(3), 返回:{1,2,5,5}.
             </summary>
             <param name="values">原集合</param>
             <param name="windowLength">窗口长度</param>
@@ -1790,10 +1790,10 @@
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="action">需要对每对元素执行的操作，接受两个集合的元素引用作为参数。</param>
-            <param name="forceDimensionMatching">如果为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <param name="ifCheckDimensionFirst">如果为true，会在迭代之前检查集合元素数量是否匹配。可与<paramref name="forceDimensionMatching"/>配合使用</param>
-            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`2">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="action">需要对每对元素执行的操作, 接受两个集合的元素引用作为参数. </param>
+            <param name="forceDimensionMatching">如果为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <param name="ifCheckDimensionFirst">如果为true, 会在迭代之前检查集合元素数量是否匹配. 可与<paramref name="forceDimensionMatching"/>配合使用</param>
+            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`2">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.IListHelper.ForEachPair``2(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1},ijw.Next.ActionWithRef{``0,``1,System.Int32},System.Boolean,System.Boolean)">
             <summary>
@@ -1803,10 +1803,10 @@
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
-            <param name="action">需要对每对元素执行的操作，接受两个集合的元素引用以及当前索引作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <param name="ifCheckDimensionFirst">如果为true，会在迭代之前检查集合元素数量是否匹配。可与<paramref name="forceDimensionMatching"/>配合使用</param>
-            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`2">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="action">需要对每对元素执行的操作, 接受两个集合的元素引用以及当前索引作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <param name="ifCheckDimensionFirst">如果为true, 会在迭代之前检查集合元素数量是否匹配. 可与<paramref name="forceDimensionMatching"/>配合使用</param>
+            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`2">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.IListHelper.ForEachThree``3(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1},System.Collections.Generic.IList{``2},ijw.Next.ActionWithRef{``0,``1,``2},System.Boolean,System.Boolean)">
             <summary>
@@ -1818,10 +1818,10 @@
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
             <param name="collection3">第3个集合</param>
-            <param name="action">需要对每对元素执行的操作，接受两个集合的元素引用作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <param name="ifCheckDimensionFirst">如果为true，会在迭代之前检查集合元素数量是否匹配。可与<paramref name="forceDimensionMatching"/>配合使用</param>
-            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`2">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="action">需要对每对元素执行的操作, 接受两个集合的元素引用作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <param name="ifCheckDimensionFirst">如果为true, 会在迭代之前检查集合元素数量是否匹配. 可与<paramref name="forceDimensionMatching"/>配合使用</param>
+            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`2">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.IListHelper.ForEachThree``3(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1},System.Collections.Generic.IList{``2},ijw.Next.ActionWithRef{``0,``1,``2,System.Int32},System.Boolean,System.Boolean)">
             <summary>
@@ -1833,10 +1833,10 @@
             <param name="collection1">第1个集合</param>
             <param name="collection2">第2个集合</param>
             <param name="collection3">第3个集合</param>
-            <param name="action">需要对每对元素执行的操作，接受两个集合的元素引用以及当前索引作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <param name="ifCheckDimensionFirst">如果为true，会在迭代之前检查集合元素数量是否匹配。可与<paramref name="forceDimensionMatching"/>配合使用</param>
-            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`3">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="action">需要对每对元素执行的操作, 接受两个集合的元素引用以及当前索引作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <param name="ifCheckDimensionFirst">如果为true, 会在迭代之前检查集合元素数量是否匹配. 可与<paramref name="forceDimensionMatching"/>配合使用</param>
+            <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`3">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="T:ijw.Next.Collection.ItemCountChangedEventArgs">
             <summary>
@@ -1965,20 +1965,20 @@
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <typeparam name="TResult">函数计算返回值得类型</typeparam>
             <param name="tuple"></param>
-            <param name="func">欲执行的计算。接受两个集合的元素对作为参数。</param>
-            <returns>计算结果形成的集合（仅为迭代器，即并未即时进行计算。）</returns>
+            <param name="func">欲执行的计算. 接受两个集合的元素对作为参数. </param>
+            <returns>计算结果形成的集合（仅为迭代器, 即并未即时进行计算. ）</returns>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachPairSelect``3(System.ValueTuple{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,System.Int32,``2})">
             <summary>
-            对元组中两个集合的每一对元素执行指定的计算，返回迭代器. 传递对应索引作为参数之一。
+            对元组中两个集合的每一对元素执行指定的计算, 返回迭代器. 传递对应索引作为参数之一. 
             </summary>
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <typeparam name="TResult">函数计算返回值得类型</typeparam>
             <param name="tuple"></param>
-            <param name="func">欲执行的计算，接受两个集合的元素对以及当前索引作为参数。</param>
-            <returns>计算结果形成的集合（仅为迭代器，即并未即时进行计算。）</returns>
+            <param name="func">欲执行的计算, 接受两个集合的元素对以及当前索引作为参数. </param>
+            <returns>计算结果形成的集合（仅为迭代器, 即并未即时进行计算. ）</returns>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachPair``2(System.ValueTuple{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}},System.Action{``0,``1})">
@@ -1988,17 +1988,17 @@
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="tuple"></param>
-            <param name="action">欲执行的操作，接受两个集合的元素对作为参数。</param>
+            <param name="action">欲执行的操作, 接受两个集合的元素对作为参数. </param>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachPair``2(System.ValueTuple{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}},System.Action{``0,``1,System.Int32})">
             <summary>
-            对元组中两个集合的每一对元素执行指定的操作，传递对应索引作为参数之一。
+            对元组中两个集合的每一对元素执行指定的操作, 传递对应索引作为参数之一. 
             </summary>
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="tuple"></param>
-            <param name="action">欲执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
+            <param name="action">欲执行的操作, 接受两个集合的元素对以及当前索引作为参数. </param>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachPairWhile``2(System.ValueTuple{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,System.Boolean},System.Boolean)">
@@ -2008,10 +2008,10 @@
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="tuple"></param>
-            <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <returns>执行了操作的最后一对元素的索引. 注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="dowhile">需要对每对元素执行的操作, 接受两个集合的元素作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <returns>执行了操作的最后一对元素的索引. 注意如果迭代是在到达第1个集合结尾之前就break出来的话, 此项为相应的负值. 因此可通过返回值的正负来判断是否进行完整的迭代. </returns>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachPairWhile``2(System.ValueTuple{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,System.Int32,System.Boolean},System.Boolean)">
             <summary>
@@ -2020,10 +2020,10 @@
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="tuple"></param>
-            <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
-            <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-            <returns>执行了操作的最后一对元素的索引. 注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
-            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+            <param name="dowhile">需要对每对元素执行的操作, 接受两个集合的元素对以及当前索引作为参数. </param>
+            <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+            <returns>执行了操作的最后一对元素的索引. 注意如果迭代是在到达第1个集合结尾之前就break出来的话, 此项为相应的负值. 因此可通过返回值的正负来判断是否进行完整的迭代. </returns>
+            <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachTwoInBetween``2(System.ValueTuple{System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1}},System.Action{``0,``1})">
             <summary>
@@ -2096,17 +2096,17 @@
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="tuple"></param>
-            <param name="action">欲执行的操作，接受两个集合的元素引用作为参数。</param>
+            <param name="action">欲执行的操作, 接受两个集合的元素引用作为参数. </param>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachPair``2(System.ValueTuple{System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1}},ijw.Next.ActionWithRef{``0,``1,System.Int32})">
             <summary>
-            对元组中两个集合的每一对元素执行指定的操作，传递对应索引作为参数之一。
+            对元组中两个集合的每一对元素执行指定的操作, 传递对应索引作为参数之一. 
             </summary>
             <typeparam name="T1">第1个集合里面元素的类型</typeparam>
             <typeparam name="T2">第2个集合里面元素的类型</typeparam>
             <param name="tuple"></param>
-            <param name="action">欲执行的操作，接受两个集合的元素引用以及当前索引作为参数。</param>
+            <param name="action">欲执行的操作, 接受两个集合的元素引用以及当前索引作为参数. </param>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         </member>
         <member name="M:ijw.Next.Collection.ValueTupleExt.ForEachThree``3(System.ValueTuple{System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1},System.Collections.Generic.IList{``2}},ijw.Next.ActionWithRef{``0,``1,``2})">

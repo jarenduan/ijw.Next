@@ -10,8 +10,8 @@ namespace ijw.Next {
         /// 添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
         /// </summary>
         /// <param name="astring"></param>
-        /// <param name="beforePrefix">前缀之前的字符串，默认是"["</param>
-        /// <param name="afterPrefix">前缀之前的字符串，默认是"] "</param>
+        /// <param name="beforePrefix">前缀之前的字符串, 默认是"["</param>
+        /// <param name="afterPrefix">前缀之前的字符串, 默认是"] "</param>
         /// <returns>添加短格式时间前缀后的字符串</returns>
         public static string PrefixWithNowShortTimeLabel(this string astring, string beforePrefix = "[", string afterPrefix = "] ") {
             var now = DateTime.Now;

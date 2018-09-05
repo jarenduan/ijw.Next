@@ -120,7 +120,7 @@ namespace ijw.Next {
         /// 判断是否是奇数
         /// </summary>
         /// <param name="number"></param>
-        /// <returns>奇数返回true，反之返回false</returns>
+        /// <returns>奇数返回true, 反之返回false</returns>
         public static bool IsOdd(this int number) {
             return !number.IsEven();
         }
@@ -129,7 +129,7 @@ namespace ijw.Next {
         /// 判断是否是偶数
         /// </summary>
         /// <param name="number"></param>
-        /// <returns>偶数返回true，反之返回false</returns>
+        /// <returns>偶数返回true, 反之返回false</returns>
         public static bool IsEven(this int number) {
             return number % 2 == 0;
         }

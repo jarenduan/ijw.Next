@@ -15,9 +15,9 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T2">第2个集合里面元素的类型</typeparam>
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
-        /// <param name="action">需要对每对元素执行的操作，接受两个集合的元素对作为参数。</param>
-        /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <param name="action">需要对每对元素执行的操作, 接受两个集合的元素对作为参数. </param>
+        /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachPair<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Action<T1, T2> action, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -34,15 +34,15 @@ namespace ijw.Next.Collection {
             }
         }
         /// <summary>
-        /// 对两个集合进行同步迭代, 对每一对元素进行操作. 当前索引将作为参数之一。
+        /// 对两个集合进行同步迭代, 对每一对元素进行操作. 当前索引将作为参数之一. 
         /// </summary>
         /// <typeparam name="T1">第1个集合里面元素的类型</typeparam>
         /// <typeparam name="T2">第2个集合里面元素的类型</typeparam>
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
-        /// <param name="action">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
-        /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <param name="action">需要对每对元素执行的操作, 接受两个集合的元素对以及当前索引作为参数. </param>
+        /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         public static void ForEachPair<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Action<T1, T2, int> action, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -68,10 +68,10 @@ namespace ijw.Next.Collection {
         /// <typeparam name="TResult">函数计算返回值得类型</typeparam>
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
-        /// <param name="func">执行计算的函数，接受两个集合的元素对作为参数。</param>
-        /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
+        /// <param name="func">执行计算的函数, 接受两个集合的元素对作为参数. </param>
+        /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
         /// <returns>返回的结果迭代器</returns>
-        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         /// <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
         public static IEnumerable<TResult> ForEachPairSelect<T1, T2, TResult>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, TResult> func, bool forceDimensionMatching = false) {
             //don't try to test the count(), cos' it might cause iterations.
@@ -101,8 +101,8 @@ namespace ijw.Next.Collection {
         /// <typeparam name="TResult">函数计算返回值得类型</typeparam>
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
-        /// <param name="func">执行计算的函数，接受两个集合的元素对以及当前索引作为参数。</param>
-        /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
+        /// <param name="func">执行计算的函数, 接受两个集合的元素对以及当前索引作为参数. </param>
+        /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
         /// <returns>返回的结果迭代器</returns>
         /// <exception cref="TwoIEnumerableCountNotMatchException">第1个集合的元素数大于第2个集合的元素数时会抛出 CountNotMatchException 异常.</exception>
         /// <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
@@ -130,10 +130,10 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T2">第2个集合里面元素的类型</typeparam>
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
-        /// <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对作为参数。</param>
-        /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
-        /// <returns>迭代的次数.注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
+        /// <param name="dowhile">需要对每对元素执行的操作, 接受两个集合的元素对作为参数. </param>
+        /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <returns>迭代的次数.注意如果迭代是在到达第1个集合结尾之前就break出来的话, 此项为相应的负值. 因此可通过返回值的正负来判断是否进行完整的迭代. </returns>
         public static int ForEachPairWhile<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, bool> dowhile, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
@@ -164,10 +164,10 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T2">第2个集合里面元素的类型</typeparam>
         /// <param name="collection1">第1个集合</param>
         /// <param name="collection2">第2个集合</param>
-        /// <param name="dowhile">需要对每对元素执行的操作，接受两个集合的元素对以及当前索引作为参数。</param>
-        /// <param name="forceDimensionMatching">为true，会在操作后检查两个集合元素数是否不相等. 为false，不检查.</param>
-        /// <returns>迭代的次数. 注意如果迭代是在到达第1个集合结尾之前就break出来的话，此项为相应的负值。因此可通过返回值的正负来判断是否进行完整的迭代。</returns>
-        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量，或2)<paramref name="forceDimensionMatching"/>为true，且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        /// <param name="dowhile">需要对每对元素执行的操作, 接受两个集合的元素对以及当前索引作为参数. </param>
+        /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
+        /// <returns>迭代的次数. 注意如果迭代是在到达第1个集合结尾之前就break出来的话, 此项为相应的负值. 因此可通过返回值的正负来判断是否进行完整的迭代. </returns>
+        /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
         public static int ForEachPairWhile<T1, T2>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, int, bool> dowhile, bool forceDimensionMatching = false) {
             collection1.ShouldBeNotNullArgument(nameof(collection1));
             collection2.ShouldBeNotNullArgument(nameof(collection2));
