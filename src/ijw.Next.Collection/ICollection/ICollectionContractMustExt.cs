@@ -52,7 +52,25 @@ namespace ijw.Next.Collection {
                 throw new CollectionCountNotMatchException<T1, T2>(collection, otherCollection);
             }
             else {
-                return new Contract<ICollection<T1>>(collection, "Two Collection Count NOT Match");
+                return new Contract<ICollection<T1>>(collection, "First Collection Count More");
+            }
+        }
+
+        /// <summary>
+        /// 集合元素数必须大于指定集合的元素数
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="otherCollection"></param>
+        /// <returns>两个集合元素数的契约</returns>
+        public static Contract<ICollection<T1>> MustCountNotMoreThan<T1, T2>(this ICollection<T1> collection, ICollection<T2> otherCollection) {
+            var isKept = collection.Count <= otherCollection.Count;
+            if (!isKept) {
+                throw new CollectionCountNotMatchException<T1, T2>(collection, otherCollection);
+            }
+            else {
+                return new Contract<ICollection<T1>>(collection, "First Collection Count NOT More");
             }
         }
 
