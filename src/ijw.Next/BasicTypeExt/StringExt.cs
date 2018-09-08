@@ -350,9 +350,35 @@ namespace ijw.Next {
             return e;
 #endif
         }
-#endregion
+        #endregion
 
         #region  Is other type
+
+        /// <summary>
+        /// 判断是否是Null或者空字符串
+        /// </summary>
+        /// <param name="aString"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string aString) {
+            return string.IsNullOrEmpty(aString);
+        }
+
+        /// <summary>
+        /// 判断是否是Null或空字符串或全是空格
+        /// </summary>
+        /// <param name="aString"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmptyOrWhiteSpace(this string aString) {
+            if (aString == null) {
+                return true;
+            }
+            for (int i = 0; i < aString.Length; i++) {
+                if (!char.IsWhiteSpace(aString[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         /// <summary>
         /// 是否是32位整数
