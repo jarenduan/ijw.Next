@@ -86,6 +86,12 @@ namespace ijw.Next.Collection.xTest {
             Assert.Equal("".ToCharArray(), re);
         }
 
+        [Fact]
+        public void IEnumerableCountContractTest() {
+            var list = new int[] { 1, 2, 3, 4, 5 };
+            var list1 = new int[] { 11, 12, 13, 14, 15 };
 
+            list.MustCountEquals(list);
+        }
     }
 }
