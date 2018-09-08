@@ -124,15 +124,6 @@
             <param name="objToSave">欲保存的对象</param>
             <param name="filename">包含路径的文件名</param>
         </member>
-        <member name="M:ijw.Next.Serialization.Binary.ObjectExt.FromBinaryFile``1(``0,System.String)">
-            <summary>
-            cs 
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="obj"></param>
-            <param name="filename"></param>
-            <returns></returns>
-        </member>
         <member name="T:ijw.Next.Serialization.Binary.StreamExt">
             <summary>
             扩展Stream类, 以支持一些简便的读写功能.

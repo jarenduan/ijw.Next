@@ -5,7 +5,7 @@
     <AssemblyName>ijw.Next.IO.FileSystem.Watcher</AssemblyName>
     <PackageId>ijw.Next.IO.FileSystem.Watcher</PackageId>
     <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0.76</FileVersion>
+    <FileVersion>0.1.0.78</FileVersion>
     <Version>0.1.0</Version>
     <DocumentationFile>ijw.Next.IO.FileSystem.Watcher.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>

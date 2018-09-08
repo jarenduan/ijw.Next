@@ -4,9 +4,9 @@
     <Authors>Jaren Duan</Authors>
     <AssemblyName>ijw.Next.Collection</AssemblyName>
     <PackageId>ijw.Next.Collection</PackageId>
-    <AssemblyVersion>0.2.4</AssemblyVersion>
-    <FileVersion>0.2.4.257</FileVersion>
-    <Version>0.2.4</Version>
+    <AssemblyVersion>0.2.7</AssemblyVersion>
+    <FileVersion>0.2.7.266</FileVersion>
+    <Version>0.2.7</Version>
     <DocumentationFile>ijw.Next.Collection.xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>

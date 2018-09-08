@@ -139,7 +139,7 @@
             <param name="stream"></param>
             <param name="aString">欲写入的字符串</param>
         </member>
-        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int32)">
+        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int64)">
             <summary>
             使用Unicode编码方式, 调用BinaryReader从流中读取指定长度的二进制数据
             </summary>
@@ -147,7 +147,7 @@
             <param name="length">读取长度</param>
             <returns>读取的二进制数组</returns>
         </member>
-        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int32,System.Text.Encoding)">
+        <member name="M:ijw.Next.IO.StreamExt.ReadBytesAndDispose(System.IO.Stream,System.Int64,System.Text.Encoding)">
             <summary>
             使用指定的编码方式, 调用BinaryReader从流中读取指定长度的二进制数据
             </summary>
@@ -197,7 +197,7 @@
             <param name="filename">写入的文件</param>
             <param name="append">是否追加. 默认是false</param>
         </member>
-        <member name="M:ijw.Next.IO.StreamExt.WriteToBinaryFile(System.IO.Stream,System.String,System.Int32,System.Text.Encoding,System.Text.Encoding,System.Boolean)">
+        <member name="M:ijw.Next.IO.StreamExt.WriteToBinaryFileAndDispose(System.IO.Stream,System.String,System.Int64,System.Text.Encoding,System.Text.Encoding,System.Boolean)">
             <summary>
             使用指定的编码方式调用ReadBytesByBinaryReader方法读取流中指定长度的二进制数据, 然后使用指定编码覆盖(或追加)到指定文件.
             </summary>
@@ -265,6 +265,15 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:ijw.Next.IO.StringExt.AsFileInfo(System.String)">
+            <summary>
+            获取字符串代表的FileInfo. 
+            </summary>
+            <param name="filepath"></param>
+            <returns>指代的FileInfo</returns>
+            <exception cref="T:System.IO.FileNotFoundException">字符串不是有效的文件路径时, 抛出此异常. </exception>
+            <remarks>即使返回有效的FileInfo, 也并不保证之后文件仍继续存在, 应考虑使用try-catch进行后续操作. </remarks>
         </member>
         <member name="M:ijw.Next.IO.StringExt.WriteToFile(System.String,System.String,System.Text.Encoding,System.Boolean)">
             <summary>
