@@ -43,14 +43,6 @@ namespace ijw.Next.Collection {
 
             checkDimension(collection1, collection2, forceDimensionMatching);
         }
-        private static void checkDimension<T1, T2>(IList<T1> collection1, IList<T2> collection2, bool forceDimensionMatching) {
-            if (forceDimensionMatching) {
-                collection1.MustCountEquals(collection2);
-            }
-            else {
-                collection1.MustCountMoreThan(collection2);
-            }
-        }
 
         /// <summary>
         /// 对两个集合进行同步迭代, 对每一对元素的引用以及当前索引进行操作.
@@ -86,6 +78,15 @@ namespace ijw.Next.Collection {
             }
 
             checkDimension(collection1, collection2, forceDimensionMatching);
+        }
+
+        private static void checkDimension<T1, T2>(IList<T1> collection1, IList<T2> collection2, bool forceDimensionMatching) {
+            if (forceDimensionMatching) {
+                collection1.MustCountEquals(collection2);
+            }
+            else {
+                collection1.MustCountNotMoreThan(collection2);
+            }
         }
 
         /// <summary>
