@@ -608,10 +608,45 @@
         </member>
         <member name="M:ijw.Next.StringExt.IsInteger32(System.String)">
             <summary>
-            是否是32位整数
+            是否能解析成32位整数
             </summary>
             <param name="aString"></param>
             <returns>是返回true, 反之返回false</returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.IsSingle(System.String)">
+            <summary>
+            是否能解析成单精度浮点数
+            </summary>
+            <param name="aString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.IsDouble(System.String)">
+            <summary>
+            是否能解析成双精度浮点数
+            </summary>
+            <param name="aString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.IsDateTime(System.String)">
+            <summary>
+            是否能解析成日期时间类型
+            </summary>
+            <param name="aString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.IsNullOrEmpty(System.String)">
+            <summary>
+            判断是否是Null或者空字符串
+            </summary>
+            <param name="aString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.StringExt.IsNullOrEmptyOrWhiteSpace(System.String)">
+            <summary>
+            判断是否是Null或空字符串或全是空格
+            </summary>
+            <param name="aString"></param>
+            <returns></returns>
         </member>
         <member name="M:ijw.Next.StringExt.ContainsHowMany(System.String,System.String)">
             <summary>
