@@ -8,6 +8,18 @@ namespace ijw.Next.Collection {
     /// </summary>
     public static class IListExt {
         /// <summary>
+        /// 对每个索引进行操作
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="action">进行的操作, 接受索引作为参数</param>
+        public static void ForEachIndex<T>(this IList<T> list, Action<int> action) {
+            for (int i = 0; i < list.Count; i++) {
+                action(i);
+            }
+        }
+
+        /// <summary>
         /// 在IList集合中查找第一个符合谓词的元素对象的索引
         /// </summary>
         /// <typeparam name="T">元素类型</typeparam>
