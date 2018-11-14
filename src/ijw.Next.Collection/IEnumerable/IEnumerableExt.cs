@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -756,7 +755,8 @@ namespace ijw.Next.Collection {
             int index = 0;
 
             foreach (var item in enumerable) {
-                result += func(item);
+                var sq = func(item);
+                result += sq;
                 index = checked(index + 1);
             }
 
@@ -1077,15 +1077,14 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>
-        /// <param name="diff"></param>
-        /// <param name="diffLimitingFunc"></param>
+        /// <param name="filtering"></param>
         /// <returns></returns>
-        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values, T diff, Func<T, T, T, T> diffLimitingFunc) {
+        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values, Func<T, T, T> filtering) {
             values.ShouldNotBeNullOrEmpty();
 
             yield return values.First();
 
-            var result = values.ForEachAndNext((prev, curr) => diffLimitingFunc(curr, prev, diff));
+            var result = values.ForEachAndNext((prev, curr) => filtering(prev, curr));
 
             foreach (var item in result) {
                 yield return item;
