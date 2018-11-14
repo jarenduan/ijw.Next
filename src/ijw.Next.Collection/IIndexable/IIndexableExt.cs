@@ -11,13 +11,14 @@ namespace ijw.Next.Collection {
     /// </summary>
     public static class IIndexableExt {
         #region Filters
+
         /// <summary>
         /// 限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
-        public static double[] LimitingDiffFilter(this IIndexable<double> values, double diff) {
+        public static double[] FilterWithDiffLimitation(this IIndexable<double> values, double diff) {
             diff.ShouldLargerThan(0);
 
             double[] result = new double[values.Count];
@@ -38,7 +39,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
         /// <returns></returns>
-        public static double[] LimitingAmplifyFilter(this IIndexable<double> values, double diff) {
+        public static double[] FilterWithAmplifyLimitation(this IIndexable<double> values, double diff) {
             diff.ShouldLargerThan(0);
 
             double[] result = new double[values.Count];
@@ -56,7 +57,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static double[] MedianFilter(this IIndexable<double> values, int windowLength) {
+        public static double[] FilterWithWindowMedian(this IIndexable<double> values, int windowLength) {
             windowLength.ShouldLargerThan(0);
             windowLength.ShouldBeOdd();
             windowLength.ShouldNotLargerThan(values.Count());
@@ -76,7 +77,7 @@ namespace ijw.Next.Collection {
         /// <param name="values">原集合</param>
         /// <param name="windowLength">窗口长度</param>
         /// <returns>新的样本集</returns>
-        public static double[] MeanFilter(this IIndexable<double> values, int windowLength) {
+        public static double[] FilterWithWindowMean(this IIndexable<double> values, int windowLength) {
             windowLength.ShouldBeNotLessThanZero();
             windowLength.ShouldNotLargerThan(values.Count());
 
