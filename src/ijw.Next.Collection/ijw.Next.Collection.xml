@@ -1721,7 +1721,7 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableStringExt.Concat(System.Collections.Generic.IEnumerable{System.String},System.String)">
             <summary>
-            
+            将一组字符串连接起来, 形成新的字符串
             </summary>
             <param name="strings"></param>
             <param name="connector"></param>
@@ -1945,6 +1945,29 @@
             <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
             <param name="ifCheckDimensionFirst">如果为true, 会在迭代之前检查集合元素数量是否匹配. 可与<paramref name="forceDimensionMatching"/>配合使用</param>
             <exception cref="T:ijw.Next.Collection.CollectionCountNotMatchException`3">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
+        </member>
+        <member name="T:ijw.Next.Collection.IndexValuePair`1">
+            <summary>
+            A pair of the index and the value.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.Collection.IndexValuePair`1.#ctor(System.Int32,`0)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="index">Index</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="P:ijw.Next.Collection.IndexValuePair`1.Index">
+            <summary>
+            Index
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Collection.IndexValuePair`1.Value">
+            <summary>
+            Value
+            </summary>
         </member>
         <member name="T:ijw.Next.Collection.ItemCountChangedEventArgs">
             <summary>

@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;netstandard1.4</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;netstandard1.4;netstandard2.0</TargetFrameworks>
     <Authors>Jaren Duan</Authors>
     <AssemblyName>ijw.Next.Collection</AssemblyName>
     <PackageId>ijw.Next.Collection</PackageId>
-    <AssemblyVersion>0.2.9</AssemblyVersion>
-    <FileVersion>0.2.9.281</FileVersion>
-    <Version>0.2.9</Version>
+    <AssemblyVersion>0.2.11</AssemblyVersion>
+    <FileVersion>0.2.11.289</FileVersion>
+    <Version>0.2.11</Version>
     <DocumentationFile>ijw.Next.Collection.xml</DocumentationFile>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>

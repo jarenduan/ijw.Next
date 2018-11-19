@@ -17,16 +17,18 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="diff">波动幅度限制</param>
+        /// <param name="useNewData">使用新值进行后续过滤</param>
         /// <return>过滤后的新集合</return>
-        public static double[] FilterWithDiffLimitation(this IIndexable<double> values, double diff) {
+        public static double[] FilterWithDiffLimitation(this IIndexable<double> values, double diff, bool useNewData = false) {
             diff.ShouldLargerThan(0);
 
             double[] result = new double[values.Count];
 
             result[0] = values[0];
+            double curr, prev;
             for (int i = 1; i < values.Count; i++) {
-                var curr = values[i];
-                var prev = values[i - 1];
+                curr = values[i];
+                prev = useNewData ? result[i - 1] : values[i - 1];
                 result[i] = curr.LimitingDiff(prev, diff);
             }
 
@@ -38,14 +40,18 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values">原集合</param>
         /// <param name="diff">波动最大值绝对值</param>
-        /// <returns></returns>
-        public static double[] FilterWithAmplifyLimitation(this IIndexable<double> values, double diff) {
+        /// <param name="useNewData">使用新值进行后续过滤</param>
+        /// <returns>过滤后的新集合</returns>
+        public static double[] FilterWithAmplifyLimitation(this IIndexable<double> values, double diff, bool useNewData = false) {
             diff.ShouldLargerThan(0);
 
             double[] result = new double[values.Count];
+
+            result[0] = values[0];
+            double curr, prev;
             for (int i = 1; i < values.Count; i++) {
-                var curr = values[i];
-                var prev = values[i - 1];
+                curr = values[i];
+                prev = useNewData? result[i - 1]: values[i - 1];
                 result[i] = curr.LimitingAmplify(prev, diff);
             }
             return result;
