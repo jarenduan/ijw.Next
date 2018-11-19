@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ijw.Next.Collection {
     /// <summary>
-    /// 带有索引器的集合
+    /// 带有只读索引器的集合
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IIndexable<out T> : IEnumerable<T> {
