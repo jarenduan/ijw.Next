@@ -541,7 +541,7 @@ namespace ijw.Next.Collection {
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
         public static IEnumerable<double> FilterWithDiffLimitation(this IEnumerable<double> values, double diff) {
-            diff.ShouldLargerThan(0d);
+            diff.ShouldNotLessThan(0d);
             return values.PreviousBasedFilter((prev, curr) => curr.LimitingDiff(prev, diff));
         }
 
@@ -552,7 +552,7 @@ namespace ijw.Next.Collection {
         /// <param name="diff">波动幅度限制</param>
         /// <return>过滤后的新集合</return>
         public static IEnumerable<decimal> FilterWithDiffLimitation(this IEnumerable<decimal> values, decimal diff) {
-            diff.ShouldLargerThan(0);
+            diff.ShouldNotLessThan(0m);
             return values.PreviousBasedFilter((prev, curr) => curr.LimitingDiff(prev, diff));
         }
 

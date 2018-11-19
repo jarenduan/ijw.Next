@@ -20,7 +20,7 @@ namespace ijw.Next.Collection {
         /// <param name="useNewData">使用新值进行后续过滤</param>
         /// <return>过滤后的新集合</return>
         public static double[] FilterWithDiffLimitation(this IIndexable<double> values, double diff, bool useNewData = false) {
-            diff.ShouldLargerThan(0);
+            diff.ShouldNotLessThan(0);
 
             double[] result = new double[values.Count];
 
@@ -43,7 +43,7 @@ namespace ijw.Next.Collection {
         /// <param name="useNewData">使用新值进行后续过滤</param>
         /// <returns>过滤后的新集合</returns>
         public static double[] FilterWithAmplifyLimitation(this IIndexable<double> values, double diff, bool useNewData = false) {
-            diff.ShouldLargerThan(0);
+            diff.ShouldNotLessThan(0);
 
             double[] result = new double[values.Count];
 
