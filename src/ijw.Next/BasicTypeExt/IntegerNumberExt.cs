@@ -15,17 +15,30 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="number">当前的数字</param>
         /// <param name="toNumber">结束的数字</param>
-        /// <returns></returns>
+        /// <returns>递增整数数组</returns>
+        [Obsolete]
         public static IEnumerable<int> To(this int number, int toNumber) {
-            if (toNumber < number) {
-                throw new ArgumentOutOfRangeException("toNumber should be not less.");
-            }
+            return number.ToInclude(toNumber);
+        }
 
-            int count = toNumber - number + 1;
+        /// <summary>
+        /// 返回由当前数字开始直到指定数字所组成的递增整数数组
+        /// </summary>
+        /// <param name="number">当前的数字</param>
+        /// <param name="toNumber">结束的数字</param>
+        /// <returns>递增整数数组</returns>
+        public static IEnumerable<int> ToInclude(this int number, int toNumber) {
+            return to(number, toNumber, true);
+        }
 
-            for (int i = 0; i < count; i++) {
-                yield return number + i;
-            }
+        /// <summary>
+        /// 返回由当前数字开始直到指定数字所组成的递增整数数组
+        /// </summary>
+        /// <param name="number">当前的数字</param>
+        /// <param name="toNumber">结束的数字</param>
+        /// <returns>递增整数数组</returns>
+        public static IEnumerable<int> ToExclude(this int number, int toNumber) {
+            return to(number, toNumber, false);
         }
 
         /// <summary>
@@ -35,7 +48,7 @@ namespace ijw.Next {
         /// <param name="howManyNext"></param>
         /// <returns></returns>
         public static IEnumerable<int> ToNext(this int number, int howManyNext) {
-            return number.To(number + howManyNext);
+            return number.ToInclude(number + howManyNext);
         }
 
         /// <summary>
@@ -45,9 +58,22 @@ namespace ijw.Next {
         /// <param name="totalLength"></param>
         /// <returns></returns>
         public static IEnumerable<int> ToTotal(this int number, int totalLength) {
-            return number.To(number + totalLength - 1);
+            return number.ToInclude(number + totalLength - 1);
         }
 
+        private static IEnumerable<int> to(int number, int toNumber, bool isInclude) {
+            if (toNumber < number) {
+                throw new ArgumentOutOfRangeException("toNumber should be not less.");
+            }
+
+            int count = toNumber - number;
+            if (isInclude) {
+                count++;
+            }
+            for (int i = 0; i < count; i++) {
+                yield return number + i;
+            }
+        }
         #endregion
 
         #region Pow
