@@ -25,9 +25,7 @@ namespace ijw.Next.Collection {
         /// <summary>
         /// 当前元素
         /// </summary>
-        public T Current {
-            get { return this._data[_curr]; }
-        }
+        public T Current => this._data[_curr];
 
         /// <summary>
         /// 清理资源
@@ -35,9 +33,7 @@ namespace ijw.Next.Collection {
         public void Dispose() {
         }
 
-        object IEnumerator.Current {
-            get { return this.Current; }
-        }
+        object IEnumerator.Current => this.Current;
 
         /// <summary>
         /// 向后迭代
