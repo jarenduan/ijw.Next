@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Linq;
 using ijw.Next.Collection;
+#nullable enable
 
 namespace ijw.Next.Reflection {
     /// <summary>
