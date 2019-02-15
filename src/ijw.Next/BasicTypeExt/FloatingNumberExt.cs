@@ -112,6 +112,26 @@ namespace ijw.Next {
         /// <returns></returns>
         public static double Pow(this float number, double power) => Math.Pow(number, power);
 
+        /// <summary>
+        /// 平方
+        /// </summary>
+        /// <param name="number">数字</param>
+        /// <returns>平方</returns>
+        public static decimal Square(this decimal number) => number * number;
+
+        /// <summary>
+        /// 平方
+        /// </summary>
+        /// <param name="number">数字</param>
+        /// <returns>平方</returns>
+        public static double Square(this double number) => number * number;
+
+        /// <summary>
+        /// 平方
+        /// </summary>
+        /// <param name="number">数字</param>
+        /// <returns>平方</returns>
+        public static double Square(this float number) => number * number;
         #endregion
 
         #region Normalization
