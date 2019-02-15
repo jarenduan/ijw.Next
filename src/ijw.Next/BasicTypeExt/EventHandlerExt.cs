@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Diagnostics;
 
+
 namespace ijw.Next {
     /// <summary>
     /// EventHandler的扩展方法
@@ -16,7 +17,8 @@ namespace ijw.Next {
         /// <returns>激活了事件, 返回真; 反之返回假</returns>
         public static bool InvokeIfNotNull(this EventHandler handler, object sender, EventArgs eventArgs) {
             if (handler != null) {
-                debugWriteInvokingInfo(handler); handler.Invoke(sender, eventArgs);
+                debugWriteInvokingInfo(handler);
+                handler.Invoke(sender, eventArgs);
                 return true;
             }
             else {
@@ -35,7 +37,7 @@ namespace ijw.Next {
         }
 
         /// <summary>
-        /// 如果有挂接的事件处理器, 就激活事件, 处理完毕后返回一个值.
+        /// 如果有挂接的事件处理器, 就激活事件.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="handler"></param>
