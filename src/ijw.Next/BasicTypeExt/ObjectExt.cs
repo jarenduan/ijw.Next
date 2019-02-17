@@ -18,9 +18,7 @@ namespace ijw.Next {
         /// </remarks>
         public static void SetPropertyValue<T>(this T obj, string propertyName, object value) {
             PropertyInfo pi = typeof(T).GetPropertyInfo(propertyName);
-            if (pi == null) {
-                throw new ArgumentOutOfRangeException(propertyName);
-            }
+            if (pi is null) throw new ArgumentOutOfRangeException(propertyName);
             pi.SetValue(obj, value, null);
         }
 
@@ -38,7 +36,7 @@ namespace ijw.Next {
         }
 
         /// <summary>
-        /// 
+        /// 尝试反射调用某个方法
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -46,16 +44,10 @@ namespace ijw.Next {
         /// <param name="result"></param>
         /// <param name="paras"></param>
         /// <returns></returns>
-        public static bool TryInvokeMethod<T>(this T obj, string methodName, out object result, params object[] paras) {
+        public static bool TryInvokeMethod<T>(this T obj, string methodName, out object? result, params object[] paras) {
             MethodInfo mi = typeof(T).GetMethodInfo(methodName);
-            if (mi == null) {
-                result = null;
-                return false;
-            }
-            else {
-                result = mi.Invoke(obj, paras);
-                return true;
-            }
+            result = mi?.Invoke(obj, paras);
+            return mi != null;
         }
     }
 }
