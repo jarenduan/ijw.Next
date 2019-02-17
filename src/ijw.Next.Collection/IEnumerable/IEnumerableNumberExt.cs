@@ -144,7 +144,7 @@ namespace ijw.Next.Collection {
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<double> values, bool isAllData = false) {
             var mean = values.Average();
-            var (count, sum) = values.SumAndCount(v => (v - mean).Squre()); //get count and sum within only one iteration.
+            var (count, sum) = values.SumAndCount(v => (v - mean).Square()); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
             return sum / count;
         }
@@ -157,7 +157,7 @@ namespace ijw.Next.Collection {
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<decimal> values, bool isAllData = false) {
             var mean = values.Average();
-            var (count, sum) = values.SumAndCount(v => Convert.ToDouble(v - mean).Squre()); //get count and sum within only one iteration.
+            var (count, sum) = values.SumAndCount(v => Convert.ToDouble(v - mean).Square()); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
             return sum / count;
         }
@@ -170,7 +170,7 @@ namespace ijw.Next.Collection {
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<float> values, bool isAllData = false) {
             var mean = values.Average();
-            var (count, sum) = values.SumAndCount(v => (v - mean).Squre()); //get count and sum within only one iteration.
+            var (count, sum) = values.SumAndCount(v => (v - mean).Square()); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
             return sum / count;
         }
@@ -183,7 +183,7 @@ namespace ijw.Next.Collection {
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<long> values, bool isAllData = false) {
             var mean = values.Average();
-            var (count, sum) = values.SumAndCount(v => (v - mean).Squre()); //get count and sum within only one iteration.
+            var (count, sum) = values.SumAndCount(v => (v - mean).Square()); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
             return sum / count;
         }
@@ -196,7 +196,7 @@ namespace ijw.Next.Collection {
         /// <returns>方差</returns>
         public static double Variance(this IEnumerable<int> values, bool isAllData = false) {
             var mean = values.Average();
-            var (count, sum) = values.SumAndCount(v => (v - mean).Squre()); //get count and sum within only one iteration.
+            var (count, sum) = values.SumAndCount(v => (v - mean).Square()); //get count and sum within only one iteration.
             count = isAllData ? count : count - 1;
             return sum / count;
         }
@@ -512,6 +512,65 @@ namespace ijw.Next.Collection {
         #endregion
 
         #region Filters
+
+        /// <summary>
+        /// 将序列中的异常元素替换为指定值
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="predicate">判定是否是异常值</param>
+        /// <param name="replace">替换为</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<double> FilteringAbnormal(this IEnumerable<double> values, Predicate<double> predicate, double replace) =>
+            values.Select(d => predicate(d) ? replace : d);
+         
+        /// <summary>
+        /// 将异常值用前一个值替代. 第一个值不作处理
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="predicate">判定是否是异常值</param>
+        /// <param name="useNewData">是否使用过滤后的值, 有助于处理连续异常值.</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<double> FilteringAbnormalWithPreviousValue(this IEnumerable<double> values, Predicate<double> predicate, bool useNewData = true) =>
+            values.PreviousBasedFilter((prev, curr) => predicate(curr) ? prev : curr, useNewData);
+
+        /// <summary>
+        /// 将序列中的异常元素替换为指定值
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="predicate">判定是否是异常值</param>
+        /// <param name="replace">替换为</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<float> FilteringAbnormal(this IEnumerable<float> values, Predicate<float> predicate, float replace) =>
+            values.Select(d => predicate(d) ? replace : d);
+
+        /// <summary>
+        /// 将异常值用前一个值替代. 第一个值不作处理
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="predicate">判定是否是异常值</param>
+        /// <param name="useNewData">是否使用过滤后的值, 有助于处理连续异常值.</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<float> FilteringAbnormalWithPreviousValue(this IEnumerable<float> values, Predicate<float> predicate, bool useNewData = true) =>
+            values.PreviousBasedFilter((prev, curr) => predicate(curr) ? prev : curr,useNewData);
+        /// <summary>
+        /// 将序列中的异常元素替换为指定值
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="predicate">判定是否是异常值</param>
+        /// <param name="replace">替换为</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<decimal> FilteringAbnormal(this IEnumerable<decimal> values, Predicate<decimal> predicate, decimal replace) =>
+            values.Select(d => predicate(d) ? replace : d);
+
+        /// <summary>
+        /// 将异常值用前一个值替代. 第一个值不作处理
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="predicate">判定是否是异常值</param>
+        /// <param name="useNewData">是否使用过滤后的值, 有助于处理连续异常值.</param>
+        /// <returns>过滤后的序列</returns>
+        public static IEnumerable<decimal> FilteringAbnormalWithPreviousValue(this IEnumerable<decimal> values, Predicate<decimal> predicate, bool useNewData = true) =>
+            values.PreviousBasedFilter((prev, curr) => predicate(curr) ? prev : curr, useNewData);
 
         #region NaN Filters
 
