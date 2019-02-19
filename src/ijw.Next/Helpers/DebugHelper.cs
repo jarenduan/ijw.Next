@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+
 #if !(NET35 || NET40)
     using System.Runtime.CompilerServices;
 #endif
@@ -33,10 +34,10 @@ namespace ijw.Next {
         /// <param name="callerName">调用者的方法名字</param>
         [Conditional("DEBUG")]
 #if (NET35 || NET40)
-        public static void WriteLine(string message, string callerName = "") {
+        public static void WriteLine(string message = "", string callerName = "") {
             if (callerName == "") callerName = GetCallerName();
 #else
-        public static void WriteLine(string message, [CallerMemberName] string callerName = "") {
+        public static void WriteLine(string message = "", [CallerMemberName] string callerName = "") {
 #endif
             string info = getFormattedMessage(callerName, message);
             Debug.WriteLine(info);
