@@ -12,12 +12,13 @@ namespace ijw.Next {
         /// <param name="type"></param>
         /// <returns></returns>
         public static string GetTypeName(this Type type) {
+            //TODO: check #if condition what about netstandard 2.0
 #if NETSTANDARD1_4
             string typename = type.ToString();
 #else
             string typename = $"{type.Namespace}.{type.Name}";
             if (type.IsGenericType) {
-                typename = typename + IjwHelper.ToAllEnumStrings(type.GetGenericArguments(),",", "[", "]", (s) => s.GetTypeName());
+                typename = typename + IjwHelper.ToAllEnumStrings(type.GetGenericArguments(), (s) => s.GetTypeName(),",", "[", "]");
             }
 #endif
             return typename;
@@ -50,7 +51,7 @@ namespace ijw.Next {
 #else
             MethodInfo mi = type.GetMethod(methodName);
 #endif
-            if (mi == null) {
+            if (mi is null) {
                 throw new ArgumentOutOfRangeException(methodName);
             }
             return mi;
@@ -61,7 +62,7 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static object GetDefaultValue(this Type type) {
+        public static object? GetDefaultValue(this Type type) {
 #if NETSTANDARD1_4
             TypeInfo t = type.GetTypeInfo();
 #else
