@@ -62,15 +62,11 @@ namespace ijw.Next {
         /// 重复指定次数. 如"Abc".Repeat(3) 返回 "AbcAbcAbc".
         /// </summary>
         /// <param name="astring"></param>
-        /// <param name="times">重复次数, 小于1则返回null</param>
+        /// <param name="times">重复次数, 必须大于0</param>
         /// <returns>重复后的字符串</returns>
         public static string Repeat(this string astring, int times) {
-            if (times <= 0) {
-                return null;
-            }
-            if (times == 1) {
-                return astring;
-            }
+            times.ShouldLargerThan(0);
+            if (times == 1) return astring;
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < times; i++) {
                 result.Append(astring);
@@ -131,7 +127,7 @@ namespace ijw.Next {
                     number++;
                     
                     //打印缩进.
-                    result.Append(_iNDENT.Repeat(number));
+                    result.Append(_INDENT.Repeat(number));
 
                     //进行下一次循环.  
                     continue;
@@ -146,7 +142,7 @@ namespace ijw.Next {
                     number--;
 
                     //打印缩进.
-                    result.Append(_iNDENT.Repeat(number));
+                    result.Append(_INDENT.Repeat(number));
 
                     //打印当前字符.  
                     result.Append(currChar);
@@ -164,7 +160,7 @@ namespace ijw.Next {
                 if ((currChar == ',')) {
                     result.Append(currChar);
                     result.Append(newLine);
-                    result.Append(_iNDENT.Repeat(number));
+                    result.Append(_INDENT.Repeat(number));
                     continue;
                 }
 
@@ -408,7 +404,7 @@ namespace ijw.Next {
         /// <param name="aString"></param>
         /// <returns></returns>
         public static bool IsNullOrEmptyOrWhiteSpace(this string aString) {
-            if (aString == null) {
+            if (aString is null) {
                 return true;
             }
             for (int i = 0; i < aString.Length; i++) {
@@ -514,6 +510,6 @@ namespace ijw.Next {
         /// <summary>
         /// 表示缩进. 三个空格组成
         /// </summary>
-        private static String _iNDENT = "   ";
+        private static readonly string _INDENT = "   ";
     }
 }
