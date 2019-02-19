@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-
+#nullable enable
 namespace ijw.Next {
     /// <summary>
     /// 
@@ -16,7 +16,7 @@ namespace ijw.Next {
         /// <remarks>
         /// 属性值运行时类型如果不符合, 将会抛出异常
         /// </remarks>
-        public static void SetPropertyValue<T>(this T obj, string propertyName, object value) {
+        public static void SetPropertyValue<T>(this T obj, string propertyName, object? value) {
             PropertyInfo pi = typeof(T).GetPropertyInfo(propertyName);
             if (pi is null) throw new ArgumentOutOfRangeException(propertyName);
             pi.SetValue(obj, value, null);
@@ -30,7 +30,7 @@ namespace ijw.Next {
         /// <param name="methodName"></param>
         /// <param name="paras"></param>
         /// <returns></returns>
-        public static object InvokeMethod<T>(this T obj, string methodName, params object[] paras) {
+        public static object InvokeMethod<T>(this T obj, string methodName, params object?[] paras) {
             MethodInfo mi = typeof(T).GetMethodInfo(methodName);
             return mi != null ? mi.Invoke(obj, paras) : throw new ArgumentOutOfRangeException(methodName);
         }
