@@ -9,7 +9,7 @@ namespace ijw.Next {
     /// 控制台帮助类
     /// </summary>
     public static class ConsoleHelper {
-        private static readonly Object _syncRoot = new object();
+        private static readonly Object _SYNC_ROOT = new object();
 
         /// <summary>
         /// 先提供一个提示信息, 再接受用户输入.
@@ -59,7 +59,7 @@ namespace ijw.Next {
         /// <param name="message">输出的信息</param>
         /// <param name="color">前景色, 默认使用红色</param>
         public static void WriteInColor(string message, ConsoleColor color = ConsoleColor.Red) {
-            lock (_syncRoot) {
+            lock (_SYNC_ROOT) {
                 var c = ForegroundColor;
                 ForegroundColor = color;
                 Write(message);
