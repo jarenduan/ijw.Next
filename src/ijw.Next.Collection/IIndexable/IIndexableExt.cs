@@ -10,7 +10,7 @@ namespace ijw.Next.Collection {
     /// 
     /// </summary>
     public static class IIndexableExt {
-        #region Filters
+#region Filters
 
         /// <summary>
         /// 限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
@@ -97,7 +97,7 @@ namespace ijw.Next.Collection {
             return result;
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// 获得一个枚举器
@@ -134,7 +134,7 @@ namespace ijw.Next.Collection {
                 }
             }
 
-            object IEnumerator.Current {
+            object? IEnumerator.Current {
                 get {
                     return this.Current;
                 }
