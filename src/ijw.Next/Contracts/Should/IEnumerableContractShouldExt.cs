@@ -16,7 +16,7 @@ namespace ijw.Next {
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldNotBeEmpty<T>(this IEnumerable<T> collection) {
             collection.ShouldBeNotNullReference();
-            return collection.Count().ShouldBeNotZero();
+            return collection.Any();
         }
 
         /// <summary>
@@ -67,7 +67,5 @@ namespace ijw.Next {
         public static bool ShouldEachNotEquals(this IEnumerable<int> collection, int notEqualsTo) {
             return collection.ShouldEachSatisfy((i) => i.ShouldNotEquals(notEqualsTo));
         }
-
-       
     }
 }
