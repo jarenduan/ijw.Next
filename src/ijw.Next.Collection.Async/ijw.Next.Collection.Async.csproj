@@ -1,16 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.4</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard1.4;netstandard2.0</TargetFrameworks>
     <Authors>Jaren Duan</Authors>
     <AssemblyName>ijw.Next.Collection.Async</AssemblyName>
     <PackageId>ijw.Next.Collection.Async</PackageId>
-    <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0.12</FileVersion>
-    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.1</AssemblyVersion>
+    <FileVersion>0.1.1.26</FileVersion>
+    <Version>0.1.1</Version>
     <DocumentationFile>ijw.Next.Collection.Async.xml</DocumentationFile>
-    <LangVersion>7.1</LangVersion>
+    <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ijw.Next\ijw.Next.csproj" />
     <ProjectReference Include="..\ijw.Next.Collection\ijw.Next.Collection.csproj" />
     <ProjectReference Include="..\ijw.Next.Threading.Tasks\ijw.Next.Threading.Tasks.csproj" />
   </ItemGroup>

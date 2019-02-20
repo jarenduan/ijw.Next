@@ -47,7 +47,7 @@ namespace ijw.Next.Collection.Async {
         /// </summary>
         /// <param name="item"></param>
         public void Append(T item) {
-            if (item == null) {
+            if (item is null) {
                 DebugHelper.WriteLine("(Appending Item) Item is null, so quit appending.");
                 return;
             }
@@ -76,7 +76,7 @@ namespace ijw.Next.Collection.Async {
             try {
                 success = await consumeFunc(item);
             }
-            catch (Exception) {
+            catch {
                 success = false;
             }
 
@@ -115,7 +115,9 @@ namespace ijw.Next.Collection.Async {
 
         #region Private Methods
         private bool tryBorrowOneItem(out T item) {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference or unconstrained type parameter.
             item = default;
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference or unconstrained type parameter.
             if (!HasItem || !HasAvailableItems) {
                 DebugHelper.WriteLine("(Getting Item) Try getting Item, but no available items.");
                 return false;
@@ -154,7 +156,7 @@ namespace ijw.Next.Collection.Async {
         /// 移除某个元素
         /// </summary>
         private void remove(T item) {
-            if (item == null) {
+            if (item is null) {
                 DebugHelper.WriteLine("(Removing Item) Item is null, so quit removing.");
                 return;
             }
@@ -168,9 +170,10 @@ namespace ijw.Next.Collection.Async {
             lock (_syncCollection) {
                 DebugHelper.WriteLine("(Removing Item) Got the colleciton-lock!");
                 DebugHelper.Write($"(Removing Item) Item count: {_itemsList.Count}");
-                if (!_itemsList[index].Item.Equals(item)) {
+                if (_itemsList[index]?.Item?.Equals(item) ?? true) {
                     index = getIndexOf(item);
                     if (index == -1) {
+                        DebugHelper.WriteLine();
                         DebugHelper.WriteLine("(Removing Item) Not Found the Item.");
                         return;
                     }
@@ -187,7 +190,7 @@ namespace ijw.Next.Collection.Async {
         /// </summary>
         /// <param name="item">欲交还的元素</param>
         private void returnback(T item) {
-            if (item == null) {
+            if (item is null) {
                 DebugHelper.WriteLine("(Returning Item Back) Item is null, quit.");
                 return;
             }
@@ -199,7 +202,7 @@ namespace ijw.Next.Collection.Async {
             DebugHelper.WriteLine("(Returning Item Back) Try to get the colleciton-lock...");
             lock (_syncCollection) {
                 DebugHelper.WriteLine("(Returning Item Back) Got the colleciton-lock!");
-                if (!_itemsList[index].Item.Equals(item)) {
+                if (_itemsList[index]?.Item?.Equals(item) ?? true) {
                     index = getIndexOf(item);
                     if (index == -1) {
                         DebugHelper.WriteLine("(Returning Item Back) But item is not in collection, quit.");
@@ -212,7 +215,7 @@ namespace ijw.Next.Collection.Async {
             resumeIfWaiting();
         }
 
-        private int getIndexOf(T item) => _itemsList.IndexOf(t => t.Item.Equals(item), ItemGettngStrategy);
+        private int getIndexOf(T item) => _itemsList.IndexOf(t => t?.Item?.Equals(item) ?? false, ItemGettngStrategy);
 
         private void raiseCountChangedEvent(int count) {
             var temp = ItemCountChanged;
