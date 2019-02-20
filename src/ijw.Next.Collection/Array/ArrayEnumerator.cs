@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ijw.Next.Collection {
     /// <summary>
@@ -33,7 +32,7 @@ namespace ijw.Next.Collection {
         public void Dispose() {
         }
 
-        object IEnumerator.Current => this.Current;
+        object? IEnumerator.Current => this.Current;
 
         /// <summary>
         /// 向后迭代
