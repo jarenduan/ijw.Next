@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ijw.Next.IO {
@@ -49,6 +50,7 @@ namespace ijw.Next.IO {
         public static void WriteBytesToFile(string filepath, byte[] content, Encoding encoding, bool append = false) {
             content.WriteToFile(filepath, encoding, append);
         }
+
         /// <summary>
         /// 按通配符拷贝多个文件.
         /// </summary>
@@ -59,16 +61,18 @@ namespace ijw.Next.IO {
         /// <param name="overwrite">是否覆盖, 设为false后遇到同名文件会抛出异常</param>
         /// <returns>字符串数组, 包含拷贝文件的源路径全名称</returns>
         public static string[] CopyFiles(string sourceDir, string destDir, string pattern = "*.*", SearchOption copyOption = SearchOption.TopDirectoryOnly, bool overwrite = true) {
+            List<string> copied = new List<string>();
             try {
                 var files = Directory.GetFiles(sourceDir, pattern, copyOption);
                 foreach (var f in files) {
                     FileInfo fi = new FileInfo(f);
                     File.Copy(f, Path.Combine(destDir, fi.Name), overwrite);
+                    copied.Add(fi.FullName);
                 }
                 return files;
             }
             catch {
-                return null;
+                throw new BatchCopyNotFinishedException(copied.ToArray());
             }
         }
 

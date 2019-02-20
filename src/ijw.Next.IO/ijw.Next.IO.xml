@@ -4,6 +4,22 @@
         <name>ijw.Next.IO</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.IO.BatchCopyNotFinishedException">
+            <summary>
+            表示批量Copy没有顺利完成的异常.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IO.BatchCopyNotFinishedException.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="copied"></param>
+        </member>
+        <member name="P:ijw.Next.IO.BatchCopyNotFinishedException.Copied">
+            <summary>
+            已经拷贝的文件
+            </summary>
+        </member>
         <member name="T:ijw.Next.IO.BinaryReaderExt">
             <summary>
             BinaryReader的扩展方法
