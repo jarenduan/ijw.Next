@@ -43,7 +43,8 @@ namespace ijw.Next.Collection {
             T[] result = new T[len];
             int index = 0;
             for (int i = 0; i < len; i++) {
-                if (source[i].Equals(toRemove))
+                var curr = source[i];
+                if (curr is null && toRemove is null || !(curr is null) && curr.Equals(toRemove))
                     continue;
                 result[index] = source[i];
                 index = checked(index + 1);
@@ -79,7 +80,8 @@ namespace ijw.Next.Collection {
             int len = source.Length;
             T[] result = new T[len];
             for (int i = 0; i < len; i++) {
-                if (source[i].Equals(replace))
+                var item = source[i];
+                if ((item is null && replace is null) || (item != null && item.Equals(replace)))
                     result[i] = with;
                 else
                     result[i] = source[i];
@@ -99,10 +101,9 @@ namespace ijw.Next.Collection {
             if (index.Count() != values.Count())
                 throw new TwoIEnumerableCountNotMatchException(index, values);
             Dictionary<int, T> dict = new Dictionary<int, T>();
-            (index, values)
-                .ForEachPair((i, v) => 
+            (index, values).ForEachPair((i, v) => 
                     dict.Add(i, v)
-                );
+            );
             SetValuesForTheIndexes(array, dict);
         }
 
