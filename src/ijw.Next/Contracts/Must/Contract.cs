@@ -59,7 +59,7 @@ namespace ijw.Next {
         /// <exception cref="ContractBrokenException"></exception>
         public Contract<T> ThrowsWhenBroken<TException>(TException exception) where TException : Exception {
             if (!IsKept) {
-                if (exception == null) {
+                if (exception is null) {
                     throw new ContractBrokenException(this.BrokenMessage);
                 } else {
                     throw exception;
