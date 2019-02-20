@@ -9,6 +9,12 @@
             CSV文件读取
             </summary>
         </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.#ctor(System.String)">
+            <summary>
+            构造一个csv文件读取器实例
+            </summary>
+            <param name="csvfilePath"></param>
+        </member>
         <member name="P:ijw.Next.IO.CsvReader.CsvFileReader.CsvFilePath">
             <summary>
             CSV文件路径
@@ -29,6 +35,18 @@
             分隔符
             </summary>
         </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadHeader">
+            <summary>
+            读取文件标题行
+            </summary>
+            <returns>Csv标题</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStrings">
+            <summary>
+            依次将每行分隔, 返回字符串数组
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStringsWithLineNumber">
             <summary>
             将每行分隔后, 返回字符串数组和行号
@@ -41,15 +59,50 @@
             <typeparam name="T">读取对象的类型</typeparam>
             <returns>对象集合的迭代器</returns>
         </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStringsWithLineNumber(System.String,System.Text.Encoding,System.Char[],System.Boolean)">
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadDataTable(System.Boolean)">
             <summary>
-            将每行用指定字符分隔后, 返回字符串数组和行号.使用utf-8读取文件.
+            读取标题行和全部行, 形成一个DataTable
+            </summary>
+            <param name="hasHeader">是否有标题行</param>
+            <returns>包含全部数据的DataTable</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadDataTable(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            将指定页的数据读取出来, 形成一个DataTable
+            </summary>
+            <param name="pageIndex">从1开始的页码</param>
+            <param name="pageSize">每页数据行数</param>
+            <param name="hasHeader">是否有标题行</param>
+            <returns>包含指定页数据的DataTable</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStrings(System.String,System.Text.Encoding,System.Boolean,System.Char[])">
+            <summary>
+            将每行用指定字符分隔后, 返回字符串数组. 使用指定的编码方式读取文件.
+            </summary>
+            <param name="csvFilepath">csv文件的路径</param>
+            <param name="encoding">csv文件的编码</param>
+            <param name="isFirstLineHeader">第一行是否是header</param>
+            <param name="separators">使用的分隔符</param>
+            <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStringsWithLineNumber(System.String,System.Text.Encoding,System.Boolean,System.Char[])">
+            <summary>
+            将每行用指定字符分隔后, 返回字符串数组和行号. 使用指定的编码方式读取文件.
+            </summary>
+            <param name="csvFilepath">csv文件的路径</param>
+            <param name="encoding">csv文件的编码</param>
+            <param name="isFirstLineHeader">第一行是否是header</param>
+            <param name="separators">使用的分隔符</param>
+            <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadHeader(System.String,System.Text.Encoding,System.Char[])">
+            <summary>
+            读取文件标题行
             </summary>
             <param name="csvFilepath">csv文件的路径</param>
             <param name="encoding">csv文件的编码</param>
             <param name="separators">使用的分隔符</param>
-            <param name="isFirstLineHeader">第一行是否是header</param>
-            <returns></returns>
+            <returns>Csv标题</returns>
         </member>
         <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadObjects``1(System.String,System.Text.Encoding,System.Char[])">
             <summary>
@@ -60,6 +113,41 @@
             <param name="encoding">csv文件的编码</param>
             <param name="separators">csv分隔符. 默认为null, 将使用逗号作为分隔. </param>
             <returns></returns>
+        </member>
+        <member name="T:ijw.Next.IO.CsvReader.CsvHeader">
+            <summary>
+            Csv文件的各列标题
+            </summary>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvHeader.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="headerTexts"></param>
+        </member>
+        <member name="P:ijw.Next.IO.CsvReader.CsvHeader.HeaderTexts">
+            <summary>
+            列名
+            </summary>
+        </member>
+        <member name="P:ijw.Next.IO.CsvReader.CsvHeader.ColumnCount">
+            <summary>
+            列数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.IO.CsvReader.CsvHeader.Item(System.Int32)">
+            <summary>
+            列名索引器
+            </summary>
+            <param name="index">列的索引</param>
+            <returns>对应列的列名</returns>
+        </member>
+        <member name="P:ijw.Next.IO.CsvReader.CsvHeader.Item(System.String)">
+            <summary>
+            列索引的索引器
+            </summary>
+            <param name="columnName">列名</param>
+            <returns>该列的索引</returns>
         </member>
     </members>
 </doc>
