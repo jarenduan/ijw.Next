@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-#nullable enable
 
 namespace ijw.Next.Reflection {
     /// <summary>
@@ -17,7 +16,7 @@ namespace ijw.Next.Reflection {
         /// <param name="stringvalue">属性值</param>
         public static void SetPropertyValue<T>(this T obj, string propertyName, string stringvalue) {
             PropertyInfo pi = typeof(T).GetPropertyInfo(propertyName);
-            if (pi == null) throw new ArgumentOutOfRangeException(propertyName);
+            if (pi is null) throw new ArgumentOutOfRangeException(propertyName);
             var typedValue = stringvalue.To(pi.PropertyType);
             pi.SetValue(obj, typedValue, null);
         }

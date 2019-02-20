@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-#nullable enable
 
 namespace ijw.Next.Reflection {
     /// <summary>
@@ -99,6 +97,14 @@ namespace ijw.Next.Reflection {
         public static T? ToNullable<T>(this string value, bool useDefaultValueWhenCastFail = false)
             where T : struct
             => (T?)value.To(typeof(T?), useDefaultValueWhenCastFail); 
+
+        /*
+            注意, 此处并没有实现针对引用类型的方法:
+                T To<T>(this string value) where T: class { ... }
+            这是因为将string转成string之外的复杂类型没有意义, 从字符串反序列化应该调用相应的反序列化方法.
+            
+            可以考虑内部增加xml/json的反序列化方法
+        */
         #endregion
 
         /// <summary>
