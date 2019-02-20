@@ -13,27 +13,20 @@ namespace ijw.Next.Html {
         /// <param name="html"></param>
         /// <param name="xpath">xpath表达式</param>
         /// <returns>对节点返回InnerText, 对属性返回属性值</returns>
-        public static List<string> SelectTextsByXPath(string html, string xpath) {
+        public static List<string>? SelectTextsByXPath(string html, string xpath) {
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(html);
             var last = xpath.LastIndexOf("/");
-            string attr = null;
+            string? attr = null;
             if (last < xpath.Length - 2 && xpath[last + 1] == '@') {
                 attr = xpath.Substring(last + 2);
                 xpath = xpath.SubstringPythonStyle(0, last);
             }
 
             var htmlNodes = htmlDoc.DocumentNode.SelectNodes(xpath);
-            if (htmlNodes == null) {
-                return null;
-            }
 
-            if (attr != null) {
-                return htmlNodes.Select((n) => n.GetAttributeValue(attr, "No such attribute")).ToList();
-            }
-            else {
-                return htmlNodes.Select((n) => n.InnerText).ToList();
-            }
+            return htmlNodes?.Select(n => attr is null ? n.GetAttributeValue(attr, "No such attribute") : n.InnerText)
+                             .ToList();
         }
     }
 }

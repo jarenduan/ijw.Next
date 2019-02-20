@@ -24,7 +24,7 @@ namespace ijw.Next.Html {
         /// <param name="html"></param>
         /// <param name="xpath">xpath表达式</param>
         /// <returns>对节点返回InnerText, 对属性返回属性值</returns>
-        public static List<string> SelectTextsByXPath(this string html, string xpath) {
+        public static List<string>? SelectTextsByXPath(this string html, string xpath) {
             return HtmlHelper.SelectTextsByXPath(html, xpath);
         }
     }
