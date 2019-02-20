@@ -10,12 +10,12 @@ namespace ijw.Next.Threading.Tasks {
         /// <summary>
         /// 设置进度报告的回调函数
         /// </summary>
-        public IProgress<TReport> Progress { get; set; }
+        public IProgress<TReport>? Progress { get; set; }
 
         /// <summary>
         /// 循环体, 返回一个值, 用作每次迭代的进度报告参数
         /// </summary>
-        public Func<TReport> LoopFunction { get; set; }
+        public Func<TReport>? LoopFunction { get; set; }
 
         /// <summary>
         /// 循环体
