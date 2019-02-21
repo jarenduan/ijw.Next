@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ijw.Next.Collection {
     /// <summary>
-    /// A pair of the index and the value.
+    /// A pair of index and value.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class IndexValuePair<T> {
