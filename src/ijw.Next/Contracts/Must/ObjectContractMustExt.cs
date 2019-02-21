@@ -17,18 +17,18 @@ namespace ijw.Next {
         /// <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static Contract<T> MustNotNullArgument<T>(this T obj, string argumentName = "") where T : class {
-            var isKept = obj == null;
             var brokenMessage = $"{argumentName} must not a null argument";
 
-            if (isKept) {
-                return new Contract<T>(obj, brokenMessage);
-            }
-            else {
+            if (obj is null) {
                 if (argumentName == "") {
                     throw new ArgumentNullException();
-                } else {
+                }
+                else {
                     throw new ArgumentNullException(argumentName);
                 }
+            }
+            else {
+                return new Contract<T>(obj, brokenMessage);
             }
         }
 
@@ -56,19 +56,18 @@ namespace ijw.Next {
         /// <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
         /// <exception cref="NullReferenceException"></exception>
         public static Contract<T> MustNotNull<T>(this T obj, string message = "") where T : class {
-            var isKept = obj == null;
             var brokenMessage = $"{message} must not a null argument";
 
-            if (isKept) {
-                return new Contract<T>(obj, brokenMessage);
-            }
-            else {
+            if (obj is null) {
                 if (message == "") {
                     throw new NullReferenceException();
                 }
                 else {
                     throw new NullReferenceException(message);
                 }
+            }
+            else {
+                return new Contract<T>(obj, brokenMessage);
             }
         }
 
@@ -95,7 +94,8 @@ namespace ijw.Next {
         /// <param name="condition">应满足的条件</param>
         /// <param name="conditionDescrption">条件的描述信息</param>
         /// <returns>满足条件Contract的IsKept为true.</returns>
-        public static Contract<T> MustSatisfy<T>(this T obj, Predicate<T> condition, string conditionDescrption = null) {
+        public static Contract<T> MustSatisfy<T>(this T obj, Predicate<T> condition, string conditionDescrption = "condition") {
+            if (obj is null) throw new NullReferenceException();
             var isKept = condition(obj);
             var brokenMessage = $"{obj.ToString()} must satisfy {conditionDescrption ?? condition.ToString()}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
@@ -109,7 +109,7 @@ namespace ijw.Next {
         /// <param name="condition">应满足的条件</param>
         /// <param name="conditionDescrption">条件的描述信息</param>
         /// <returns>满足条件Contract的IsKept为true. </returns>
-        public static Contract<T> AndMustSatisfy<T>(this Contract<T> contract, Predicate<T> condition, string conditionDescrption = null)
+        public static Contract<T> AndMustSatisfy<T>(this Contract<T> contract, Predicate<T> condition, string conditionDescrption = "")
             => contract.Value.MustSatisfy(condition, conditionDescrption);
 
         #endregion
@@ -124,8 +124,9 @@ namespace ijw.Next {
         /// <param name="other">用以比较的对象</param>
         /// <returns>与指定的对象相等Contract的IsKept为true.</returns>
         public static Contract<T> MustEquals<T>(this T obj, T other) {
+            if (obj is null) throw new NullReferenceException();
             var isKept = obj.Equals(other);
-            var brokenMessage = $"{obj.ToString()} must equal to {other.ToString()}";
+            var brokenMessage = $"{obj.ToString()} must equal to {(other is null ? "[NULL]" : other.ToString())}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -151,8 +152,9 @@ namespace ijw.Next {
         /// <param name="other">用以比较的对象</param>
         /// <returns>与指定的对象相等Contract的IsKept为true.</returns>
         public static Contract<T> MustNotEquals<T>(this T obj, T other) {
+            if (obj is null) throw new NullReferenceException();
             var isKept = !(obj.Equals(other));
-            var brokenMessage = $"{obj.ToString()} must not equal to {other.ToString()}";
+            var brokenMessage = $"{obj.ToString()} must not equal to {(other is null ? "[NULL]" : other.ToString())}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 

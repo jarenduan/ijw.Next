@@ -37,14 +37,14 @@ namespace ijw.Next {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="collection"></param>
-        /// <param name="condition">应满足的条件</param>
+        /// <param name="pred">应满足的条件</param>
         /// <param name="conditionDescrption">条件描述</param>
         /// <returns>集合满足条件, Contract的IsKept为true.</returns>
-        public static Contract<IEnumerable<T>> MustEachSatisfy<T>(this IEnumerable<T> collection, Predicate<T> condition, string conditionDescrption = null) {
+        public static Contract<IEnumerable<T>> MustEachSatisfy<T>(this IEnumerable<T> collection, Predicate<T> pred, string conditionDescrption = "condition") {
             int i = 0;
             bool broke = false;
             foreach (var item in collection) {
-                broke = condition(item);
+                broke = pred(item);
                 if (!broke) {
                     break;
                 }
@@ -52,7 +52,7 @@ namespace ijw.Next {
             }
             var brokenMessage = $"The {i.ToOrdinalString()} item in collection doesn't satisfy {conditionDescrption ?? conditionDescrption.ToString()}";
             if (broke) {
-                throw new NotSatisfiedConditionException<IEnumerable<T>>(brokenMessage);
+                throw new NotSatisfiedConditionException<IEnumerable<T>, T>(collection, pred, brokenMessage);
             }
             else {
                 return new Contract<IEnumerable<T>>(collection, brokenMessage);
@@ -67,7 +67,7 @@ namespace ijw.Next {
         /// <param name="condition">应满足的条件</param>
         /// <param name="conditionDescrption">条件描述</param>
         /// <returns>集合满足条件, Contract的IsKept为true.</returns>
-        public static Contract<IEnumerable<T>> AndMustEachSatisfy<T>(this Contract<IEnumerable<T>> contract, Predicate<T> condition, string conditionDescrption = null)
+        public static Contract<IEnumerable<T>> AndMustEachSatisfy<T>(this Contract<IEnumerable<T>> contract, Predicate<T> condition, string conditionDescrption = "condition")
             => contract.Value.MustEachSatisfy(condition, conditionDescrption);
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace ijw.Next {
         /// <param name="other">等于</param>
         /// <returns>每个元素都等于指定值, Contract的IsKept为true.</returns>
         public static Contract<IEnumerable<T>> MustEachEquals<T>(this IEnumerable<T> collection, T other)
-            => collection.MustEachSatisfy((i) => i.Equals(other), $"must for each item equals to {other.ToString()}");
+            => collection.MustEachSatisfy((i) => i?.Equals(other) ?? false, $"must for each item equals to {(other is null? "[NULL]" : other.ToString())}");
 
         /// <summary>
         /// 每个元素都应该等于指定值
@@ -95,7 +95,7 @@ namespace ijw.Next {
         /// <param name="other">等于</param>
         /// <returns>每个元素都不等于指定值, Contract的IsKept为true.</returns>
         public static Contract<IEnumerable<T>> MustEachNotEquals<T>(this IEnumerable<T> collection, T other)
-            => collection.MustEachSatisfy((i) => !i.Equals(other), $"must for each item equals to {other.ToString()}");
+            => collection.MustEachSatisfy((i) => !i?.Equals(other) ?? false, $"must for each item equals to {(other is null ? "[NULL]" : other.ToString())}");
 
         /// <summary>
         /// 每个元素都应该不等于指定值
