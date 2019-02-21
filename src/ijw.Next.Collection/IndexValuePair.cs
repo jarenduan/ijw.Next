@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ijw.Next.Collection {
+﻿namespace ijw.Next.Collection {
     /// <summary>
     /// A pair of index and value.
     /// </summary>
