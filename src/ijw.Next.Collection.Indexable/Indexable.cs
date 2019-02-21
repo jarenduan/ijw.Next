@@ -23,29 +23,19 @@ namespace ijw.Next.Collection.Indexable {
         }
 
         /// <summary>
-        /// 使用一个集合进行初始化
-        /// </summary>
-        /// <param name="data">进行初始化的集合</param>
-        public Indexable(IEnumerable<T> data)
-            : base(data) {
-        }
-
-        /// <summary>
         /// 索引器
         /// </summary>
         /// <param name="index">索引</param>
         /// <returns></returns>
         public T this[int index] {
-            get { return this._data[index]; }
-            set { this._data[index] = value; }
+            get => _data[index];
+            set => _data[index] = value;
         }
 
 
         /// <summary>
         /// 集合元素总数
         /// </summary>
-        public int Count {
-            get { return this._data.Length; }
-        }
+        public int Count => this._data.Length;
     }
 }
