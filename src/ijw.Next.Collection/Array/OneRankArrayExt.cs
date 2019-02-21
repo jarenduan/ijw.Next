@@ -44,7 +44,7 @@ namespace ijw.Next.Collection {
             int index = 0;
             for (int i = 0; i < len; i++) {
                 var curr = source[i];
-                if (curr is null && toRemove is null || !(curr is null) && curr.Equals(toRemove))
+                if (curr is null ? toRemove is null : curr.Equals(toRemove))
                     continue;
                 result[index] = source[i];
                 index = checked(index + 1);
@@ -80,8 +80,8 @@ namespace ijw.Next.Collection {
             int len = source.Length;
             T[] result = new T[len];
             for (int i = 0; i < len; i++) {
-                var item = source[i];
-                if ((item is null && replace is null) || (item != null && item.Equals(replace)))
+                var curr = source[i];
+                if (curr is null ? replace is null : curr.Equals(replace))
                     result[i] = with;
                 else
                     result[i] = source[i];
