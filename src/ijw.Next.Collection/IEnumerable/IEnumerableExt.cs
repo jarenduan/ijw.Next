@@ -289,7 +289,7 @@ namespace ijw.Next.Collection {
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other) {
-            return source.ItemEquals(other, (d1, d2) => d1.Equals(d2));
+            return source.ItemEquals(other, (d1, d2) => d1 is null? d2 is null : d1.Equals(d2));
         }
 
         /// <summary>
@@ -313,7 +313,7 @@ namespace ijw.Next.Collection {
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, bool> comparer) {
-            if (other == null) return false;
+            if (other is null) return false;
 
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
@@ -332,7 +332,7 @@ namespace ijw.Next.Collection {
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, int, bool> comparer) {
-            if (other == null) return false;
+            if (other is null) return false;
 
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
@@ -350,7 +350,7 @@ namespace ijw.Next.Collection {
         /// <param name="comparer">指定的用于比较相等的方法</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         public static bool SequenceEqual<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, bool> comparer) {
-            if (other == null) return false;
+            if (other is null) return false;
 
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
@@ -368,7 +368,7 @@ namespace ijw.Next.Collection {
         /// <param name="comparer">指定的用于比较相等的方法</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         public static bool SequenceEqual<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, int, bool> comparer) {
-            if (other == null) return false;
+            if (other is null) return false;
 
             try {
                 return (source, other).ForEachPairWhile(dowhile: comparer, forceDimensionMatching: true) > 0;
@@ -468,7 +468,7 @@ namespace ijw.Next.Collection {
 
             int index = -1;
             enumerable.ForEachWhile((v, i) => {
-                if (v.Equals(value)) {
+                if (v is null && value is null || v != null && v.Equals(value)) {
                     index = i;
                     return false;
                 }
@@ -954,12 +954,12 @@ namespace ijw.Next.Collection {
                 StringBuilder sb = new StringBuilder(prefix);
 
                 void appendSimpleStringIfPossible(T item) {
-                    if (item is IEnumerable<T> ienum) {
-                        sb.Append(ienum.ToSimpleEnumStrings());
-                    }
-                    else {
-                        sb.Append(item.ToString());
-                    }
+                    string s = item switch
+                    {
+                        IEnumerable<T> ienum => ienum.ToSimpleEnumStrings(),
+                        _                    => item is null ? "[NULL]" : item.ToString()
+                    };
+                    sb.Append(s);
                     sb.Append(seperator);
                 }
 
@@ -992,10 +992,23 @@ namespace ijw.Next.Collection {
         /// <param name="separator">元素之间的分隔符, 默认是", "</param>
         /// <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
         /// <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
+        /// <returns></returns>
+        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, string separator = ", ", string prefix = "[", string postfix = "]") {
+            return IjwHelper.ToAllEnumStrings(enumerable, separator, prefix, postfix);
+        }
+
+        /// <summary>
+        /// 输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <param name="separator">元素之间的分隔符, 默认是", "</param>
+        /// <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
+        /// <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
         /// <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
         /// <returns></returns>
-        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, string separator = ", ", string prefix = "[", string postfix = "]", Func<T, string> transform = null) {
-            return IjwHelper.ToAllEnumStrings(enumerable, separator, prefix, postfix, transform);
+        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, Func<T, string> transform, string separator = ", ", string prefix = "[", string postfix = "]") {
+            return IjwHelper.ToAllEnumStrings(enumerable, transform, separator, prefix, postfix);
         }
 
         #endregion
@@ -1010,9 +1023,8 @@ namespace ijw.Next.Collection {
         /// <param name="windowLength">窗口长度</param>
         /// <param name="func">一个计算函数, 输入参数是当前窗口, 输出是计算后的值</param>
         /// <returns>过滤后的序列</returns>
-        public static IEnumerable<T> WindowBasedFilter<T>(this IEnumerable<T> values, int windowLength, Func<IEnumerable<T>, T> func) {
-            return WindowBasedFilter(values, windowLength, (v) => v, func);
-        }
+        public static IEnumerable<T> WindowBasedFilter<T>(this IEnumerable<T> values, int windowLength, Func<IEnumerable<T>, T> func) 
+            => WindowBasedFilter(values, windowLength, (v) => v, func);
 
         /// <summary>
         /// 基于移动窗口进行计算处理. 每个当前值在当前窗口的：1）中间（窗口长度奇数时）2）或者在窗口中间 + 1处（窗口长度偶数时）
@@ -1024,7 +1036,10 @@ namespace ijw.Next.Collection {
         /// <param name="funcWithoutWindow">一个计算函数, 输入参数是无法在窗口中计算的值, 输出是计算后的值</param>
         /// <param name="funcWithWindow">一个计算函数, 输入参数是当前窗口, 输出是计算后的值</param>
         /// <returns>过滤后的序列</returns>
-        public static IEnumerable<TResult> WindowBasedFilter<T, TResult>(this IEnumerable<T> values, int windowLength, Func<T,TResult> funcWithoutWindow, Func<IEnumerable<T>, TResult> funcWithWindow) {
+        public static IEnumerable<TResult> WindowBasedFilter<T, TResult>(this IEnumerable<T> values,
+                                                                         int windowLength,
+                                                                         Func<T, TResult> funcWithoutWindow,
+                                                                         Func<IEnumerable<T>, TResult> funcWithWindow) {
             windowLength.ShouldBeNotLessThanZero();
             windowLength.ShouldNotLargerThan(values.Count());
 
@@ -1065,29 +1080,54 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
-        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : struct {
-            var query = from v in values
-                        where v != null
-                        select v.Value;
-            return query;
-        }
+        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T> values)
+            => values.Where(v => v != null);
 
         /// <summary>
-        /// 这个函数签名有点复杂, 使用起来学习成本太高. 暂时不进行public, 仅供内部使用吧
+        /// 对序列进行过滤处理, 第一元素直接返回, 之后处理每一对相邻的元素(prev, curr)进行处理, 作为新的当前元素返回
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>
-        /// <param name="filtering"></param>
+        /// <param name="filter"></param>
+        /// <param name="useNewData">是否使用过滤后的值用于后续计算</param>
         /// <returns></returns>
-        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values, Func<T, T, T> filtering) {
+        internal static IEnumerable<T> PreviousBasedFilter<T>(this IEnumerable<T> values,
+                                                              Func<T, T, T> filter,
+                                                              bool useNewData = false) {
             values.ShouldNotBeNullOrEmpty();
 
             yield return values.First();
 
-            var result = values.ForEachAndNext((prev, curr) => filtering(prev, curr));
+            var enumerator = values.GetEnumerator();
+            if (!enumerator.MoveNext()) {
+                yield break;
+            }
+            var curr = enumerator.Current;
+            while (enumerator.MoveNext()) {
+                var next = enumerator.Current;
+                var newData = filter(curr, next);
+                yield return newData;
+                curr = useNewData ? newData : next;
+            }
+        }
 
-            foreach (var item in result) {
-                yield return item;
+        /// <summary>
+        /// 对序列进行过滤处理, 处理每一对相邻的元素(curr, next)进行处理, 作为新的当前元素返回. 最后的元素直接返回.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> NextBasedFilter<T>(this IEnumerable<T> values, Func<T, T, T> filter) {
+            var enumerator = values.GetEnumerator();
+            if (!enumerator.MoveNext()) {
+                yield break;
+            }
+            var curr = enumerator.Current;
+            while (enumerator.MoveNext()) {
+                var next = enumerator.Current;
+                yield return filter(curr, next);
+                curr = next;
             }
         }
         #endregion
