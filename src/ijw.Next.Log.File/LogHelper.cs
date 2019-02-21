@@ -13,8 +13,8 @@ namespace ijw.Next.Log.File {
         /// 日志文件路径, 默认文件当前目录的~.log.
         /// </summary>
         public string LogFilePath {
-            get { return this._logger.LogFilePath; }
-            set { this._logger.LogFilePath = value; }
+            get => _logger.LogFilePath;
+            set => _logger.LogFilePath = value;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace ijw.Next.Log.File {
         /// </summary>
         /// <param name="ex"></param>
         public void WriteError(Exception ex) {
-            if (ex == null) {
+            if (ex is null) {
                 return;
             }
             this._logger.Log("Error： " + ex.Message);
@@ -32,7 +32,7 @@ namespace ijw.Next.Log.File {
         /// </summary>
         /// <param name="msg"></param>
         public void WriteError(string msg) {
-            if (msg == null) {
+            if (msg is null) {
                 return;
             }
             this._logger.Log("Error： " + msg);
@@ -43,7 +43,7 @@ namespace ijw.Next.Log.File {
         /// </summary>
         /// <param name="ex"></param>
         public void WriteInfo(Exception ex) {
-            if (ex == null) {
+            if (ex is null) {
                 return;
             }
             this._logger.Log("Info: " + ex.Message);
@@ -53,7 +53,7 @@ namespace ijw.Next.Log.File {
         /// </summary>
         /// <param name="msg"></param>
         public void WriteInfo(string msg) {
-            if (msg == null) {
+            if (msg is null) {
                 return;
             }
             this._logger.Log("Info: " + msg);

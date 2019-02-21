@@ -67,7 +67,7 @@ namespace ijw.Next.Log.File {
         /// </summary>
         /// <param name="ex">写入的内容</param>
         public void WriteError(Exception ex) {
-            string log = ex == null ? "Exception is Null" : ex.Message;
+            string log = ex is null ? "Exception is Null" : ex.Message;
             this.Log(log);
         }
 
@@ -85,7 +85,7 @@ namespace ijw.Next.Log.File {
         /// </summary>
         /// <param name="ex">写入的内容</param>
         public void WriteInfo(Exception ex) {
-            string log = ex == null ? "Exception is Null" : ex.Message;
+            string log = ex is null ? "Exception is Null" : ex.Message;
             this.Log(log);
         }
     }
