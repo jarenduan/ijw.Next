@@ -21,13 +21,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
         /// </summary>
         /// <param name="fullFileName">欲监视的文件全路径名</param>
         public void StartMonitoring(string fullFileName) {
-            FileInfo fi = null;
-            try {
-                fi = new FileInfo(fullFileName);
-            }
-            catch {
-                throw new Exception("Invaild file path or name. Or cannot access.");
-            }
+            FileInfo fi = new FileInfo(fullFileName);
             StartMonitoring(fi);
         }
 
@@ -36,6 +30,10 @@ namespace ijw.Next.IO.FileSystem.Watcher {
         /// </summary>
         /// <param name="fileInfo">欲监视的文件的FileInfo</param>
         public void StartMonitoring(FileInfo fileInfo) {
+            if (!fileInfo.Exists) {
+                throw new FileNotFoundException("file not found", fileInfo.FullName);
+            }
+
             _watcher = new FileSystemWatcher
             {
                 EnableRaisingEvents = false,
@@ -55,7 +53,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
         }
 
         void _watcher_Changed(object sender, FileSystemEventArgs e) {
-            if (this.Changed == null) return;
+            if (this.Changed is null) return;
             switch (this.MultipleInvokingOption) {
                 case FileMonitorMultipleInvokingOption.DoNothing:
                     this.Changed();
