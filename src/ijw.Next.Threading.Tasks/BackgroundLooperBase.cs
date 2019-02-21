@@ -137,7 +137,7 @@ namespace ijw.Next.Threading.Tasks {
         /// </summary>
         protected void Loop() {
             DebugHelper.WriteLine("Loop started.");
-            while (this.ExitCondition == null || this.ExitCondition() == false) {
+            while (this.ExitCondition is null || this.ExitCondition() == false) {
                 if (this._cts.Token.IsCancellationRequested) {
                     DebugHelper.WriteLine("EXIT signal recieved.");
                     break;
@@ -172,7 +172,7 @@ namespace ijw.Next.Threading.Tasks {
         /// <summary>
         /// 任务停止令牌
         /// </summary>
-        protected CancellationTokenSource _cts;
+        protected CancellationTokenSource _cts = new CancellationTokenSource();
         /// <summary>
         /// 同步信号量
         /// </summary>
