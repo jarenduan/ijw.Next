@@ -7,10 +7,10 @@ namespace ijw.Next.IO.CsvReader.xTest {
     public class CsvFileReaderUnitTest {
         [Fact]
         public void ReadObjectsTest() {
-            CsvFileReader cfr = new CsvFileReader();
+            CsvFileReader cfr = new CsvFileReader("");
             var dir = Environment.CurrentDirectory + "\\..\\..\\..\\testfiles";
             var files = Directory.GetFiles(dir, "test2.csv");
-            if (files == null || files.Length == 0) {
+            if (files is null || files.Length == 0) {
                 throw new FileNotFoundException(dir + " has no test2.csv");
             }
             else {
@@ -22,7 +22,7 @@ namespace ijw.Next.IO.CsvReader.xTest {
 
             dir = Environment.CurrentDirectory + "\\..\\..\\..\\testfiles";
             files = Directory.GetFiles(dir, "test1.csv");
-            if (files == null || files.Length == 0) {
+            if (files is null || files.Length == 0) {
                 throw new FileNotFoundException(dir + " has no test1.csv");
             }
             else {
