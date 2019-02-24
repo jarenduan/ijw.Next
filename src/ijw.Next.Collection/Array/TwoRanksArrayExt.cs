@@ -20,6 +20,7 @@ namespace ijw.Next.Collection {
                 }
             }
         }
+
         internal static void ForEachRef<T>(this T[,] array, ActionWithRef<T> action) {
             for (int i = 0; i < array.GetLength(0); i++) {
                 for (int j = 0; j < array.GetLength(1); j++) {
@@ -41,6 +42,7 @@ namespace ijw.Next.Collection {
                 }
             }
         }
+
         internal static void ForEachRefWithIndex<T>(this T[,] array, ActionWithRefAndIndex<T> action) {
             for (int i = 0; i < array.GetLength(0); i++) {
                 for (int j = 0; j < array.GetLength(1); j++) {
@@ -79,32 +81,9 @@ namespace ijw.Next.Collection {
         /// <param name="array"></param>
         /// <param name="value">指定值</param>
         public static void SetEach<T>(this T[,] array, T value) {
-            array.ForEachRef(delegate(ref T item) {
+            array.ForEachRef(delegate (ref T item) {
                 item = value;
             });
-        }
-
-        /// <summary>
-        /// 根据指定的方法设置每个单元格中的值
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="array"></param>
-        /// <param name="function"></param>
-        public static void SetEach<T>(this T[,] array, Func<int, int, T> function = null) {
-            array.ForEachRefWithIndex(delegate(ref T item, int i, int j) {
-                if (function == null) {
-                    item = default;
-                }
-                else {
-                    item = function(i, j);
-                }
-            });
-
-            //for (int i = 0; i < array.GetLength(0); i++) {
-            //    for (int j = 0; j < array.GetLength(1); j++) {
-
-            //    }
-            //}
         }
 
         /// <summary>
@@ -113,10 +92,9 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <param name="function">变换函数, 接受一行, 返回一组新值</param>
-        public static void SetEachRow<T>(this T[,] array, Func<T[], T[]> function)
-        {
+        public static void SetEachRow<T>(this T[,] array, Func<T[], T[]> function) {
            for (int i = 0; i < array.GetLength(0); i++) {
-               array.SetRowAt(i, function(array.GetRowCopyOf(i)));
+                array.SetRowAt(i, function(array.GetRowCopyOf(i)));
             }
         }
 
@@ -130,17 +108,6 @@ namespace ijw.Next.Collection {
             for (int i = 0; i < array.GetLength(1); i++) {
                 array.SetColumnAt(i, function(array.GetColumnCopyOf(i)));
             }
-        }
-
-        /// <summary>
-        /// 清空数组
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="array"></param>
-        public static void Clear<T>(this T[,] array) {
-            array.ForEachRef(delegate(ref T item) {
-                item = default;
-            });
         }
 
         internal static T[] GetRowCopyOf<T>(this T[,] array, int index) {
@@ -213,7 +180,7 @@ namespace ijw.Next.Collection {
             if (index >= array.GetLength(1)) {
                 throw new ArgumentOutOfRangeException();
             }
-            if (value == null) {
+            if (value is null) {
                 throw new ArgumentNullException();
             }
             if (value.Length != array.GetLength(0)) {
