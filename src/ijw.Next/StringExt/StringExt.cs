@@ -6,6 +6,36 @@ namespace ijw.Next {
     /// 提供对string类型的若干扩展方法
     /// </summary>
     public static class StringExt {
+        #region Is Null Or Empty Or space
+
+        /// <summary>
+        /// 判断是否是Null或者空字符串
+        /// </summary>
+        /// <param name="aString"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string aString) {
+            return string.IsNullOrEmpty(aString);
+        }
+
+        /// <summary>
+        /// 判断是否是Null或空字符串或全是空格
+        /// </summary>
+        /// <param name="aString"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmptyOrWhiteSpace(this string aString) {
+            if (aString is null) {
+                return true;
+            }
+            for (int i = 0; i < aString.Length; i++) {
+                if (!char.IsWhiteSpace(aString[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        #endregion New Region
+
         /// <summary>
         /// 添加短格式的当前时间前缀, 使用[20121221 132355]这样的形式.
         /// </summary>
@@ -226,171 +256,6 @@ namespace ijw.Next {
         public static string RemoveLast(this string aString, int number) {
             return aString.Remove(aString.Length - number, number);
         }
-
-        #region To Other Type Anyway
-
-        /// <summary>
-        /// 尝试转换成int. 如果失败将返回defaultNumer
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
-        /// <returns>转换后的int</returns>
-        public static int ToIntAnyway(this string s, int defaultNumer = 0) {
-            if (int.TryParse(s, out int i)) {
-                return i;
-            }
-            else {
-                return defaultNumer;
-            }
-        }
-
-        /// <summary>
-        /// 尝试转换成float. 如果NaN或转换失败将返回defaultNumer
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
-        /// <returns>转换后的float</returns>
-        public static float ToFloatAnyway(this string s, float defaultNumer = 0f) {
-            var result = defaultNumer;
-            if (float.TryParse(s, out float i)) {
-                if (!float.IsNaN(i)) {
-                    result = i;
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
-        /// <returns>转换后的float</returns>
-        public static double ToDoubleAnyway(this string s, double defaultNumer = 0d) {
-            var result = defaultNumer;
-            if (double.TryParse(s, out double i)) {
-                if (!double.IsNaN(i)) {
-                    result = i;
-                }
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
-        /// <returns>转换后的float</returns>
-        public static decimal ToDecimalAnyway(this string s, decimal defaultNumer = 0m) {
-            var result = defaultNumer;
-            if (decimal.TryParse(s, out decimal i)) {
-                result = i;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 把字符串转换成指定的枚举, 如果转换失败返回指定的缺省值.
-        /// </summary>
-        /// <typeparam name="T">转换的枚举类型</typeparam>
-        /// <param name="aString">此字符串</param>
-        /// <param name="ignoreCase">转换时是否忽略大小写, 默认不忽略</param>
-        /// <param name="defaultValue">可选参数, 表示转换失败的时候所取的缺省值, 默认是枚举的0值</param>
-        /// <returns>转换后的枚举值</returns>
-        public static T ToEnumAnyway<T>(this string aString, bool ignoreCase = false, T defaultValue = default) where T : Enum {
-            T result = defaultValue;
-            try {
-                result = (T)Enum.Parse(typeof(T), aString);
-            }
-            catch {
-                result = defaultValue;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 把字符串转换成指定的枚举, 如果转换失败返回指定的缺省值.
-        /// </summary>
-        /// <typeparam name="T">转换的枚举类型</typeparam>
-        /// <param name="aString">此字符串</param>
-        /// <param name="ignoreCase">转换时是否忽略大小写, 默认不忽略</param>
-        /// <returns>转换后的枚举值</returns>
-        ///// <exception cref="ArgumentException">
-        ///// 指定的类型不是枚举类型时, 将抛出此异常. (Wish C# support "where T: Enum" to avoid this at compilation time)
-        ///// </exception>
-        public static T ToEnum<T>(this string aString, bool ignoreCase = false) where T : Enum 
-            => (T)Enum.Parse(typeof(T), aString, ignoreCase);
-        #endregion
-
-        #region  Is other type
-        /// <summary>
-        /// 是否能解析成32位整数
-        /// </summary>
-        /// <param name="aString"></param>
-        /// <returns>是返回true, 反之返回false</returns>
-        public static bool IsInteger32(this string aString) {
-            return int.TryParse(aString, out int i);
-        }
-
-        /// <summary>
-        /// 是否能解析成单精度浮点数
-        /// </summary>
-        /// <param name="aString"></param>
-        /// <returns></returns>
-        public static bool IsSingle(this string aString) {
-            return float.TryParse(aString, out var f);
-        }
-
-        /// <summary>
-        /// 是否能解析成双精度浮点数
-        /// </summary>
-        /// <param name="aString"></param>
-        /// <returns></returns>
-        public static bool IsDouble(this string aString) {
-            return double.TryParse(aString, out var d);
-        }
-
-        /// <summary>
-        /// 是否能解析成日期时间类型
-        /// </summary>
-        /// <param name="aString"></param>
-        /// <returns></returns>
-        public static bool IsDateTime(this string aString) {
-            return DateTime.TryParse(aString, out var d);
-        }
-
-        #endregion
-
-        #region Is Null Or Empty Or space
-
-        /// <summary>
-        /// 判断是否是Null或者空字符串
-        /// </summary>
-        /// <param name="aString"></param>
-        /// <returns></returns>
-        public static bool IsNullOrEmpty(this string aString) {
-            return string.IsNullOrEmpty(aString);
-        }
-
-        /// <summary>
-        /// 判断是否是Null或空字符串或全是空格
-        /// </summary>
-        /// <param name="aString"></param>
-        /// <returns></returns>
-        public static bool IsNullOrEmptyOrWhiteSpace(this string aString) {
-            if (aString is null) {
-                return true;
-            }
-            for (int i = 0; i < aString.Length; i++) {
-                if (!char.IsWhiteSpace(aString[i])) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        #endregion New Region
 
         /// <summary>
         /// 统计含有多少指定的子字符串

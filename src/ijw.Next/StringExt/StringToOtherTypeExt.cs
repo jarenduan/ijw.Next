@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace ijw.Next.Reflection {
+namespace ijw.Next {
     /// <summary>
-    /// 
+    /// string to Enum extension methods.
     /// </summary>
-    public static class StringExt {
+    public static class StringToOtherTypeExt {
         #region To Enum
         /// <summary>
         /// 将字符串转换为指定的枚举对象
@@ -13,58 +13,103 @@ namespace ijw.Next.Reflection {
         /// <param name="enumType">欲转换的枚举类型</param>
         /// <param name="ignoreCase">是否忽略大小写</param>
         /// <returns>转换成功返回转换后的枚举对象, 转换失败时抛出异常</returns>
-        public static object ToEnum(this string value, Type enumType, bool ignoreCase = false) {
-            if (!enumType.IsEnumType()) throw new ArgumentException($"{enumType.Name} is not a enumeration type.");
-            return Enum.Parse(enumType, value, ignoreCase);
-        }
+        public static object ToEnum(this string value, Type enumType, bool ignoreCase = false)
+            => Enum.Parse(enumType, value, ignoreCase);
 
         /// <summary>
-        /// 将字符串转换为指定的枚举对象
+        /// 把字符串转换成指定的枚举, 如果转换失败返回指定的缺省值.
         /// </summary>
-        /// <param name="value">字符串</param>
-        /// <param name="enumType">欲转换的枚举类型</param>
-        /// <param name="defaultValue">转换失败时返回一个默认值</param>
-        /// <param name="ignoreCase">是否忽略大小写</param>
-        /// <returns>转换成功返回转换后的枚举对象, 转换失败返回指定的默认值</returns>
-        public static object ToEnum(this string value, Type enumType, object defaultValue, bool ignoreCase = false) {
-            if (!enumType.IsEnumType()) throw new ArgumentException($"{enumType.Name} is not a enumeration type.");
+        /// <typeparam name="T">转换的枚举类型</typeparam>
+        /// <param name="aString">此字符串</param>
+        /// <param name="ignoreCase">转换时是否忽略大小写, 默认不忽略</param>
+        /// <returns>转换后的枚举值</returns>
+        public static T ToEnum<T>(this string aString, bool ignoreCase = false) where T : Enum
+            => (T)aString.ToEnum(typeof(T), ignoreCase);
+
+        /// <summary>
+        /// 把字符串转换成指定的枚举, 如果转换失败返回指定的缺省值.
+        /// </summary>
+        /// <typeparam name="T">转换的枚举类型</typeparam>
+        /// <param name="aString">此字符串</param>
+        /// <param name="ignoreCase">转换时是否忽略大小写, 默认不忽略</param>
+        /// <param name="defaultValue">可选参数, 表示转换失败的时候所取的缺省值, 默认是枚举的0值</param>
+        /// <returns>转换后的枚举值</returns>
+        public static T ToEnumAnyway<T>(this string aString, bool ignoreCase = false, T defaultValue = default) where T : Enum {
+            T result = defaultValue;
             try {
-                return Enum.Parse(enumType, value, ignoreCase);
+                result = aString.ToEnum<T>(ignoreCase);
             }
             catch {
-                return defaultValue;
+                result = defaultValue;
+            }
+            return result;
+        } 
+        #endregion
+
+        #region To Numbers
+
+        /// <summary>
+        /// 尝试转换成int. 如果失败将返回defaultNumer
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的int</returns>
+        public static int ToIntAnyway(this string s, int defaultNumer = 0) {
+            if (int.TryParse(s, out int i)) {
+                return i;
+            }
+            else {
+                return defaultNumer;
             }
         }
 
         /// <summary>
-        /// 将字符串转换为指定的枚举对象
+        /// 尝试转换成float. 如果NaN或转换失败将返回defaultNumer
         /// </summary>
-        /// <param name="value">字符串</param>
-        /// <param name="ignoreCase">是否忽略大小写</param>
-        /// <returns>转换成功返回转换后的枚举对象, 转换失败返回指定的默认值</returns>
-        public static T ToEnum<T>(this string value, bool ignoreCase = false) {
-            Type enumType = typeof(T);
-            if (!enumType.IsEnumType()) throw new ArgumentException($"{enumType.Name} is not a enumeration type.");
-            return (T)Enum.Parse(enumType, value, ignoreCase);
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的float</returns>
+        public static float ToFloatAnyway(this string s, float defaultNumer = 0f) {
+            var result = defaultNumer;
+            if (float.TryParse(s, out float i)) {
+                if (!float.IsNaN(i)) {
+                    result = i;
+                }
+            }
+            return result;
         }
 
         /// <summary>
-        /// 将字符串转换为指定的枚举对象
+        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
         /// </summary>
-        /// <param name="value">字符串</param>
-        /// <param name="defaultValue">转换失败时返回一个默认值</param>
-        /// <param name="ignoreCase">是否忽略大小写</param>
-        /// <returns>转换成功返回转换后的枚举对象, 转换失败返回指定的默认值</returns>
-        public static T ToEnum<T>(this string value, T defaultValue, bool ignoreCase = false) {
-            Type enumType = typeof(T);
-            if (!enumType.IsEnumType()) throw new ArgumentException($"{enumType.Name} is not a enumeration type.");
-            try {
-                return (T)Enum.Parse(enumType, value, ignoreCase);
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的float</returns>
+        public static double ToDoubleAnyway(this string s, double defaultNumer = 0d) {
+            var result = defaultNumer;
+            if (double.TryParse(s, out double i)) {
+                if (!double.IsNaN(i)) {
+                    result = i;
+                }
             }
-            catch {
-                return defaultValue;
-            }
+            return result;
         }
+
+        /// <summary>
+        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>
+        /// <returns>转换后的float</returns>
+        public static decimal ToDecimalAnyway(this string s, decimal defaultNumer = 0m) {
+            var result = defaultNumer;
+            if (decimal.TryParse(s, out decimal i)) {
+                result = i;
+            }
+            return result;
+        }
+
+
         #endregion
 
         #region To ValueType
@@ -81,7 +126,7 @@ namespace ijw.Next.Reflection {
         /// </remarks>
         public static T To<T>(this string value, bool useDefaultValueWhenCastFail = false)
             where T : struct
-            => (T)value.To(typeof(T), useDefaultValueWhenCastFail);
+            => (T)value.ToType(typeof(T), useDefaultValueWhenCastFail);
 
         /// <summary>
         /// 将字符串尝试转型成指定的可空值类型（用默认的FormatProvider）
@@ -96,7 +141,7 @@ namespace ijw.Next.Reflection {
         /// </remarks>
         public static T? ToNullable<T>(this string value, bool useDefaultValueWhenCastFail = false)
             where T : struct
-            => (T?)value.To(typeof(T?), useDefaultValueWhenCastFail); 
+            => (T?)value.ToType(typeof(T?), useDefaultValueWhenCastFail);
 
         /*
             注意, 此处并没有实现针对引用类型的方法:
@@ -107,6 +152,7 @@ namespace ijw.Next.Reflection {
         */
         #endregion
 
+        #region To Any Type
         /// <summary>
         /// 将字符串尝试转型成指定的类型（用默认的FormatProvider）
         /// 支持的值类型目前包括:枚举、DBNull、Boolean/Char/(S)Byte/DateTime/(U)Int16/32/64/Float/Double/Decimal/Guid及相应可空类型
@@ -118,20 +164,22 @@ namespace ijw.Next.Reflection {
         /// <remarks>
         /// 性能提示: 此方法对于值类型涉及装箱和拆箱.
         /// </remarks>
-        public static object? To(this string value, Type type, bool useDefaultValueWhenCastFailed = false) {
+        public static object? ToType(this string value, Type type, bool useDefaultValueWhenCastFailed = false) {
             string typeName = type.GetTypeName();
             try {
                 if (typeName.StartsWith("System.Nullable`1") && value.Length == 0) {
                     return null;
                 }
+#if !NETSTANDARD1_4
                 if (typeName == "System.DBNull" && value.Length == 0) {
                     return DBNull.Value;
                 }
+#endif
                 if (type.IsEnumType()) {
                     return value.ToEnum(type, useDefaultValueWhenCastFailed);
                 }
                 switch (typeName) {
-                #region all kinds of type
+                    #region all kinds of type
 #if !NET35
                     case "System.Guid":
                     case "System.Nullable`1[System.Guid]":
@@ -181,7 +229,7 @@ namespace ijw.Next.Reflection {
                     case "System.UInt64":
                     case "System.Nullable`1[System.UInt64]":
                         return UInt64.Parse(value);
-                #endregion
+                    #endregion
                     default:
                         throw new InvalidCastException($"{typeName} is not supported currently.");
                 }
@@ -189,6 +237,7 @@ namespace ijw.Next.Reflection {
             catch when (useDefaultValueWhenCastFailed) {
                 return type.GetDefaultValue();
             }
-        }
+        } 
+        #endregion
     }
 }
