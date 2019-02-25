@@ -329,23 +329,11 @@ namespace ijw.Next {
         /// <param name="aString">此字符串</param>
         /// <param name="ignoreCase">转换时是否忽略大小写, 默认不忽略</param>
         /// <returns>转换后的枚举值</returns>
-        /// <exception cref="ArgumentException">
-        /// 指定的类型不是枚举类型时, 将抛出此异常. (Wish C# support "where T: Enum" to avoid this at compilation time)
-        /// </exception>
-        public static T ToEnum<T>(this string aString, bool ignoreCase = false) where T : struct {
-            Type t = typeof(T);
-#if (NET35)
-            if (!t.IsEnum) {
-                throw new ArgumentException($"{t.Name} is not a enumeration type.");
-            }
-            return (T)Enum.Parse(t, aString);
-#else
-            if (!Enum.TryParse<T>(aString, out T e)) {
-                throw new ArgumentException($"{t.Name} is not a enumeration type.");    
-            }
-            return e;
-#endif
-        }
+        ///// <exception cref="ArgumentException">
+        ///// 指定的类型不是枚举类型时, 将抛出此异常. (Wish C# support "where T: Enum" to avoid this at compilation time)
+        ///// </exception>
+        public static T ToEnum<T>(this string aString, bool ignoreCase = false) where T : Enum 
+            => (T)Enum.Parse(typeof(T), aString, ignoreCase);
         #endregion
 
         #region  Is other type
