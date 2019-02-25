@@ -298,27 +298,14 @@ namespace ijw.Next {
         /// <param name="ignoreCase">转换时是否忽略大小写, 默认不忽略</param>
         /// <param name="defaultValue">可选参数, 表示转换失败的时候所取的缺省值, 默认是枚举的0值</param>
         /// <returns>转换后的枚举值</returns>
-        /// <exception cref="ArgumentException">
-        /// 指定的类型不是枚举类型时, 将抛出此异常. (Wish C# support "where T: Enum" to avoid this at compilation time)
-        /// </exception>
-        public static T ToEnumAnyway<T>(this string aString, bool ignoreCase = false, T defaultValue = default) where T : struct {
+        public static T ToEnumAnyway<T>(this string aString, bool ignoreCase = false, T defaultValue = default) where T : Enum {
             T result = defaultValue;
-#if (NET35)
-            Type t = typeof(T);
-            if (!t.IsEnum) {
-                throw new ArgumentException($"{t.Name} is not a enumeration type.");
-            }
             try {
                 result = (T)Enum.Parse(typeof(T), aString);
             }
             catch {
                 result = defaultValue;
             }
-#else
-            if (Enum.TryParse<T>(aString, out T e)) {
-                result = e;
-            }
-#endif
             return result;
         }
 
