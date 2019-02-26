@@ -18,7 +18,7 @@ namespace ijw.Next {
 #else
             string typename = $"{type.Namespace}.{type.Name}";
             if (type.IsGenericType) {
-                typename = typename + IjwHelper.ToAllEnumStrings(type.GetGenericArguments(), (s) => s.GetTypeName(),",", "[", "]");
+                typename += IjwHelper.ToAllEnumStrings(type.GetGenericArguments(), (s) => s.GetTypeName(),",", "[", "]");
             }
 #endif
             return typename;

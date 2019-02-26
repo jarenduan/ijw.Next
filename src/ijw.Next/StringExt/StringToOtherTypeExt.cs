@@ -124,8 +124,7 @@ namespace ijw.Next {
         /// <remarks>
         /// 性能提示: 此方法内部调用了String.To(typeof(T)), 因此对于值类型涉及装箱和拆箱.
         /// </remarks>
-        public static T To<T>(this string value, bool useDefaultValueWhenCastFail = false)
-            where T : struct
+        public static T To<T>(this string value, bool useDefaultValueWhenCastFail = false) where T : struct
             => (T)value.ToType(typeof(T), useDefaultValueWhenCastFail);
 
         /// <summary>
@@ -139,8 +138,7 @@ namespace ijw.Next {
         /// <remarks>
         /// 性能提示: 此方法内部调用了String.To(typeof(T)), 因此对于值类型涉及装箱和拆箱.
         /// </remarks>
-        public static T? ToNullable<T>(this string value, bool useDefaultValueWhenCastFail = false)
-            where T : struct
+        public static T? ToNullable<T>(this string value, bool useDefaultValueWhenCastFail = false) where T : struct
             => (T?)value.ToType(typeof(T?), useDefaultValueWhenCastFail);
 
         /*
@@ -167,19 +165,16 @@ namespace ijw.Next {
         public static object? ToType(this string value, Type type, bool useDefaultValueWhenCastFailed = false) {
             string typeName = type.GetTypeName();
             try {
-                if (typeName.StartsWith("System.Nullable`1") && value.Length == 0) {
-                    return null;
-                }
-#if !NETSTANDARD1_4
-                if (typeName == "System.DBNull" && value.Length == 0) {
-                    return DBNull.Value;
-                }
-#endif
-                if (type.IsEnumType()) {
-                    return value.ToEnum(type, useDefaultValueWhenCastFailed);
-                }
                 switch (typeName) {
                     #region all kinds of type
+                    case string t when (type.IsEnumType()):
+                        return value.ToEnum(type, useDefaultValueWhenCastFailed);
+                    case string t when (t.StartsWith ("System.Nullable`1") && value.Length == 0):
+                        return null;
+#if !NETSTANDARD1_4
+                    case string t when (typeName == "System.DBNull" && value.Length == 0):
+                        return DBNull.Value;
+#endif
 #if !NET35
                     case "System.Guid":
                     case "System.Nullable`1[System.Guid]":
@@ -195,13 +190,13 @@ namespace ijw.Next {
                         return value;
                     case "System.Boolean":
                     case "System.Nullable`1[System.Boolean]":
-                        return bool.Parse(value);
+                        return Boolean.Parse(value);
                     case "System.Char":
                     case "System.Nullable`1[System.Char]":
-                        return char.Parse(value);
+                        return Char.Parse(value);
                     case "System.Byte":
                     case "System.Nullable`1[System.Byte]":
-                        return byte.Parse(value);
+                        return Byte.Parse(value);
                     case "System.Single":
                     case "System.Nullable`1[System.Single]":
                         return Single.Parse(value);
