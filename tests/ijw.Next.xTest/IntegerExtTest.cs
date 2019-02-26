@@ -26,19 +26,19 @@ namespace ijw.Next.xTest {
         [Fact]
         public void ToTest() {
             int[] numbers = new int[] { 0, 1, 2, 3, 4, 5, 6 };
-            Assert.Equal(numbers, 0.To(6));
+            Assert.Equal(numbers, 0.ToInclude(6));
 
             numbers = new int[] { 2, 3, 4, 5 };
-            Assert.Equal(numbers, 2.To(5));
+            Assert.Equal(numbers, 2.ToInclude(5));
 
             numbers = new int[] { 1, 2, 3, 4, 5 };
-            Assert.Equal(numbers, 1.To(5));
+            Assert.Equal(numbers, 1.ToInclude(5));
 
             numbers = new int[] { 1 };
-            Assert.Equal(numbers, 1.To(1));
+            Assert.Equal(numbers, 1.ToInclude(1));
 
             numbers = new int[] { 0, 1 };
-            Assert.Equal(numbers, 0.To(1));
+            Assert.Equal(numbers, 0.ToInclude(1));
         }
     }
 }
