@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ijw.Next.xTest {
+namespace ijw.Next.Reflection.xTest {
     public class ObjExtTest {
         [Fact]
-        public void GetPropertyTest() {
+        public void SetPropertyTest() {
             TestClassA a = new TestClassA();
 
             a.SetPropertyValue("Name", "B");
