@@ -18,10 +18,11 @@ namespace ijw.Next.Collection {
         /// 内部元素数量发生变化
         /// </summary>
         public event EventHandler<ItemCountChangedEventArgs> ItemCountChanged;
+
         /// <summary>
         /// 元素取出策略
         /// </summary>
-        public FetchingStrategies ItemGettngStrategy { get; set; }
+        public FetchingStrategies ItemGettingStrategy { get; set; }
 
         /// <summary>
         /// 元素数量.
@@ -36,23 +37,23 @@ namespace ijw.Next.Collection {
         /// <summary>
         /// 获取当前是否存在未被提取消费的元素
         /// </summary>
-        public bool HasAvailableItems => this._itemsList.Exists((tuple) => tuple.Item2 == false);
+        public bool HasAvailableItems => _itemsList.Exists((tuple) => tuple.Item2 == false);
 
         /// <summary>
         /// 向集合尾部追加一个元素
         /// </summary>
         /// <param name="item"></param>
         public void Append(T item) {
-            if (item == null) {
+            if (item is null) {
                 DebugHelper.WriteLine("(Appending Item) Item is null, so quit appending.");
                 return;
             }
             DebugHelper.WriteLine("(Appending Item) Try to get the lock...");
             int count;
-            lock (this._syncRoot) {
+            lock (_syncRoot) {
                 DebugHelper.WriteLine("(Appending Item) Got the lock!");
                 DebugHelper.Write($"(Appending Item) Item count :{_itemsList.Count}");
-                this._itemsList.Add(new MutableTuple<T, bool>(item, false));
+                _itemsList.Add(new MutableTuple<T, bool>(item, false));
                 count = _itemsList.Count;
                 Debug.WriteLine($" => {count}. Item appended!");
             }
@@ -64,7 +65,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="item"></param>
         public void Remove(T item) {
-            if (item == null) {
+            if (item is null) {
                 DebugHelper.WriteLine("(Removing Item) Item is null, so quit removing.");
                 return;
             }
@@ -75,7 +76,7 @@ namespace ijw.Next.Collection {
                 return;
             }
             int count;
-            lock (this._syncRoot) {
+            lock (_syncRoot) {
                 DebugHelper.WriteLine("(Removing Item) Got the lock!");
                 DebugHelper.Write($"(Removing Item) Item count :{_itemsList.Count}");
                 index = getIndexOf(item);
@@ -90,20 +91,18 @@ namespace ijw.Next.Collection {
             raiseCountChangedEvent(count);
         }
 
-        private int getIndexOf(T item) => this._itemsList.IndexOf(t => t.Item1.Equals(item), this.ItemGettngStrategy);
+        private int getIndexOf(T item) => 
+            _itemsList.IndexOf(t => (t?.Item1?.Equals(item)) ?? false, ItemGettingStrategy);
 
-        private void raiseCountChangedEvent(int count) {
-            var temp = this.ItemCountChanged;
-            if (temp != null) {
-                this.ItemCountChanged(this, new ItemCountChangedEventArgs() { ItemCount = count });
-            }
-        }
+        private void raiseCountChangedEvent(int count) => 
+            ItemCountChanged?.Invoke(this, new ItemCountChangedEventArgs() { ItemCount = count });
+        
         /// <summary>
         /// 将指定元素交还给集合
         /// </summary>
         /// <param name="item">欲交还的元素</param>
         public void Return(T item) {
-            if (item == null) {
+            if (item is null) {
                 DebugHelper.WriteLine("(Returning Item Back) Item is null, so quit returning.");
                 return;
             }
@@ -113,14 +112,14 @@ namespace ijw.Next.Collection {
                 return;
             }
             DebugHelper.WriteLine("(Returning Item Back) Try to get the lock...");
-            lock (this._syncRoot) {
+            lock (_syncRoot) {
                 DebugHelper.WriteLine("(Returning Item Back) Got the lock!");
                 index = getIndexOf(item);
                 if (index == -1) {
                     DebugHelper.WriteLine("(Returning Item Back) But item is not in collection, so quit returning.");
                     return;
                 }
-                this._itemsList[index].Item2 = false;
+                _itemsList[index].Item2 = false;
                 DebugHelper.Write($"(Returning Item Back) Item returned, count:{_itemsList.Count}");
             }
         }
@@ -130,9 +129,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="item">取出的元素</param>
         /// <returns>是否成功</returns>
-        public bool TryBorrow(out T item) {
-            return tryGetItem(out item, false);
-        }
+        public bool TryBorrow(out T item) => tryGetItem(out item, false);
 
         /// <summary>
         /// 尝试借出一个可用元素
@@ -142,41 +139,43 @@ namespace ijw.Next.Collection {
         public bool TryBorrowAvailable(out T item) => tryGetItem(out item, true);
 
         private bool tryGetItem(out T item, bool onlyGetNotInConsuming = false) {
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference or unconstrained type parameter.
             item = default;
-            if (!this.HasItem) {
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference or unconstrained type parameter.
+            if (!HasItem) {
                 DebugHelper.WriteLine("(Getting Item) Try getting Item, but no items.");
                 return false;
             }
-            if (onlyGetNotInConsuming && !this.HasAvailableItems) {
+            if (onlyGetNotInConsuming && !HasAvailableItems) {
                 DebugHelper.WriteLine("(Getting Item) Try getting Item, but all items are in consuming.");
                 return false;
             }
             DebugHelper.WriteLine("(Getting Item) Try to get the lock...");
             int index = -1;
-            lock (this._syncRoot) {
+            lock (_syncRoot) {
                 DebugHelper.WriteLine("(Getting Item) Got the lock!");
-                if (!this.HasItem) {
+                if (!HasItem) {
                     DebugHelper.WriteLine("(Getting Item) But no items :(");
                     return false;
                 }
-                if (onlyGetNotInConsuming && !this.HasAvailableItems) {
+                if (onlyGetNotInConsuming && !HasAvailableItems) {
                     DebugHelper.WriteLine("(Getting consuming Item) But all in consuming :(");
                     return false;
                 }
                 if (onlyGetNotInConsuming) {
-                    index = this._itemsList.IndexOf(t => t.Item2 == false, ItemGettngStrategy);
+                    index = _itemsList.IndexOf(t => t.Item2 == false, ItemGettingStrategy);
                     DebugHelper.WriteLine($"(Getting Non-consuming Item) Non-consuming item count: {_itemsList.Count(i => i.Item2 == false)}.");
-                    DebugHelper.WriteLine($"(Getting Non-consuming Item) Got one non-consuming item using {ItemGettngStrategy.ToString()}");
+                    DebugHelper.WriteLine($"(Getting Non-consuming Item) Got one non-consuming item using {ItemGettingStrategy.ToString()}");
                 }
                 else {
                     DebugHelper.WriteLine($"(Getting Item) Item count: {_itemsList.Count}.");
-                    switch (this.ItemGettngStrategy) {
+                    switch (ItemGettingStrategy) {
                         case FetchingStrategies.FirstFirst:
                             index = 0;
                             DebugHelper.WriteLine("(Getting Item) Got the FIRST one!");
                             break;
                         case FetchingStrategies.LastFirst:
-                            index = this._itemsList.Count - 1;
+                            index = _itemsList.Count - 1;
                             DebugHelper.WriteLine("(Getting Item), Got the LAST one!");
                             break;
                         default:
@@ -193,7 +192,7 @@ namespace ijw.Next.Collection {
         }
 
         //private List<(T, bool)> _itemsList = new List<MutableTuple<T, bool>>();
-        private List<MutableTuple<T, bool>> _itemsList = new List<MutableTuple<T, bool>>();
+        private readonly List<MutableTuple<T, bool>> _itemsList = new List<MutableTuple<T, bool>>();
         private readonly object _syncRoot = new object();
     }
 }
