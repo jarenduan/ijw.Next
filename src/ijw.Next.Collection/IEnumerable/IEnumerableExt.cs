@@ -1080,7 +1080,20 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
-        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T> values)
+        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : struct {
+            //values.Where(v => !(v is null)).Select(v => v.Value);  bug?
+            foreach (var item in values) {
+                if (item is null) continue;
+                yield return item.Value;
+            }
+        }
+
+        /// <summary>
+        /// 去除序列中的Null
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns>去除后的序列</returns>
+        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T> values) where T : class?
             => values.Where(v => v != null);
 
         /// <summary>
