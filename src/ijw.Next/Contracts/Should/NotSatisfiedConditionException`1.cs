@@ -5,38 +5,27 @@ namespace ijw.Next {
     /// 表示不满足某条件的异常
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NotSatisfiedConditionException<T> : ContractBrokenException {
-        private readonly T _obj;
-        private readonly Predicate<T> _predicate;
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public NotSatisfiedConditionException() {
-        }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="message">错误信息</param>
-        public NotSatisfiedConditionException(string message) : base(message) {
-        }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="message">错误信息</param>
-        /// <param name="innerException">内部异常</param>
-        public NotSatisfiedConditionException(string message, Exception innerException) : base(message, innerException) {
-        }
-
+    /// <typeparam name="V"></typeparam>
+    public class NotSatisfiedConditionException<T, V> : ContractBrokenException {
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="obj">不满足条件的对象</param>
         /// <param name="predicate">应该满足的条件</param>
-        public NotSatisfiedConditionException(T obj, Predicate<T> predicate) {
-            this._obj = obj;
-            this._predicate = predicate;
+        /// <param name="message">异常信息</param>
+        public NotSatisfiedConditionException(T obj, Predicate<V> predicate, string message = "") : base(message) {
+            this.Obj = obj;
+            this.Predicate = predicate;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Predicate<V> Predicate { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public T Obj { get; private set; }
     }
 }
