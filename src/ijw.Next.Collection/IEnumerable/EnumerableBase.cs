@@ -10,16 +10,9 @@ namespace ijw.Next.Collection {
     /// <typeparam name="T"></typeparam>
     public abstract class EnumerableBase<T> : IEnumerable<T>, IEnumerable {
         /// <summary>
-        /// 构造一个可枚举对象
-        /// </summary>
-        protected EnumerableBase() { } 
-        
-        /// <summary>
         /// 给定长度, 构造一个可枚举对象.
         /// </summary>
-        protected EnumerableBase(int count) {
-            this._data = new T[count];
-        }
+        protected EnumerableBase(int count) => _data = new T[count];
 
         /// <summary>
         /// 构造一个可枚举对象, 使用指定的数组初始化.
@@ -27,7 +20,7 @@ namespace ijw.Next.Collection {
         /// <param name="data">用于初始化的数组.内部将直接引用这个数组.</param>
         protected EnumerableBase(T[] data) {
             data.ShouldBeNotNullArgument();
-            this._data = data;
+            _data = data;
         }
 
         /// <summary>
@@ -46,12 +39,8 @@ namespace ijw.Next.Collection {
         /// 获取一个迭代器(由内部数组实现)
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<T> GetEnumerator() {
-            return _data.AsEnumerable().GetEnumerator();
-        }
+        public IEnumerator<T> GetEnumerator() => _data.AsEnumerable().GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return this._data.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _data.GetEnumerator();
     }
 }
