@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 using ijw.Next.IO;
+using System.Text;
 
 namespace ijw.Next.Serialization.Json {
     /// <summary>
@@ -27,14 +28,45 @@ namespace ijw.Next.Serialization.Json {
             return jstring;
         }
 
+
+        /// <summary>
+        /// 把 json 文本文件反序列化为对象, 使用UTF8编码
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="fileinfo">全路径文件名</param>
+        /// <returns>反序列化后的对象</returns>
+        public static T LoadJsonObjectFromFileInfo<T>(FileInfo fileinfo)
+            => LoadJsonObjectFromFileInfo<T>(fileinfo, Encoding.UTF8);
+
+        /// <summary>
+        /// 把 json 文本文件反序列化为对象, 使用UTF8编码
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="fileinfo">全路径文件名</param>
+        /// <param name="encoding">使用的编码</param>
+        /// <returns>反序列化后的对象</returns>
+        public static T LoadJsonObjectFromFileInfo<T>(FileInfo fileinfo, Encoding encoding) {
+            return LoadJsonObjectFromFile<T>(fileinfo.FullName, encoding);
+        }
+
+        /// <summary>
+        /// 把 json 文本文件反序列化为对象, 使用UTF8编码
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="filepath">全路径文件名</param>
+        /// <returns>反序列化后的对象</returns>
+        public static T LoadJsonObjectFromFile<T>(string filepath) 
+            => LoadJsonObjectFromFile<T>(filepath, Encoding.UTF8);
+
         /// <summary>
         /// 把 json 文本文件反序列化为对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="filepath">全路径文件名</param>
+        /// <param name="encoding">使用的编码</param>
         /// <returns>反序列化后的对象</returns>
-        public static T LoadJsonObjectFromFile<T>(string filepath) {
-            using (StreamReader reader = StreamReaderHelper.NewStreamReaderFrom(filepath)) {
+        public static T LoadJsonObjectFromFile<T>(string filepath, Encoding encoding) {
+            using (StreamReader reader = StreamReaderHelper.NewStreamReaderFromFile(filepath)) {
                 var jstring = reader.ReadToEnd();
                 return JsonSerializationHelper.LoadJsonObject<T>(jstring);
             }

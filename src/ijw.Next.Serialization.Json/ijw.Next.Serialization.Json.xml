@@ -4,6 +4,28 @@
         <name>ijw.Next.Serialization.Json</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.Serialization.Json.FileInfoExt">
+            <summary>
+            一系列 FileInfo 的Json反序列化的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.FileInfoExt.LoadObject``1(System.IO.FileInfo)">
+            <summary>
+            使用 UTF8 编码反序列化指定类型的对象
+            </summary>
+            <typeparam name="T">指定的类型</typeparam>
+            <param name="fileinfo"></param>
+            <returns>反序列化出来的对象实例</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.FileInfoExt.LoadObject``1(System.IO.FileInfo,System.Text.Encoding)">
+            <summary>
+            使用指定编码反序列化指定类型的对象
+            </summary>
+            <typeparam name="T">指定的类型</typeparam>
+            <param name="fileinfo"></param>
+            <param name="encoding">指定的编码</param>
+            <returns>反序列化出来的对象实例</returns>
+        </member>
         <member name="T:ijw.Next.Serialization.Json.JsonSerializationHelper">
             <summary>
             提供若干对象序列化Helper方法
@@ -23,12 +45,38 @@
             </summary>
             <param name="objToSave">欲序列化的对象</param>
         </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.LoadJsonObjectFromFileInfo``1(System.IO.FileInfo)">
+            <summary>
+            把 json 文本文件反序列化为对象, 使用UTF8编码
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="fileinfo">全路径文件名</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.LoadJsonObjectFromFileInfo``1(System.IO.FileInfo,System.Text.Encoding)">
+            <summary>
+            把 json 文本文件反序列化为对象, 使用UTF8编码
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="fileinfo">全路径文件名</param>
+            <param name="encoding">使用的编码</param>
+            <returns>反序列化后的对象</returns>
+        </member>
         <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.LoadJsonObjectFromFile``1(System.String)">
+            <summary>
+            把 json 文本文件反序列化为对象, 使用UTF8编码
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="filepath">全路径文件名</param>
+            <returns>反序列化后的对象</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.LoadJsonObjectFromFile``1(System.String,System.Text.Encoding)">
             <summary>
             把 json 文本文件反序列化为对象
             </summary>
             <typeparam name="T">对象类型</typeparam>
             <param name="filepath">全路径文件名</param>
+            <param name="encoding">使用的编码</param>
             <returns>反序列化后的对象</returns>
         </member>
         <member name="M:ijw.Next.Serialization.Json.JsonSerializationHelper.SaveObjectToJsonFile(System.Object,System.String)">
