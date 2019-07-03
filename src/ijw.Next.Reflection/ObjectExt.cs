@@ -31,7 +31,7 @@ namespace ijw.Next.Reflection {
         /// <remarks>
         /// 属性值运行时类型如果不符合, 将会抛出异常
         /// </remarks>
-        public static void SetPropertyValue<T>(this T obj, string propertyName, object? value) {
+        public static void SetPropertyValue<T>(this T obj, string propertyName, object value) {
             PropertyInfo pi = typeof(T).GetPropertyInfo(propertyName);
             if (pi is null) throw new ArgumentOutOfRangeException(propertyName);
             pi.SetValue(obj, value, null);
@@ -45,8 +45,22 @@ namespace ijw.Next.Reflection {
         /// <param name="methodName">方法名</param>
         /// <param name="paras">参数列表</param>
         /// <returns></returns>
-        public static object? InvokeMethod<T>(this T obj, string methodName, params object?[] paras) {
+        public static object? InvokeMethod<T>(this T obj, string methodName, params object[] paras) {
             MethodInfo mi = typeof(T).GetMethodInfo(methodName);
+            return mi != null ? mi.Invoke(obj, paras) : throw new ArgumentOutOfRangeException(methodName);
+        }
+
+        /// <summary>
+        /// 反射调用某个泛型方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="methodName">方法名</param>
+        /// <param name="types">泛型参数列表</param>
+        /// <param name="paras">参数列表</param>
+        /// <returns></returns>
+        public static object? InvokeGenericMethod<T>(this T obj, string methodName, Type[] types, params object[] paras) {
+            MethodInfo mi = typeof(T).GetMethodInfo(methodName).MakeGenericMethod(types);
             return mi != null ? mi.Invoke(obj, paras) : throw new ArgumentOutOfRangeException(methodName);
         }
 
@@ -70,11 +84,42 @@ namespace ijw.Next.Reflection {
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <param name="methodName">方法名</param>
+        /// <param name="types">泛型参数列表</param>
+        /// <param name="paras">参数列表</param>
+        /// <returns></returns>
+        public static bool TryInvokeGenericMethod<T>(this T obj, string methodName, Type[] types, params object?[] paras) {
+            MethodInfo mi = typeof(T).GetMethodInfo(methodName).MakeGenericMethod(types);
+            mi?.Invoke(obj, paras);
+            return !(mi is null);
+        }
+
+        /// <summary>
+        /// 尝试反射调用某个方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="methodName">方法名</param>
         /// <param name="result">返回结果</param>
         /// <param name="paras">参数列表</param>
         /// <returns></returns>
         public static bool TryInvokeMethod<T>(this T obj, string methodName, out object? result, params object?[] paras) {
             MethodInfo mi = typeof(T).GetMethodInfo(methodName);
+            result = mi?.Invoke(obj, paras);
+            return !(mi is null);
+        }
+
+        /// <summary>
+        /// 尝试反射调用某个方法
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="methodName">方法名</param>
+        /// <param name="types">泛型参数列表</param>
+        /// <param name="result">返回结果</param>
+        /// <param name="paras">参数列表</param>
+        /// <returns></returns>
+        public static bool TryInvokeGenericMethod<T>(this T obj, string methodName, Type[] types, out object? result, params object?[] paras) {
+            MethodInfo mi = typeof(T).GetMethodInfo(methodName).MakeGenericMethod(types);
             result = mi?.Invoke(obj, paras);
             return !(mi is null);
         }
