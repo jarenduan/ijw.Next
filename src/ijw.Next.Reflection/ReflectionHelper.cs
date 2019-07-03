@@ -16,9 +16,11 @@ namespace ijw.Next.Reflection {
         /// <param name="values">字符串形式的值列表</param>
         /// <returns>创建的新实例</returns>
         public static T CreateNewInstance<T>(string[] propertyNames, string[] values) where T : class, new() {
-            propertyNames.ShouldBeNotNullArgument();
+            //TODO: remove new()
+
+            propertyNames.ShouldBeNotNullArgument(nameof(propertyNames));
             int fieldCount = propertyNames.Count();
-            values.ShouldBeNotNullArgument();
+            values.ShouldBeNotNullArgument(nameof(values));
             values.ShouldSatisfy(s => s.Count() == fieldCount);
 
             T obj = new T();
