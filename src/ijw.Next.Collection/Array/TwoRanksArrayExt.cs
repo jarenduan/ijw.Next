@@ -161,7 +161,7 @@ namespace ijw.Next.Collection {
         /// <param name="value">给定的数组</param>
         public static void SetRowAt<T>(this T[,] array, int index, T[] value) {
             index.MustNotLessThan(array.GetLength(0));
-            value.MustNotNullArgument();
+            value.MustNotNullArgument(nameof(value));
             value.Length.MustEquals(array.GetLength(1));
             int columnCount = array.GetLength(1);
             for (int i = 0; i < columnCount; i++) {

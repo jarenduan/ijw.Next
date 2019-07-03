@@ -10,7 +10,7 @@ namespace ijw.Next.Collection {
     /// 
     /// </summary>
     public static class IIndexableExt {
-#region Filters
+        #region Filters
 
         /// <summary>
         /// 限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 

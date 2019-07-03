@@ -139,9 +139,9 @@ namespace ijw.Next.Collection {
         public bool TryBorrowAvailable(out T item) => tryGetItem(out item, true);
 
         private bool tryGetItem(out T item, bool onlyGetNotInConsuming = false) {
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference or unconstrained type parameter.
+#pragma warning disable CS8653 // A default expression introduces a null value for a type parameter.
             item = default;
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference or unconstrained type parameter.
+#pragma warning restore CS8653 // A default expression introduces a null value for a type parameter.
             if (!HasItem) {
                 DebugHelper.WriteLine("(Getting Item) Try getting Item, but no items.");
                 return false;

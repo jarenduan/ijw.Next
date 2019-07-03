@@ -15,7 +15,11 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <param name="function"></param>
-        public static void SetEach<T>(this T[,] array, Func<int, int, T> function) where T : class ? {
+        public static void SetEach<T>(this T[,] array, Func<int, int, T> function) {
+            if (array is null) {
+                throw new ArgumentNullException(nameof(array));
+            }
+
             array.ForEachRefWithIndex(delegate (ref T item, int i, int j) {
                 item = function(i, j);
             });
@@ -27,7 +31,11 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <param name="value">指定值</param>
-        public static void SetEachNullable<T>(this T?[,] array, T? value) where T : class {
+        public static void SetEachNullable<T>(this T?[,] array, T? value)  where T: class{
+            if (array is null) {
+                throw new ArgumentNullException(nameof(array));
+            }
+
             array.ForEachRef(delegate (ref T? item) {
                 item = value;
             });
@@ -39,7 +47,11 @@ namespace ijw.Next.Collection {
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <param name="function"></param>
-        public static void SetEachNullable<T>(this T?[,] array, Func<int, int, T?> function) where T : class {
+        public static void SetEachNullable<T>(this T?[,] array, Func<int, int, T?> function) where T: class{
+            if (array is null) {
+                throw new ArgumentNullException(nameof(array));
+            }
+
             array.ForEachRefWithIndex(delegate (ref T? item, int i, int j) {
                 item = function(i, j);
             });
@@ -49,7 +61,11 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
-        public static void Clear<T>(this T?[,] array) where T : class {
+        public static void Clear<T>(this T?[,] array) where T: class {
+            if (array is null) {
+                throw new ArgumentNullException(nameof(array));
+            }
+
             array.ForEachRef(delegate (ref T? item) {
                 item = null;
             });

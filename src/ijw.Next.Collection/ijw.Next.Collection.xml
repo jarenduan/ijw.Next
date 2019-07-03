@@ -51,41 +51,6 @@
             复位
             </summary>
         </member>
-        <member name="T:ijw.Next.Collection.ArrayExt">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:ijw.Next.Collection.ArrayExt.NewArrayWithValue``1(System.Array,System.Int32,``0)">
-            <summary>
-            创建数组, 并使用指定的值填充数组
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="a"></param>
-            <param name="dimension">数组维度</param>
-            <param name="value">指定的值</param>
-            <returns>创建好的数组</returns>
-        </member>
-        <member name="M:ijw.Next.Collection.ArrayExt.NewArrayWithValue``1(System.Array,System.Int32,System.Func{``0})">
-            <summary>
-            创建数组, 使用指定的函数填充数组.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="a"></param>
-            <param name="dimension">数组维度</param>
-            <param name="computer">值计算函数, 数组索引作为传入参数</param>
-            <returns>创建好的数组</returns>
-        </member>
-        <member name="M:ijw.Next.Collection.ArrayExt.NewArrayWithValue``1(System.Array,System.Int32,System.Func{System.Int32,``0})">
-            <summary>
-            创建数组, 使用指定的函数填充数组.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="a"></param>
-            <param name="dimension">数组维度</param>
-            <param name="computer">值计算函数, 数组索引作为传入参数</param>
-            <returns>创建好的数组</returns>
-        </member>
         <member name="T:ijw.Next.Collection.ArrayHelper">
             <summary>
             数组Helper类
@@ -251,14 +216,6 @@
             <param name="array"></param>
             <param name="value">指定值</param>
         </member>
-        <member name="M:ijw.Next.Collection.TwoRanksArrayExt.SetEach``1(``0[0:,0:],System.Func{System.Int32,System.Int32,``0})">
-            <summary>
-            根据指定的方法设置每个单元格中的值
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="array"></param>
-            <param name="function"></param>
-        </member>
         <member name="M:ijw.Next.Collection.TwoRanksArrayExt.SetEachRow``1(``0[0:,0:],System.Func{``0[],``0[]})">
             <summary>
             对每一行使用指定的函数进行变换
@@ -274,13 +231,6 @@
             <typeparam name="T"></typeparam>
             <param name="array"></param>
             <param name="function">变换函数, 接受一列, 返回一组新值</param>
-        </member>
-        <member name="M:ijw.Next.Collection.TwoRanksArrayExt.Clear``1(``0[0:,0:])">
-            <summary>
-            清空数组
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="array"></param>
         </member>
         <member name="M:ijw.Next.Collection.TwoRanksArrayExt.GetRowAt``1(``0[0:,0:],System.Int32)">
             <summary>
@@ -317,6 +267,69 @@
             <param name="array"></param>
             <param name="index">列索引</param>
             <param name="value">给定的数组</param>
+        </member>
+        <member name="T:ijw.Next.Collection.TwoRanksArrayReferenceExt">
+            <summary>
+            引用类型二维数组的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayReferenceExt.SetEach``1(``0[0:,0:],System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            根据指定的方法设置每个单元格中的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="function"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayReferenceExt.SetEachNullable``1(``0[0:,0:],``0)">
+            <summary>
+            把每个单元格设为指定值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="value">指定值</param>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayReferenceExt.SetEachNullable``1(``0[0:,0:],System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            根据指定的方法设置每个单元格中的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="function"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayReferenceExt.Clear``1(``0[0:,0:])">
+            <summary>
+            清空数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+        </member>
+        <member name="T:ijw.Next.Collection.TwoRanksArrayValueTypeExt">
+            <summary>
+            值类型二维数组的扩展方法
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayValueTypeExt.SetEach``1(System.Nullable{``0}[0:,0:],System.Func{System.Int32,System.Int32,System.Nullable{``0}})">
+            <summary>
+            根据指定的方法设置每个单元格中的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <param name="function"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayValueTypeExt.Clear``1(``0[0:,0:])">
+            <summary>
+            清空数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.TwoRanksArrayValueTypeExt.Clear``1(System.Nullable{``0}[0:,0:])">
+            <summary>
+            清空数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
         </member>
         <member name="T:ijw.Next.Collection.CollectionDividingMethod">
             <summary>
@@ -576,11 +589,6 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:ijw.Next.Collection.EnumerableBase`1.#ctor">
-            <summary>
-            构造一个可枚举对象
-            </summary>
-        </member>
         <member name="M:ijw.Next.Collection.EnumerableBase`1.#ctor(System.Int32)">
             <summary>
             给定长度, 构造一个可枚举对象.
@@ -591,12 +599,6 @@
             构造一个可枚举对象, 使用指定的数组初始化.
             </summary>
             <param name="data">用于初始化的数组.内部将直接引用这个数组.</param>
-        </member>
-        <member name="M:ijw.Next.Collection.EnumerableBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            构造一个可枚举对象, 使用一个IEnumerable{T}初始化.
-            </summary>
-            <param name="data">用于初始化的集合. EnumerableBase将拷贝这个集合.</param>
         </member>
         <member name="F:ijw.Next.Collection.EnumerableBase`1._data">
             <summary>
@@ -1057,7 +1059,18 @@
             <param name="seperator">每个元素之间的分割字符串</param>
             <returns></returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableExt.ToAllEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.String,System.Func{``0,System.String})">
+        <member name="M:ijw.Next.Collection.IEnumerableExt.ToAllEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.String)">
+            <summary>
+            输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="separator">元素之间的分隔符, 默认是", "</param>
+            <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
+            <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.ToAllEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String,System.String,System.String)">
             <summary>
             输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
             </summary>
@@ -1099,13 +1112,30 @@
             <param name="values"></param>
             <returns>去除后的序列</returns>
         </member>
-        <member name="M:ijw.Next.Collection.IEnumerableExt.PreviousBasedFilter``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})">
+        <member name="M:ijw.Next.Collection.IEnumerableExt.NullFilter``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            这个函数签名有点复杂, 使用起来学习成本太高. 暂时不进行public, 仅供内部使用吧
+            去除序列中的Null
+            </summary>
+            <param name="values"></param>
+            <returns>去除后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.PreviousBasedFilter``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0},System.Boolean)">
+            <summary>
+            对序列进行过滤处理, 第一元素直接返回, 之后处理每一对相邻的元素(prev, curr)进行处理, 作为新的当前元素返回
             </summary>
             <typeparam name="T"></typeparam>
             <param name="values"></param>
-            <param name="filtering"></param>
+            <param name="filter"></param>
+            <param name="useNewData">是否使用过滤后的值用于后续计算</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.NextBasedFilter``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})">
+            <summary>
+            对序列进行过滤处理, 处理每一对相邻的元素(curr, next)进行处理, 作为新的当前元素返回. 最后的元素直接返回.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <param name="filter"></param>
             <returns></returns>
         </member>
         <member name="T:ijw.Next.Collection.IEnumerableHelper">
@@ -1535,6 +1565,60 @@
             <param name="minValues">归一化下限值的集合</param>
             <returns>反归一化后的集合</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringAbnormal(System.Collections.Generic.IEnumerable{System.Double},System.Predicate{System.Double},System.Double)">
+            <summary>
+            将序列中的异常元素替换为指定值
+            </summary>
+            <param name="values"></param>
+            <param name="predicate">判定是否是异常值</param>
+            <param name="replace">替换为</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringAbnormalWithPreviousValue(System.Collections.Generic.IEnumerable{System.Double},System.Predicate{System.Double},System.Boolean)">
+            <summary>
+            将异常值用前一个值替代. 第一个值不作处理
+            </summary>
+            <param name="values"></param>
+            <param name="predicate">判定是否是异常值</param>
+            <param name="useNewData">是否使用过滤后的值, 有助于处理连续异常值.</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringAbnormal(System.Collections.Generic.IEnumerable{System.Single},System.Predicate{System.Single},System.Single)">
+            <summary>
+            将序列中的异常元素替换为指定值
+            </summary>
+            <param name="values"></param>
+            <param name="predicate">判定是否是异常值</param>
+            <param name="replace">替换为</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringAbnormalWithPreviousValue(System.Collections.Generic.IEnumerable{System.Single},System.Predicate{System.Single},System.Boolean)">
+            <summary>
+            将异常值用前一个值替代. 第一个值不作处理
+            </summary>
+            <param name="values"></param>
+            <param name="predicate">判定是否是异常值</param>
+            <param name="useNewData">是否使用过滤后的值, 有助于处理连续异常值.</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringAbnormal(System.Collections.Generic.IEnumerable{System.Decimal},System.Predicate{System.Decimal},System.Decimal)">
+            <summary>
+            将序列中的异常元素替换为指定值
+            </summary>
+            <param name="values"></param>
+            <param name="predicate">判定是否是异常值</param>
+            <param name="replace">替换为</param>
+            <returns>过滤后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringAbnormalWithPreviousValue(System.Collections.Generic.IEnumerable{System.Decimal},System.Predicate{System.Decimal},System.Boolean)">
+            <summary>
+            将异常值用前一个值替代. 第一个值不作处理
+            </summary>
+            <param name="values"></param>
+            <param name="predicate">判定是否是异常值</param>
+            <param name="useNewData">是否使用过滤后的值, 有助于处理连续异常值.</param>
+            <returns>过滤后的序列</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableNumberExt.FilteringNaN(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
             去除序列中的NaN
@@ -1729,7 +1813,7 @@
         </member>
         <member name="T:ijw.Next.Collection.IIndexable`1">
             <summary>
-            带有索引器的集合
+            带有只读索引器的集合
             </summary>
             <typeparam name="T"></typeparam>
         </member>
@@ -1750,21 +1834,23 @@
             
             </summary>
         </member>
-        <member name="M:ijw.Next.Collection.IIndexableExt.FilterWithDiffLimitation(ijw.Next.Collection.IIndexable{System.Double},System.Double)">
+        <member name="M:ijw.Next.Collection.IIndexableExt.FilterWithDiffLimitation(ijw.Next.Collection.IIndexable{System.Double},System.Double,System.Boolean)">
             <summary>
             限制波动对集合进行过滤. 用前一个样本+波动幅度代替. 
             </summary>
             <param name="values">原集合</param>
             <param name="diff">波动幅度限制</param>
+            <param name="useNewData">使用新值进行后续过滤</param>
             <return>过滤后的新集合</return>
         </member>
-        <member name="M:ijw.Next.Collection.IIndexableExt.FilterWithAmplifyLimitation(ijw.Next.Collection.IIndexable{System.Double},System.Double)">
+        <member name="M:ijw.Next.Collection.IIndexableExt.FilterWithAmplifyLimitation(ijw.Next.Collection.IIndexable{System.Double},System.Double,System.Boolean)">
             <summary>
             限幅过滤. 放弃掉波动过大的数值, 用前一个数值代替. 
             </summary>
             <param name="values">原集合</param>
             <param name="diff">波动最大值绝对值</param>
-            <returns></returns>
+            <param name="useNewData">使用新值进行后续过滤</param>
+            <returns>过滤后的新集合</returns>
         </member>
         <member name="M:ijw.Next.Collection.IIndexableExt.FilterWithWindowMedian(ijw.Next.Collection.IIndexable{System.Double},System.Int32)">
             <summary>
@@ -1948,7 +2034,7 @@
         </member>
         <member name="T:ijw.Next.Collection.IndexValuePair`1">
             <summary>
-            A pair of the index and the value.
+            A pair of index and value.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
@@ -2009,7 +2095,7 @@
             内部元素数量发生变化
             </summary>
         </member>
-        <member name="P:ijw.Next.Collection.LongTimeConsumerCollection`1.ItemGettngStrategy">
+        <member name="P:ijw.Next.Collection.LongTimeConsumerCollection`1.ItemGettingStrategy">
             <summary>
             元素取出策略
             </summary>

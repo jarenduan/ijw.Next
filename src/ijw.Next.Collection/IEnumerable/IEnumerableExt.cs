@@ -313,6 +313,7 @@ namespace ijw.Next.Collection {
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, bool> comparer) {
+            source.ShouldBeNotNull();
             if (other is null) return false;
 
             try {
@@ -332,6 +333,7 @@ namespace ijw.Next.Collection {
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         [Obsolete("use SequenceEqual method instead.")]
         public static bool ItemEquals<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, int, bool> comparer) {
+            source.ShouldBeNotNull();
             if (other is null) return false;
 
             try {
@@ -350,6 +352,7 @@ namespace ijw.Next.Collection {
         /// <param name="comparer">指定的用于比较相等的方法</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         public static bool SequenceEqual<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, bool> comparer) {
+            source.ShouldBeNotNull();
             if (other is null) return false;
 
             try {
@@ -368,6 +371,7 @@ namespace ijw.Next.Collection {
         /// <param name="comparer">指定的用于比较相等的方法</param>
         /// <returns>元素数量相等且每个元素相等, 返回true, 否则返回false.</returns>
         public static bool SequenceEqual<T>(this IEnumerable<T> source, IEnumerable<T> other, Func<T, T, int, bool> comparer) {
+            source.ShouldBeNotNull();
             if (other is null) return false;
 
             try {
@@ -1081,20 +1085,25 @@ namespace ijw.Next.Collection {
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
         public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : struct {
-            //values.Where(v => !(v is null)).Select(v => v.Value);  bug?
+            //return values.Where(v => !(v is null)).Select(v => v.Value);
             foreach (var item in values) {
-                if (item is null) continue;
-                yield return item.Value;
+                if (!(item is null)) yield return item.Value;
             }
         }
+
 
         /// <summary>
         /// 去除序列中的Null
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
-        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T> values) where T : class?
-            => values.Where(v => v != null);
+        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : class
+        {
+            //return values.Where(v => !(v is null)).Select(v => v);
+            foreach (var item in values) {
+                if (!(item is null)) yield return item;
+            }
+        }
 
         /// <summary>
         /// 对序列进行过滤处理, 第一元素直接返回, 之后处理每一对相邻的元素(prev, curr)进行处理, 作为新的当前元素返回
@@ -1144,5 +1153,6 @@ namespace ijw.Next.Collection {
             }
         }
         #endregion
+
     }
 }
