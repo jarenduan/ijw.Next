@@ -1,18 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net35;net40;net45;netstandard1.4;netstandard2.0;netcoreapp3.0</TargetFrameworks>
     <Authors>Jaren Duan</Authors>
     <AssemblyName>ijw.Next</AssemblyName>
     <PackageId>ijw.Next</PackageId>
     <AssemblyVersion>0.3.4</AssemblyVersion>
-    <FileVersion>0.3.4.483</FileVersion>
+    <FileVersion>0.3.4.484</FileVersion>
     <Version>0.3.4</Version>
     <DocumentationFile>ijw.Next.xml</DocumentationFile>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>D:\Repos\ijw.next\Backup4\</UpgradeBackupLocation>
-    <OldToolsVersion>Current</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
