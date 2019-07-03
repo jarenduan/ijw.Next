@@ -9,14 +9,22 @@
             BinaryReader的扩展方法
             </summary>
         </member>
-        <member name="M:ijw.Next.Serialization.Binary.BinaryReaderExt.RetrieveBinaryObject``1(System.IO.BinaryReader,System.Nullable{System.Int32})">
+        <member name="M:ijw.Next.Serialization.Binary.BinaryReaderExt.RetrieveBinaryObject``1(System.IO.BinaryReader)">
             <summary>
-            使用指定长度从流中取回二进制形式序列化的对象, 
+            使用前4个字节作为对象长度从流中取回二进制形式序列化的对象. 没有解析成功, 会抛出异常.
             </summary>
             <typeparam name="T">取回对象的类型</typeparam>
             <param name="reader"></param>
-            <param name="length">可以手动指定取回的对象大小. 如果设置为空, 本方法将先读取流中前4个字节, 转换成int32型整数, 作为对象的大小</param>
-            <returns>返回解析到的对象, 如果没有读取到对象, 会返回默认值default(T). 没有解析成功, 会抛出异常.</returns>
+            <returns>返回解析到的对象.</returns>
+        </member>
+        <member name="M:ijw.Next.Serialization.Binary.BinaryReaderExt.RetrieveBinaryObject``1(System.IO.BinaryReader,System.Int32)">
+            <summary>
+            使用指定长度从流中取回二进制形式序列化的对象. 没有解析成功, 会抛出异常.
+            </summary>
+            <typeparam name="T">取回对象的类型</typeparam>
+            <param name="reader"></param>
+            <param name="length">指定取回的对象大小.</param>
+            <returns>返回解析到的对象.</returns>
         </member>
         <member name="T:ijw.Next.Serialization.Binary.BinarySerializationHelper">
             <summary>

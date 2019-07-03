@@ -9,7 +9,7 @@ namespace ijw.Next.Serialization.Binary {
     /// 二进制序列化帮助类
     /// </summary>
     public class BinarySerializationHelper {
-        private static BinaryFormatter _formatter; //cached, in case mutiple creation.
+        private static BinaryFormatter _FORMATTER; //cached, in case mutiple creation.
 
         /// <summary>
         /// 把对象序列化成字节数组
@@ -42,7 +42,7 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="objToSave">欲保存的对象</param>
         /// <param name="filename">包含路径的文件名</param>
         public static void Serialize(object objToSave, string filename) {
-            FileStream fs = null;
+            FileStream? fs = null;
             try {
                 fs = new FileStream(filename, FileMode.Create);
                 Serialize(objToSave, fs);
@@ -51,6 +51,7 @@ namespace ijw.Next.Serialization.Binary {
             catch (Exception ex) {
                 fs?.Close();
                 fs?.Dispose();
+                fs = null;
                 try {
                     File.Delete(filename);
                 }
@@ -115,10 +116,10 @@ namespace ijw.Next.Serialization.Binary {
         }
 
         private static BinaryFormatter getBinaryFormatter() {
-            if (_formatter == null) {
-                _formatter = new BinaryFormatter();
+            if (_FORMATTER is null) {
+                _FORMATTER = new BinaryFormatter();
             }
-            return _formatter;
+            return _FORMATTER;
         }
     }
 }
