@@ -19,15 +19,8 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="data">用于初始化的数组.内部将直接引用这个数组.</param>
         protected EnumerableBase(T[] data) {
-            data.ShouldBeNotNullArgument();
+            data.ShouldBeNotNullArgument(nameof(data));
             _data = data;
-        }
-
-        /// <summary>
-        /// 构造一个可枚举对象, 使用一个IEnumerable{T}初始化.
-        /// </summary>
-        /// <param name="data">用于初始化的集合. EnumerableBase将拷贝这个集合.</param>
-        public EnumerableBase(IEnumerable<T> data) : this(data?.ToArray()) {
         }
 
         /// <summary>
