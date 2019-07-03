@@ -4,6 +4,16 @@
         <name>ijw.Next.DependencyInjection</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.DependencyInjection.IServiceCollectionExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ijw.Next.DependencyInjection.IServiceScopeFactoryExt">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:ijw.Next.DependencyInjection.IServiceScopeFactoryExt.UseResourceInNewScope``1(Microsoft.Extensions.DependencyInjection.IServiceScopeFactory,System.Action{``0})">
             <summary>
             创建一个新的scope, 找到指定类型的资源, 进行用户的操作, 执行完后, 立即释放scope及创建出来的资源.

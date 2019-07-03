@@ -2,6 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ijw.Next.DependencyInjection {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class IServiceScopeFactoryExt {
         /// <summary>
         /// 创建一个新的scope, 找到指定类型的资源, 进行用户的操作, 执行完后, 立即释放scope及创建出来的资源.
@@ -15,7 +18,7 @@ namespace ijw.Next.DependencyInjection {
         /// 未实现IDisposable的服务, 可以直接使用ServiceCollection.GetService`T().并不会被引用, 进而阻止回收.
         /// </remarks>
         public static void UseResourceInNewScope<TResource>(this IServiceScopeFactory serviceFactory, Action<TResource> action) where TResource : IDisposable {
-            if (action == null) {
+            if (action is null) {
                 return;
             }
             var scope = serviceFactory.CreateScope();
@@ -41,7 +44,7 @@ namespace ijw.Next.DependencyInjection {
         /// 未实现IDisposable的服务, 可以直接使用GetService().并不会被引用, 进而阻止回收.
         /// </remarks>
         public static void UseResourceInNewScope<TResource>(this IServiceScopeFactory serviceFactory, Action<IServiceScope, TResource> action) where TResource : IDisposable {
-            if (action == null) {
+            if (action is null) {
                 return;
             }
             var scope = serviceFactory.CreateScope();
