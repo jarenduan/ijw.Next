@@ -58,7 +58,7 @@ namespace ijw.Next {
         }
 
         /// <summary>
-        /// 
+        /// 获取缺省值
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
