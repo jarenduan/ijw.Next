@@ -95,13 +95,21 @@ namespace ijw.Next {
         /// <param name="times">重复次数, 必须大于0</param>
         /// <returns>重复后的字符串</returns>
         public static string Repeat(this string astring, int times) {
-            times.ShouldLargerThan(0);
-            if (times == 1) return astring;
-            StringBuilder result = new StringBuilder();
-            for (int i = 0; i < times; i++) {
-                result.Append(astring);
+            times.ShouldNotLessThan(0);
+            return times switch
+            {
+                0 => string.Empty,
+                1 => astring,
+                _ => repeat(astring, times)
+            };
+
+            static string repeat(string astring, int times) {
+                StringBuilder result = new StringBuilder();
+                for (int i = 0; i < times; i++) {
+                    result.Append(astring);
+                }
+                return result.ToString();
             }
-            return result.ToString();
         }
 
         /// <summary>
@@ -264,8 +272,8 @@ namespace ijw.Next {
         /// <param name="subString">字符串</param>
         /// <returns>含有的数量</returns>
         public static int ContainsHowMany(this string parentString, string subString) {
-            parentString.ShouldBeNotNullArgument();
-            subString.ShouldBeNotNullArgument();
+            parentString.ShouldBeNotNull();
+            subString.ShouldBeNotNullArgument(nameof(subString));
 
             int pLength = parentString.Length;
             if (pLength == 0) {
@@ -304,7 +312,8 @@ namespace ijw.Next {
         /// <param name="aChar">字符</param>
         /// <returns>含有的数量</returns>
         public static int ContainsHowMany(this string aString, char aChar) {
-            aString.ShouldBeNotNullArgument();
+            aString.ShouldBeNotNull();
+            aChar.ShouldBeNotNullArgument(nameof(aChar));
 
             int pLength = aString.Length;
             if (pLength == 0) {
