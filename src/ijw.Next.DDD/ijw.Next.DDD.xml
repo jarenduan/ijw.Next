@@ -41,6 +41,68 @@
             实体的ID
             </summary>
         </member>
+        <member name="T:ijw.Next.DDD.NotifyPropertyChangeBase">
+            <summary>
+            属性变更通知修改的实体基类
+            </summary>
+        </member>
+        <member name="E:ijw.Next.DDD.NotifyPropertyChangeBase.PropertyChanging">
+            <summary>
+            属性值即将赋值
+            </summary>
+        </member>
+        <member name="E:ijw.Next.DDD.NotifyPropertyChangeBase.PropertyChanged">
+            <summary>
+            属性值赋值之后
+            </summary>
+        </member>
+        <member name="E:ijw.Next.DDD.NotifyPropertyChangeBase.BeforePropertyValueChanges">
+            <summary>
+            属性值进行变化之前, 可以取消赋值
+            </summary>
+        </member>
+        <member name="E:ijw.Next.DDD.NotifyPropertyChangeBase.AfterPropertyValueChanged">
+            <summary>
+            属性值变化之后
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.NotifyPropertyChangeBase.set``1(``0@,``0,System.String)">
+            <summary>
+            属性通用的setter方法
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="property"></param>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:ijw.Next.DDD.PropertyValueChangeEventArgs">
+            <summary>
+            属性值变化事件的参数
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.PropertyValueChangeEventArgs.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            构造一个属性值变化事件的参数
+            </summary>
+            <param name="propertyName"></param>
+            <param name="oldvalue"></param>
+            <param name="newvalue"></param>
+        </member>
+        <member name="P:ijw.Next.DDD.PropertyValueChangeEventArgs.PropertyName">
+            <summary>
+            属性名
+            </summary>
+        </member>
+        <member name="P:ijw.Next.DDD.PropertyValueChangeEventArgs.OldValue">
+            <summary>
+            旧值
+            </summary>
+        </member>
+        <member name="P:ijw.Next.DDD.PropertyValueChangeEventArgs.NewValue">
+            <summary>
+            新值
+            </summary>
+        </member>
         <member name="T:ijw.Next.DDD.IRepository`1">
             <summary>
             仓储接口, 定义公共的泛型GRUD
