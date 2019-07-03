@@ -19,7 +19,12 @@ namespace ijw.Next.Serialization.Binary {
         /// <remarks>编码采用UTF8</remarks>
         public static T RetrieveBinaryObjectAndDispose<T>(this Stream stream, int? length = null) {
             using (BinaryReader reader = new BinaryReader(stream)) {
-                return reader.RetrieveBinaryObject<T>(length);
+                if (length is null) {
+                    return reader.RetrieveBinaryObject<T>();
+                }
+                else {
+                    return reader.RetrieveBinaryObject<T>(length.Value);
+                }
             }
         }
 
