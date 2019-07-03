@@ -51,8 +51,8 @@ namespace ijw.Next.IO.CsvReader {
         /// <returns>Csv标题</returns>
         public CsvHeader ReadHeader() {
             CsvFilePath.ShouldExistSuchFile();
-            Encoding.ShouldBeNotNullReference();
-            return ReadHeader(CsvFilePath, Encoding, Separators);
+            Encoding.ShouldBeNotNull();
+            return ReadHeader(CsvFilePath, Separators, Encoding);
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace ijw.Next.IO.CsvReader {
         /// <returns></returns>
         public IEnumerable<string[]> ReadStrings() {
             CsvFilePath.ShouldExistSuchFile();
-            Encoding.ShouldBeNotNullReference();
-            return ReadStrings(CsvFilePath, Encoding, IsFirstLineHeader, Separators);
+            Encoding.ShouldBeNotNull();
+            return ReadStrings(CsvFilePath, Separators, Encoding, IsFirstLineHeader);
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace ijw.Next.IO.CsvReader {
         /// </summary>
         public IEnumerable<(string[] values, int lineNumber)> ReadStringsWithLineNumber() {
             CsvFilePath.ShouldExistSuchFile();
-            Encoding.ShouldBeNotNullReference();
-            return ReadStringsWithLineNumber(CsvFilePath, Encoding, IsFirstLineHeader, Separators);
+            Encoding.ShouldBeNotNull();
+            return ReadStringsWithLineNumber(CsvFilePath, Separators, Encoding, IsFirstLineHeader);
         }
         /// <summary>
         /// 从csv文件里面读取对象
@@ -80,10 +80,10 @@ namespace ijw.Next.IO.CsvReader {
         /// <returns>对象集合的迭代器</returns>
         public IEnumerable<T> ReadObjects<T>() where T : class, new() {
             CsvFilePath.ShouldExistSuchFile();
-            Encoding.ShouldBeNotNullReference();
+            Encoding.ShouldBeNotNull();
             IsFirstLineHeader.ShouldEquals(true);
 
-            return ReadObjects<T>(CsvFilePath, Encoding, Separators);
+            return ReadObjects<T>(CsvFilePath, Separators, Encoding);
         }
 #if !NETSTANDARD1_4
         /// <summary>
@@ -133,89 +133,122 @@ namespace ijw.Next.IO.CsvReader {
 
         #region static methods
         /// <summary>
-        /// 将每行用指定字符分隔后, 返回字符串数组. 使用指定的编码方式读取文件.
+        /// 将每行用使用默认的分隔符分隔后, 返回字符串数组. 使用指定的编码方式读取文件.
         /// </summary>
         /// <param name="csvFilepath">csv文件的路径</param>
         /// <param name="encoding">csv文件的编码</param>
         /// <param name="isFirstLineHeader">第一行是否是header</param>
-        /// <param name="separators">使用的分隔符</param>
         /// <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
-        public static IEnumerable<string[]> ReadStrings(string csvFilepath, Encoding encoding, bool isFirstLineHeader = false, char[]? separators = null) {
+        public static IEnumerable<string[]> ReadStrings(string csvFilepath, Encoding encoding, bool isFirstLineHeader = false) 
+            => ReadStrings(csvFilepath, new char[] { ',' }, encoding, isFirstLineHeader);
+
+        /// <summary>
+        /// 将每行用指定字符分隔后, 返回字符串数组. 使用指定的编码方式读取文件.
+        /// </summary>
+        /// <param name="csvFilepath">csv文件的路径</param>
+        /// <param name="separators">使用的分隔符</param>
+        /// <param name="encoding">csv文件的编码</param>
+        /// <param name="isFirstLineHeader">第一行是否是header</param>
+        /// <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
+        public static IEnumerable<string[]> ReadStrings(string csvFilepath, char[] separators, Encoding encoding, bool isFirstLineHeader = false) {
             csvFilepath.ShouldExistSuchFile();
 
-            char[] with = separators ?? new char[] { ',' };
-
-            using (var reader = StreamReaderHelper.NewStreamReaderFrom(csvFilepath, encoding)) {
-                foreach (var (line, lineNum) in reader.ReadLinesWithLineNumber()) {
-                    if (lineNum == 1 && isFirstLineHeader) continue;
-                    string[] values = line.Split(with).Select(s => s.Trim()).ToArray();
-                    yield return values;
-                }
+            using var reader = StreamReaderHelper.NewStreamReaderFromFile(csvFilepath, encoding);
+            foreach (var (line, lineNum) in reader.ReadLinesWithLineNumber()) {
+                if (lineNum == 1 && isFirstLineHeader) continue;
+                string[] values = line.Split(separators).Select(s => s.Trim()).ToArray();
+                yield return values;
             }
         }
+
+        /// <summary>
+        /// 将每行用使用默认的分隔符分隔后, 返回字符串数组和行号. 使用指定的编码方式读取文件.
+        /// </summary>
+        /// <param name="csvFilepath">csv文件的路径</param>
+        /// <param name="encoding">csv文件的编码</param>
+        /// <param name="isFirstLineHeader">第一行是否是header</param>
+        /// <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
+        public static IEnumerable<(string[] line, int lineNum)> ReadStringsWithLineNumber(string csvFilepath, Encoding encoding, bool isFirstLineHeader = false) 
+            => ReadStringsWithLineNumber(csvFilepath, new char[] { ',' }, encoding, isFirstLineHeader);
 
         /// <summary>
         /// 将每行用指定字符分隔后, 返回字符串数组和行号. 使用指定的编码方式读取文件.
         /// </summary>
         /// <param name="csvFilepath">csv文件的路径</param>
+        /// <param name="separators">使用的分隔符</param>
         /// <param name="encoding">csv文件的编码</param>
         /// <param name="isFirstLineHeader">第一行是否是header</param>
-        /// <param name="separators">使用的分隔符</param>
         /// <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
-        public static IEnumerable<(string[] line, int lineNum)> ReadStringsWithLineNumber(string csvFilepath, Encoding encoding, bool isFirstLineHeader = false, char[]? separators = null) {
+        public static IEnumerable<(string[] line, int lineNum)> ReadStringsWithLineNumber(string csvFilepath, char[] separators, Encoding encoding, bool isFirstLineHeader = false) {
             csvFilepath.ShouldExistSuchFile();
 
-            char[] with = separators ?? new char[] { ',' };
-
-            using (var reader = StreamReaderHelper.NewStreamReaderFrom(csvFilepath, encoding)) {
-                foreach (var (line, lineNum) in reader.ReadLinesWithLineNumber()) {
-                    if (lineNum == 1 && isFirstLineHeader) continue;
-                    string[] values = line.Split(with).Select(s => s.Trim()).ToArray();
-                    yield return (values, lineNum);
-                }
+            using var reader = StreamReaderHelper.NewStreamReaderFromFile(csvFilepath, encoding);
+            foreach (var (line, lineNum) in reader.ReadLinesWithLineNumber()) {
+                if (lineNum == 1 && isFirstLineHeader) continue;
+                string[] values = line.Split(separators).Select(s => s.Trim()).ToArray();
+                yield return (values, lineNum);
             }
         }
+
+        /// <summary>
+        /// 读取文件标题行.使用默认的分隔符.
+        /// </summary>
+        /// <param name="csvFilepath">csv文件的路径</param>
+        /// <param name="encoding">csv文件的编码</param>
+        /// <returns>Csv标题</returns>
+        public static CsvHeader ReadHeader(string csvFilepath, Encoding encoding) =>
+            ReadHeader(csvFilepath, new char[] { ',' }, encoding);
 
         /// <summary>
         /// 读取文件标题行
         /// </summary>
         /// <param name="csvFilepath">csv文件的路径</param>
-        /// <param name="encoding">csv文件的编码</param>
         /// <param name="separators">使用的分隔符</param>
+        /// <param name="encoding">csv文件的编码</param>
         /// <returns>Csv标题</returns>
-        public static CsvHeader ReadHeader(string csvFilepath, Encoding encoding, char[]? separators = null) {
+        public static CsvHeader ReadHeader(string csvFilepath, char[] separators, Encoding encoding) { 
             csvFilepath.ShouldExistSuchFile();
 
-            char[] with = separators ?? new char[] { ',' };
-
-            using (var reader = StreamReaderHelper.NewStreamReaderFrom(csvFilepath, encoding)) {
-                var (line, _) = reader.ReadLinesWithLineNumber().FirstOrDefault();
-                var values = line.Split(with).Select(s => s.Trim()).ToArray(); ;
-                CsvHeader header = new CsvHeader(values);
-                return header;
-            }
+            using var reader = StreamReaderHelper.NewStreamReaderFromFile(csvFilepath, encoding);
+            var (line, _) = reader.ReadLinesWithLineNumber().FirstOrDefault();
+            var values = line.Split(separators).Select(s => s.Trim()).ToArray(); ;
+            CsvHeader header = new CsvHeader(values);
+            return header;
         }
+
+        /// <summary>
+        /// 从csv文件里面读取对象. 使用默认的分隔符.
+        /// </summary>
+        /// <typeparam name="T">读取对象的类型</typeparam>
+        /// <param name="csvFilepath">csv文件的路径</param>
+        /// <param name="encoding">csv文件的编码</param>
+        /// <returns></returns>
+        public static IEnumerable<T> ReadObjects<T>(string csvFilepath, Encoding encoding) where T : class, new() 
+            //TODO: remove new()
+            => ReadObjects<T>(csvFilepath, new char[] { ',' }, encoding);
+
 
         /// <summary>
         /// 从csv文件里面读取对象
         /// </summary>
         /// <typeparam name="T">读取对象的类型</typeparam>
         /// <param name="csvFilepath">csv文件的路径</param>
+        /// <param name="separators">csv分隔符. </param>
         /// <param name="encoding">csv文件的编码</param>
-        /// <param name="separators">csv分隔符. 默认为null, 将使用逗号作为分隔. </param>
         /// <returns></returns>
-        public static IEnumerable<T> ReadObjects<T>(string csvFilepath, Encoding encoding, char[]? separators = null) where T : class, new() {
+        public static IEnumerable<T> ReadObjects<T>(string csvFilepath, char[] separators, Encoding encoding) where T : class, new() {
+            //TODO: remove new()
             csvFilepath.ShouldExistSuchFile();
-            encoding.ShouldBeNotNullReference();
+            encoding.ShouldBeNotNull();
 
             string[] propertyNames = { };
 
-            foreach (var (line, lineNum) in ReadStringsWithLineNumber(csvFilepath, encoding, separators: separators)) {
+            foreach (var (line, lineNum) in ReadStringsWithLineNumber(csvFilepath, separators, encoding)) {
                 if (lineNum == 1) {
                     propertyNames = line;
                 }
                 else {
-                    T? obj = default;
+                    T obj = new T();
                     try {
                         obj = ReflectionHelper.CreateNewInstance<T>(propertyNames, line);
                     }

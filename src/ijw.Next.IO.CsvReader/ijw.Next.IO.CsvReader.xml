@@ -59,59 +59,78 @@
             <typeparam name="T">读取对象的类型</typeparam>
             <returns>对象集合的迭代器</returns>
         </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadDataTable(System.Boolean)">
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStrings(System.String,System.Text.Encoding,System.Boolean)">
             <summary>
-            读取标题行和全部行, 形成一个DataTable
+            将每行用使用默认的分隔符分隔后, 返回字符串数组. 使用指定的编码方式读取文件.
             </summary>
-            <param name="hasHeader">是否有标题行</param>
-            <returns>包含全部数据的DataTable</returns>
+            <param name="csvFilepath">csv文件的路径</param>
+            <param name="encoding">csv文件的编码</param>
+            <param name="isFirstLineHeader">第一行是否是header</param>
+            <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
         </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadDataTable(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            将指定页的数据读取出来, 形成一个DataTable
-            </summary>
-            <param name="pageIndex">从1开始的页码</param>
-            <param name="pageSize">每页数据行数</param>
-            <param name="hasHeader">是否有标题行</param>
-            <returns>包含指定页数据的DataTable</returns>
-        </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStrings(System.String,System.Text.Encoding,System.Boolean,System.Char[])">
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStrings(System.String,System.Char[],System.Text.Encoding,System.Boolean)">
             <summary>
             将每行用指定字符分隔后, 返回字符串数组. 使用指定的编码方式读取文件.
             </summary>
             <param name="csvFilepath">csv文件的路径</param>
+            <param name="separators">使用的分隔符</param>
             <param name="encoding">csv文件的编码</param>
             <param name="isFirstLineHeader">第一行是否是header</param>
-            <param name="separators">使用的分隔符</param>
             <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
         </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStringsWithLineNumber(System.String,System.Text.Encoding,System.Boolean,System.Char[])">
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStringsWithLineNumber(System.String,System.Text.Encoding,System.Boolean)">
+            <summary>
+            将每行用使用默认的分隔符分隔后, 返回字符串数组和行号. 使用指定的编码方式读取文件.
+            </summary>
+            <param name="csvFilepath">csv文件的路径</param>
+            <param name="encoding">csv文件的编码</param>
+            <param name="isFirstLineHeader">第一行是否是header</param>
+            <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadStringsWithLineNumber(System.String,System.Char[],System.Text.Encoding,System.Boolean)">
             <summary>
             将每行用指定字符分隔后, 返回字符串数组和行号. 使用指定的编码方式读取文件.
             </summary>
             <param name="csvFilepath">csv文件的路径</param>
+            <param name="separators">使用的分隔符</param>
             <param name="encoding">csv文件的编码</param>
             <param name="isFirstLineHeader">第一行是否是header</param>
-            <param name="separators">使用的分隔符</param>
             <returns>一个元组的集合,每个元组包含: 行号、该行分隔出的字符串数组</returns>
         </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadHeader(System.String,System.Text.Encoding,System.Char[])">
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadHeader(System.String,System.Text.Encoding)">
+            <summary>
+            读取文件标题行.使用默认的分隔符.
+            </summary>
+            <param name="csvFilepath">csv文件的路径</param>
+            <param name="encoding">csv文件的编码</param>
+            <returns>Csv标题</returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadHeader(System.String,System.Char[],System.Text.Encoding)">
             <summary>
             读取文件标题行
             </summary>
             <param name="csvFilepath">csv文件的路径</param>
-            <param name="encoding">csv文件的编码</param>
             <param name="separators">使用的分隔符</param>
+            <param name="encoding">csv文件的编码</param>
             <returns>Csv标题</returns>
         </member>
-        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadObjects``1(System.String,System.Text.Encoding,System.Char[])">
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadObjects``1(System.String,System.Text.Encoding)">
+            <summary>
+            从csv文件里面读取对象. 使用默认的分隔符.
+            </summary>
+            <typeparam name="T">读取对象的类型</typeparam>
+            <param name="csvFilepath">csv文件的路径</param>
+            <param name="encoding">csv文件的编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.IO.CsvReader.CsvFileReader.ReadObjects``1(System.String,System.Char[],System.Text.Encoding)">
             <summary>
             从csv文件里面读取对象
             </summary>
             <typeparam name="T">读取对象的类型</typeparam>
             <param name="csvFilepath">csv文件的路径</param>
+            <param name="separators">csv分隔符. </param>
             <param name="encoding">csv文件的编码</param>
-            <param name="separators">csv分隔符. 默认为null, 将使用逗号作为分隔. </param>
             <returns></returns>
         </member>
         <member name="T:ijw.Next.IO.CsvReader.CsvHeader">
