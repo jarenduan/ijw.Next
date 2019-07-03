@@ -6,7 +6,7 @@ namespace ijw.Next.Log.File {
     /// 最简单的文件日志器, 所有方法线程安全.
     /// </summary>
     public class SimpleFileLog : ILogHelper {
-        private object _syncRoot = new object();
+        private readonly object _syncRoot = new object();
         private string _logfilePath = "~.log";
 
         /// <summary>
@@ -57,36 +57,24 @@ namespace ijw.Next.Log.File {
         /// 写入一条错误日志（自动添加时间）
         /// </summary>
         /// <param name="msg">写入的内容</param>
-        public void WriteError(string msg) {
-            string log = msg ?? "Exception is Null";
-            this.Log(msg);
-        }
+        public void WriteError(string msg) => Log(msg ?? "Exception is Null");
 
         /// <summary>
         /// 写入一条错误日志（自动添加时间）
         /// </summary>
         /// <param name="ex">写入的内容</param>
-        public void WriteError(Exception ex) {
-            string log = ex is null ? "Exception is Null" : ex.Message;
-            this.Log(log);
-        }
+        public void WriteError(Exception ex) => Log(ex is null ? "Exception is Null" : ex.Message);
 
         /// <summary>
         /// 写入一条日志（自动添加时间）
         /// </summary>
         /// <param name="msg">写入的内容</param>
-        public void WriteInfo(string msg) {
-            string log = msg ?? "Exception is Null";
-            this.Log(msg);
-        }
+        public void WriteInfo(string msg) => Log(msg ?? "Exception is Null");
 
         /// <summary>
         /// 写入一条日志（自动添加时间）
         /// </summary>
         /// <param name="ex">写入的内容</param>
-        public void WriteInfo(Exception ex) {
-            string log = ex is null ? "Exception is Null" : ex.Message;
-            this.Log(log);
-        }
+        public void WriteInfo(Exception ex) => Log(ex is null ? "Exception is Null" : ex.Message);
     }
 }
