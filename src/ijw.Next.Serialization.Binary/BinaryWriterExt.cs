@@ -1,6 +1,4 @@
-﻿//#if NET35 || NET40 || NET45 //for netcore is not support binary formatter now, 2016-06-29
-//20170614 update to netstandard2.0
-using System;
+﻿using System;
 using System.IO;
 
 namespace ijw.Next.Serialization.Binary {
@@ -17,6 +15,7 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="writeLengthHeader">是否写入头. 如果为true, 将首先自动写入4个字节的头, 内容是对象序列化后的长度</param>
         /// <remarks>编码采用UTF8</remarks>
         public static void WriteBinaryObject<T>(this BinaryWriter writer, T obj, bool writeLengthHeader = true) {
+            if (obj is null) throw new ArgumentNullException();
             using (MemoryStream mem = new MemoryStream()) {
                 int len = BinarySerializationHelper.Serialize(obj, mem);
                 if (writeLengthHeader) {
@@ -32,4 +31,3 @@ namespace ijw.Next.Serialization.Binary {
         }
     }
 }
-//#endif
