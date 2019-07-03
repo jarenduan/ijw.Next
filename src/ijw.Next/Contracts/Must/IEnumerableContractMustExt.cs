@@ -50,7 +50,7 @@ namespace ijw.Next {
                 }
                 i++;
             }
-            var brokenMessage = $"The {i.ToOrdinalString()} item in collection doesn't satisfy {conditionDescrption ?? conditionDescrption.ToString()}";
+            var brokenMessage = $"The {i.ToOrdinalString()} item in collection doesn't satisfy {conditionDescrption?.ToString() ?? "condition"}";
             if (broke) {
                 throw new NotSatisfiedConditionException<IEnumerable<T>, T>(collection, pred, brokenMessage);
             }

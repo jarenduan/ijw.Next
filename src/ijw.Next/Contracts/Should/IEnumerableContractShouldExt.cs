@@ -15,7 +15,7 @@ namespace ijw.Next {
         /// <returns>集合有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldNotBeEmpty<T>(this IEnumerable<T> collection) {
-            collection.ShouldBeNotNullReference();
+            collection.ShouldBeNotNull();
             return collection.Any();
         }
 
@@ -27,7 +27,7 @@ namespace ijw.Next {
         /// <returns>集合不是空且有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldNotBeNullOrEmpty<T>(this IEnumerable<T> collection) {
-            collection.ShouldBeNotNullReference();
+            collection.ShouldBeNotNull();
             return collection.ShouldNotBeEmpty();
         }
 

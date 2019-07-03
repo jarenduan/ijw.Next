@@ -13,24 +13,13 @@ namespace ijw.Next {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
-        /// <param name="argumentName">参数的名字</param>
+        /// <param name="paramName">参数的名字</param>
+        /// <param name="message"></param>
         /// <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static Contract<T> MustNotNullArgument<T>(this T obj, string argumentName = "") where T : class {
-            var brokenMessage = $"{argumentName} must not a null argument";
-
-            if (obj is null) {
-                if (argumentName == "") {
-                    throw new ArgumentNullException();
-                }
-                else {
-                    throw new ArgumentNullException(argumentName);
-                }
-            }
-            else {
-                return new Contract<T>(obj, brokenMessage);
-            }
-        }
+        public static Contract<T> MustNotNullArgument<T>(this T obj, string paramName, string message = "") where T : class
+            => obj is null ? throw new ArgumentNullException(paramName, message)
+                           : new Contract<T>(obj, $"Argument [{paramName}] must not be null ");
 
         /// <summary>
         /// 应该不是Null参数
@@ -38,10 +27,11 @@ namespace ijw.Next {
         /// <typeparam name="T"></typeparam>
         /// <param name="contract"></param>
         /// <param name="paramName">参数的名字</param>
+        /// <param name="message"></param>
         /// <returns>不是Null,Contract的IsKept为true. 反之抛出ArgumentNullException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static Contract<T> AndMustNotNullArgument<T>(this Contract<T> contract, string paramName = "") where T : class
-            => contract.Value.MustNotNullArgument();
+        public static Contract<T> AndMustNotNullArgument<T>(this Contract<T> contract, string paramName, string message = "") where T : class
+            => contract.Value.MustNotNullArgument(paramName, message);
 
         #endregion
 
@@ -56,8 +46,6 @@ namespace ijw.Next {
         /// <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
         /// <exception cref="NullReferenceException"></exception>
         public static Contract<T> MustNotNull<T>(this T obj, string message = "") where T : class {
-            var brokenMessage = $"{message} must not a null argument";
-
             if (obj is null) {
                 if (message == "") {
                     throw new NullReferenceException();
@@ -67,7 +55,7 @@ namespace ijw.Next {
                 }
             }
             else {
-                return new Contract<T>(obj, brokenMessage);
+                return new Contract<T>(obj, brokenMessage: message.IsNullOrEmpty() ? $" {obj} must not be null" : message);
             }
         }
 
@@ -80,7 +68,7 @@ namespace ijw.Next {
         /// <returns>不是Null,Contract的IsKept为true. 反之抛出NullReferenceException异常.</returns>
         /// <exception cref="NullReferenceException"></exception>
         public static Contract<T> AndMustNotNull<T>(this Contract<T> contract, string message = "") where T : class
-            => contract.Value.MustNotNull();
+            => contract.Value.MustNotNull(message);
 
         #endregion
 

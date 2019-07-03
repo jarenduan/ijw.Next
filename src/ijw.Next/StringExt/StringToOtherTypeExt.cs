@@ -124,8 +124,10 @@ namespace ijw.Next {
         /// <remarks>
         /// 性能提示: 此方法内部调用了String.To(typeof(T)), 因此对于值类型涉及装箱和拆箱.
         /// </remarks>
-        public static T To<T>(this string value, bool useDefaultValueWhenCastFail = false) where T : struct
-            => (T)value.ToType(typeof(T), useDefaultValueWhenCastFail);
+        public static T To<T>(this string value, bool useDefaultValueWhenCastFail = false) where T : struct {
+            var r = value.ToType(typeof(T), useDefaultValueWhenCastFail);
+            return (r is null) ? default : (T)r;
+        }
 
         /// <summary>
         /// 将字符串尝试转型成指定的可空值类型（用默认的FormatProvider）
