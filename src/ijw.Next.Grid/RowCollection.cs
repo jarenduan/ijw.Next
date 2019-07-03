@@ -12,6 +12,12 @@ namespace ijw.Next.Grid {
     public sealed class RowCollection<T> : IndexedViewCollectionBase<T, Row<T>> {
         internal RowCollection(Grid<T> grid): base(grid, grid.RowCount) { }
 
-        protected override Row<T> CreateIndexedView(Grid<T> _grid, int index) => new Row<T>(_grid, index);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_grid"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        protected override Row<T> createIndexedView(Grid<T> _grid, int index) => new Row<T>(_grid, index);
     }
 }

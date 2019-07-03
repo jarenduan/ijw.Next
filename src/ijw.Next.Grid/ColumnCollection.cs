@@ -18,6 +18,6 @@ namespace ijw.Next.Grid {
         /// <param name="_grid"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        protected override Column<T> CreateIndexedView(Grid<T> _grid, int index) => new Column<T>(_grid, index);
+        protected override Column<T> createIndexedView(Grid<T> _grid, int index) => new Column<T>(_grid, index);
     }
 }

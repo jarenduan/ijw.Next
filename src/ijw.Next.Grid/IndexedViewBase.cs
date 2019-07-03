@@ -42,13 +42,13 @@ namespace ijw.Next.Grid {
         protected Grid<T> _grid;
 
         #region Enumerable implementation
-        public IEnumerator<T> GetEnumerator() {
-            return this.enumerateInGrid().GetEnumerator();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<T> GetEnumerator() => this.enumerateInGrid().GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() {
-            return this.enumerateInGrid().GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => this.enumerateInGrid().GetEnumerator();
 
         /// <summary>
         /// 枚举行/列对象在所绑定表中的对应元素

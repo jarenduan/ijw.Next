@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace ijw.Next.Grid {
-	/// <summary>
-	/// 具有固定维度的二维表. 可以使用Rows和Columns属性访问其中的行和列.
-	/// </summary>
-	/// <typeparam name="T">单元格容纳元素的类型</typeparam>
-	public class Grid<T> {
+﻿namespace ijw.Next.Grid {
+    /// <summary>
+    /// 具有固定维度的二维表. 可以使用Rows和Columns属性访问其中的行和列.
+    /// </summary>
+    /// <typeparam name="T">单元格容纳元素的类型</typeparam>
+    public class Grid<T> {
 		/// <summary>
 		/// 行数
 		/// </summary>
-		public int RowCount => this._cells.GetLength(0);
+		public int RowCount => _cells.GetLength(0);
 
 		/// <summary>
 		/// 列数
 		/// </summary>
-		public int ColumnCount => this._cells.GetLength(1);
+		public int ColumnCount => _cells.GetLength(1);
 
 		/// <summary>
 		/// 返回指定序号的行
@@ -42,9 +40,9 @@ namespace ijw.Next.Grid {
 			rowCount.ShouldLargerThan(0);
 			columnCount.ShouldLargerThan(0);
 
-			this._cells = new T[rowCount, columnCount];
-			this.Rows = new RowCollection<T>(this);
-			this.Columns = new ColumnCollection<T>(this);
+            _cells = new T[rowCount, columnCount];
+            Rows = new RowCollection<T>(this);
+			Columns = new ColumnCollection<T>(this);
 		}
 
 		/// <summary>
@@ -52,13 +50,13 @@ namespace ijw.Next.Grid {
 		/// </summary>
 		/// <param name="array">二维数组, grid将直接引用它作为内部存储</param>
 		public Grid(T[,] array) {
-			array.ShouldBeNotNullArgument();
+			array.ShouldBeNotNullArgument(nameof(array));
 			array.GetLength(0).ShouldLargerThan(0);
 			array.GetLength(1).ShouldLargerThan(0);
 
-			this._cells = array;
-			this.Rows = new RowCollection<T>(this);
-			this.Columns = new ColumnCollection<T>(this);
+            _cells = array;
+            Rows = new RowCollection<T>(this);
+            Columns = new ColumnCollection<T>(this);
 		}
 
 		/// <summary>

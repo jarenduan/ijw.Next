@@ -10,6 +10,18 @@
             </summary>
             <typeparam name="T">列中每个单元格容纳的元素的类型</typeparam>
         </member>
+        <member name="P:ijw.Next.Grid.Column`1.Dimension">
+            <summary>
+            总列数
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.Column`1.Item(System.Int32)">
+            <summary>
+            指定索引处单元格中的元素
+            </summary>
+            <param name="index">行数索引</param>
+            <returns></returns>
+        </member>
         <member name="M:ijw.Next.Grid.Column`1.#ctor(ijw.Next.Grid.Grid{`0},System.Int32)">
             <summary>
             无参数构造函数, 仅供Grid类初始化时内部使用
@@ -20,6 +32,14 @@
             列集合. 无法继承.
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.Grid.ColumnCollection`1.createIndexedView(ijw.Next.Grid.Grid{`0},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="_grid"></param>
+            <param name="index"></param>
+            <returns></returns>
         </member>
         <member name="T:ijw.Next.Grid.Grid`1">
             <summary>
@@ -72,6 +92,18 @@
             内部使用了二维数组进行存储
             </summary>
         </member>
+        <member name="T:ijw.Next.Grid.Header`1">
+            <summary>
+            表头
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.Grid.Header`1.#ctor(`0[])">
+            <summary>
+            构造一个表头对象
+            </summary>
+            <param name="data"></param>
+        </member>
         <member name="T:ijw.Next.Grid.IndexedViewBase`1">
             <summary>
             提供表的行/列对象的公共数据和行为, 此类不能实例化.
@@ -106,6 +138,12 @@
             属于那个表
             </summary>
         </member>
+        <member name="M:ijw.Next.Grid.IndexedViewBase`1.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ijw.Next.Grid.IndexedViewBase`1.enumerateInGrid">
             <summary>
             枚举行/列对象在所绑定表中的对应元素
@@ -119,11 +157,49 @@
             <typeparam name="TElement">元素类型</typeparam>
             <typeparam name="TRowOrColumn">行/列类型</typeparam>
         </member>
+        <member name="P:ijw.Next.Grid.IndexedViewCollectionBase`2.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Grid.IndexedViewCollectionBase`2.createIndexedView(ijw.Next.Grid.Grid{`0},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="_grid"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Grid.IndexedViewCollectionBase`2.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:ijw.Next.Grid.IndexedViewCollectionBase`2._grid">
+            <summary>
+            对grid的引用
+            </summary>
+        </member>
         <member name="T:ijw.Next.Grid.Row`1">
             <summary>
             表示表中的一行
             </summary>
             <typeparam name="T">行中每个单元格内容纳的元素类型</typeparam>
+        </member>
+        <member name="P:ijw.Next.Grid.Row`1.Dimension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ijw.Next.Grid.Row`1.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
         </member>
         <member name="M:ijw.Next.Grid.Row`1.#ctor(ijw.Next.Grid.Grid{`0},System.Int32)">
             <summary>
@@ -135,6 +211,33 @@
             行集合. 无法继承.
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ijw.Next.Grid.RowCollection`1.createIndexedView(ijw.Next.Grid.Grid{`0},System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="_grid"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.Grid.Table`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TBodyCell"></typeparam>
+            <typeparam name="THeaderCell"></typeparam>
+        </member>
+        <member name="P:ijw.Next.Grid.Table`2.ColumnHeader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Grid.Table`2.#ctor(`0[0:,0:],`1[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="columnHeader"></param>
         </member>
     </members>
 </doc>
