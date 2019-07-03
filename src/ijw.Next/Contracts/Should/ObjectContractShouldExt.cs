@@ -10,7 +10,7 @@ namespace ijw.Next {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
-        /// <returns>不是Null,返回true. 反之抛出ArgumentNullException异常</returns>
+        /// <returns>不是Null,返回true. 反之抛出NullReferenceException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static bool ShouldBeNotNull<T>(this T obj) where T: class ?
             => (obj is null) ? throw new NullReferenceException() : true;
@@ -20,7 +20,7 @@ namespace ijw.Next {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
-        /// <returns>不是Null,返回true. 反之抛出ArgumentNullException异常</returns>
+        /// <returns>不是Null,返回true. 反之抛出NullReferenceException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
         public static bool ShouldBeNotNull<T>(this T? obj) where T : struct 
             => obj is null ? throw new NullReferenceException() : true;
