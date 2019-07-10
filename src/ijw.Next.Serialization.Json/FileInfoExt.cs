@@ -15,7 +15,7 @@ namespace ijw.Next.Serialization.Json {
         /// <typeparam name="T">指定的类型</typeparam>
         /// <param name="fileinfo"></param>
         /// <returns>反序列化出来的对象实例</returns>
-        public static T LoadObject<T>(FileInfo fileinfo) 
+        public static T LoadObject<T>(this FileInfo fileinfo) 
             => JsonSerializationHelper.LoadJsonObjectFromFileInfo<T>(fileinfo);
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace ijw.Next.Serialization.Json {
         /// <param name="fileinfo"></param>
         /// <param name="encoding">指定的编码</param>
         /// <returns>反序列化出来的对象实例</returns>
-        public static T LoadObject<T>(FileInfo fileinfo, Encoding encoding)
+        public static T LoadObject<T>(this FileInfo fileinfo, Encoding encoding)
             => JsonSerializationHelper.LoadJsonObjectFromFileInfo<T>(fileinfo, encoding);
     }
 }
