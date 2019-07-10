@@ -5,7 +5,7 @@ namespace ijw.Next.Reflection.xTest {
     public class UnitTestObjectExt {
         [Fact]
         public void UnitTestCreateNewInstance() {
-            string[] propertyName = {
+            string[] propertyNames = {
                 "PropDateTime",  "PropDateTimeNullable",
                 "PropInt32",     "PropInt32Nullable",
                 "PropInt16",     "PropInt16Nullable",
@@ -41,7 +41,7 @@ namespace ijw.Next.Reflection.xTest {
                 "First",    "",
                 ""
             };
-            testClass t = ReflectionHelper.CreateNewInstance<testClass>(propertyName, values);
+            TestClass t = ReflectionHelper.CreateNewInstance<TestClass>(propertyNames, values);
             Assert.Equal(new DateTime(2016, 8, 8, 16, 44, 33), t.PropDateTime);
             Assert.Null(t.PropDateTimeNullable);
             Assert.Equal(32, t.PropInt32); Assert.Equal(32, t.PropInt32Nullable);
@@ -57,11 +57,11 @@ namespace ijw.Next.Reflection.xTest {
             Assert.Equal(32u, t.PropUInt32); Assert.Equal(32u, t.PropUInt32Nullable);
             Assert.Equal(16u, t.PropUInt16); Assert.Null(t.PropUInt16Nullable);
             Assert.Equal(64u, t.PropUInt64); Assert.Null(t.PropUInt64Nullable);
-            Assert.Equal(testEnum.First, t.PropEnum); Assert.Null(t.PropEnumNullable);
+            Assert.Equal(TestEnum.First, t.PropEnum); Assert.Null(t.PropEnumNullable);
             Assert.Equal(DBNull.Value, t.PropDBNull);
         }
 
-        private class testClass {
+        private class TestClass {
             public DateTime PropDateTime { get; set; }
             public DateTime? PropDateTimeNullable { get; set; }
             public int PropInt32 { get; set; }
@@ -82,7 +82,7 @@ namespace ijw.Next.Reflection.xTest {
             public byte? PropByteNullable { get; set; }
             public bool PropBoolean { get; set; }
             public bool? PropBooleanNullable { get; set; }
-            public string PropString { get; set; }
+            public string PropString { get; set; } = string.Empty;
 
             public UInt16 PropUInt16 { get; set; }
             public UInt32 PropUInt32 { get; set; }
@@ -90,11 +90,11 @@ namespace ijw.Next.Reflection.xTest {
             public UInt16? PropUInt16Nullable { get; set; }
             public UInt32? PropUInt32Nullable { get; set; }
             public UInt64? PropUInt64Nullable { get; set; }
-            public testEnum PropEnum { get; set; }
-            public testEnum? PropEnumNullable { get; set; }
-            public DBNull PropDBNull { get; set; }
+            public TestEnum PropEnum { get; set; }
+            public TestEnum? PropEnumNullable { get; set; }
+            public DBNull PropDBNull { get; set; } = DBNull.Value;
         }
 
-        public enum testEnum { None = 0, First, Second, Last}
+        public enum TestEnum { None = 0, First, Second, Last}
     }
 }
