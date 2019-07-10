@@ -4,13 +4,11 @@ a few .Net EXTesions libraries, which output a few nuget packages providing exte
 
 It Just Works!
 
-#Repo structure
+# Repo structure
 folders:
 
   src: source codes.
 
   scripts: scripts for building or packing.
 
-  pkg: output nuget packages.
-
-  test: all test projects.
+  tests: all testing projects.
