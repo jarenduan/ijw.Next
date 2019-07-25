@@ -143,9 +143,12 @@ namespace ijw.Next.Collection.Async {
             return true;
         }
 
+        //TODO: use async IEnumerable to rewrite below codes.
         private async Task<T> borrowAvailableOneAsync() {
             while (true) {
-                await wait();
+                if (!HasAvailableItems) {
+                    await wait();
+                }
                 if (tryBorrowOneItem(out var item)) {
                     return item;
                 }
@@ -199,9 +202,9 @@ namespace ijw.Next.Collection.Async {
                 DebugHelper.WriteLine("(Returning Item Back) Item is not in collection, quit.");
                 return;
             }
-            DebugHelper.WriteLine("(Returning Item Back) Try to get the colleciton-lock...");
+            DebugHelper.WriteLine("(Returning Item Back) Try to get the collection-lock...");
             lock (_syncCollection) {
-                DebugHelper.WriteLine("(Returning Item Back) Got the colleciton-lock!");
+                DebugHelper.WriteLine("(Returning Item Back) Got the collection-lock!");
                 if (_itemsList[index]?.Item?.Equals(item) ?? true) {
                     index = getIndexOf(item);
                     if (index == -1) {
