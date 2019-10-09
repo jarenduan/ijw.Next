@@ -20,7 +20,7 @@ namespace ijw.Next.Threading.Tasks {
         /// <summary>
         /// 循环体
         /// </summary>
-        protected override void LoopBody() {
+        protected override void loopBody() {
             if (this.LoopFunction != null) {
                 TReport r = this.LoopFunction();
                 if (this.Progress != null) {

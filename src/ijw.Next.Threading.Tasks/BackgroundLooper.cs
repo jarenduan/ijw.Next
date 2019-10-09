@@ -13,7 +13,7 @@ namespace ijw.Next.Threading.Tasks {
         /// <summary>
         /// 循环体
         /// </summary>
-        protected override void LoopBody() {
+        protected override void loopBody() {
             if(this.LoopAction != null) {
                 DebugHelper.WriteLine("Loop body started.");
                 this.LoopAction();

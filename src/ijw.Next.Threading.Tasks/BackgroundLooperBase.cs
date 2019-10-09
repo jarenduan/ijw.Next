@@ -55,7 +55,7 @@ namespace ijw.Next.Threading.Tasks {
         public async Task StartAsync() {
             if (this.State == LooperState.NotRunning) {
                 this._cts = new CancellationTokenSource();
-                await TaskHelper.Run(() => Loop(), this._cts.Token);
+                await TaskHelper.Run(() => loop(), this._cts.Token);
             }
             else {
                 throw new InvalidOperationException("Loop is already running!");
@@ -135,7 +135,7 @@ namespace ijw.Next.Threading.Tasks {
         /// <summary>
         /// 开始循环
         /// </summary>
-        protected void Loop() {
+        protected void loop() {
             DebugHelper.WriteLine("Loop started.");
             while (this.ExitCondition is null || this.ExitCondition() == false) {
                 if (this._cts.Token.IsCancellationRequested) {
@@ -157,7 +157,7 @@ namespace ijw.Next.Threading.Tasks {
                     this.State = LooperState.Awaken;
                 }
                 else {
-                    LoopBody();
+                    loopBody();
                 }
             }
             DebugHelper.WriteLine("Loop exit.");
@@ -167,7 +167,7 @@ namespace ijw.Next.Threading.Tasks {
         /// <summary>
         /// 循环体, 必须实现.
         /// </summary>
-        protected abstract void LoopBody();
+        protected abstract void loopBody();
 
         /// <summary>
         /// 任务停止令牌
