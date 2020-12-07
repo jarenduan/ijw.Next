@@ -15,7 +15,7 @@ namespace ijw.Next {
         /// <returns>不等于0时, Contract的IsKept为true</returns>
         public static Contract<int> MustNotZero(this int obj) {
             var isKept = obj != 0;
-            var brokenMessage = $"{obj.ToString()} must not a zero";
+            var brokenMessage = $"{obj} must not a zero";
             return isKept ? new Contract<int>(obj, brokenMessage): throw new ContractBrokenException(brokenMessage);
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ijw.Next {
         /// <returns>不小于0, Contract的IsKept为true</returns>
         public static Contract<int> MustNotLessThanZero(this int obj) {
             var isKept = obj >= 0;
-            var brokenMessage = $"{obj.ToString()} must Not Less Than Zero";
+            var brokenMessage = $"{obj} must Not Less Than Zero";
             return isKept ? new Contract<int>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -60,7 +60,7 @@ namespace ijw.Next {
         /// <returns>是偶数, Contract的IsKept为true</returns>
         public static Contract<int> MustEven(this int obj) {
             var isKept = obj.IsEven();
-            var brokenMessage = $"{obj.ToString()} must an even number";
+            var brokenMessage = $"{obj} must an even number";
             return isKept ? new Contract<int>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage); 
         }
 
@@ -83,7 +83,7 @@ namespace ijw.Next {
         /// <returns>是奇数, Contract的IsKept为true</returns>
         public static Contract<int> MustOdd(this int obj) {
             var isKept = obj.IsOdd();
-            var brokenMessage = $"{obj.ToString()} must an odd number";
+            var brokenMessage = $"{obj} must an odd number";
             return isKept ? new Contract<int>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage); 
         }
 
@@ -107,7 +107,7 @@ namespace ijw.Next {
         /// <returns>有效索引, Contract的IsKept为true</returns>
         public static Contract<int> MustValidIndexFor(this int obj, ICollection collection) {
             var isKept = obj >= 0 && obj < collection.Count;
-            var brokenMessage = $"{obj.ToString()} must an odd number";
+            var brokenMessage = $"{obj} must an odd number";
             return isKept ? new Contract<int>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 

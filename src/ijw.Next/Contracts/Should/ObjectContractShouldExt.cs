@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ijw.Next {
     /// <summary>
@@ -12,7 +13,7 @@ namespace ijw.Next {
         /// <param name="obj"></param>
         /// <returns>不是Null,返回true. 反之抛出NullReferenceException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static bool ShouldBeNotNull<T>(this T obj) where T: class ?
+        public static bool ShouldBeNotNull<T>([NotNullWhen(true)] this T obj) where T : class?
             => (obj is null) ? throw new NullReferenceException() : true;
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace ijw.Next {
         /// <param name="obj"></param>
         /// <returns>不是Null,返回true. 反之抛出NullReferenceException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static bool ShouldBeNotNull<T>(this T? obj) where T : struct 
+        public static bool ShouldBeNotNull<T>([NotNullWhen(true)] this T? obj) where T : struct
             => obj is null ? throw new NullReferenceException() : true;
 
         /// <summary>
@@ -33,7 +34,11 @@ namespace ijw.Next {
         /// <param name="paramName">参数的名字</param>
         /// <returns>不是Null,返回true. 反之抛出ArgumentNullException异常</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static bool ShouldBeNotNullArgument<T>(this T obj, string paramName)
+        public static bool ShouldBeNotNullArgument<T>(
+#if NETSTANDARD2_1
+            [NotNullWhen(true)]
+#endif
+        this T obj, string paramName)
             => (obj is null) ? throw new ArgumentNullException(paramName) : true;
 
         /// <summary>
@@ -101,10 +106,11 @@ namespace ijw.Next {
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <param name="other">用以比较的对象</param>
+        /// <param name="objectName">对象名称, 用于错误提示</param>
         /// <returns>与指定的对象相等返回true, 否则抛出ContractBrokenException异常.</returns>
         /// <exception cref="ContractBrokenException"></exception>
-        public static bool ShouldEquals<T>(this T obj, T other) 
-            => obj.Equals(other) ? true : throw new ContractBrokenException();
+        public static bool ShouldEqual<T>(this T obj, T other, string objectName = "") 
+            => obj.Equals(other) ? true : throw new ContractBrokenException($"{objectName} should equal {other}");
 
         /// <summary>
         /// 应该与指定的对象相等.
@@ -112,10 +118,11 @@ namespace ijw.Next {
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <param name="other">用以比较的对象</param>
+        /// <param name="objectName">对象名称, 用于错误提示</param>
         /// <returns>与指定的对象相等返回true, 否则抛出ContractBrokenException异常.</returns>
         /// <exception cref="ContractBrokenException"></exception>
-        public static bool ShouldNotEquals<T>(this T obj, T other) 
-            => !obj.Equals(other) ? true : throw new ContractBrokenException();
+        public static bool ShouldNotEqual<T>(this T obj, T other, string objectName = "")
+            => !obj.Equals(other) ? true : throw new ContractBrokenException($"{objectName} should not equal {other}");
 #nullable enable
     }
 }

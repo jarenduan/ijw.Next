@@ -11,12 +11,12 @@ namespace ijw.Next {
         /// <param name="path"></param>
         /// <returns>存在指定路径的文件, 返回true. 否则抛出FileNotFoundException异常.</returns>
         /// <exception cref="FileNotFoundException"></exception>
-        public static bool ShouldExistSuchFile(this string path) {
+        public static FileInfo ShouldExistSuchFile(this string path) {
             FileInfo fi = new FileInfo(path);
             if (!fi.Exists) {
                 throw new FileNotFoundException("File doesn't exist.", fi.FullName);
             }
-            return true;
+            return fi;
         }
 
         /// <summary>
@@ -25,12 +25,12 @@ namespace ijw.Next {
         /// <param name="path"></param>
         /// <returns>是有效的绝对路径名, 返回true. 否则抛出FileNotFoundException异常.</returns>
         /// <exception cref="FileNotFoundException"></exception>
-        public static bool ShouldBeValidAbsoluteName(this string path) {
+        public static FileInfo ShouldBeValidAbsoluteName(this string path) {
             var result = path.Length > 3 && path[1] == ':' && path[2] == '\\';
             if (!result) {
                 throw new ContractBrokenException($"{path} is not an absolute path.");
             }
-            return path.ShouldExistSuchFile();
+            return new FileInfo(path);
         }
     }
 }

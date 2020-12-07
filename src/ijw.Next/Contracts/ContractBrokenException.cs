@@ -11,7 +11,7 @@ namespace ijw.Next {
         /// 构造函数
         /// </summary>
         /// <param name="message">用以显示的信息</param>
-        public ContractBrokenException(string message = "") : base(message) {
+        public ContractBrokenException(string message) : base(message) {
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace ijw.Next {
         public static Contract<IEnumerable<T>> MustNotNullOrEmpty<T>(this IEnumerable<T> collection) {
             collection.MustNotNull();
             var isKept = collection.Any();
-            var brokenMessage = $"Collection {collection.ToString()} is empty";
+            var brokenMessage = $"Collection {collection} is empty";
             if (isKept) {
                 throw new ContractBrokenException(brokenMessage);
             }

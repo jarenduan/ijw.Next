@@ -14,7 +14,7 @@ namespace ijw.Next {
         /// <returns>大于指定对象, Contract的IsKept为true.</returns>
         public static Contract<T> MustLargerThan<T>(this T obj, T other) where T : IComparable<T> {
             var isKept = obj.CompareTo(other) > 0;
-            var brokenMessage = $"{obj.ToString()} must larger than {other.ToString()}";
+            var brokenMessage = $"{obj} must larger than {other}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -37,7 +37,7 @@ namespace ijw.Next {
         /// <returns>小于指定对象, Contract的IsKept为true.</returns>
         public static Contract<T> MustLessThan<T>(this T obj, T other) where T : IComparable<T> {
             var isKept = obj.CompareTo(other) < 0;
-            var brokenMessage = $"{obj.ToString()} must less than {other.ToString()}";
+            string? brokenMessage = $"{obj} must less than {other}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -60,7 +60,7 @@ namespace ijw.Next {
         /// <returns>不大于(小于等于)指定对象, Contract的IsKept为true.</returns>
         public static Contract<T> MustNotLargerThan<T>(this T obj, T other) where T : IComparable<T> {
             var isKept = obj.CompareTo(other) <= 0;
-            var brokenMessage = $"{obj.ToString()} must less than {other.ToString()}";
+            var brokenMessage = $"{obj} must less than {other}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -83,7 +83,7 @@ namespace ijw.Next {
         /// <returns>不小于(大于等于)指定对象, Contract的IsKept为true.</returns>
         public static Contract<T> MustNotLessThan<T>(this T obj, T other) where T : IComparable<T> {
             var isKept = obj.CompareTo(other) >= 0;
-            var brokenMessage = $"{obj.ToString()} must less than {other.ToString()}";
+            var brokenMessage = $"{obj} must less than {other}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 

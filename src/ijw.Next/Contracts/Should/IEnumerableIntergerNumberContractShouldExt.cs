@@ -15,7 +15,7 @@ namespace ijw.Next {
         /// <returns>每个元素都不等于0, 返回true. 否则抛出ContractBrokenException异常. </returns>
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldEachNotBeZero(this IEnumerable<int> collection) {
-            return collection.ShouldEachSatisfy((i) => i.ShouldNotEquals(0));
+            return collection.ShouldEachSatisfy((i) => i.ShouldNotEqual(0));
         }
 
 

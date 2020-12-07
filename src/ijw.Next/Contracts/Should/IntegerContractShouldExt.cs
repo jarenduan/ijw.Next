@@ -10,7 +10,7 @@
         /// <returns>不等于0返回true, 否则抛出ContractBrokenException异常</returns>
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldBeNotZero(this int obj) 
-            => obj.ShouldNotEquals(0);
+            => obj.ShouldNotEqual(0);
 
         /// <summary>
         /// 应该不小于0
@@ -30,7 +30,7 @@
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldBeEven(this int obj) {
             if (obj % 2 != 0) {
-                throw new ContractBrokenException();
+                throw new ContractBrokenException("should be even");
             }
             return true;
         }
@@ -43,7 +43,7 @@
         /// <exception cref="ContractBrokenException"></exception>
         public static bool ShouldBeOdd(this int obj) {
             if (obj % 2 == 0) {
-                throw new  ContractBrokenException();
+                throw new  ContractBrokenException("should be odd");
             }
             return true;
         }

@@ -51,21 +51,21 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="collection"></param>
         /// <param name="equalsTo">等于</param>
+        /// <param name="objName">对象名称, 用于错误提示</param>
         /// <returns>每个元素都等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
         /// <exception cref="ContractBrokenException"></exception>
-        public static bool ShouldEachEquals(this IEnumerable<int> collection, int equalsTo) {
-            return collection.ShouldEachSatisfy((i) => i.ShouldEquals(equalsTo));
-        }
+        public static bool ShouldEachEqual(this IEnumerable<int> collection, int equalsTo, string objName = "") 
+            => collection.ShouldEachSatisfy((i) => i.ShouldEqual(equalsTo, objName));
 
         /// <summary>
         /// 每个元素都应该不等于指定值
         /// </summary>
         /// <param name="collection"></param>
         /// <param name="notEqualsTo">不等于</param>
+        /// <param name="objName">对象名称, 用于错误提示</param>
         /// <returns>每个元素都不等于指定值, 返回true. 否则抛出ContractBrokenException异常. </returns>
         /// <exception cref="ContractBrokenException"></exception>
-        public static bool ShouldEachNotEquals(this IEnumerable<int> collection, int notEqualsTo) {
-            return collection.ShouldEachSatisfy((i) => i.ShouldNotEquals(notEqualsTo));
-        }
+        public static bool ShouldEachNotEqual(this IEnumerable<int> collection, int notEqualsTo, string objName = "") 
+            => collection.ShouldEachSatisfy((i) => i.ShouldNotEqual(notEqualsTo, objName));
     }
 }

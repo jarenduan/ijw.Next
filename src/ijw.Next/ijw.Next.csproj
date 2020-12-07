@@ -1,18 +1,66 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;netstandard1.4;netstandard2.0;netcoreapp3.0</TargetFrameworks>
-    <Authors>Jaren Duan</Authors>
-    <AssemblyName>ijw.Next</AssemblyName>
-    <PackageId>ijw.Next</PackageId>
-    <AssemblyVersion>0.3.4</AssemblyVersion>
-    <FileVersion>0.3.4.484</FileVersion>
-    <Version>0.3.4</Version>
-    <DocumentationFile>ijw.Next.xml</DocumentationFile>
-    <LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net35;net40;net45;netstandard1.4;netstandard2.0;netstandard2.1;net50</TargetFrameworks>
+    <AssemblyVersion>0.7.0</AssemblyVersion>
+    <FileVersion>0.7.0.689</FileVersion>
+    <Version>0.7.0</Version>
+    <Description>
+What's New:
+  0.7.0(2020.11.16):
+    +net50.
+  0.6.12(2020.10.27):
+    +ProcessHelper.
+  0.6.8(2020.10.19):
+    *ToAllEnumString()
+    +ProcessHelper.
+  0.6.5(2020.9.11):
+    +Obj.HasProperty() extension.
+  0.6.4(2020.9.11):
+  0.6.3(2020.9.9):
+     +enum extensions
+  0.6.1(2020.9.8):
+     *should contract, add Exception message.
+     +enumitems classes
+  0.5.8(2020.6.12):
+     +interface IDebugString.
+     +Object.ToDebugString extension method.
+     +DataIndexAttribute and DebugStringDisplayNameAttribute
+  0.5.7(2020.6.4):
+     +String.SubstringAfter and SubstringBefore extension methods.
+     +String.SubstringBetween extension method.
+  0.5.4(2020.3.8):
+     +Long.ToChineseNumberString extension method.
+     +String.ParseChineseNumberToInt extension method.
+     +String.FindAllChineseNumberStrings extension method.
+  0.5.3(2020.3.2):
+     +Object in { } extension methods
+  0.5.2(2020.1.6):
+     +obj.toBoolean toBooleanAnyway toBooleanNullable methods
+  0.5.1(2019.12.20):
+     *obj.toOtherType, obj could be null
+  0.4.9(2019.12.17):
+     -object.ToStringAnyway()/ToStringNullable() methods.
+  0.4.8(2019.11.25):
+     -object.ToOtherType() methods.
+  0.4.7(2019.11.25):
+     +ObjectToBasicType extension methods.
+  0.4.2(2019.11.7):
+     +byte[].ToHexString.
+  0.4.1(2019.11.7):
+     *string.shouldExistSuchFile() and string.ShouldBeValidAbsoluteName() return fileinfo now.
+     
+Introduction:
+  This package includes a few classes for processing welllog realtime data.
+    </Description>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Nullable" Version="1.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="DispatchToInnerBuilds">
     <Exec Command="PowerShell -ExecutionPolicy Unrestricted -File $(SolutionDir)scripts\UpdateVersion.ps1 -ProjectPath $(MSBuildProjectFullPath) -ConfigurationName $(Configuration)" />

@@ -30,14 +30,12 @@ namespace ijw.Next {
         /// <param name="type"></param>
         /// <param name="propertyName">属性名, 大小写敏感</param>
         /// <returns>如果没有找到,  返回null</returns>
-        public static PropertyInfo GetPropertyInfo(this Type type, string propertyName) {
+        public static PropertyInfo GetPropertyInfo(this Type type, string propertyName) 
 #if NETSTANDARD1_4
-            PropertyInfo pi = type.GetTypeInfo().GetDeclaredProperty(propertyName);
+            => type.GetTypeInfo().GetDeclaredProperty(propertyName);
 #else
-            PropertyInfo pi = type.GetProperty(propertyName);
+            => type.GetProperty(propertyName);
 #endif
-            return pi;
-        }
 
         /// <summary>
         /// 根据方法名获取MethodInfo
@@ -45,17 +43,12 @@ namespace ijw.Next {
         /// <param name="type"></param>
         /// <param name="methodName">方法名, 大小写敏感</param>
         /// <returns>没找到返回null</returns>
-        public static MethodInfo GetMethodInfo(this Type type, string methodName) {
+        public static MethodInfo GetMethodInfo(this Type type, string methodName)
 #if NETSTANDARD1_4
-            MethodInfo mi = type.GetTypeInfo().GetDeclaredMethod(methodName);
+            => type.GetTypeInfo().GetDeclaredMethod(methodName);
 #else
-            MethodInfo mi = type.GetMethod(methodName);
+            => type.GetMethod(methodName);
 #endif
-            if (mi is null) {
-                throw new ArgumentOutOfRangeException(methodName);
-            }
-            return mi;
-        }
 
         /// <summary>
         /// 获取缺省值
@@ -76,12 +69,11 @@ namespace ijw.Next {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool IsEnumType(this Type type) {
+        public static bool IsEnumType(this Type type)
 #if NETSTANDARD1_4
-            return type.GetTypeInfo().IsEnum;
+            => type.GetTypeInfo().IsEnum;
 #else
-            return type.IsEnum;
+            => type.IsEnum;
 #endif
-        }
     }
 }

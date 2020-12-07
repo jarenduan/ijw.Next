@@ -96,7 +96,7 @@ namespace ijw.Next {
         }
 
         /// <summary>
-        /// 尝试转换成double. 如果NaN或转换失败将返回defaultNumer
+        /// 尝试转换成Decimal. 如果NaN或转换失败将返回defaultNumer
         /// </summary>
         /// <param name="s"></param>
         /// <param name="defaultNumer">转换失败时返回的值, 默认是0</param>

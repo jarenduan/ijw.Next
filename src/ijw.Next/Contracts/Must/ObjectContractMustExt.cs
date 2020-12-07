@@ -85,7 +85,7 @@ namespace ijw.Next {
         public static Contract<T> MustSatisfy<T>(this T obj, Predicate<T> condition, string conditionDescrption = "condition") {
             if (obj is null) throw new NullReferenceException();
             var isKept = condition(obj);
-            var brokenMessage = $"{obj.ToString()} must satisfy {conditionDescrption ?? condition.ToString()}";
+            var brokenMessage = $"{obj} must satisfy {conditionDescrption ?? condition.ToString()}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -114,7 +114,7 @@ namespace ijw.Next {
         public static Contract<T> MustEquals<T>(this T obj, T other) {
             if (obj is null) throw new NullReferenceException();
             var isKept = obj.Equals(other);
-            var brokenMessage = $"{obj.ToString()} must equal to {(other is null ? "[NULL]" : other.ToString())}";
+            var brokenMessage = $"{obj} must equal to {(other is null ? "[NULL]" : other.ToString())}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
@@ -142,7 +142,7 @@ namespace ijw.Next {
         public static Contract<T> MustNotEquals<T>(this T obj, T other) {
             if (obj is null) throw new NullReferenceException();
             var isKept = !(obj.Equals(other));
-            var brokenMessage = $"{obj.ToString()} must not equal to {(other is null ? "[NULL]" : other.ToString())}";
+            var brokenMessage = $"{obj} must not equal to {(other is null ? "[NULL]" : other.ToString())}";
             return isKept ? new Contract<T>(obj, brokenMessage) : throw new ContractBrokenException(brokenMessage);
         }
 
