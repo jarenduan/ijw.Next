@@ -4,6 +4,11 @@
         <name>ijw.Next.DDD</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.DDD.AggregateRootBase">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:ijw.Next.DDD.IAggregateRoot`1">
             <summary>
             聚合根接口, 用作泛型约束, 约束领域实体为聚合根, 表示实现了该接口的为聚合根实例, 由于聚合根也是领域实体的一种, 所以也要实现IEntity接口
@@ -41,6 +46,36 @@
             实体的ID
             </summary>
         </member>
+        <member name="T:ijw.Next.DDD.AfterPropertyChangedEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:ijw.Next.DDD.BeforePropertyChangingEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.DDD.IWhenPropertyChanges">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:ijw.Next.DDD.IWhenPropertyChanges.BeforePropertyValueChanges">
+            <summary>
+            属性值更改之前触发此事件
+            </summary>
+        </member>
+        <member name="E:ijw.Next.DDD.IWhenPropertyChanges.AfterPropertyValueChanged">
+            <summary>
+            属性值更改之后触发此事件
+            </summary>
+        </member>
         <member name="T:ijw.Next.DDD.NotifyPropertyChangeBase">
             <summary>
             属性变更通知修改的实体基类
@@ -66,14 +101,13 @@
             属性值变化之后
             </summary>
         </member>
-        <member name="M:ijw.Next.DDD.NotifyPropertyChangeBase.set``1(``0@,``0,System.String)">
+        <member name="M:ijw.Next.DDD.NotifyPropertyChangeBase.set``1(``0@,``0)">
             <summary>
             属性通用的setter方法
             </summary>
             <typeparam name="T"></typeparam>
             <param name="value"></param>
             <param name="property"></param>
-            <param name="propertyName"></param>
         </member>
         <member name="T:ijw.Next.DDD.PropertyValueChangeEventArgs">
             <summary>
@@ -109,12 +143,72 @@
             </summary>
             <typeparam name="TEntity">泛型聚合根, 因为在DDD里面仓储只能对聚合根做操作</typeparam>
         </member>
+        <member name="P:ijw.Next.DDD.IRepository`1.Entities">
+            <summary>
+            实体
+            </summary>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Find(System.Guid)">
+            <summary>
+            查找实体
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Insert(`0,System.Boolean)">
+            <summary>
+            插入实体
+            </summary>
+            <param name="entity"></param>
+            <param name="shouldCommit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Insert(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            批量插入实体
+            </summary>
+            <param name="entities"></param>
+            <param name="shouldCommit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Delete(System.Guid,System.Boolean)">
+            <summary>
+            删除实体
+            </summary>
+            <param name="id"></param>
+            <param name="shouldCommit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Delete(`0,System.Boolean)">
+            <summary>
+            删除实体
+            </summary>
+            <param name="entity"></param>
+            <param name="shouldCommit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Delete(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            批量删除实体
+            </summary>
+            <param name="entities"></param>
+            <param name="shouldCommit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.DDD.IRepository`1.Update(`0,System.Boolean)">
+            <summary>
+            更新实体
+            </summary>
+            <param name="entity"></param>
+            <param name="shouldCommit"></param>
+            <returns></returns>
+        </member>
         <member name="T:ijw.Next.DDD.QueryIgnoreHelper">
             <summary>
             查询时忽略值的帮助类.
             </summary>
         </member>
-        <member name="F:ijw.Next.DDD.QueryIgnoreHelper.QueryIgnoreValue">
+        <member name="F:ijw.Next.DDD.QueryIgnoreHelper.QUERYIGNOREVALUE">
             <summary>
             字符串型字段设为此值代表查询时忽略该字段
             </summary>

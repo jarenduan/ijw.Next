@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -280,6 +281,34 @@ namespace ijw.Next.Collection {
         }
         #endregion
 
+        #region SkipNull
+        /// <summary>
+        /// 跳过序列中的Null
+        /// </summary>
+        /// <typeparam name="T">元素类型</typeparam>
+        /// <param name="values">序列</param>
+        /// <returns>去除Null之后的序列</returns>
+        public static IEnumerable<T> SkipNull<T>(this IEnumerable<T?> values) where T : struct {
+            //return values.Where(v => !(v is null)).Select(v => v.Value);
+            foreach (var item in values) {
+                if (!(item is null)) yield return item.Value;
+            }
+        }
+        /// <summary>
+        /// 跳过序列中的Null
+        /// </summary>
+        /// <typeparam name="T">元素类型</typeparam>
+        /// <param name="values">序列</param>
+        /// <returns>去除Null之后的序列</returns>
+        public static IEnumerable<T> SkipNull<T>(this IEnumerable<T?> values) where T : class {
+            //return values.Where(v => !(v is null)).Select(v => v);
+            foreach (var item in values) {
+                if (!(item is null)) yield return item;
+            }
+        }
+
+        #endregion
+
         #region Item Equals
         /// <summary>
         /// 元素值比较.即依次调用Equals方法比较数组中每个元素是否相等.
@@ -484,18 +513,18 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 在IEnumerable&lt;T&gt;查找第一个符合谓词的元素对象的索引
+        /// 在<see cref="IEnumerable{T}"/>中查找第一个符合谓词的元素对象的索引
         /// </summary>
         /// <typeparam name="T">元素类型</typeparam>
         /// <param name="enumerable">集合</param>
         /// <param name="predicate">谓词, 为真则立即返回索引</param>
         /// <returns>返回第一个符合谓词的元素的索引, 如果没有符合的将会返回-1</returns>
         /// <remarks>
-        /// 方法从后向前遍历集合, 因此时间复杂度是O(index), 即如果目标元素是第一个, 则只需要一次迭代.
-        /// 此方法适用于预期元素处于列表中排位靠后的情况. 如果预期元素在较前的位置, 应该使用LastIndexOf&lt;T&gt;扩展方法.
+        /// 方法从前向后遍历集合, 因此时间复杂度是O(index), 即如果目标元素是第一个, 则只需要一次迭代.
         /// </remarks>
         public static int IndexOf<T>(this IEnumerable<T> enumerable, Predicate<T> predicate) {
             int index = 0;
+
             foreach (var item in enumerable) {
                 if (predicate(item)) {
                     return index;
@@ -506,16 +535,10 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
-        /// 在IEnumerable&lt;T&gt;查找最后一个出现的元素对象索引
+        /// 在<see cref="IEnumerable{T}"/>中查找最后一个出现的元素对象索引
         /// </summary>
-        public static int LastIndexOf<T>(this IEnumerable<T> enumerable, T item) {
-            if (enumerable is List<T> list) {
-                return list.LastIndexOf(item);
-            }
-            else {
-                return enumerable.Reverse().IndexOf(item);
-            }
-        }
+        public static int LastIndexOf<T>(this IEnumerable<T> enumerable, T item) 
+            => enumerable is List<T> list ? list.LastIndexOf(item) : enumerable.Reverse().IndexOf(item);
         #endregion
 
         #region Elements At
@@ -938,6 +961,53 @@ namespace ijw.Next.Collection {
 
         #region ToStrings
         /// <summary>
+        /// 输出形如[a1, a2, ..., an]的带省略号的字符串
+        /// </summary>
+        /// <param name="enumerable"></param>
+        /// <param name="maxDisplayNumber">字符串中最多显示几个元素</param>
+        /// <param name="postfix">前缀字符串, 显示在第一个元素前面的字符串</param>
+        /// <param name="prefix">后缀字符串, 显示在最后一个元素后面的字符串</param>
+        /// <param name="seperator">每个元素之间的分割字符串</param>
+        /// <returns></returns>
+        public static string ToSimpleEnumStrings(this IEnumerable enumerable, int maxDisplayNumber = 3, string prefix = "[", string postfix = "]", string seperator = ", ") {
+            if (maxDisplayNumber <= 0) maxDisplayNumber = 3;
+            var sb = new StringBuilder(prefix);
+
+            var i = 0;
+            var curritem = string.Empty;
+            foreach (var item in enumerable) {
+                curritem = item switch
+                {
+                    null => "[NULL]",
+                    string s => s,
+                    IEnumerable ienum => ienum.ToSimpleEnumStrings(),
+                    _ => item.ToString()
+                };
+
+                if (i > maxDisplayNumber - 2) break;
+                sb.Append(curritem).Append(seperator);
+                i++;
+            }
+
+            if (i != maxDisplayNumber) sb.Append("...").Append(seperator);
+            
+            sb.Append(curritem).Append(postfix);
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
+        /// </summary>
+        /// <param name="enumerable"></param>
+        /// <param name="separator">元素之间的分隔符, 默认是", "</param>
+        /// <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
+        /// <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
+        /// <returns></returns>
+        public static string ToAllEnumStrings(this IEnumerable enumerable, string separator = ", ", string prefix = "[", string postfix = "]") 
+            => IjwHelper.ToAllEnumStrings(enumerable, separator, prefix, postfix);
+
+        /// <summary>
         /// 输出形如[a1, a2 ... an]的带省略号的字符串
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -948,44 +1018,30 @@ namespace ijw.Next.Collection {
         /// <param name="seperator">每个元素之间的分割字符串</param>
         /// <returns></returns>
         public static string ToSimpleEnumStrings<T>(this IEnumerable<T> enumerable, int maxDisplayNumber = 3, string prefix = "[", string postfix = "]", string seperator = ", ") {
-            if (maxDisplayNumber <= 0)
-                maxDisplayNumber = 3;
-            int count = enumerable.Count();
-            if (count <= maxDisplayNumber) {
-                return enumerable.ToAllEnumStrings();
+            if (maxDisplayNumber <= 0) maxDisplayNumber = 3;
+            var sb = new StringBuilder(prefix);
+
+            var i = 0;
+            var curritem = string.Empty;
+            foreach (var item in enumerable) {
+                curritem = item switch
+                {
+                    null => "[NULL]",
+                    string s => s,
+                    IEnumerable ienum => ienum.ToSimpleEnumStrings(),
+                    _ => item.ToString()
+                };
+
+                if (i > maxDisplayNumber - 2) break;
+                sb.Append(curritem).Append(seperator);
+                i++;
             }
-            else {
-                StringBuilder sb = new StringBuilder(prefix);
 
-                void appendSimpleStringIfPossible(T item) {
-                    string s = item switch
-                    {
-                        IEnumerable<T> ienum => ienum.ToSimpleEnumStrings(),
-                        _                    => item is null ? "[NULL]" : item.ToString()
-                    };
-                    sb.Append(s);
-                    sb.Append(seperator);
-                }
+            if (i != maxDisplayNumber) sb.Append("...").Append(seperator);
 
-                foreach (var item in enumerable.Where((item, index) => index <= maxDisplayNumber - 2)) {
-                    appendSimpleStringIfPossible(item);
-                }
+            sb.Append(curritem).Append(postfix);
 
-                //enumerable.ForEachWithIndexAndBreak((item, index) => {
-                //    if(index <= maxDisplayNumber - 2) {
-                //        appendSimpleStringIfPossible<T>(sb, item);
-                //        return true;
-                //    }
-                //    else {
-                //        return false;
-                //    }
-                //});
-
-                sb.Append("...").Append(seperator);
-                appendSimpleStringIfPossible(enumerable.Last());
-                sb.Append(postfix);
-                return sb.ToString();
-            }
+            return sb.ToString();
         }
 
         /// <summary>
@@ -997,9 +1053,8 @@ namespace ijw.Next.Collection {
         /// <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
         /// <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
         /// <returns></returns>
-        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, string separator = ", ", string prefix = "[", string postfix = "]") {
-            return IjwHelper.ToAllEnumStrings(enumerable, separator, prefix, postfix);
-        }
+        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, string separator = ", ", string prefix = "[", string postfix = "]") 
+            => IjwHelper.ToAllEnumStrings(enumerable, separator, prefix, postfix);
 
         /// <summary>
         /// 输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
@@ -1011,9 +1066,8 @@ namespace ijw.Next.Collection {
         /// <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
         /// <param name="transform">对于每个元素, 输出字符串之前进行一个操作.默认为null, 代表调用ToString().</param>
         /// <returns></returns>
-        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, Func<T, string> transform, string separator = ", ", string prefix = "[", string postfix = "]") {
-            return IjwHelper.ToAllEnumStrings(enumerable, transform, separator, prefix, postfix);
-        }
+        public static string ToAllEnumStrings<T>(this IEnumerable<T> enumerable, Func<T, string> transform, string separator = ", ", string prefix = "[", string postfix = "]") 
+            => IjwHelper.ToAllEnumStrings(enumerable, transform, separator, prefix, postfix);
 
         #endregion
 
@@ -1084,6 +1138,7 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
+        [Obsolete("使用SkipNull替代")]
         public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : struct {
             //return values.Where(v => !(v is null)).Select(v => v.Value);
             foreach (var item in values) {
@@ -1097,8 +1152,8 @@ namespace ijw.Next.Collection {
         /// </summary>
         /// <param name="values"></param>
         /// <returns>去除后的序列</returns>
-        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : class
-        {
+        [Obsolete("使用SkipNull替代")]
+        public static IEnumerable<T> NullFilter<T>(this IEnumerable<T?> values) where T : class {
             //return values.Where(v => !(v is null)).Select(v => v);
             foreach (var item in values) {
                 if (!(item is null)) yield return item;

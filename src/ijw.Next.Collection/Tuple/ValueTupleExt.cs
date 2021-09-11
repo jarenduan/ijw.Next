@@ -61,8 +61,6 @@ namespace ijw.Next.Collection {
             IEnumerableHelper.ForEachPair(tuple.Item1, tuple.Item2, (i1, i2, i) => action(i1, i2, i));
         }
 
-
-
         /// <summary>
         /// 对两个集合进行同步迭代, 对每一对元素进行操作.根据操作返回的值决定是否提前结束迭代.
         /// </summary>

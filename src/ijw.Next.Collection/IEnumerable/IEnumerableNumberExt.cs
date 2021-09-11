@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ijw.Next.Collection {
     /// <summary>
@@ -552,6 +551,7 @@ namespace ijw.Next.Collection {
         /// <returns>过滤后的序列</returns>
         public static IEnumerable<float> FilteringAbnormalWithPreviousValue(this IEnumerable<float> values, Predicate<float> predicate, bool useNewData = true) =>
             values.PreviousBasedFilter((prev, curr) => predicate(curr) ? prev : curr,useNewData);
+
         /// <summary>
         /// 将序列中的异常元素替换为指定值
         /// </summary>

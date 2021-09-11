@@ -14,9 +14,10 @@ namespace ijw.Next {
         /// <param name="collection"></param>
         /// <returns>集合有元素, 返回true. 否则抛出ContractBrokenException异常</returns>
         /// <exception cref="ContractBrokenException"></exception>
+        /// <exception cref="CollectionEmptyException{T}"></exception>
         public static bool ShouldNotBeEmpty<T>(this IEnumerable<T> collection) {
             collection.ShouldBeNotNull();
-            return collection.Any();
+            return collection.Any() ? true : throw new CollectionEmptyException<T>(collection);
         }
 
         /// <summary>

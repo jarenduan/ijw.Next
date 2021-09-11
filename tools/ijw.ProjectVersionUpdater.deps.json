@@ -1,0 +1,59 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "ijw.ProjectVersionUpdater/1.0.0": {
+        "dependencies": {
+          "ijw.Next.IO": "0.6.13"
+        },
+        "runtime": {
+          "ijw.ProjectVersionUpdater.dll": {}
+        }
+      },
+      "ijw.Next/0.7.3": {
+        "runtime": {
+          "lib/net5.0/ijw.Next.dll": {
+            "assemblyVersion": "0.7.3.0",
+            "fileVersion": "0.7.3.762"
+          }
+        }
+      },
+      "ijw.Next.IO/0.6.13": {
+        "dependencies": {
+          "ijw.Next": "0.7.3"
+        },
+        "runtime": {
+          "lib/net5.0/ijw.Next.IO.dll": {
+            "assemblyVersion": "0.6.13.0",
+            "fileVersion": "0.6.13.343"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ijw.ProjectVersionUpdater/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ijw.Next/0.7.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qybkNgJL2mVQYEPQF1WX0kXnHY8slvL8DkVpcSBwn29YF1c5zZHls9DqWZyRSwfUiAnH4M2jSgsvG8VEw6mjsw==",
+      "path": "ijw.next/0.7.3",
+      "hashPath": "ijw.next.0.7.3.nupkg.sha512"
+    },
+    "ijw.Next.IO/0.6.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YLkvy3Bt1kaawWbhNXhyLeFHCCsJIgV4dt7hjc9+SLcPNAaLEYH6VbfpS6BE4XhbOBPbnh/JZpSytwf4bMnU/w==",
+      "path": "ijw.next.io/0.6.13",
+      "hashPath": "ijw.next.io.0.6.13.nupkg.sha512"
+    }
+  }
+}

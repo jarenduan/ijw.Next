@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Reflection.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Reflection.CodeGen.CodeGenHelper">
+            <summary>
+            Code generation helper class.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Reflection.CodeGen.CodeGenHelper.GenerateAssemblyFromCode(System.String)">
+            <summary>
+            动态编译
+            </summary>
+            <param name="code">需要动态编译的代码</param>
+            <returns>动态生成的程序集</returns>
+        </member>
+    </members>
+</doc>

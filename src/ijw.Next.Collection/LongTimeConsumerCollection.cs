@@ -17,7 +17,7 @@ namespace ijw.Next.Collection {
         /// <summary>
         /// 内部元素数量发生变化
         /// </summary>
-        public event EventHandler<ItemCountChangedEventArgs> ItemCountChanged;
+        public event EventHandler<ItemCountChangedEventArgs>? ItemCountChanged;
 
         /// <summary>
         /// 元素取出策略
@@ -61,6 +61,20 @@ namespace ijw.Next.Collection {
         }
 
         /// <summary>
+        /// 尝试取出一个元素
+        /// </summary>
+        /// <param name="item">取出的元素</param>
+        /// <returns>是否成功</returns>
+        public bool TryBorrow(out T item) => tryGetItem(out item, false);
+
+        /// <summary>
+        /// 尝试借出一个可用元素
+        /// </summary>
+        /// <param name="item">取出的元素</param>
+        /// <returns>是否成功</returns>
+        public bool TryBorrowAvailable(out T item) => tryGetItem(out item, true);
+
+        /// <summary>
         /// 移除某个元素
         /// </summary>
         /// <param name="item"></param>
@@ -91,12 +105,6 @@ namespace ijw.Next.Collection {
             raiseCountChangedEvent(count);
         }
 
-        private int getIndexOf(T item) => 
-            _itemsList.IndexOf(t => (t?.Item1?.Equals(item)) ?? false, ItemGettingStrategy);
-
-        private void raiseCountChangedEvent(int count) => 
-            ItemCountChanged?.Invoke(this, new ItemCountChangedEventArgs() { ItemCount = count });
-        
         /// <summary>
         /// 将指定元素交还给集合
         /// </summary>
@@ -124,23 +132,16 @@ namespace ijw.Next.Collection {
             }
         }
 
-        /// <summary>
-        /// 尝试取出一个元素
-        /// </summary>
-        /// <param name="item">取出的元素</param>
-        /// <returns>是否成功</returns>
-        public bool TryBorrow(out T item) => tryGetItem(out item, false);
+        private int getIndexOf(T item) =>
+                    _itemsList.IndexOf(t => (t?.Item1?.Equals(item)) ?? false, ItemGettingStrategy);
 
-        /// <summary>
-        /// 尝试借出一个可用元素
-        /// </summary>
-        /// <param name="item">取出的元素</param>
-        /// <returns>是否成功</returns>
-        public bool TryBorrowAvailable(out T item) => tryGetItem(out item, true);
-
+        private void raiseCountChangedEvent(int count) => 
+            ItemCountChanged?.Invoke(this, new ItemCountChangedEventArgs() { ItemCount = count });
         private bool tryGetItem(out T item, bool onlyGetNotInConsuming = false) {
 #pragma warning disable CS8653 // A default expression introduces a null value for a type parameter.
+#pragma warning disable CS8601 // 可能的 null 引用赋值。
             item = default;
+#pragma warning restore CS8601 // 可能的 null 引用赋值。
 #pragma warning restore CS8653 // A default expression introduces a null value for a type parameter.
             if (!HasItem) {
                 DebugHelper.WriteLine("(Getting Item) Try getting Item, but no items.");
@@ -165,7 +166,7 @@ namespace ijw.Next.Collection {
                 if (onlyGetNotInConsuming) {
                     index = _itemsList.IndexOf(t => t.Item2 == false, ItemGettingStrategy);
                     DebugHelper.WriteLine($"(Getting Non-consuming Item) Non-consuming item count: {_itemsList.Count(i => i.Item2 == false)}.");
-                    DebugHelper.WriteLine($"(Getting Non-consuming Item) Got one non-consuming item using {ItemGettingStrategy.ToString()}");
+                    DebugHelper.WriteLine($"(Getting Non-consuming Item) Got one non-consuming item using {ItemGettingStrategy}");
                 }
                 else {
                     DebugHelper.WriteLine($"(Getting Item) Item count: {_itemsList.Count}.");

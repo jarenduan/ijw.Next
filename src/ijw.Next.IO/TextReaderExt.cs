@@ -15,6 +15,10 @@ namespace ijw.Next.IO {
         /// <param name="reader"></param>
         /// <returns>行集合</returns>
         public static IEnumerable<string> ReadLines(this TextReader reader) {
+            if (reader is null) {
+                throw new ArgumentNullException(nameof(reader));
+            }
+
             string line = reader.ReadLine();
             while (null != line) {
                 yield return line;
@@ -28,6 +32,10 @@ namespace ijw.Next.IO {
         /// <param name="reader"></param>
         /// <returns></returns>
         public static IEnumerable<(string line, int lineNum)> ReadLinesWithLineNumber(this TextReader reader) {
+            if (reader is null) {
+                throw new ArgumentNullException(nameof(reader));
+            }
+
             string line = reader.ReadLine();
             int num = 0;
             while (null != line) {

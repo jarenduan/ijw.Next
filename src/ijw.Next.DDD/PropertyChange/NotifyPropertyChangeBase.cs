@@ -9,19 +9,19 @@ namespace ijw.Next.DDD {
         /// <summary>
         /// 属性值即将赋值
         /// </summary>
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangingEventHandler? PropertyChanging;
         /// <summary>
         /// 属性值赋值之后
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         /// <summary>
         /// 属性值进行变化之前, 可以取消赋值
         /// </summary>
-        public event BeforePropertyChangingEventHandler BeforePropertyValueChanges;
+        public event BeforePropertyChangingEventHandler? BeforePropertyValueChanges;
         /// <summary>
         /// 属性值变化之后
         /// </summary>
-        public event AfterPropertyChangedEventHandler AfterPropertyValueChanged;
+        public event AfterPropertyChangedEventHandler? AfterPropertyValueChanged;
 
 #if NET35 || NET40 || NET45
         /// <summary>
@@ -59,7 +59,10 @@ namespace ijw.Next.DDD {
         }
 
         private bool raiseBeforePropertyValueChangesEvent(PropertyValueChangeEventArgs evntArgs) {
-            var evntHndlrs = BeforePropertyValueChanges.GetInvocationList();
+            var evntHndlrs = BeforePropertyValueChanges?.GetInvocationList();
+            if (evntHndlrs == null) {
+                return true;
+            }
             foreach (var evntHndlr in evntHndlrs) {
                 var handler = (BeforePropertyChangingEventHandler)evntHndlr;
                 var result = handler(this, evntArgs);

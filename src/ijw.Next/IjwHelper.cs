@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 
@@ -128,6 +129,7 @@ namespace ijw.Next {
                                                  string prefix = "[",
                                                  string postfix = "]") {
             if (transform is null) throw new ArgumentNullException(nameof(transform));
+            if (!collection.Any()) { return $"{prefix}No Items{postfix}"; }
             var sb = new StringBuilder(prefix);
             foreach (var item in collection) {
                 string s = item switch

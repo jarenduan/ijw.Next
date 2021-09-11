@@ -7,15 +7,15 @@ namespace ijw.Next.IO.CsvReader.xTest {
     public class CsvFileReaderUnitTest {
         [Fact]
         public void ReadObjectsTest() {
-            CsvFileReader cfr = new CsvFileReader("");
             var dir = Environment.CurrentDirectory + "\\..\\..\\..\\testfiles";
             var files = Directory.GetFiles(dir, "test2.csv");
             if (files is null || files.Length == 0) {
                 throw new FileNotFoundException(dir + " has no test2.csv");
             }
             else {
-                cfr.CsvFilePath = files[0];
-                cfr.IsFirstLineHeader = true;
+                CsvFileReader cfr = new CsvFileReader(files[0]) {
+                    IsFirstLineHeader = true
+                };
                 var vec = cfr.ReadObjects<CsvTestClass>().ToArray();
                 Assert.Equal(47, vec.Length);
             }
@@ -26,8 +26,9 @@ namespace ijw.Next.IO.CsvReader.xTest {
                 throw new FileNotFoundException(dir + " has no test1.csv");
             }
             else {
-                cfr.CsvFilePath = files[0];
-                cfr.IsFirstLineHeader = true;
+                CsvFileReader cfr = new CsvFileReader(files[0]) {
+                    IsFirstLineHeader = true
+                };
                 var vec = cfr.ReadObjects<CsvTestClass>().ToArray();
                 Assert.Equal(27, vec.Length);
             }

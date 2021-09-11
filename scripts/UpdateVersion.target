@@ -1,0 +1,5 @@
+<Project>
+<Target Name="PreBuild" BeforeTargets="DispatchToInnerBuilds">
+    <Exec Command="PowerShell -ExecutionPolicy Unrestricted -File $(SolutionDir)scripts\UpdateVersion.ps1 -ProjectPath $(MSBuildProjectFullPath) -ConfigurationName $(Configuration)" />
+</Target>
+</Project>

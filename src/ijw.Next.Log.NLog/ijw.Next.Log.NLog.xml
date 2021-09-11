@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.Log.NLog</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.Log.NLog.NLogWrapper">
+            <summary>
+            NLog wrapper
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.#ctor(NLog.Logger)">
+            <summary>
+            Construct a NLogWrapper using a NLog logger object.
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteDebug(System.String)">
+            <summary>
+            Use internal NLog to log information of DEBUG level.
+            </summary>
+            <param name="msg">logging information</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteDebug(System.Exception)">
+            <summary>
+            Use internal NLog to log exception of DEBUG level.
+            </summary>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteDebug(System.Exception,System.String)">
+            <summary>
+            Use internal NLog to log exception of DEBUG level.
+            </summary>
+            <param name="ex">exception to log</param>
+            <param name="msg">message</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteError(System.String)">
+            <summary>
+            Use internal NLog to log information of ERROR level.
+            </summary>
+            <param name="msg">logging information</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteError(System.Exception)">
+            <summary>
+            Use internal NLog to log exception of ERROR level.
+            </summary>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteError(System.Exception,System.String)">
+            <summary>
+            Use internal NLog to log exception of ERROR level.
+            </summary>
+            <param name="ex">exception to log</param>
+            <param name="msg">message</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteInfo(System.String)">
+            <summary>
+            Use internal NLog to log information of INFO level.
+            </summary>
+            <param name="msg">logging information</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteInfo(System.Exception)">
+            <summary>
+            Use internal NLog to log exception of INFO level.
+            </summary>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteInfo(System.Exception,System.String)">
+            <summary>
+            Use internal NLog to log exception of INFO level.
+            </summary>
+            <param name="ex">exception to log</param>
+            <param name="msg">message</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteTrace(System.String)">
+            <summary>
+            Use internal NLog to log information of TRACE level.
+            </summary>
+            <param name="msg">logging information</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteTrace(System.Exception)">
+            <summary>
+            Use internal NLog to log exception of TRACE level.
+            </summary>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteTrace(System.Exception,System.String)">
+            <summary>
+            Use internal NLog to log exception of TRACE level.
+            </summary>
+            <param name="ex">exception to log</param>
+            <param name="msg">message</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteWarn(System.String)">
+            <summary>
+            Use internal NLog to log information of WARN level.
+            </summary>
+            <param name="msg">logging information</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteWarn(System.Exception)">
+            <summary>
+            Use internal NLog to log exception of WARN level.
+            </summary>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:ijw.Next.Log.NLog.NLogWrapper.WriteWarn(System.Exception,System.String)">
+            <summary>
+            Use internal NLog to log exception of WARN level.
+            </summary>
+            <param name="ex">exception to log</param>
+            <param name="msg">message</param>
+        </member>
+    </members>
+</doc>

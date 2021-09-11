@@ -4,9 +4,9 @@ using ijw.Next.Log;
 namespace ijw.Next.DDD {
     public abstract class EntityServiceBase : IDisposable {
         protected IUnitOfWorkRepositoryContext _unitOfWork;
-        protected ILogHelper _logger;
+        protected ILogger _logger;
 
-        public EntityServiceBase(IUnitOfWorkRepositoryContext unitOfWork, ILogHelper logger) {
+        public EntityServiceBase(IUnitOfWorkRepositoryContext unitOfWork, ILogger logger) {
             this._unitOfWork = unitOfWork;
             this._logger = logger;
         }

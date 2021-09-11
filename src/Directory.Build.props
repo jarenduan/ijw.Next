@@ -1,0 +1,17 @@
+﻿<Project>
+	<!--<Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />-->
+	<PropertyGroup>
+		<!--<RepositoryUrl>https://gitee.com/LongbowEnterprise/BootstrapBlazor.git</RepositoryUrl>
+        <PackageProjectUrl>https://gitee.com/LongbowEnterprise/BootstrapBlazor</PackageProjectUrl>
+        <PackageTags>Bootstrap Blazor WebAssembly wasm UI Components</PackageTags>
+        <Description>Bootstrap UI components for Blazor and Razor Components</Description>
+        <RepositoryType>git</RepositoryType>-->
+		<!--<OutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)\</OutputPath>-->
+		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
+		<PackageId>$(MSBuildProjectName)</PackageId>
+		<Nullable>enable</Nullable>
+		<LangVersion>preview</LangVersion>
+		<Authors>Jaren Duan</Authors>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+</Project>

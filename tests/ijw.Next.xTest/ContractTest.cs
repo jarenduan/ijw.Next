@@ -20,7 +20,7 @@ namespace ijw.Next.xTest {
             s.ShouldBeNotNull();
 
             string? ss = null;
-            Assert.Throws<NullReferenceException>(() => ss.ShouldBeNotNull() );
+            Assert.Throws<NullReferenceException>(() => ss.ShouldBeNotNull());
         }
 
         [Fact]

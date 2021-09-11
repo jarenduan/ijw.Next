@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace ijw.Next.Collection.Async {
         /// <summary>
         /// 内部元素数量发生变化
         /// </summary>
-        public event EventHandler<ItemCountChangedEventArgs> ItemCountChanged;
+        public event EventHandler<ItemCountChangedEventArgs>? ItemCountChanged;
 
         /// <summary>
         /// 元素取出策略
@@ -58,7 +59,7 @@ namespace ijw.Next.Collection.Async {
                 DebugHelper.Write($"(Appending Item) Item count: {_itemsList.Count}");
                 _itemsList.Add(new ItemStorage(item));
                 count = _itemsList.Count;
-                DebugHelper.WriteLine($" => {count}. Item appended!");
+                Debug.WriteLine($" => {count}. Item appended!");
             }
             resumeIfWaiting();
             raiseCountChangedEvent(count);
@@ -114,10 +115,21 @@ namespace ijw.Next.Collection.Async {
         #endregion
 
         #region Private Methods
+        private async Task<T> borrowAvailableOneAsync() {
+            while (true) {
+                if (!HasAvailableItems) {
+                    await wait();
+                }
+                if (tryBorrowOneItem(out var item)) {
+                    return item;
+                }
+            }
+        }
+
         private bool tryBorrowOneItem(out T item) {
-#pragma warning disable CS8653 // A default expression introduces a null value for a type parameter.
+#pragma warning disable CS8601 // 可能的 null 引用赋值。
             item = default;
-#pragma warning restore CS8653 // A default expression introduces a null value for a type parameter.
+#pragma warning restore CS8601 // 可能的 null 引用赋值。
             if (!HasItem || !HasAvailableItems) {
                 DebugHelper.WriteLine("(Getting Item) Try getting Item, but no available items.");
                 return false;
@@ -135,24 +147,12 @@ namespace ijw.Next.Collection.Async {
                     return false;
                 }
 
-                DebugHelper.WriteLine($"(Getting Non-consuming Item) Non-consuming item total: {_itemsList.Count(i => !i.InConsuming)}. Got the {index.ToOrdinalString(_itemsList.Count)} item using {ItemGettngStrategy.ToString()}");
+                DebugHelper.WriteLine($"(Getting Non-consuming Item) Non-consuming item total: {_itemsList.Count(i => !i.InConsuming)}. Got the {index.ToOrdinalString(_itemsList.Count)} item using {ItemGettngStrategy}");
                 item = _itemsList[index].Item;
                 _itemsList[index].InConsuming = true;
             }
 
             return true;
-        }
-
-        //TODO: use async IEnumerable to rewrite below codes.
-        private async Task<T> borrowAvailableOneAsync() {
-            while (true) {
-                if (!HasAvailableItems) {
-                    await wait();
-                }
-                if (tryBorrowOneItem(out var item)) {
-                    return item;
-                }
-            }
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace ijw.Next.Collection.Async {
                 }
                 _itemsList.RemoveAt(index); //RemoveAt is O(count - index) operation.
                 count = _itemsList.Count;
-                DebugHelper.WriteLine($" => {count}. Item removed!");
+                Debug.WriteLine($" => {count}. Item removed!");
             }
             raiseCountChangedEvent(count);
         }
@@ -223,7 +223,7 @@ namespace ijw.Next.Collection.Async {
         private void raiseCountChangedEvent(int count) {
             var temp = ItemCountChanged;
             if (temp != null) {
-                ItemCountChanged(this, new ItemCountChangedEventArgs() { ItemCount = count });
+                ItemCountChanged?.Invoke(this, new ItemCountChangedEventArgs() { ItemCount = count });
             }
         }
 

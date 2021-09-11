@@ -9,8 +9,6 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="jsonString"></param>
         /// <returns>反序列化出的对象</returns>
-        public static T DeserializeJsonObject<T>(this string jsonString) {
-            return JsonSerializationHelper.LoadJsonObject<T>(jsonString);
-        }
+        public static T DeserializeJsonObject<T>(this string jsonString) => JsonSerializationHelper.LoadJsonObject<T>(jsonString);
     }
 }

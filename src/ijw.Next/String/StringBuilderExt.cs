@@ -25,6 +25,7 @@ namespace ijw.Next {
         /// <param name="sb"></param>
         /// <param name="number">删除数量</param>
         public static void RemoveLast(this StringBuilder sb, int number = 1) {
+            if (sb.Length < number) return;
             sb.Remove(sb.Length - number, number);
         }
     }

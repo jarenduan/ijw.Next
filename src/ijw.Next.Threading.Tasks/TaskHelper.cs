@@ -60,5 +60,16 @@ namespace ijw.Next.Threading.Tasks {
             return await Task.Run(func, cancellationToken);
 #endif
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static Task CompletedTask =>
+#if NET35 || NET40 || NET45
+            Run(() => { });
+#else
+            Task.CompletedTask;
+#endif
     }
 }

@@ -21,7 +21,7 @@ namespace ijw.Next.Grid {
         /// <param name="columnHeader"></param>
         public Table(TBodyCell[,] data, THeaderCell[] columnHeader) : base(data) {
             columnHeader.ShouldBeNotNullArgument(nameof(columnHeader));
-            columnHeader.Length.ShouldEquals(data.Length);
+            columnHeader.Length.ShouldEqual(data.Length, "列头长度");
 
             ColumnHeader = new Header<THeaderCell>(columnHeader);
         }

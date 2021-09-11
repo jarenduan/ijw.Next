@@ -39,14 +39,16 @@ namespace ijw.Next.Reflection {
         /// <returns>属性的名称</returns>
         public static string GetPropertyName<T>(Expression<Func<T, object>> expr) {
             var rtn = "";
-            if (expr.Body is UnaryExpression) {
-                rtn = ((MemberExpression)((UnaryExpression)expr.Body).Operand).Member.Name;
-            }
-            else if (expr.Body is MemberExpression) {
-                rtn = ((MemberExpression)expr.Body).Member.Name;
-            }
-            else if (expr.Body is ParameterExpression) {
-                rtn = ((ParameterExpression)expr.Body).Type.Name;
+            switch (expr.Body) {
+                case UnaryExpression expression:
+                    rtn = ((MemberExpression)expression.Operand).Member.Name;
+                    break;
+                case MemberExpression expression1:
+                    rtn = expression1.Member.Name;
+                    break;
+                case ParameterExpression expression2:
+                    rtn = expression2.Type.Name;
+                    break;
             }
             return rtn;
         }

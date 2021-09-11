@@ -1,0 +1,8 @@
+﻿<Project>
+	<Target Name="UpgradeVersionForMultiple" BeforeTargets="DispatchToInnerBuilds" Condition="$(TargetFrameworks) != ''">
+		<Exec Command="dotnet $(SolutionDir)tools\ijw.ProjectVersionUpdater.dll $(MSBuildProjectName)" />
+	</Target>
+	<Target Name="UpgradeVersion" BeforeTargets="BeforeBuild" Condition="$(TargetFrameworks) == ''">
+		<Exec Command="dotnet $(SolutionDir)tools\ijw.ProjectVersionUpdater.dll $(MSBuildProjectName)" />
+	</Target>
+</Project>

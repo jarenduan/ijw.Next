@@ -727,6 +727,22 @@
             <param name="doWhile">指定的函数, 接受三个参数, 返回false则停止迭代</param>
             <returns>最后执行处的元素索引(连续两元素的第一个元素的索引), -1表示没有执行.</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.SkipNull``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}})">
+            <summary>
+            跳过序列中的Null
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="values">序列</param>
+            <returns>去除Null之后的序列</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.SkipNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            跳过序列中的Null
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="values">序列</param>
+            <returns>去除Null之后的序列</returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.ItemEquals``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
             元素值比较.即依次调用Equals方法比较数组中每个元素是否相等.
@@ -830,20 +846,19 @@
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
             <summary>
-            在IEnumerable&lt;T&gt;查找第一个符合谓词的元素对象的索引
+            在<see cref="T:System.Collections.Generic.IEnumerable`1"/>中查找第一个符合谓词的元素对象的索引
             </summary>
             <typeparam name="T">元素类型</typeparam>
             <param name="enumerable">集合</param>
             <param name="predicate">谓词, 为真则立即返回索引</param>
             <returns>返回第一个符合谓词的元素的索引, 如果没有符合的将会返回-1</returns>
             <remarks>
-            方法从后向前遍历集合, 因此时间复杂度是O(index), 即如果目标元素是第一个, 则只需要一次迭代.
-            此方法适用于预期元素处于列表中排位靠后的情况. 如果预期元素在较前的位置, 应该使用LastIndexOf&lt;T&gt;扩展方法.
+            方法从前向后遍历集合, 因此时间复杂度是O(index), 即如果目标元素是第一个, 则只需要一次迭代.
             </remarks>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.LastIndexOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
             <summary>
-            在IEnumerable&lt;T&gt;查找最后一个出现的元素对象索引
+            在<see cref="T:System.Collections.Generic.IEnumerable`1"/>中查找最后一个出现的元素对象索引
             </summary>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.ElementsAt``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.Int32})">
@@ -1047,6 +1062,27 @@
             <param name="func">计算的方法, 接受元素及其索引作为参数.</param>
             <returns>所求到和与进行求和的元素总数</returns>
         </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.ToSimpleEnumStrings(System.Collections.IEnumerable,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            输出形如[a1, a2, ..., an]的带省略号的字符串
+            </summary>
+            <param name="enumerable"></param>
+            <param name="maxDisplayNumber">字符串中最多显示几个元素</param>
+            <param name="postfix">前缀字符串, 显示在第一个元素前面的字符串</param>
+            <param name="prefix">后缀字符串, 显示在最后一个元素后面的字符串</param>
+            <param name="seperator">每个元素之间的分割字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Collection.IEnumerableExt.ToAllEnumStrings(System.Collections.IEnumerable,System.String,System.String,System.String)">
+            <summary>
+            输出包含所有元素的字符串, 默认形如[a1, a2, a3, [a41, a42, a43], a5]
+            </summary>
+            <param name="enumerable"></param>
+            <param name="separator">元素之间的分隔符, 默认是", "</param>
+            <param name="prefix">第一个元素之前的字符串, 默认是"["</param>
+            <param name="postfix">最后一个元素之后的字符串, 默认是"]"</param>
+            <returns></returns>
+        </member>
         <member name="M:ijw.Next.Collection.IEnumerableExt.ToSimpleEnumStrings``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.String,System.String,System.String)">
             <summary>
             输出形如[a1, a2 ... an]的带省略号的字符串
@@ -1180,7 +1216,9 @@
             <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
             <returns>返回的结果迭代器</returns>
             <exception cref="T:ijw.Next.Collection.TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
-            <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
+            <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.
+            与Zip的差别是尽量按照第一个序列来进行迭代,如果第二个集合元素少, 将会发生异常. Zip方法则会以短的为主
+            </remarks>
         </member>
         <member name="M:ijw.Next.Collection.IEnumerableHelper.ForEachPairSelect``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,System.Int32,``2},System.Boolean)">
             <summary>
@@ -2121,18 +2159,6 @@
             </summary>
             <param name="item"></param>
         </member>
-        <member name="M:ijw.Next.Collection.LongTimeConsumerCollection`1.Remove(`0)">
-            <summary>
-            移除某个元素
-            </summary>
-            <param name="item"></param>
-        </member>
-        <member name="M:ijw.Next.Collection.LongTimeConsumerCollection`1.Return(`0)">
-            <summary>
-            将指定元素交还给集合
-            </summary>
-            <param name="item">欲交还的元素</param>
-        </member>
         <member name="M:ijw.Next.Collection.LongTimeConsumerCollection`1.TryBorrow(`0@)">
             <summary>
             尝试取出一个元素
@@ -2146,6 +2172,18 @@
             </summary>
             <param name="item">取出的元素</param>
             <returns>是否成功</returns>
+        </member>
+        <member name="M:ijw.Next.Collection.LongTimeConsumerCollection`1.Remove(`0)">
+            <summary>
+            移除某个元素
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.LongTimeConsumerCollection`1.Return(`0)">
+            <summary>
+            将指定元素交还给集合
+            </summary>
+            <param name="item">欲交还的元素</param>
         </member>
         <member name="T:ijw.Next.Collection.MutableTuple`2">
             <summary>

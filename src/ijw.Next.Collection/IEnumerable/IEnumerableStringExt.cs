@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -15,12 +16,17 @@ namespace ijw.Next.Collection {
         /// <param name="connector"></param>
         /// <returns></returns>
         public static string Concat(this IEnumerable<string> strings, string connector = "") {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
+            
             foreach (var s in strings) {
                 sb.Append(s);
                 sb.Append(connector);
             }
-            sb.RemoveLast(connector);
+
+            if (strings.Any()) {
+                sb.RemoveLast(connector);
+            }
+
             return sb.ToString();
         }
     }

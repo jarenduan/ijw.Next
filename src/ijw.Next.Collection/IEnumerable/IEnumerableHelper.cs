@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ijw.Next.Collection {
     /// <summary>
@@ -72,7 +73,9 @@ namespace ijw.Next.Collection {
         /// <param name="forceDimensionMatching">为true, 会在操作后检查两个集合元素数是否不相等. 为false, 不检查.</param>
         /// <returns>返回的结果迭代器</returns>
         /// <exception cref="TwoIEnumerableCountNotMatchException">当1)集合2的元素数量小于集合1的元素数量, 或2)<paramref name="forceDimensionMatching"/>为true, 且两个集合元素数不相等时, 会抛出 CountNotMatchException 异常.</exception>
-        /// <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.</remarks>
+        /// <remarks>本函数返回时指定函数计算并没有进行, 本函数只返回一个迭代器.计算将延迟在对结果的迭代访问时进行.
+        /// 与Zip的差别是尽量按照第一个序列来进行迭代,如果第二个集合元素少, 将会发生异常. Zip方法则会以短的为主
+        /// </remarks>
         public static IEnumerable<TResult> ForEachPairSelect<T1, T2, TResult>(IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, TResult> func, bool forceDimensionMatching = false) {
             //don't try to test the count(), cos' it might cause iterations.
             //if (collection1.Count() != collection2.Count()) {
@@ -190,9 +193,9 @@ namespace ijw.Next.Collection {
 
             return index;
         }
-        #endregion
+#endregion
 
-        #region For each two
+#region For each two
         /// <summary>
         /// 针对每个来自两个集合的元素对执行指定操作. 例如对于{1,2}和{a,b,c}, 将依次针对(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)六种组合执行操作.
         /// <para>
@@ -238,9 +241,9 @@ namespace ijw.Next.Collection {
                 }
             }
         }
-        #endregion
+#endregion
 
-        #region For Each Three
+#region For Each Three
 
         /// <summary>
         /// 对三个集合进行同步迭代, 对每一组（三个）元素进行指定操作.
@@ -355,6 +358,6 @@ namespace ijw.Next.Collection {
                 yield return theFunction(e1, iter2.Current, iter3.Current);
             }
         }
-        #endregion
+#endregion
     }
 }

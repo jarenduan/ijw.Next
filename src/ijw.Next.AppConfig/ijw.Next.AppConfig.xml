@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ijw.Next.AppConfig</name>
+    </assembly>
+    <members>
+        <member name="T:ijw.Next.AppConfig.AppConfigs">
+            <summary>
+            配置管理器
+            </summary>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="configFileFullName">配置文件的路径名</param>
+        </member>
+        <member name="P:ijw.Next.AppConfig.AppConfigs.ConfigFileFullName">
+            <summary>
+            配置文件的路径名
+            </summary>
+        </member>
+        <member name="P:ijw.Next.AppConfig.AppConfigs.AutoSave">
+            <summary>
+            每次有变动, 是否自动保存
+            </summary>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.LoadOrCreate">
+            <summary>
+            装载配置, 如果文件不存在将创建空的配置.
+            </summary>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.GetConfig``1">
+            <summary>
+            获取指定的配置
+            </summary>
+            <typeparam name="T">配置的类型</typeparam>
+            <returns>获得的配置, 如果不存在, 返回空的配置</returns>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.GetConfig``1(System.String)">
+            <summary>
+            获取指定的配置
+            </summary>
+            <typeparam name="T">配置的类型</typeparam>
+            <param name="configName">配置的名称</param>
+            <returns>获得的配置, 如果不存在, 返回空的配置</returns>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.GetOrCreateConfig``1(System.String,System.Func{``0})">
+            <summary>
+            获取指定的配置
+            </summary>
+            <typeparam name="T">配置的类型</typeparam>
+            <param name="configName">配置的名称</param>
+            <param name="createDefaultFunc">没有配置使用此函数创建默认实例. null则使用new()构造默认的实例.</param>
+            <returns>获得的配置, 如果不存在, 返回空的配置</returns>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.GetOrCreateConfigByFile``1(System.String,System.String)">
+            <summary>
+            获取指定的配置
+            </summary>
+            <typeparam name="T">配置的类型</typeparam>
+            <param name="configName">配置的名称</param>
+            <param name="jsonfilename">没有配置使用此json文件创建默认实例. null empty或者则使用new()构造默认的实例.</param>
+            <returns>获得的配置, 如果不存在, 返回空的配置</returns>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.AddOrUpdateConfig``1(``0)">
+            <summary>
+            更新配置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="config"></param>
+        </member>
+        <member name="M:ijw.Next.AppConfig.AppConfigs.Save">
+            <summary>
+            保存到配置文件
+            </summary>
+        </member>
+        <member name="F:ijw.Next.AppConfig.AppConfigs._configJsons">
+            <summary>
+            内部存储
+            </summary>
+        </member>
+        <member name="T:ijw.Next.AppConfig.Config">
+            <summary>
+            配置的基类
+            </summary>
+        </member>
+        <member name="P:ijw.Next.AppConfig.Config.Name">
+            <summary>
+            配置的名字
+            </summary>
+        </member>
+        <member name="P:ijw.Next.AppConfig.Config.AppConfig">
+            <summary>
+            配置的
+            </summary>
+        </member>
+        <member name="M:ijw.Next.AppConfig.Config.Update">
+            <summary>
+            更新配置内容
+            </summary>
+        </member>
+    </members>
+</doc>

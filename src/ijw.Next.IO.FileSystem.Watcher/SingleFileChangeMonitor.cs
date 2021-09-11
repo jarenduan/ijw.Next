@@ -10,7 +10,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
         /// <summary>
         /// 文件发生变化时触发的事件
         /// </summary>
-        public event Action Changed;
+        public event Action? Changed;
         /// <summary>
         /// 发现多重Invoke的处理方式
         /// </summary>
@@ -41,7 +41,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
                 Path = fileInfo.DirectoryName,
                 NotifyFilter = NotifyFilters.LastWrite
             };
-            _watcher.Changed += _watcher_Changed;
+            _watcher.Changed += watcher_Changed;
             _watcher.EnableRaisingEvents = true;
         }
 
@@ -52,7 +52,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
             this._watcher.EnableRaisingEvents = false;
         }
 
-        void _watcher_Changed(object sender, FileSystemEventArgs e) {
+        void watcher_Changed(object sender, FileSystemEventArgs e) {
             if (this.Changed is null) return;
             switch (this.MultipleInvokingOption) {
                 case FileMonitorMultipleInvokingOption.DoNothing:
@@ -74,7 +74,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
             _times++;
             if (_times == 2) {
                 this._times = 0;
-                this.Changed();
+                this.Changed?.Invoke();
             }
         }
 
@@ -83,7 +83,7 @@ namespace ijw.Next.IO.FileSystem.Watcher {
                 _watcher.EnableRaisingEvents = false;
                 FileInfo objFileInfo = new FileInfo(e.FullPath);
                 if (!objFileInfo.Exists) return;
-                this.Changed();
+                this.Changed?.Invoke();
             }
             catch{
                 throw;

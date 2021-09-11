@@ -41,7 +41,7 @@ namespace ijw.Next.Test.ConsoleApplication.NetCore20 {
             WriteLineInColor("ReadEnterInSeconds() test begin:");
 
             CursorTop = WindowTop + WindowHeight - 3;
-            WriteLineInColor($"Set CursorTop to {CursorTop.ToString()}.", ConsoleColor.Green);
+            WriteLineInColor($"Set CursorTop to {CursorTop}.", ConsoleColor.Green);
 
             writeLineInfo();
 
@@ -95,7 +95,7 @@ namespace ijw.Next.Test.ConsoleApplication.NetCore20 {
             WriteLineInColor("ReadKeyInSeconds() test begin:");
 
             CursorTop = WindowTop + WindowHeight - 3;
-            WriteLineInColor($"Set CursorTop to {CursorTop.ToString()}.", ConsoleColor.Green);
+            WriteLineInColor($"Set CursorTop to {CursorTop}.", ConsoleColor.Green);
 
             writeLineInfo();
             #endregion

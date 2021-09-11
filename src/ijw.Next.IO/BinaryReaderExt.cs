@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 namespace ijw.Next.IO {
+
     /// <summary>
     /// BinaryReader的扩展方法
     /// </summary>

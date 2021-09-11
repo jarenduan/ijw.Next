@@ -25,7 +25,7 @@ namespace ijw.Next.Html {
 
             var htmlNodes = htmlDoc.DocumentNode.SelectNodes(xpath);
 
-            return htmlNodes?.Select(n => attr is null ? n.GetAttributeValue(attr, "No such attribute") : n.InnerText)
+            return htmlNodes?.Select(n => attr == null ? n.InnerText : n.GetAttributeValue(attr, "No such attribute"))
                              .ToList();
         }
     }

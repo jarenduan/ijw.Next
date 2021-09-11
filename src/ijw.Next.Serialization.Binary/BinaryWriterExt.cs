@@ -16,18 +16,17 @@ namespace ijw.Next.Serialization.Binary {
         /// <remarks>编码采用UTF8</remarks>
         public static void WriteBinaryObject<T>(this BinaryWriter writer, T obj, bool writeLengthHeader = true) {
             if (obj is null) throw new ArgumentNullException();
-            using (MemoryStream mem = new MemoryStream()) {
-                int len = BinarySerializationHelper.Serialize(obj, mem);
-                if (writeLengthHeader) {
-                    byte[] objectLenBytes = BitConverter.GetBytes(len);
-                    DebugHelper.WriteLine(string.Format("Write Length {0} as 4 Bytes header!", objectLenBytes.Length));
-                    writer.Write(objectLenBytes); //write length as header
-                }
-                DebugHelper.WriteLine("Try to write object.");
-                var objBytes = mem.GetBuffer();
-                writer.Write(objBytes);
-                DebugHelper.WriteLine("Object wrote.");
+            using MemoryStream mem = new MemoryStream();
+            int len = BinarySerializationHelper.Serialize(obj, mem);
+            if (writeLengthHeader) {
+                byte[] objectLenBytes = BitConverter.GetBytes(len);
+                DebugHelper.WriteLine(string.Format("Write Length {0} as 4 Bytes header!", objectLenBytes.Length));
+                writer.Write(objectLenBytes); //write length as header
             }
+            DebugHelper.WriteLine("Try to write object.");
+            var objBytes = mem.GetBuffer();
+            writer.Write(objBytes);
+            DebugHelper.WriteLine("Object wrote.");
         }
     }
 }

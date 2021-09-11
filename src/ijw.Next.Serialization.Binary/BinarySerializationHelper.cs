@@ -9,7 +9,7 @@ namespace ijw.Next.Serialization.Binary {
     /// 二进制序列化帮助类
     /// </summary>
     public class BinarySerializationHelper {
-        private static BinaryFormatter _FORMATTER; //cached, in case mutiple creation.
+        private static BinaryFormatter? _FORMATTER; //cached, in case mutiple creation.
 
         /// <summary>
         /// 把对象序列化成字节数组
@@ -17,10 +17,9 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="objToSave"></param>
         /// <returns>序列化后的数组</returns>
         public static byte[] Serialize(object objToSave) {
-            using (MemoryStream stream = new MemoryStream()) {
-                Serialize(objToSave, stream);
-                return stream.ToArray();
-            }
+            using MemoryStream stream = new MemoryStream();
+            Serialize(objToSave, stream);
+            return stream.ToArray();
         }
 
         /// <summary>
@@ -72,9 +71,8 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="bytes">存储对象的字节数组</param>
         /// <returns>反序列化后的对象</returns>
         public static T Deserialize<T>(Byte[] bytes) {
-            using (MemoryStream mem = new MemoryStream(bytes)) {
-                return Deserialize<T>(mem);
-            }
+            using MemoryStream mem = new MemoryStream(bytes);
+            return Deserialize<T>(mem);
         }
 
         /// <summary>
@@ -108,11 +106,10 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="filename">全路径文件名</param>
         /// <returns>反序列化后的对象</returns>
         public static T Deserialize<T>(string filename) {
-            using (FileStream fs = File.Open(filename, FileMode.Open)) {
-                var obj = Deserialize<T>(fs);
-                DebugHelper.WriteLine("from binary file: " + filename);
-                return obj;
-            }
+            using FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read);
+            var obj = Deserialize<T>(fs);
+            DebugHelper.WriteLine("from binary file: " + filename);
+            return obj;
         }
 
         private static BinaryFormatter getBinaryFormatter() {

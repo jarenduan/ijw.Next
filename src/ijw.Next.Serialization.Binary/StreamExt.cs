@@ -18,13 +18,12 @@ namespace ijw.Next.Serialization.Binary {
         /// <returns>返回解析到的对象, 如果没有读取到对象, 会返回默认值default(T). 没有解析成功, 会抛出异常.</returns>
         /// <remarks>编码采用UTF8</remarks>
         public static T RetrieveBinaryObjectAndDispose<T>(this Stream stream, int? length = null) {
-            using (BinaryReader reader = new BinaryReader(stream)) {
-                if (length is null) {
-                    return reader.RetrieveBinaryObject<T>();
-                }
-                else {
-                    return reader.RetrieveBinaryObject<T>(length.Value);
-                }
+            using BinaryReader reader = new BinaryReader(stream);
+            if (length is null) {
+                return reader.RetrieveBinaryObject<T>();
+            }
+            else {
+                return reader.RetrieveBinaryObject<T>(length.Value);
             }
         }
 
@@ -37,9 +36,8 @@ namespace ijw.Next.Serialization.Binary {
         /// <param name="writeLengthHeader">是否写入头. 如果为true, 将首先自动写入4个字节的头, 内容是对象序列化后的长度</param>
         /// <remarks>编码采用UTF8</remarks>
         public static void WriteBinaryObjectAndDispose<T>(this Stream stream, T obj, bool writeLengthHeader = true) {
-            using (BinaryWriter writer = new BinaryWriter(stream)) {
-                writer.WriteBinaryObject(obj, writeLengthHeader);
-            }
+            using var writer = new BinaryWriter(stream);
+            writer.WriteBinaryObject(obj, writeLengthHeader);
         }
         //#endif
         /// <summary>

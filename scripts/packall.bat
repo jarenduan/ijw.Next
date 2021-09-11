@@ -12,15 +12,11 @@
 @echo ------------------------------------------------
 @echo   Cleaning ^& building ^& packing all projects...
 @echo.
-@msbuild /v:m /t:clean^;build^;pack | find "nupkg"
+@msbuild /v:m /t:clean^;pack | find "nupkg"
 @echo.
 @echo ------------------------------------------------
 @echo   Copying packages to pkg folder...
 @for /r %%b in (debug\*.nupkg) do @copy %%b %~dp0..\pkg\ >nul
-@echo   OK!
-@echo ------------------------------------------------
-@echo   Cleaning all projects, again...
-@msbuild /v:m /t:clean 1> nul
 @echo   OK!
 @echo ------------------------------------------------
 @echo   Listing packages in pkg folder:

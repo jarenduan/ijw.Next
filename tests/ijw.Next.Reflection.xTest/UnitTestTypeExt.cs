@@ -16,7 +16,7 @@ namespace ijw.Next.Reflection.xTest {
             Assert.Equal("System.Tuple`2[System.Int32,System.Collections.Generic.List`1[System.String]]", name);
         }
 
-        private class test<T, V> {
+        private class Test<T, V> {
 
         }
     }

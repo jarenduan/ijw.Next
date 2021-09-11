@@ -4,10 +4,82 @@
         <name>ijw.Next.Reflection</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.Reflection.IEnumerableExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Reflection.IEnumerableExt.ToGenericList``1(System.Collections.Generic.IEnumerable{``0},System.Type)">
+            <summary>
+            生成泛型List
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ijw.Next.Reflection.IgnoreFillingAttribute">
+            <summary>
+            忽略填充
+            </summary>
+        </member>
         <member name="T:ijw.Next.Reflection.ObjectExt">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:ijw.Next.Reflection.ObjectExt.Get(System.Object,System.String,System.Object[])">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="obj"></param>
+            <param name="propertyName">属性名</param>
+            <param name="para">参数名, 默认为null</param>
+            <returns>属性值</returns>
+        </member>
+        <member name="M:ijw.Next.Reflection.ObjectExt.Get``1(System.Object,System.String,System.Object[])">
+            <summary>
+            获取强类型的属性值
+            </summary>
+            <typeparam name="T">属性值的类型</typeparam>
+            <param name="obj"></param>
+            <param name="propertyName">属性名</param>
+            <param name="para">参数名, 默认为null</param>
+            <returns>属性值</returns>
+        </member>
+        <member name="M:ijw.Next.Reflection.ObjectExt.Set``1(``0,System.String,System.Object)">
+            <summary>
+            设置指定的属性值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="propertyName">属性的名字</param>
+            <param name="value">属性值</param>
+            <remarks>
+            属性值运行时类型如果不符合, 将会抛出异常
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.Reflection.ObjectExt.Set``1(``0,System.String,System.Text.Json.JsonElement)">
+            <summary>
+            根据JsonElement对象, 设置指定的属性值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="propertyName">属性的名字</param>
+            <param name="jsonValue">JsonElement 属性值</param>
+            <remarks>
+            属性值运行时类型如果不符合, 将会抛出异常
+            </remarks>
+        </member>
+        <member name="M:ijw.Next.Reflection.ObjectExt.Set``1(``0,System.String,System.String)">
+            <summary>
+            将字符串尝试转型成属性的类型(用默认的FormatProvider), 并把成功转型后的值设置给指定的属性. 多用于从文本文件中构建对象.
+            转型失败将抛出异常
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="propertyName">属性的名字, 必须存在</param>
+            <param name="stringvalue">属性值</param>
         </member>
         <member name="M:ijw.Next.Reflection.ObjectExt.SetPropertyValue``1(``0,System.String,System.String)">
             <summary>
@@ -30,6 +102,14 @@
             <remarks>
             属性值运行时类型如果不符合, 将会抛出异常
             </remarks>
+        </member>
+        <member name="M:ijw.Next.Reflection.ObjectExt.FillPropertiesOfBasicType``1(``0,System.Func{System.Reflection.PropertyInfo,System.Object})">
+            <summary>
+            使用指定的方法, 填充基本类型的属性值. 支持int16/32/64, single/double/decimal, datetime, string.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="getPropertyValue">获取指定属性名的值, 例如可用IDataRecord[属性名]</param>
         </member>
         <member name="M:ijw.Next.Reflection.ObjectExt.InvokeMethod``1(``0,System.String,System.Object[])">
             <summary>
@@ -104,6 +184,42 @@
             <param name="obj"></param>
             <param name="other"></param>
             <returns></returns>
+        </member>
+        <member name="T:ijw.Next.Reflection.PropertyInfoExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Reflection.PropertyInfoExt.FindAttribute``1(System.Reflection.PropertyInfo)">
+            <summary>
+            获取属性上指定类型的Attribute的第一个实例. 找不到将抛出异常.
+            </summary>
+            <typeparam name="T">Attribute类型</typeparam>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Reflection.PropertyInfoExt.FirstAttributeOrDefault``1(System.Reflection.PropertyInfo)">
+            <summary>
+            获取属性上指定类型的Attribute的第一个实例. 找不到将返回空.
+            </summary>
+            <typeparam name="T">Attribute类型</typeparam>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ijw.Next.Reflection.PropertyInfoExt.IsNullable(System.Reflection.PropertyInfo)">
+            <summary>
+            检查是否是Nullable或者C# 8.0的可空类型
+            </summary>
+            <param name="p"></param>
+            <returns>如果可空, 返回true, 反之返回false</returns>
+        </member>
+        <member name="M:ijw.Next.Reflection.PropertyInfoExt.HasAttribute``1(System.Reflection.PropertyInfo)">
+            <summary>
+            是否存在指定类型的特性
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="p"></param>
+            <returns>存在返回true, 不存在返回false</returns>
         </member>
         <member name="T:ijw.Next.Reflection.ReflectionHelper">
             <summary>

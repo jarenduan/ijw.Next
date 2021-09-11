@@ -9,6 +9,14 @@
             
             </summary>
         </member>
+        <member name="M:ijw.Next.DependencyInjection.IServiceCollectionExt.GetService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="srv"></param>
+            <returns></returns>
+        </member>
         <member name="T:ijw.Next.DependencyInjection.IServiceScopeFactoryExt">
             <summary>
             

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ijw.Next.Collection {
     /// <summary>
@@ -21,12 +18,13 @@ namespace ijw.Next.Collection {
         /// <remarks>
         /// Returning IList is bad design, so this is not recommended in net40+, use tuple-returning instead.
         /// </remarks>
-        public static void DivideByRatioAndMethod<T>(this ICollection<T> collection, int ratioOfFirstGroup, int ratioOfSecondGroup, CollectionDividingMethod method, out IList<T> firstGroup, out IList<T> secondGroup) {
-            List<T> first = new List<T>(), second = new List<T>();
-            divide(collection, method, ratioOfFirstGroup, ratioOfSecondGroup, first, second);
-            firstGroup = first;
-            secondGroup = second;
-        }
+        public static void DivideByRatioAndMethod<T>(this ICollection<T> collection, int ratioOfFirstGroup, int ratioOfSecondGroup, CollectionDividingMethod method, out IList<T> firstGroup, out IList<T> secondGroup) =>
+            //List<T> first = new(), second = new();
+            //divide(collection, method, ratioOfFirstGroup, ratioOfSecondGroup, first, second);
+            //firstGroup = first;
+            //secondGroup = second;
+            (firstGroup, secondGroup) = DivideByRatioAndMethod(collection, method, ratioOfFirstGroup, ratioOfSecondGroup);
+
         /// <summary>
         /// 将一个集合分割为两个集合
         /// </summary>
@@ -37,24 +35,24 @@ namespace ijw.Next.Collection {
         /// <param name="ratioOfSecondGroup">一个整数, 第二个集合占的比例</param>
         /// <returns></returns>
         public static (List<T> firstGroup, List<T> secondGroup) DivideByRatioAndMethod<T>(this ICollection<T> collection, CollectionDividingMethod method, int ratioOfFirstGroup, int ratioOfSecondGroup) {
-            List<T> first = new List<T>(), second = new List<T>();
+            List<T> first = new(), second = new();
             divide(collection, method, ratioOfFirstGroup, ratioOfSecondGroup, first, second);
             return (first, second);
-        }
 
-        private static void divide<T>(IEnumerable<T> source, CollectionDividingMethod method, int ratioOfFirstGroup, int ratioOfSecondGroup, List<T> first, List<T> second) {
-            if (method == CollectionDividingMethod.Random) {
-                source = source.Shuffle();
+            void divide<T>(IEnumerable<T> source, CollectionDividingMethod method, int ratioOfFirstGroup, int ratioOfSecondGroup, List<T> first, List<T> second) {
+                if (method == CollectionDividingMethod.Random) {
+                    source = source.Shuffle();
+                }
+
+                source.ForEach((element, index) => {
+                    if (index % (ratioOfFirstGroup + ratioOfSecondGroup) < ratioOfFirstGroup) {
+                        first.Add(element);
+                    }
+                    else {
+                        second.Add(element);
+                    }
+                });
             }
-
-            source.ForEach((element, index) => {
-                if (index % (ratioOfFirstGroup + ratioOfSecondGroup) < ratioOfFirstGroup) {
-                    first.Add(element);
-                }
-                else {
-                    second.Add(element);
-                }
-            });
         }
     }
 }

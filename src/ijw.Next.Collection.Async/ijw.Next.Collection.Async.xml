@@ -4,6 +4,35 @@
         <name>ijw.Next.Collection.Async</name>
     </assembly>
     <members>
+        <member name="T:ijw.Next.Collection.Async.ConcurrentBorrowableCollection`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ijw.Next.Collection.Async.ConcurrentBorrowableCollection`1.Count">
+            <summary>
+            元素数量
+            </summary>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.ConcurrentBorrowableCollection`1.Append(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ijw.Next.Collection.Async.ConcurrentBorrowableCollection`1.TryConsumeOneAsync(System.Func{`0,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="consumeFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="E:ijw.Next.Collection.Async.ConcurrentBorrowableCollection`1.ItemCountChanged">
+            <summary>
+            内部元素数量发生变化
+            </summary>
+        </member>
         <member name="T:ijw.Next.Collection.Async.LongTimeConsumingCollection`1">
             <summary>
             提供基于异步操作的支持长时间消费操作的线程安全集合.

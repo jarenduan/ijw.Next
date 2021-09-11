@@ -18,16 +18,18 @@ namespace ijw.Next.Collection.xTest {
             Assert.Equal(windows[3], new string[] { "d", "e", "f" });
         }
 
+       
+
         [Fact]
         public void NullFilterTest() {
             string[] s = { "a", "b", "c", "d", "e", "f" };
-            var r = s.NullFilter().ToArray();
+            var r = s.SkipNull().ToArray();
 
             string?[] ss = { "a", "b", "c", "d", null, "f" };
-            var rr = ss.NullFilter().ToArray();
+            var rr = ss.SkipNull().ToArray();
 
             int?[] sss = { 1, 2, 3, null, 5 };
-            var rrr = sss.NullFilter().ToArray();
+            var rrr = sss.SkipNull().ToArray();
 
             //for non-null value Type, it is invalid to call NullFilter method.
             //Uncomment below lines, you'll get errors.

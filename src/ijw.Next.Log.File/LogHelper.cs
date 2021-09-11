@@ -17,6 +17,18 @@ namespace ijw.Next.Log.File {
             set => _logger.LogFilePath = value;
         }
 
+        public void WriteDebug(string msg) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteDebug(Exception ex) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteDebug(Exception ex, string msg) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 输出错误日志到SimpleLog, 前面会标明Error字样
         /// </summary>
@@ -38,6 +50,10 @@ namespace ijw.Next.Log.File {
             this._logger.Log("Error： " + msg);
         }
 
+        public void WriteError(Exception ex, string msg) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 输出信息日志到SimpleLog, 前面会标明Info字样
         /// </summary>
@@ -57,6 +73,34 @@ namespace ijw.Next.Log.File {
                 return;
             }
             this._logger.Log("Info: " + msg);
+        }
+
+        public void WriteInfo(Exception ex, string msg) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteTrace(string msg) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteTrace(Exception ex) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteTrace(Exception ex, string msg) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteWarn(string msg) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteWarn(Exception ex) {
+            throw new NotImplementedException();
+        }
+
+        public void WriteWarn(Exception ex, string msg) {
+            throw new NotImplementedException();
         }
     }
 }

@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ijw.Next\ijw.Next.csproj">
+    <ProjectReference Include="..\..\src\ijw.Next\ijw.Next.csproj">
       <Project>{0fe0b64c-8934-45ca-a49d-1113c29b0e7e}</Project>
       <Name>ijw.Next</Name>
     </ProjectReference>

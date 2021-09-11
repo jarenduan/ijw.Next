@@ -1,15 +1,22 @@
 ﻿using System;
+using System.IO;
 
 namespace ijw.Next.IO {
     /// <summary>
-    /// 表示批量Copy没有顺利完成的异常.
+    /// 批量复制没有完成的异常
     /// </summary>
-    public class BatchCopyNotFinishedException : Exception {
+
+    public class BatchCopyNotFinishedException : IOException { //TODO: adapt net35, and change into AggregateException.
         /// <summary>
         /// 
         /// </summary>
         /// <param name="copied"></param>
-        public BatchCopyNotFinishedException(string[] copied) {
+        /// <param name="message"></param>
+        public BatchCopyNotFinishedException(string[] copied, string message = "") : base(message) {
+            Copied = copied;
+        }
+
+        public BatchCopyNotFinishedException(string[] copied, Exception innerException, string message = "") : base(message, innerException) {
             Copied = copied;
         }
 
